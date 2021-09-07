@@ -1,0 +1,54 @@
+<nav *ngIf="mostrar_nav_logo" class="navbar navbar-inverse navbar-fixed-top justify-content-center mx-auto" role="navigation">
+    <div class="row d-none d-lg-block d-xl-block">
+        <div class="col-12">
+            <a class="navbar-brand" href="#"><img src="../../../../assets/img/logo.png" class= "w-75"></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg pl-5 navbar-dark text-white"  id="nav_principal">
+    <div class="container-fluid">
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Audífonos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Parlantes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Álbumes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blogs</a>
+                </li>
+                <div class="d-block d-lg-none d-xl-none">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-search icon-menu"></i>
+                            Buscar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart icon-menu"></i>
+                            Carrito</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-sign-in-alt icon-menu"></i>
+                            Iniciar Sesión</a>
+                    </li>
+                </div>
+            </ul>
+            <div class="col-md-3 text-end">
+                <div class="d-none d-lg-block d-xl-block">
+                    <button type="button" class="btn me-2"><i class="fas fa-search"></i></button>
+                    <button type="button" class="btn me-2"><i
+                            class="fas fa-shopping-cart"></i></button>
+                    <a type="button" class="btn btn-light" routerLink="/iniciar-sesion">Iniciar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

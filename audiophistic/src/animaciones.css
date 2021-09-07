@@ -1,0 +1,4 @@
+* {
+    animation: fade_in_up 1s;
+    animation-fill-mode: forwards;
+}

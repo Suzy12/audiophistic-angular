@@ -1,0 +1,32 @@
+
+.icon-menu {
+    padding-right: 10px;
+}
+
+.nav-item {
+    margin-left: 80px;
+}
+
+.navbar {
+    background-color: var(--fondo_navbar) !important;
+    background:  var(--fondo_navbar) !important;
+    transition: background-color 200ms linear;
+}
+
+
+.nav-item a, button{
+    color: var(--texto_navbar);
+}
+.nav-item a:hover, button:hover{
+    color: var(--hover_navbar);
+}
+
+
+@media (max-width: 990px) {
+    .navbar {
+        background: rgb(54, 54, 54)!important;
+    }
+    .nav-item a{
+        color: white;
+    }
+}

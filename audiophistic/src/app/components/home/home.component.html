@@ -1,0 +1,263 @@
+<body id="home">
+    <section class="banner">
+        <div class="container">
+
+            <!-- Primera Mitad -->
+            <div class="text-white d-md-flex align-items-center p-0 m-0 text-left justify-content-center">
+                <div class="p-5">
+                    <img class="logo mb-3 text_appear" src="../../../assets/img/logo.png">
+                    <p class="mb-5 text_appear">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor
+                        incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+
+                    <button class="btn form_btn text_appear">
+                        Comprar Ahora
+                    </button>
+                </div>
+            </div>
+        </div>
+        <img src="../../../assets/img/wave1.png" class="bottom_image">
+    </section>
+
+    <!-- Sección Más Vendidos -->
+    <section>
+        <div class="container">
+            <div class="main_title text-center justify-content-center  align-items-center ps-3">
+                <h2 class="font-weight-bold">Más Vendidos</h2>
+                <p class="text-muted pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                    tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div id="carouselProducts" class="carousel  carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div *ngFor="let num of slides" [ngClass]="{'active': num == 0}" class="carousel-item"
+                        data-bs-interval="10000">
+                        <div class="container_carousel">
+                            <div class="d-none d-lg-block">
+                                <div class="row text-center">
+                                    <div class="col-lg-4">
+                                        <app-product-cards></app-product-cards>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <app-product-cards></app-product-cards>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <app-product-cards></app-product-cards>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-sm-block d-lg-none">
+                                <div class="row text-center">
+                                    <div class="col-12">
+                                        <app-product-cards></app-product-cards>
+                                    </div>
+                                    {{num}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProducts"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselProducts"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- FIN: Sección Más Vendidos -->
+
+    <!-- Sección Blogs Más Vistos -->
+    <section class="blogs_banner">
+        <div class="container">
+            <div class="main_title text-center ps-3">
+                <h2 class="font-weight-bold">Blogs más Vistos</h2>
+                <p class="text-muted pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                    tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div id="carouselBlogs" class="carousel  carousel-dark slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselBlogs" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselBlogs" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselBlogs" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div *ngFor="let num of slides" [ngClass]="{'active': num == 0}" class="carousel-item"
+                        data-bs-interval="10000">
+                        <div class="container_carousel_blogs">
+                            <div class="d-none d-lg-block">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <app-blogs-cards></app-blogs-cards>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <app-blogs-cards></app-blogs-cards>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <app-blogs-cards></app-blogs-cards>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-sm-block d-lg-none">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <app-blogs-cards></app-blogs-cards>
+                                    </div>
+                                    {{num}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN: Sección Blogs Más Vistos -->
+
+    <!-- Sección Mejores Vendedores -->
+    <section>
+        <div class="container">
+            <div class="main_title text-center ps-3">
+                <h2 class="font-weight-bold">Mejores Vendedores</h2>
+                <p class="text-muted pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                    tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="slider mb-5">
+                <div class="slide-track">
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                    <div class="slide">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250"
+                            alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN: Sección Mejores Vendedores -->
+
+
+    <!-- Sección Caracteristicas Audiophistic -->
+    <section class="info_banner">
+        <div class="container pb-5">
+            <div class="main_title text-center ps-3">
+                <h2 class="font-weight-bold">¿Qué ofrece Audiophistic?</h2>
+                <hr>
+                <p class="text-muted pt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                    tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <div class="container">
+                <div class="row features-row wow fade_in_up">
+                    <div class="col-md-4 col-sm-12 feature-column">
+                        <div class="feature-icon">
+                            <i class="fas fa-music fa-2x"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Lorem Ipsum</h4>
+                            <p class="feature-description">Vivamus molestie phasellus enim sed orci eu pharetra. Donec
+                                posuere
+                                nunc vitae tortor sagittis feugiat in non massa.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 white feature-column">
+                        <div class="feature-icon">
+                            <i class="fas fa-headphones fa-2x"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Lorem Ipsum</h4>
+                            <p class="feature-description">Vivamus molestie phasellus enim sed orci eu pharetra. Donec
+                                posuere
+                                nunc vitae tortor sagittis feugiat in non massa.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 white feature-column">
+                        <div class="feature-icon">
+                            <i class="fas fa-record-vinyl fa-2x"></i>
+                        </div>
+                        <div class="feature-info">
+                            <h4>Lorem Ipsum</h4>
+                            <p class="feature-description">Vivamus molestie phasellus enim sed orci eu pharetra. Donec
+                                posuere
+                                nunc vitae tortor sagittis feugiat in non massa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN: Sección Caracteristicas Audiophistic -->
+    <app-footer></app-footer>
+</body>

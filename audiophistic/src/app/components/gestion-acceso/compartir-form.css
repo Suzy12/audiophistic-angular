@@ -1,0 +1,105 @@
+*{
+    animation: fade_in_up 1s;
+    animation-fill-mode: forwards;
+}
+
+
+/*--------------------LINKS-------------------------*/
+
+a {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--azul);
+    margin: 0px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+a:focus {
+    outline: none !important;
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--rojizo);
+}
+
+/*--------------------BUTTONS-------------------------*/
+
+.form_btn {
+    width: 100%;
+}
+
+/*------------LOGIN------------------*/
+
+.wrap_login {
+    width: 960px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 130px 130px 130px 130px;
+}
+
+/*---------------IMAGEN---------------------*/
+
+.form_imagen {
+    width: 400px;
+}
+
+.form_imagen img {
+    max-width: 100%;
+}
+
+/*--------------FORM---------------------*/
+
+.login_form {
+    width: 290px;
+}
+
+.login_form_titulo {
+    font-size: 24px;
+    color: #333333;
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding-bottom: 5%;
+}
+
+/*-------------------INPUTS--------------------------*/
+
+.wrap_input_form {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    margin-bottom: 10px;
+}
+
+/*------------------------------------------------------------------
+  [ Responsive ]*/
+
+@media (max-width: 992px) {
+    .wrap_login {
+        padding: 80px 80px 80px 80px;
+    }
+    .form_imagen {
+        display: none;
+    }
+    .login_form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .wrap_login {
+        padding: 15px 15px 15px 15px;
+    }
+}

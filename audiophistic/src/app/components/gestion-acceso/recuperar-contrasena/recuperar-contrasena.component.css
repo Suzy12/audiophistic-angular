@@ -1,0 +1,114 @@
+#bubbles {
+    height: 100%
+}
+
+#bubbles {
+    padding: 100px 0
+}
+
+.bubble {
+    width: 60px;
+    height: 60px;
+    background: var(--rojizo);
+    border-radius: 200px;
+    position: absolute;
+}
+
+.x1 {
+    -webkit-transform: scale(0.9);
+    -moz-transform: scale(0.9);
+    transform: scale(0.9);
+    opacity: 0.2;
+    animation: move_clouds 15s linear infinite, side_ways 4s ease-in-out infinite alternate;
+}
+
+.x2 {
+    left: 10%;
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    transform: scale(0.6);
+    opacity: 0.5;
+    animation: move_clouds 25s linear infinite, side_ways 5s ease-in-out infinite alternate;
+}
+
+.x3 {
+    left: 30%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.3;
+    animation: move_clouds 20s linear infinite, side_ways 4s ease-in-out infinite alternate;
+}
+
+.x4 {
+    left: 40%;
+    -webkit-transform: scale(0.75);
+    -moz-transform: scale(0.75);
+    transform: scale(0.75);
+    opacity: 0.35;
+    animation: move_clouds 18s linear infinite, side_ways 2s ease-in-out infinite alternate;
+}
+
+.x5 {
+    left: 15%;
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    transform: scale(0.8);
+    opacity: 0.3;
+    animation: move_clouds 7s linear infinite, side_ways 1s ease-in-out infinite alternate;
+}
+
+@keyframes move_clouds {
+    0% {
+        top: 500px;
+    }
+    100% {
+        top: -500px;
+    }
+}
+
+@keyframes side_ways {
+    0% {
+        margin-left: 0px;
+    }
+    100% {
+        margin-left: 50px;
+    }
+}
+
+
+/*--------------------BUTTONS-------------------------*/
+
+.form_btn {
+    width: 25%;
+}
+
+/*--------------FORM---------------------*/
+
+.login_form {
+    width: 50%;
+}
+
+.login_form_titulo {
+    font-size: 20px;
+}
+
+/*------------------------------------------------------------------
+  [ Responsive ]*/
+@media (max-width: 992px) {
+    .form_btn {
+        width: 50%;
+    }
+}
+
+
+@media (max-width: 576px) {
+    .login_form {
+        width: 100%;
+    }
+    
+}
+
+/*
+   Reference: http://jsfiddle.net/p5gpx/
+*/

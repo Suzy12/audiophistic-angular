@@ -21,6 +21,8 @@ import { TablaProductosComponent } from './components/productos/tabla-productos/
 import { TablaUsuariosComponent } from './components/usuarios/tabla-usuarios/tabla-usuarios.component';
 import { VerUsuarioConsumidorComponent } from './components/usuarios/ver-usuario-consumidor/ver-usuario-consumidor.component';
 import { CrearUsuarioComponent } from './components/usuarios/crear-usuario/crear-usuario.component';
+import { VerProductoComponent } from './components/productos/ver-producto/ver-producto.component';
+import { EliminarModalComponent } from './components/modals/eliminar-modal/eliminar-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { CrearUsuarioComponent } from './components/usuarios/crear-usuario/crear
     TablaProductosComponent,
     TablaUsuariosComponent,
     VerUsuarioConsumidorComponent,
-    CrearUsuarioComponent
+    CrearUsuarioComponent,
+    VerProductoComponent,
+    EliminarModalComponent
   ],
   imports: [
     BrowserModule,

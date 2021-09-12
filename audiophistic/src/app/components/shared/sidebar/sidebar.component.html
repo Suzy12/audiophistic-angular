@@ -28,7 +28,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link px-2 text-truncate" (click)="isMenuCollapsed = true">
+                            <a href="#" class="nav-link px-2 text-truncate" (click)="isMenuCollapsed = true"
+                                [routerLink]="['/inicio/usuarios']" [routerLinkActive]="['active']">
                                 <i class="fas fa-users"></i>
                                 <span class="ms-3">Usuarios</span> </a>
                         </li>
@@ -73,7 +74,8 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link px-2 text-truncate">
+                        <a href="#" class="nav-link px-2 text-truncate" [routerLink]="['/inicio/usuarios']"
+                            [routerLinkActive]="['active']">
                             <i class="fas fa-users"></i>
                             <span class="ms-3">Usuarios</span> </a>
                     </li>

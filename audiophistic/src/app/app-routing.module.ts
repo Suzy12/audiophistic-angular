@@ -6,6 +6,9 @@ import { RecuperarContrasenaComponent } from './components/gestion-acceso/recupe
 import { RegistroComponent } from './components/gestion-acceso/registro/registro.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TablaProductosComponent } from './components/productos/tabla-productos/tabla-productos.component';
+import { TablaUsuariosComponent } from './components/usuarios/tabla-usuarios/tabla-usuarios.component';
+import { VerUsuarioConsumidorComponent } from './components/usuarios/ver-usuario-consumidor/ver-usuario-consumidor.component';
+import { VerProductoComponent } from './components/productos/ver-producto/ver-producto.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,9 +20,12 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'productos', component: TablaProductosComponent },
+      { path: 'usuarios', component: TablaUsuariosComponent },
+      { path: 'ver-usuario', component: VerUsuarioConsumidorComponent },
       { path: '**', pathMatch: "full", redirectTo: 'dashboard' }
     ]
   },
+  { path: 'ver-producto', component: VerProductoComponent },
   { path: '**', pathMatch: "full", redirectTo: 'home' }
 
 ];

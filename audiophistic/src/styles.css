@@ -9,11 +9,16 @@
     --azul: rgba(15, 119, 210, 1);
     --texto_navbar: white;
     --hover_navbar: var(--rojizo);
+    --texto_claro: 	#999999;
 }
 
 main {
     margin-left: 5rem;
     padding: 1rem;
+}
+
+hr{
+    color: lightgray;
 }
 
 body {

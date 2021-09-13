@@ -2,32 +2,52 @@
     <div class="d-flex justify-content-center">
         <div class="wrap_login">
 
-            <form class="login_form">
+            <form class="login_form" [formGroup]="sesion_form" (ngSubmit)="iniciar_sesion()">
                 <span class="login_form_titulo">
                     Iniciar Sesión
                 </span>
-                <p class="text-muted text-center pb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec nibh vitae...</p>
+                <p class="text-muted text-center pb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec
+                    nibh vitae...</p>
 
                 <div class="wrap_input_form">
-                    <input class="input_form" type="text" name="email" placeholder="Correo Electrónico">
+                    <input class="input_form" type="text" name="correo" placeholder="Correo Electrónico"
+                        formControlName="correo" [ngClass]="{ 'is-invalid': submitted && form.correo.errors }"
+                        required="required">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
                 </div>
+                <div class="text-center">
+                    <div *ngIf="submitted && form.correo.errors" class="text-danger mb-3">
+                        <div *ngIf="form.correo.errors.required">
+                            <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El
+                                campo de correo es obligatorio</label>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="wrap_input_form">
-                    <input class="input_form" type="password" name="pass" placeholder="Contraseña">
+                    <input class="input_form" type="password" name="pass" placeholder="Contraseña"
+                        formControlName="contrasena" [ngClass]="{ 'is-invalid': submitted && form.contrasena.errors }">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">
                         <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
                 </div>
+                <div class="text-center">
+                    <div *ngIf="submitted && form.contrasena.errors" class="text-danger mb-3">
+                        <div *ngIf="form.contrasena.errors.required">
+                            <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El
+                                campo de contraseña es obligatorio</label>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="pt-3">
-                    <a class="btn form_btn" href="/inicio">
+                    <button class="btn form_btn" type="submit">
                         Iniciar Sesión
-                    </a>
+                    </button>
                 </div>
 
                 <div class="text-center pt-3">

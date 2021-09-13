@@ -24,3 +24,8 @@ a {
 .flex-container li {
   flex-basis: 100%;
 }
+
+.imagen_sidebar{
+  width: 10%;
+  margin-left:10px;
+}

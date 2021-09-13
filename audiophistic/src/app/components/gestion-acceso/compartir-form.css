@@ -12,9 +12,6 @@ a {
     color: var(--azul);
     margin: 0px;
     transition: all 0.4s;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
 }
 
 a:focus {
@@ -35,13 +32,8 @@ a:hover {
 /*------------LOGIN------------------*/
 
 .wrap_login {
-    width: 960px;
     border-radius: 10px;
     overflow: hidden;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -61,7 +53,7 @@ a:hover {
 /*--------------FORM---------------------*/
 
 .login_form {
-    width: 290px;
+    width: 300px;
 }
 
 .login_form_titulo {
@@ -77,9 +69,7 @@ a:hover {
 /*-------------------INPUTS--------------------------*/
 
 .wrap_input_form {
-    position: relative;
     width: 100%;
-    z-index: 1;
     margin-bottom: 10px;
 }
 

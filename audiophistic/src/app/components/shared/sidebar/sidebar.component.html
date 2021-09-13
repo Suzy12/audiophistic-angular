@@ -1,48 +1,26 @@
 <body class="bg-light">
     <div class="container-fluid d-sm-block d-lg-none">
         <div class="row">
-            <button class="navbar-toggler bg-white" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+            <button class="navbar-toggler bg-white" type="button" (click)="menu_responsive = !menu_responsive">
                 &#9776;
             </button>
-            <aside [ngbCollapse]="isMenuCollapsed"
+            <aside [ngbCollapse]="menu_responsive"
                 class="collapse navbar-collapse col-sm-3 flex-grow-sm-1 flex-shrink-1 flex-grow-0 pb-sm-0 pb-3 float-end">
                 <div class="bg-white rounded-3 p-1 h-100">
                     <a href="/" class="d-flex align-items-center pt-3 link-dark text-decoration-none">
-                        <i class="fab fa-bootstrap fa-2x ms-3"></i>
-                        <span class="ms-3 fs-4">Sidebar</span>
+                        <img src="../../../../music.png" class="imagen_sidebar">
+                        <span class="ms-3 fs-4">Menú</span>
                     </a>
                     <hr>
                     <ul class="nav nav-pills mb-auto justify-content-between text-truncate flex-container"
                         orientation="vertical">
-                        <li class="nav-item">
-                            <a class="nav-link px-2 text-truncate" [routerLink]="['/inicio/dashboard']"
-                                [routerLinkActive]="['active']" (click)="isMenuCollapsed = true">
-                                <i class="fas fa-tachometer-alt"></i>
-                                <span class="ms-3">Dashboard</span>
+                        <li *ngFor="let opcion of menu" class="nav-item">
+                            <a class="nav-link px-2 text-truncate" [routerLink]="opcion.ruta"
+                                [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:
+                                true}" (click)="menu_responsive = true">
+                                <i class="{{opcion.icono}}"></i>
+                                <span class="ms-3">{{opcion.titulo}}</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link px-2 text-truncate" (click)="isMenuCollapsed = true">
-                                <i class="fas fa-user-circle"></i>
-                                <span class="ms-3">Perfil</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link px-2 text-truncate" (click)="isMenuCollapsed = true"
-                                [routerLink]="['/inicio/usuarios']" [routerLinkActive]="['active']">
-                                <i class="fas fa-users"></i>
-                                <span class="ms-3">Usuarios</span> </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-2 text-truncate" (click)="isMenuCollapsed = true"
-                                [routerLink]="['/inicio/productos']" [routerLinkActive]="['active']">
-                                <i class="fas fa-boxes"></i>
-                                <span class="ms-3">Productos</span> </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link px-2 text-truncate" (click)="isMenuCollapsed = true">
-                                <i class="far fa-file-alt"></i>
-                                <span class="ms-3">Blogs</span> </a>
                         </li>
                     </ul>
                 </div>
@@ -54,41 +32,19 @@
         <aside class="d-none d-lg-block">
             <div class="bg-white border rounded-3 p-1 h-100 menu">
                 <a href="/" class="d-flex align-items-center pt-3 link-dark text-decoration-none">
-                    <i class="fab fa-bootstrap fa-2x ms-3"></i>
-                    <span class="ms-3 fs-4">Sidebar</span>
+                    <img src="../../../../music.png" class="imagen_sidebar">
+                    <span class="ms-3 fs-4">Menú</span>
                 </a>
                 <hr>
                 <ul class="nav nav-pills flex-sm-column flex-row mb-auto justify-content-between text-truncate"
                     orientation="vertical">
-                    <li class="nav-item">
-                        <a class="nav-link px-2 text-truncate" [routerLink]="['/inicio/dashboard']"
-                            [routerLinkActive]="['active']">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <span class="ms-3">Dashboard</span>
+                    <li *ngFor="let opcion of menu" class="nav-item">
+                        <a class="nav-link px-2 text-truncate" [routerLink]="opcion.ruta"
+                            [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:
+                                true}">
+                            <i class="{{opcion.icono}}"></i>
+                            <span class="ms-3">{{opcion.titulo}}</span>
                         </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link px-2 text-truncate">
-                            <i class="fas fa-user-circle"></i>
-                            <span class="ms-3">Perfil</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link px-2 text-truncate" [routerLink]="['/inicio/usuarios']"
-                            [routerLinkActive]="['active']">
-                            <i class="fas fa-users"></i>
-                            <span class="ms-3">Usuarios</span> </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link px-2 text-truncate" [routerLink]="['/inicio/productos']"
-                            [routerLinkActive]="['active']">
-                            <i class="fas fa-boxes"></i>
-                            <span class="ms-3">Productos</span> </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link px-2 text-truncate">
-                            <i class="far fa-file-alt"></i>
-                            <span class="ms-3">Blogs</span> </a>
                     </li>
                 </ul>
             </div>

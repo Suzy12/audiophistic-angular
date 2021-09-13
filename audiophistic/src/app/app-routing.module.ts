@@ -9,6 +9,8 @@ import { TablaProductosComponent } from './components/productos/tabla-productos/
 import { TablaUsuariosComponent } from './components/usuarios/tabla-usuarios/tabla-usuarios.component';
 import { VerUsuarioConsumidorComponent } from './components/usuarios/ver-usuario-consumidor/ver-usuario-consumidor.component';
 import { VerProductoComponent } from './components/productos/ver-producto/ver-producto.component';
+import { CrearProductoComponent } from './components/productos/crear-producto/crear-producto.component';
+import { CrearUsuarioComponent } from './components/usuarios/crear-usuario/crear-usuario.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,8 +22,10 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'productos', component: TablaProductosComponent },
+      { path: 'crear-producto', component: CrearProductoComponent },
       { path: 'usuarios', component: TablaUsuariosComponent },
       { path: 'ver-usuario', component: VerUsuarioConsumidorComponent },
+      { path: 'crear-usuario', component: CrearUsuarioComponent },
       { path: '**', pathMatch: "full", redirectTo: 'dashboard' }
     ]
   },

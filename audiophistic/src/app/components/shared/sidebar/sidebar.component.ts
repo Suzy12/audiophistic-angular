@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from '../../../services/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  isMenuCollapsed:boolean = true;
-  active = 'dashboard';
+  menu: any[] = [];
+  menu_responsive:boolean = true;
 
-  constructor() { }
+  constructor(public sidebar_service: SidebarService) { }
 
   ngOnInit(): void {
+    this.menu = this.sidebar_service.obtener_menu("1");
   }
 
 }

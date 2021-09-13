@@ -1,1 +1,81 @@
-<p>crear-usuario works!</p>
+<div class="container">
+    <div id="stepper1" class="bs-stepper">
+        <div class="bs-stepper-header">
+            <div class="step" data-target="#test-l-1">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle"><i class="fas fa-user"></i></span>
+                    <span class="bs-stepper-label">Tipo de Usuario</span>
+                </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-2">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle"><i class="fas fa-info"></i></span>
+                    <span class="bs-stepper-label">Información General</span>
+                </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-3">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="bs-stepper-label">Ubicación</span>
+                </button>
+            </div>
+        </div>
+        <div class="bs-stepper-content">
+            <form (ngSubmit)="onSubmit()">
+                <div id="test-l-1" class="content">
+                    <hr>
+                    <div class="form-group">
+                        <label for="tipo"><i class="fas fa-user"></i> Tipo de Usuario</label>
+                        <select class="form-select form-control" aria-label="Eligir Tipo de Usuario" id="tipo">
+                            <option value="1" selected>Creador de Contenido</option>
+                        </select>
+                    </div>
+                    <div class="botones_navegacion">
+                        <a (click)="anterior()" class="btn btn-primary m-2">Anterior</a>
+                        <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>
+                    </div>
+                </div>
+                <div id="test-l-2" class="content">
+                    <hr>
+                    <app-creador-contenido></app-creador-contenido>
+                    <div class="botones_navegacion">
+                        <a (click)="anterior()" class="btn btn-primary m-2">Anterior</a>
+                        <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>
+                    </div>
+                </div>
+                <div id="test-l-3" class="content">
+                    <div class="form-group">
+                        <label for="tipo"><i class="fas fa-map-marker"></i>Provincia <span class="text-muted">
+                                (opcional)</span></label>
+                        <select class="form-select form-control" id="provincia" (change)="obtener_cantones($any($event.target).value)">
+                            <option *ngFor="let provincia of provincias; let i = index" [value]="provincia.id">
+                                {{provincia.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo"><i class="fas fa-map-marker-alt"></i>Cantón<span class="text-muted">
+                                (opcional)</span></label>
+                        <select class="form-select form-control" id="canton">
+                            <option *ngFor="let canton of cantones; let i = index" [value]="canton.id">
+                                {{canton.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo"><i class="fas fa-thumbtack"></i>Dirección Exacta<span class="text-muted">
+                                (opcional)</span></label>
+                        <div class="form-floating">
+                            <textarea class="form-control" id="floatingTextarea"></textarea>
+                            <label for="floatingTextarea">Dirección</label>
+                        </div>
+                    </div>
+                    <div class="botones_navegacion">
+                        <a (click)="anterior()" class="btn btn-primary m-2">Anterior</a>
+                        <a class="btn btn-primary">Crear Usuario</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

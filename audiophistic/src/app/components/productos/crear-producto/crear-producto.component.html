@@ -1,0 +1,62 @@
+<div class="container">
+    <div id="stepper1" class="bs-stepper">
+        <div class="bs-stepper-header">
+            <div class="step" data-target="#test-l-1">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle"><i class="fas fa-boxes"></i></span>
+                    <span class="bs-stepper-label">Tipo de Producto</span>
+                </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-2">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle"><i class="fas fa-info"></i></span>
+                    <span class="bs-stepper-label">Información General</span>
+                </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-3">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle"><i class="fas fa-magic"></i></span>
+                    <span class="bs-stepper-label">Estilos</span>
+                </button>
+            </div>
+        </div>
+        <div class="bs-stepper-content">
+            <form (ngSubmit)="onSubmit()">
+                <div id="test-l-1" class="content">
+                    <hr>
+                    <div class="form-group">
+                        <label for="tipo"><i class="fas fa-boxes"></i> Tipo de Producto</label>
+                        <select class="form-select form-control" aria-label="Eligir Tipo de Usuario" id="tipo">
+                            <option value="1" selected>Creador de Contenido</option>
+                        </select>
+                    </div>
+                    <div class="botones_navegacion">
+                        <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
+                        <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>
+                    </div>
+                </div>
+                <div id="test-l-2" class="content">
+                    <hr>
+                    <!--<app-audifonos></app-audifonos>-->
+                    <!--<app-parlantes></app-parlantes>-->
+                    <app-albumes id="albumes_form"></app-albumes>
+                    <div class="botones_navegacion">
+                        <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
+                        <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>
+                    </div>
+                </div>
+                <div id="test-l-3" class="content">
+                    <!--<app-sin-estilos></app-sin-estilos>-->
+                    <!--<app-colores></app-colores>-->
+                    <app-presentaciones></app-presentaciones>
+                    <div class="botones_navegacion">
+                        <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
+                        <a class="btn btn-primary">Crear Producto</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

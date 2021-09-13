@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +25,15 @@ import { VerUsuarioConsumidorComponent } from './components/usuarios/ver-usuario
 import { CrearUsuarioComponent } from './components/usuarios/crear-usuario/crear-usuario.component';
 import { VerProductoComponent } from './components/productos/ver-producto/ver-producto.component';
 import { EliminarModalComponent } from './components/modals/eliminar-modal/eliminar-modal.component';
+import { CrearProductoComponent } from './components/productos/crear-producto/crear-producto.component';
+import { AudifonosComponent } from './components/productos/crear-producto/productos/audifonos/audifonos.component';
+import { ParlantesComponent } from './components/productos/crear-producto/productos/parlantes/parlantes.component';
+import { AlbumesComponent } from './components/productos/crear-producto/productos/albumes/albumes.component';
+import { ColoresComponent } from './components/productos/crear-producto/estilos/colores/colores.component';
+import { PresentacionesComponent } from './components/productos/crear-producto/estilos/presentaciones/presentaciones.component';
+import { SinEstilosComponent } from './components/productos/crear-producto/estilos/sin-estilos/sin-estilos.component';
+import { CreadorContenidoComponent } from './components/usuarios/crear-usuario/usuarios/creador-contenido/creador-contenido.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -42,14 +53,26 @@ import { EliminarModalComponent } from './components/modals/eliminar-modal/elimi
     VerUsuarioConsumidorComponent,
     CrearUsuarioComponent,
     VerProductoComponent,
-    EliminarModalComponent
+    EliminarModalComponent,
+    CrearProductoComponent,
+    AudifonosComponent,
+    ParlantesComponent,
+    AlbumesComponent,
+    ColoresComponent,
+    PresentacionesComponent,
+    SinEstilosComponent,
+    CreadorContenidoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     DataTablesModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

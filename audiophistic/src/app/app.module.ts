@@ -34,6 +34,7 @@ import { PresentacionesComponent } from './components/productos/crear-producto/e
 import { SinEstilosComponent } from './components/productos/crear-producto/estilos/sin-estilos/sin-estilos.component';
 import { CreadorContenidoComponent } from './components/usuarios/crear-usuario/usuarios/creador-contenido/creador-contenido.component';
 import { ToastrModule } from 'ngx-toastr';
+import { CuentaActivadaComponent } from './components/gestion-acceso/cuenta-activada/cuenta-activada.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ToastrModule } from 'ngx-toastr';
     ColoresComponent,
     PresentacionesComponent,
     SinEstilosComponent,
-    CreadorContenidoComponent
+    CreadorContenidoComponent,
+    CuentaActivadaComponent
   ],
   imports: [
     BrowserModule,

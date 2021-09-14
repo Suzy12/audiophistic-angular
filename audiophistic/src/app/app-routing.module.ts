@@ -11,6 +11,7 @@ import { VerUsuarioConsumidorComponent } from './components/usuarios/ver-usuario
 import { VerProductoComponent } from './components/productos/ver-producto/ver-producto.component';
 import { CrearProductoComponent } from './components/productos/crear-producto/crear-producto.component';
 import { CrearUsuarioComponent } from './components/usuarios/crear-usuario/crear-usuario.component';
+import { CuentaActivadaComponent } from './components/gestion-acceso/cuenta-activada/cuenta-activada.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: '**', pathMatch: "full", redirectTo: 'dashboard' }
     ]
   },
+  { path: 'cuenta', component: CuentaActivadaComponent },
   { path: 'ver-producto', component: VerProductoComponent },
   { path: '**', pathMatch: "full", redirectTo: 'home' }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Person } from '../../../models/person';
+import { Idioma } from '../../../models/idioma'
 
 class DataTablesResponse {
   data: any[] = [];
@@ -26,6 +27,7 @@ export class TablaUsuariosComponent implements OnInit {
     const that = this;
 
     this.dtOptions = {
+      language: Idioma.spanish_datatables,
       pagingType: 'full_numbers',
       scrollX: true,
       pageLength: 10,

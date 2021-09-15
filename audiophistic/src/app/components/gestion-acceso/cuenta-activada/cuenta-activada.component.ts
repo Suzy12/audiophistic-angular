@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 
 @Component({
   selector: 'app-cuenta-activada',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CuentaActivadaComponent implements OnInit {
 
-  constructor() { }
+  mostrar_exito:boolean = false;
+  mostrar_error:boolean = false;
+  titulo:string = "";
+  descripcion:string = "Espere un momento mientras procesamos la activación de la cuenta...";
 
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute, private acceso_service: AccesoService) { }
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      let token = params['token'];
+      this.acceso_service.activar_cuenta(token).subscribe((res: any) => {
+        console.log(res.body);
+        if (res.body.error) {
+          this.titulo = "Error";
+          this.descripcion = res.body.error;
+          this.mostrar_exito = false;
+          this.mostrar_error = true;
+        } else {
+          this.titulo = "Cuenta Activada";
+          this.descripcion = res.body.resultado;
+          this.mostrar_exito = true;
+          this.mostrar_error = false;
+        }
+      });
+    });
   }
 
 }

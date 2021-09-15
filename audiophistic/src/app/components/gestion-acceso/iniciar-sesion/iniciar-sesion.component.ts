@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -14,7 +15,7 @@ export class IniciarSesionComponent implements OnInit {
   submitted: Boolean = false;
 
   constructor(private formBuilder: FormBuilder, private acceso_service: AccesoService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
     this.sesion_form = this.formBuilder.group({
@@ -41,26 +42,15 @@ export class IniciarSesionComponent implements OnInit {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {
         this.toastr.success(`Bienvenido`, 'Usuario autenticado', { timeOut: 2000 });
-        //this.exito(res.body);
+        this.exito(sesion_info.correo, res.body.resultado);
       }
     });
 
     this.submitted = false;
   }
 
-  exito(res: any) {
-    let sesion_info = this.sesion_form.getRawValue();
-    //this.guard.setSession(res.body.token);
-    /*localStorage.set('current-user', sesion_info.correo); //guardar correo del usuario actual
-    this.storage.set('current-user-role', res.body.user.nivel_acceso); //guardar rol para fachada
-    this.storage.set('current-user-role-name', res.body.user.nombre_rol); //guardar nombre del rol
-    this.storage.set('current-user-role-bd', res.body.user.id_lider); //guardar rol como está en la BD
-    this.storage.set('current-user-movimiento', loginInfo.idMovimiento); //guardar id del movimiento
-    this.loginForm.reset();
-
-    this.storage.set('current-user-notifications', 0);
-
-
-    this.router.navigate(['/perfil']); //navegar a la pagina de perfil */
+  exito(correo:string, res: any) {
+    this.acceso_service.confirmar_iniciar_sesion(correo, res.token, res.id_tipo)
+    this.router.navigate(['/inicio']); //navegar a la pagina de dashboard
   }
 }

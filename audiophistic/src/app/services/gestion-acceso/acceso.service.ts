@@ -20,6 +20,18 @@ export class AccesoService {
     return this.http.post(this.api_url + '/iniciar_sesion', sesion_info, { observe: 'response' })
   }
 
+  public registrarse = (registro_info: Object) => {
+    return this.http.post(this.api_url + '/registrar_usuario', registro_info, { observe: 'response' })
+  }
+
+  public activar_cuenta = (token_: string) => {
+    return this.http.post(this.api_url + '/confirmar_usuario', {token: token_}, { observe: 'response' })
+  }
+
+  public recuperar_contrasena = (recuperar_info: Object) => {
+    return this.http.post(this.api_url + '/recuperar_contrasena', recuperar_info, { observe: 'response' })
+  }
+
   cerrar_sesion() {
     this.logger.next(false);
     localStorage.clear()
@@ -27,8 +39,8 @@ export class AccesoService {
 
   confirmar_iniciar_sesion(correo: string, token: string, rol: string) {
     this.logger.next(true);
-    this.guardar_token(correo);
-    this.guardar_correo(token);
+    this.guardar_token(token);
+    this.guardar_correo(correo);
     this.guardar_rol(rol)
   }
 
@@ -53,6 +65,10 @@ export class AccesoService {
   }
 
   esta_autenticado(): boolean {
+    let token = this.leerToken();
+    if(token == null || token == '' || token == undefined){
+      return false;
+    }
     return true;
   }
 

@@ -14,7 +14,8 @@ export class SidebarComponent implements OnInit {
   constructor(public sidebar_service: SidebarService) { }
 
   ngOnInit(): void {
-    this.menu = this.sidebar_service.obtener_menu("1");
+    let rol = localStorage.getItem('rol') || '';
+    this.menu = this.sidebar_service.obtener_menu(rol);
   }
 
 }

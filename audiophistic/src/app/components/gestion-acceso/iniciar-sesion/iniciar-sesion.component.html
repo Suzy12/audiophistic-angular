@@ -6,13 +6,12 @@
                 <span class="login_form_titulo">
                     Iniciar Sesión
                 </span>
-                <p class="text-muted text-center pb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec
+                <p class="text-muted text-center pb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec
                     nibh vitae...</p>
 
                 <div class="wrap_input_form">
                     <input class="input_form" type="text" name="correo" placeholder="Correo Electrónico"
-                        formControlName="correo" [ngClass]="{ 'is-invalid': submitted && form.correo.errors }"
-                        required="required">
+                        formControlName="correo" [ngClass]="{ 'is-invalid': submitted && form.correo.errors }">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -28,7 +27,7 @@
                 </div>
 
                 <div class="wrap_input_form">
-                    <input class="input_form" type="password" name="pass" placeholder="Contraseña"
+                    <input class="input_form" type="password" name="contrasena" placeholder="Contraseña"
                         formControlName="contrasena" [ngClass]="{ 'is-invalid': submitted && form.contrasena.errors }">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">

@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Person } from '../../../models/person';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EliminarModalComponent } from '../../modals/eliminar-modal/eliminar-modal.component'
+import { Idioma } from '../../../models/idioma'
 
 class DataTablesResponse {
   data: any[] = [];
@@ -28,6 +29,7 @@ export class TablaProductosComponent implements OnInit {
     const that = this;
 
     this.dtOptions = {
+      language: Idioma.spanish_datatables,
       pagingType: 'full_numbers',
       scrollX: true,
       pageLength: 10,

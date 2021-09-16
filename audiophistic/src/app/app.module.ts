@@ -67,13 +67,13 @@ import { CuentaActivadaComponent } from './components/gestion-acceso/cuenta-acti
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     DataTablesModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
   providers: [],

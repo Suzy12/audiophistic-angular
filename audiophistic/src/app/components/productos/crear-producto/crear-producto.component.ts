@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChildren, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChildren, ViewChild, NgModule } from '@angular/core';
 import Stepper from 'bs-stepper';
+import { EstilosService } from 'src/app/services/estilos/estilos.service';
+
 import { AlbumesComponent } from './productos/albumes/albumes.component';
 
 
@@ -11,12 +13,22 @@ import { AlbumesComponent } from './productos/albumes/albumes.component';
 export class CrearProductoComponent implements OnInit {
 
   private stepper: Stepper = {} as Stepper;
-  @ViewChild(AlbumesComponent) albumViewChild: AlbumesComponent = new AlbumesComponent;
+  tipo_producto: number = 1;
+  estilo:string = '';
+  
+  /*@ViewChild(AlbumesComponent) albumViewChild: AlbumesComponent = new AlbumesComponent;*/
 
-  constructor() { }
+  constructor(private estilos_service: EstilosService) { 
+    this.consultar_estilos()
+  }
 
-  getChildrenProperty() {
+  /*getChildrenProperty() {
     console.log(this.albumViewChild.album_object);
+  }*/
+
+  consultar_estilos(){
+    this.estilo = this.estilos_service.consultar_estilo_producto(this.tipo_producto);
+    console.log(this.estilo)
   }
 
   anterior() {
@@ -25,7 +37,6 @@ export class CrearProductoComponent implements OnInit {
 
   siguiente() {
     this.stepper.next();
-    this.getChildrenProperty()
   }
 
   onSubmit() {

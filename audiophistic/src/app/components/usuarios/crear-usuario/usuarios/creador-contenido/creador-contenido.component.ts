@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms'
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, FormGroupDirective } from '@angular/forms'
 
 @Component({
   selector: 'app-creador-contenido',
@@ -8,18 +8,24 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms'
 })
 export class CreadorContenidoComponent implements OnInit {
 
-  usuario_form: FormGroup = {} as FormGroup;
+  @Input() creador_form: string = '';
+  creador_contenido_form: FormGroup = {} as FormGroup;
+  submitted:boolean = false;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private form_raiz: FormGroupDirective) { }
 
   ngOnInit(): void {
-    this.usuario_form = this.fb.group({
+    this.creador_contenido_form = this.form_raiz.control.get(this.creador_form) as FormGroup;
+
+    this.creador_contenido_form = this.fb.group({
       nombre: ['', [Validators.required]],
-      telefono: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      celular: ['', [Validators.required]],
+      correo: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
       sitio_web: ['']
     });
   }
+
+  get form() { return this.creador_contenido_form.controls }
 
 }

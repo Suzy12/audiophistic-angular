@@ -1,12 +1,14 @@
 :root {
     --scalar: 1.2;
 }
+
 .card {
     border: none;
     margin-top: 50px;
     padding: 3em;
     line-height: 1.5em;
 }
+
 
 .colores label {
     min-height: 25px;
@@ -80,11 +82,19 @@
     font-weight: bold;
 }
 
-.grid-container {
+.grid-container .texto {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 20vh;
+    min-height: 2vh;
     overflow: auto;
+}
+
+.carousel-control-prev {
+    margin-left: -60px;
+}
+
+.carousel-control-next {
+    margin-right: -60px;
 }
 
 @keyframes crescendo {
@@ -97,19 +107,19 @@
 }
 
 @media screen and (max-width: 400px) {
-    .grid-container {
+    .grid-container .texto {
         display: grid;
         grid-template-columns: 1fr;
     }
-    .presentaciones label{
+    .presentaciones label {
         display: grid;
         grid-template-columns: 1fr;
     }
 }
 
-@media screen and (max-width: 996px) {
-    .preview {
-        margin-bottom: 20px;
+@media screen and (max-width: 770px) {
+    .titulo{
+        margin-top: 20%;
     }
 }
 

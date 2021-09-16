@@ -1,12 +1,55 @@
-<header class="py-3 mb-4 border-bottom shadow">
-    <div class="container-fluid d-flex justify-content-end">
-        <div class="text-end">
-            <div class="d-none d-lg-block d-xl-block">
-                <a type="button" class="btn me-2" href="#"><i class="fas fa-home"></i></a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="col-12 col-lg-6">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-block d-lg-none">
+                    <li class="nav-item">
+                        <a type="button" class="btn me-2" href="#">
+                            <i class="fas fa-home d-inline-flex"></i>
+                            <span class="d-block d-lg-none d-inline-flex"> Página Principal </span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a type="button" class="btn me-2">
+                            <i class="fas fa-search d-inline-flex"></i>
+                            <span class="d-block d-lg-none d-inline-flex"> Buscar </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a type="button" class="btn me-2">
+                            <i class="fas fa-shopping-cart d-inline-flex"></i>
+                            <span class="d-block d-lg-none d-inline-flex"> Tienda </span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <div ngbDropdown class="d-inline-block">
+                            <a type="button" id="perfil_opciones" class="btn me-2" ngbDropdownToggle>
+                                <i class="fas fa-user d-inline-flex"></i>
+                                <span class="d-block d-lg-none d-inline-flex"> Perfil </span>
+                            </a>
+                            <div ngbDropdownMenu aria-labelledby="perfil_opciones">
+                                <button (click)="cerrar_sesion()" ngbDropdownItem>Cerrar Sesión</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block text-end">
+                <a type="button" class="btn me-2"><i class="fas fa-home"></i></a>
                 <a type="button" class="btn me-2"><i class="fas fa-search"></i></a>
                 <a type="button" class="btn me-2"><i class="fas fa-shopping-cart"></i></a>
-                <a type="button" class="btn me-2"><i class="fas fa-user"></i></a>
+                <div ngbDropdown class="d-inline-block" display="dynamic">
+                    <a type="button" id="perfil_opciones" class="btn me-2" ngbDropdownToggle>
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="perfil_opciones">
+                        <button (click)="cerrar_sesion()" ngbDropdownItem>Cerrar Sesión</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</header>
+</nav>

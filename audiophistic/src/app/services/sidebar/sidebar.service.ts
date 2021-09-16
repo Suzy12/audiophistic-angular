@@ -17,7 +17,7 @@ export class SidebarService {
 
   menu = [
     {
-      titulo: 'Dashboard',
+      titulo: 'Reportes',
       icono: 'fas fa-tachometer-alt',
       ruta: '/inicio/dashboard',
       rol: ["1","2"]
@@ -41,11 +41,18 @@ export class SidebarService {
       rol: ["1","2"]
     },
     {
+      titulo: 'Categorías',
+      icono: 'fas fa-tag',
+      ruta: '',
+      rol: ["1"]
+    },
+    {
       titulo: 'Blogs',
       icono: 'far fa-file-alt',
       ruta: '',
       rol: ["1","2"]
-    }
+    },
+    
   ];
 
   constructor() { }
@@ -58,7 +65,6 @@ export class SidebarService {
     var menu_rol: any = [];
     this.menu.forEach(elemento => {
       if (elemento.rol.includes(rol)) {
-          console.log(elemento);
           menu_rol.push(elemento);
         }
     });

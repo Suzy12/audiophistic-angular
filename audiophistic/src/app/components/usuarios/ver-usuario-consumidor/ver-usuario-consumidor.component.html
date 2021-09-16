@@ -2,9 +2,9 @@
     <div class="profile-card rounded">
         <div class="profile-pic d-none d-lg-block" id="profile_pic"></div>
         <div class="profile-name-container">
-            <div class="user-name">User Name Here</div>
-            <div class="text-muted">
-                <i class="fas fa-map-marker-alt p-3"></i>User Location Here
+            <div class="user-name">{{usuario.nombre}}</div>
+            <div class="text-muted" *ngIf="usuario.caracteristicas.hasOwnProperty('provincia')">
+                <i class="fas fa-map-marker-alt p-3"></i>{{usuario.caracteristicas.canton}}, {{usuario.caracteristicas.provincia}}
             </div>
         </div>
         <ul class="nav nav-tabs m-5" id="general_tab" role="tablist">
@@ -17,13 +17,13 @@
             <div class="tab-pane fade show active" id="general-tab" role="tabpanel">
                 <div class="grid-container">
                     <div class="fw-bold">Teléfono</div>
-                    <div>+506 XXXX-XXXX</div>
+                    <div>{{usuario.caracteristicas.celular}}</div>
                     <div class="fw-bold">Dirección</div>
-                    <div>C. Multiplaza, San José, San Rafael</div>
+                    <div>{{usuario.caracteristicas.direccion_exacta}}</div>
                     <div class="fw-bold">Correo Electrónico</div>
-                    <div>info@vertigo.cr</div>
+                    <div>{{usuario.correo}}</div>
                     <div class="fw-bold">Cumpleaños</div>
-                    <div>03/07/1999</div>
+                    <div>{{usuario.caracteristicas.cumpleanos}}</div>
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Stepper from 'bs-stepper';
 import { UbicacionesService } from 'src/app/services/ubicaciones/ubicaciones.service';
 import { Provincia, Canton } from 'src/app/models/ubicaciones';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -9,6 +10,8 @@ import { Provincia, Canton } from 'src/app/models/ubicaciones';
   styleUrls: ['./crear-usuario.component.css']
 })
 export class CrearUsuarioComponent implements OnInit {
+
+  usuario_form: FormGroup = {} as FormGroup;
   private stepper: Stepper = {} as Stepper;
   public provincias: Provincia[] = []
   public cantones:Canton[] = []

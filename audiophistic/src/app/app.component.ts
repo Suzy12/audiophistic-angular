@@ -18,7 +18,6 @@ export class AppComponent {
       filter(event => event instanceof NavigationEnd)
     )
       .subscribe((event: any) => {
-        console.log(event)
         if (event.urlAfterRedirects.includes('/inicio')) {
           this.mostrar_nav = false;
           this.mostrar_sidebar = true;

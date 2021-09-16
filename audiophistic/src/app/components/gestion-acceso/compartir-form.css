@@ -31,7 +31,7 @@ a:hover {
 
 /*------------LOGIN------------------*/
 
-.wrap_login {
+.wrap_form {
     border-radius: 10px;
     overflow: hidden;
     display: flex;
@@ -52,11 +52,11 @@ a:hover {
 
 /*--------------FORM---------------------*/
 
-.login_form {
+._form {
     width: 300px;
 }
 
-.login_form_titulo {
+._form_titulo {
     font-size: 24px;
     color: #333333;
     line-height: 1.2;
@@ -77,19 +77,19 @@ a:hover {
   [ Responsive ]*/
 
 @media (max-width: 992px) {
-    .wrap_login {
+    .wrap_form {
         padding: 80px 80px 80px 80px;
     }
     .form_imagen {
         display: none;
     }
-    .login_form {
+    ._form {
         width: 100%;
     }
 }
 
 @media (max-width: 576px) {
-    .wrap_login {
+    .wrap_form {
         padding: 15px 15px 15px 15px;
     }
 }

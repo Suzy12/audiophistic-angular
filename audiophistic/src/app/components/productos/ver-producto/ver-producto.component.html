@@ -2,32 +2,22 @@
     <div class="card">
         <div class="container-fliud">
             <div class="wrapper row">
-                <div class="col-md-6">
-                    <div id="carouselExample" class="carousel slide w-100" data-bs-ride="carousel"
+                <div class="col-md-6 d-flex justify-content-center align-items-center text-center">
+                    <div id="carrusel" class="carousel slide w-75 h-auto carousel-dark slide" data-bs-ride="carousel"
                         data-bs-interval="3000">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
+                            <div class="carousel-item" *ngFor="let imagen of imagenes; let i = index" 
+                            [ngClass]="{'active': i == 0}">
                                 <img class="d-block w-100"
-                                    src="https://www.cs.ucy.ac.cy/courses/EPL425/labs/LAB10/slide1.jpg"
-                                    alt="First slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100"
-                                    src="https://www.cs.ucy.ac.cy/courses/EPL425/labs/LAB10/slide2.jpg"
-                                    alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100"
-                                    src="https://www.cs.ucy.ac.cy/courses/EPL425/labs/LAB10/slide3.jpg"
-                                    alt="Third slide">
+                                    [src]="imagen">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" data-bs-target="#carouselExample" type="button"
+                        <button class="carousel-control-prev" data-bs-target="#carrusel" type="button"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" data-bs-target="#carouselExample" type="button"
+                        <button class="carousel-control-next" data-bs-target="#carrusel" type="button"
                             data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
@@ -36,7 +26,7 @@
 
                 </div>
                 <div class="col-md-6">
-                    <h3 class="titulo">men's shoes fashion</h3>
+                    <h3 class="titulo">{{producto.titulo}}</h3>
                     <div class="calificacion d-flex justify-content-start">
                         <div class="stars">
                             <span class="fa fa-star checked"></span>
@@ -47,38 +37,33 @@
                         </div>
                         <span class="ps-2 review-no text-muted">(41)</span>
                     </div>
-                    <h4 class="precio"><strong>₡ 45,000.00</strong></h4>
+                    <h4 class="precio"><strong>{{producto.precio | currency:'CRC':'symbol-narrow'}}</strong></h4>
 
-                    <form class="form-horizontal" method="post">
-                        <fieldset>
-                            <div class="control-group ">
-                                <label class="control-label pb-2">Colores:</label>
-                                <div class="controls colores">
-                                    <input type="radio" checked="" value="red" id="red" name="optionsRadios">
-                                    <label for="red" class="btn-danger"> </label>
+                    <form class="form-horizontal">
 
-                                    <input type="radio" checked="" value="blue" id="blue" name="optionsRadios">
-                                    <label for="blue" class="btn-info"> </label>
+                        <div class="control-group" *ngIf="nombre_estilo == 'colores'">
+                            <label class="control-label pb-2">Colores:</label>
+                            <div class="controls colores">
+                                <div *ngFor="let item of estilos" class="d-inline-block">
+                                    <input type="radio" checked="" [value]="item.id_estilo" [id]="item.nombre"
+                                        name="colores_grupo" (change)="cambiar_imagenes($event)">
+                                    <label [attr.for]="item.nombre" [ngStyle]="{'background-color': item.descripcion}">
+                                    </label>
 
-                                    <input type="radio" checked="" value="yellow" id="yellow" name="optionsRadios">
-                                    <label for="yellow" class="btn-warning"> </label>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="control-group">
-                                <label class="control-label pb-2">Presentaciones:</label>
-                                <div class="controls radio-group presentaciones">
-                                    <input type="radio" checked="" value="red" id="red2" name="optionsRadios2">
-                                    <label for="red2" class="btn btn-light"> CD Audio </label>
-
-                                    <input type="radio" checked="" value="blue" id="blue2" name="optionsRadios2">
-                                    <label for="blue2" class="btn btn-light"> Vinilo </label>
-
-                                    <input type="radio" checked="" value="yellow" id="yellow2" name="optionsRadios2">
-                                    <label for="yellow2" class="btn btn-light"> MP3 </label>
+                        <div class="control-group" *ngIf="nombre_estilo == 'presentaciones'">
+                            <label class="control-label pb-2">Presentaciones:</label>
+                            <div class="controls radio-group presentaciones">
+                                <div *ngFor="let item of estilos" class="d-inline-block">
+                                    <input type="radio" checked="" [value]="item.id_estilo" [id]="item.nombre" name="presentaciones_grupo"
+                                    (change)="cambiar_imagenes(item)">
+                                    <label [attr.for]="item.nombre" class="btn btn-light"> {{item.nombre}} </label>
                                 </div>
                             </div>
-                        </fieldset>
+                        </div>
                     </form>
 
                     <div class="accion d-flex justify-content-start">
@@ -89,7 +74,7 @@
                                 class="fas fa-share-alt"></span></button>
                     </div>
                     <div class="autor mt-2">
-                        <p>Por: <span class="text-danger">Rodrigo Castro</span></p>
+                        <p>Por: <span class="text-danger">{{producto.nombre_creador}}</span></p>
                     </div>
                 </div>
             </div>
@@ -106,34 +91,17 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active p-3" id="home" role="tabpanel"
-                        aria-labelledby="home-tab">
-                        Los intuitivos e inteligentes audífonos WH-1000XM4 te ofrecen nuevas mejoras en la tecnología de
-                        noise cancelling líder del sector 1, una calidad de sonido excepcional y funciones de escucha
-                        inteligente que se ajustan al entorno y lo que estés haciendo.
-                        <ul>
-                            <li>El paquete incluye: auriculares inalámbricos Sony WH-1000XM4 con cancelación de ruido
-                                (negro), y auriculares inalámbricos deportivos Sony WI-SP500 (negro).
-                            </li>
-                            <li>Edge-AI: utilizando Edge-AI (inteligencia artificial) co-desarrollado con Sony Music
-                                Studios Tokyo, DSEE Extreme (motor de mejora de sonido digital) mejora los archivos de
-                                música digitales comprimidos en tiempo real.
-                            </li>
-                            <li>Instrumentación de reconocimiento dinámico, géneros musicales y elementos individuales
-                                de cada canción, como voces o interludos, restaura el sonido de alto rango perdido en
-                                compresión para una experiencia de escucha más rica y completa.</li>
-                        </ul>
+                    <div class="tab-pane fade show active p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        {{producto.descripcion}}
                     </div>
                     <div class="tab-pane fade p-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="grid-container">
-                            <div class="fw-bold">Marca</div>
-                            <div>Sony</div>
-                            <div class="fw-bold">Tipo</div>
-                            <div>Over Ear, In Ear</div>
-                            <div class="fw-bold">Conexión</div>
-                            <div>Wireless</div>
-                            <div class="fw-bold">Año de lanzamiento</div>
-                            <div>2020</div>
+                            <div *ngFor="let esp of especificaciones">
+                                <div class="texto">
+                                    <div class="fw-bold">{{esp.especificacion}}</div>
+                                    <div>{{esp.valor}}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

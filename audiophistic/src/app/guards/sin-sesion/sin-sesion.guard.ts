@@ -18,7 +18,7 @@ export class SinSesionGuard implements CanActivate {
       this.router.navigate(["inicio/dashboard"]);
       return false;
     } else {
-      localStorage.removeItem('token');
+      localStorage.clear();
       return true;
     }
   }

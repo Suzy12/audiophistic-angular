@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="bs-stepper-content">
-            <form (ngSubmit)="onSubmit()">
+            <form [formGroup]="usuario_form" (ngSubmit)="onSubmit()">
                 <div id="test-l-1" class="content">
                     <hr>
                     <div class="form-group">
@@ -39,7 +39,7 @@
                 </div>
                 <div id="test-l-2" class="content">
                     <hr>
-                    <app-creador-contenido></app-creador-contenido>
+                    <app-creador-contenido formGroupName="creador_contenido_form"></app-creador-contenido>
                     <div class="botones_navegacion">
                         <a (click)="anterior()" class="btn btn-primary m-2">Anterior</a>
                         <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>
@@ -79,3 +79,4 @@
         </div>
     </div>
 </div>
+{{usuario_form | json}}

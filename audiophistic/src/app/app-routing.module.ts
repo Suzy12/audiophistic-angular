@@ -28,12 +28,12 @@ const routes: Routes = [
       { path: 'crear-producto', component: CrearProductoComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'}  },
       { path: 'usuarios', component: TablaUsuariosComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'crear-usuario', component: CrearUsuarioComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
-      { path: 'ver-usuario', component: VerUsuarioConsumidorComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
+      { path: 'ver-usuario/:id', component: VerUsuarioConsumidorComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: '**', pathMatch: "full", redirectTo: 'dashboard' }
     ]
   },
   { path: 'cuenta', component: CuentaActivadaComponent },
-  { path: 'ver-producto', component: VerProductoComponent },
+  { path: 'ver-producto/:id', component: VerProductoComponent },
   { path: '**', pathMatch: "full", redirectTo: 'home' }
 
 ];

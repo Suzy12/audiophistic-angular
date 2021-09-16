@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-sidebar',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavSidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private acceso_service: AccesoService,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  cerrar_sesion(){
+    this.acceso_service.cerrar_sesion();
+    this.router.navigate(["#"]); 
   }
 
 }

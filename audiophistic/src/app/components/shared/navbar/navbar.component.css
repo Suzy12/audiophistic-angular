@@ -14,10 +14,10 @@
 }
 
 
-.nav-item a, button{
+.nav-item a, button, .boton{
     color: var(--texto_navbar);
 }
-.nav-item a:hover, button:hover{
+.nav-item a:hover, button:hover, .boton:hover{
     color: var(--hover_navbar);
 }
 
@@ -28,5 +28,8 @@
     }
     .nav-item a{
         color: white;
+    }
+    .nav-item a:hover{
+        color: var(--rojizo) !important;
     }
 }

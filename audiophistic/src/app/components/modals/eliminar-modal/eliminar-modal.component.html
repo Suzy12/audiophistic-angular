@@ -1,23 +1,23 @@
 <div class="modal_confirmar">
     <div class="modal-content">
         <div class="container d-flex justify-content-end">
-            <button type="button" class="btn" data-dismiss="modal" (click)="closeModal('dismiss')">&times;</button>
+            <button type="button" class="btn" data-dismiss="modal" (click)="cerrar_modal()">&times;</button>
         </div>
         <div class="modal-header">
             <h4 class="modal-title w-100 m-0">
                 <div class="icon-box justify-content-center align-items-center d-lg-flex d-none d-lg-block pb-4">
                     <i class="far fa-times-circle"></i>
                 </div>
-                Are you sure?
+                Eliminar {{datos_eliminar.eliminar}}
             </h4>
         </div>
         <div class="modal-body">
-            <p>Modal body text goes here.</p>
+            <p>{{datos_eliminar.mensaje}}</p>
         </div>
         <div class="modal-footer justify-content-center">
             <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                (click)="closeModal('close')">Cancelar</button>
-            <button type="button" class="btn btn-danger" (click)="closeModal('changes saved!')">Eliminar</button>
+                (click)="cerrar_modal()">Cancelar</button>
+            <button type="button" class="btn btn-danger" (click)="eliminar()">Eliminar</button>
         </div>
     </div>
 </div>

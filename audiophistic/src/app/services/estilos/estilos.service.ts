@@ -53,7 +53,7 @@ export class EstilosService {
       nombre: ['', [Validators.required]],
       precio: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
-      fotos: this.fb.array([this.fb.control([''])]),
+      fotos: this.fb.array([this.fb.control(['', [Validators.required]])]),
     })
   }
 

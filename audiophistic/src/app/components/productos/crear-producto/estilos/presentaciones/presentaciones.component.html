@@ -1,6 +1,11 @@
 <div [formGroup]="presentaciones_form">
     <div class="form-group">
         <label for="tipo"><i class="fas fa-compact-disc"></i>Presentaciones</label>
+        <div class="text-danger" *ngIf="submitted && estilos.controls.length === 0">
+            <label class="font-weight-bold">
+                <i class="fa fa-exclamation-circle"></i> El producto requiere por lo menos
+                una presentación</label>
+        </div>
         <table class="table" formArrayName="estilos">
             <tr>
                 <th width="150px"><button type="button" class="btn btn-outline-primary" (click)="agregar_estilo()"><i
@@ -20,20 +25,50 @@
                 <td>
                     <div class="form-group">
                         <label for="tipo"><i class="fas fa-heading"></i>Nombre</label>
-                        <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre">
+                        <input type="text" [ngClass]="{ 'is-invalid': (estilo.get('nombre')?.touched || submitted) && 
+                        estilo.get('nombre')?.errors }" class="form-control" placeholder="Nombre"
+                            formControlName="nombre">
+                        <div *ngIf="submitted && estilo.get('nombre')?.errors?.required" class="invalid-feedback">
+                            <div>
+                                <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
+                                    de nombre es obligatorio</label>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="form-group">
                         <label for="tipo"><i class="fas fa-coins"></i>Precio Extra<span class="text-muted"> (en
                                 colones)</span></label>
-                        <input type="text" class="form-control" placeholder="Precio" formControlName="precio">
+                        <input type="text" [ngClass]="{ 'is-invalid': (estilo.get('precio')?.touched || submitted) && 
+                        estilo.get('precio')?.errors }" class="form-control" placeholder="Precio"
+                            formControlName="precio">
+                        <div *ngIf="submitted && estilo.get('precio')?.errors?.required" class="invalid-feedback">
+                            <div>
+                                <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
+                                    de precio extra es obligatorio</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="tipo"><i class="fas fa-dolly-flatbed"></i>Cantidad del Producto<span
                                 class="text-muted"> (coloque un -1 si es digital)</span></label>
-                        <input type="number" class="form-control" placeholder="Cantidad" formControlName="existencia">
+                        <input type="number" [ngClass]="{ 'is-invalid': (estilo.get('existencia')?.touched || submitted) && 
+                        estilo.get('existencia')?.errors }" class="form-control" placeholder="Cantidad"
+                            formControlName="existencia">
+                        <div *ngIf="submitted && estilo.get('existencia')?.errors?.required" class="invalid-feedback">
+                            <div>
+                                <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
+                                    de cantidad es obligatorio</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group" formArrayName="fotos">
                         <label for="tipo"><i class="fas fa-images"></i>Imágenes</label>
+                        <div class="text-danger" *ngIf="submitted && fotos(i).controls.length === 0">
+                            <label class="font-weight-bold">
+                                <i class="fa fa-exclamation-circle"></i> El estilo requiere por lo menos
+                                una imagen</label>
+                        </div>
                         <table class="table tabla_imagenes">
                             <tr class="p-5">
                                 <th>
@@ -51,6 +86,13 @@
                                 <td>
                                     <button class="btn btn-outline-danger" (click)="eliminar_foto(i, j)"><i
                                             class="fas fa-trash"></i>Eliminar Imagen</button>
+                                </td>
+                                <td>
+                                    <div class="text-danger">
+                                        <label class="font-weight-bold"
+                                            *ngIf="(foto.touched || submitted) && (foto.value == null || foto.value == '')">
+                                            <i class="fa fa-exclamation-circle"></i> Debe subir una imagen</label>
+                                    </div>
                                 </td>
                             </tr>
                         </table>

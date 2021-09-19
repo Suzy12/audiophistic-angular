@@ -54,10 +54,10 @@
                 <div id="test-l-3" class="content">
                     <app-sin-estilos *ngIf="estilo=='sin_estilo'"></app-sin-estilos>
                     <app-colores *ngIf="estilo=='colores'" [formGroup]="producto_form" [submitted]="submitted"></app-colores>
-                    <app-presentaciones *ngIf="estilo=='presentaciones'"></app-presentaciones>
+                    <app-presentaciones *ngIf="estilo=='presentaciones'" [formGroup]="producto_form" [submitted]="submitted"></app-presentaciones>
                     <div class="botones_navegacion">
                         <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
-                        <a class="btn btn-primary">Crear Producto</a>
+                        <button type="submit" class="btn btn-primary">Crear Producto</button>
                     </div>
                 </div>
             </form>

@@ -41,7 +41,7 @@ export class AlbumesComponent implements OnInit {
   }
 
   nueva_caracteristica(): FormControl {
-    return this.fb.control('');
+    return this.fb.control('', Validators.required);
   }
 
   agregar_genero() {

@@ -65,25 +65,47 @@
         <div class="form-group" formArrayName="artista">
             <label for="tipo"><i class="fas fa-user"></i>Artista</label>
             <div *ngFor="let artista of artista.controls; let i=index">
-                <input type="text" class="form-control" placeholder="Artista" [formControlName]="i">
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && artista.errors }"
+                    placeholder="Artista" [formControlName]="i">
+                <div *ngIf="submitted && artista.errors?.required" class="invalid-feedback">
+                    <div>
+                        <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
+                            de artista es obligatorio</label>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label for="tipo"><i class="fas fa-music"></i>Géneros Musicales </label>
+            <div class="text-danger" *ngIf="submitted && generos.controls.length === 0">
+                <label class="font-weight-bold">
+                    <i class="fa fa-exclamation-circle"></i> El producto requiere por lo menos
+                    un género</label>
+            </div>
             <table class="table" formArrayName="generos">
                 <tr>
-                    <th width="150px"><button type="button" class="btn btn-outline-primary"
-                            (click)="agregar_genero()"><i class="fas fa-plus"></i>Agregar</button>
+                    <th width="150px"><button type="button" class="btn btn-outline-primary" (click)="agregar_genero()"
+                            [disabled]="!generos.valid"><i class="fas fa-plus"></i>Agregar</button>
                     </th>
                 </tr>
                 <tr *ngFor="let genero of generos.controls; let i=index">
                     <td>
-                        <input type="text" class="form-control bg-white" placeholder="Género Musical"
-                            [formControlName]="i">
+                        <input type="text" class="form-control bg-white"
+                            [ngClass]="{ 'is-invalid': (genero.touched || submitted) && genero.errors }"
+                            placeholder="Género Musical" [formControlName]="i">
                     </td>
                     <td>
                         <button class="btn btn-outline-danger" (click)="eliminar_genero(i)"><i
                                 class="fas fa-trash"></i>Eliminar</button>
+
+                    </td>
+                    <td>
+                        <div class="invalid-feedback">
+                            <label class="font-weight-bold"
+                                *ngIf="(genero.touched || submitted) && genero.errors?.required">
+                                <i class="fa fa-exclamation-circle"></i> El campo
+                                de género es obligatorio</label>
+                        </div>
                     </td>
                 </tr>
             </table>

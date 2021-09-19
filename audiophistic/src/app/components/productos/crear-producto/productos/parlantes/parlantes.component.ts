@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EstilosService } from 'src/app/services/estilos/estilos.service';
 
 @Component({
@@ -39,7 +39,7 @@ export class ParlantesComponent implements OnInit {
   }
 
   nueva_caracteristica(): FormControl {
-    return this.fb.control('');
+    return this.fb.control('', Validators.required);
   }
 
   agregar_conexion() {

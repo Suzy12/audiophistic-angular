@@ -16,10 +16,12 @@ export class PresentacionesComponent implements OnInit {
   presentaciones_form: FormGroup = {} as FormGroup;
 
   constructor(private fb: FormBuilder, private controlContainer: ControlContainer,
-    private estilos_service: EstilosService) { }
+    private estilos_service: EstilosService) { 
+    }
 
   ngOnInit(): void {
     this.presentaciones_form = <FormGroup>this.controlContainer.control;
+    console.log("hola",this.fotos(0).controls[0]);
   }
 
   get estilos(): FormArray { return this.presentaciones_form.get('estilos') as FormArray }
@@ -32,6 +34,7 @@ export class PresentacionesComponent implements OnInit {
 
   agregar_foto(i: number) {
     this.fotos(i).push(this.estilos_service.nueva_caracteristica());
+    console.log("hola",this.fotos(i));
   }
 
   eliminar_estilo(i: number) {

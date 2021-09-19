@@ -75,16 +75,16 @@ export class CrearProductoComponent implements OnInit {
       case 1:
         sub_form = this.fb.group({
           id_tipo: this.tipo_producto,
-          artista: this.fb.array([this.fb.control('')]),
+          artista: this.fb.array([this.fb.control('', Validators.required)]),
           generos: this.fb.array([]),
         })
         break;
       case 2:
         sub_form = this.fb.group({
           id_tipo: this.tipo_producto,
-          tipo: this.fb.array([this.fb.control('')]),
+          tipo: this.fb.array([this.fb.control('', Validators.required)]),
           conexion: this.fb.array([]),
-          marca: this.fb.array([this.fb.control('')]),
+          marca: this.fb.array([this.fb.control('', Validators.required)]),
         })
         break;
       case 3:
@@ -92,7 +92,7 @@ export class CrearProductoComponent implements OnInit {
           id_tipo: this.tipo_producto,
           tipo: this.fb.array([]),
           conexion: this.fb.array([]),
-          marca: this.fb.array([this.fb.control('')]),
+          marca: this.fb.array([this.fb.control('', Validators.required)]),
         })
         break;
     }
@@ -106,9 +106,10 @@ export class CrearProductoComponent implements OnInit {
 
     this.submitted = true;
 
-    console.log(producto_info)
-
-    if (this.producto_form.invalid) { return; }
+    if (this.producto_form.invalid) {
+      this.toastr.error('Por favor revise que haya completado todos los campos obligatorios', 'Error', { timeOut: 5000 });
+      return;
+    }
 
     console.log(producto_info)
 

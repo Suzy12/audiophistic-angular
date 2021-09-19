@@ -23,16 +23,17 @@
             </div>
         </div>
         <div class="bs-stepper-content">
-            <form (ngSubmit)="onSubmit()">
+            <form [formGroup]="producto_form" (ngSubmit)="crear_producto()">
                 <div id="test-l-1" class="content">
                     <hr>
                     <div class="form-group">
                         <label for="tipo"><i class="fas fa-boxes"></i> Tipo de Producto</label>
                         <select class="form-select form-control" aria-label="Elegir Tipo de Producto"
-                        [(ngModel)]="tipo_producto" name="tipo_producto" (change)="consultar_estilos()">
-                            <option value="1" selected>Álbumes</option>
-                            <option value="2">Audífonos</option>
-                            <option value="3">Parlantes</option>
+                        [(ngModel)]="tipo_producto" [ngModelOptions]="{standalone: true}"
+                         (change)="cambiar_configuracion()">
+                            <option [ngValue]="1" >Álbumes</option>
+                            <option [ngValue]="2">Audífonos</option>
+                            <option [ngValue]="3">Parlantes</option>
                         </select>
                     </div>
                     <div class="botones_navegacion">
@@ -42,17 +43,17 @@
                 </div>
                 <div id="test-l-2" class="content">
                     <hr>
-                    <app-audifonos *ngIf="tipo_producto == 1"></app-audifonos>
-                    <app-parlantes *ngIf="tipo_producto == 2"></app-parlantes>
-                    <app-albumes *ngIf="tipo_producto == 3"></app-albumes>
+                    <app-albumes *ngIf="tipo_producto == 1" [formGroup]="producto_form" [submitted]="submitted" [sub_form_creado]="sub_form_creado"></app-albumes>
+                    <app-audifonos *ngIf="tipo_producto == 2" [formGroup]="producto_form" [submitted]="submitted" [sub_form_creado]="sub_form_creado"></app-audifonos>
+                    <app-parlantes *ngIf="tipo_producto == 3" [formGroup]="producto_form" [submitted]="submitted" [sub_form_creado]="sub_form_creado"></app-parlantes>
                     <div class="botones_navegacion">
                         <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
                         <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>
                     </div>
                 </div>
                 <div id="test-l-3" class="content">
-                    <app-sin-estilos *ngIf="estilo=='sin-estilo'"></app-sin-estilos>
-                    <app-colores *ngIf="estilo=='colores'"></app-colores>
+                    <app-sin-estilos *ngIf="estilo=='sin_estilo'"></app-sin-estilos>
+                    <app-colores *ngIf="estilo=='colores'" [formGroup]="producto_form" [submitted]="submitted"></app-colores>
                     <app-presentaciones *ngIf="estilo=='presentaciones'"></app-presentaciones>
                     <div class="botones_navegacion">
                         <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
@@ -63,3 +64,4 @@
         </div>
     </div>
 </div>
+form value: {{ producto_form.value | json }}

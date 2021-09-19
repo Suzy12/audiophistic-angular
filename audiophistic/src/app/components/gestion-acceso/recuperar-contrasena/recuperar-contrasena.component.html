@@ -5,42 +5,38 @@
     <div class="bubble x4"></div>
     <div class="bubble x5"></div>
 </div>
-<div class="container-fluid">
-    <div class="d-flex justify-content-center">
-        <div class="w-100 d-flex justify-content-center align-items-center">
-            <form class="_form" [formGroup]="recuperar_form" (ngSubmit)="recuperar_contrasena()">
-                <span class="_form_titulo text-muted">
-                    Te enviaremos un correo electrónico para restablecer tu contraseña.
-                </span>
-                <div class="wrap_input_form">
-                    <input class="input_form" type="text" name="correo" placeholder="Correo Electrónico"
-                        formControlName="correo" [ngClass]="{ 'is-invalid': submitted && form.correo.errors }">
-                    <span class="focus_input_form"></span>
-                    <span class="icono_input_form">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                    </span>
-                </div>
-                <div class="text-center">
-                    <div *ngIf="submitted && form.correo.errors" class="text-danger mb-3">
-                        <div *ngIf="form.correo.errors.required">
-                            <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El
-                                campo de correo es obligatorio</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-3 d-flex justify-content-center align-items-center">
-                    <button class="btn form_btn">
-                        Enviar Correo
-                    </button>
-                </div>
-
-                <div class="text-center pt-3">
-                    <a class="txt2" href="/iniciar-sesion">
-                        Cancelar
-                    </a>
-                </div>
-            </form>
+<div class="container-fluid d-flex justify-content-center align-items-center">
+    <form class="_form" [formGroup]="recuperar_form" (ngSubmit)="recuperar_contrasena()">
+        <span class="_form_titulo text-muted">
+            Te enviaremos un correo electrónico para restablecer tu contraseña.
+        </span>
+        <div class="wrap_input_form">
+            <input class="input_form" type="text" name="correo" placeholder="Correo Electrónico"
+                formControlName="correo" [ngClass]="{ 'is-invalid': submitted && form.correo.errors }">
+            <span class="focus_input_form"></span>
+            <span class="icono_input_form">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+            </span>
         </div>
-    </div>
+        <div class="text-center">
+            <div *ngIf="submitted && form.correo.errors" class="text-danger mb-3">
+                <div *ngIf="form.correo.errors.required">
+                    <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El
+                        campo de correo es obligatorio</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-3 d-flex justify-content-center align-items-center">
+            <button class="btn form_btn" type="submit">
+                Enviar Correo
+            </button>
+        </div>
+
+        <div class="text-center pt-3">
+            <a class="txt2" href="/iniciar-sesion">
+                Cancelar
+            </a>
+        </div>
+    </form>
 </div>

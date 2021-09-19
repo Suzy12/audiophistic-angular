@@ -28,7 +28,15 @@ export class ProductosService {
     return this.http.get(this.api_url +'/productos_por_creador/'+id_creador, { headers: this.headers, observe: 'response' })
   }
 
+  public consultar_mis_productos = () => {
+    return this.http.get(this.api_url +'/mis_productos', { headers: this.headers, observe: 'response' })
+  }
+
   public consultar_estilos_producto = (id_producto:any) => {
     return this.http.get(this.api_url +'/estilos/'+id_producto, { observe: 'response' })
+  }
+
+  public crear_un_producto = (producto_info:any) => {
+    return this.http.post(this.api_url +'/crear_producto', producto_info, {  headers: this.headers, observe: 'response' })
   }
 }

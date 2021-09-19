@@ -36,15 +36,15 @@
     margin-bottom: 12px;
 }
 
-.grid-container {
+.grid-container .texto{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 20vh;
+    min-height: 2vh;
     overflow:auto;
 }
 
 @media screen and (max-width: 500px) {
-    .grid-container {
+    .grid-container .texto{
         display: grid;
         grid-template-columns: 1fr;
     }

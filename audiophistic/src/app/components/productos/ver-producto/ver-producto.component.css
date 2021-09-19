@@ -97,6 +97,10 @@
     margin-right: -60px;
 }
 
+#carrusel{
+    max-width: 40%;   
+}
+
 @keyframes crescendo {
     0% {
         transform: scale(1);

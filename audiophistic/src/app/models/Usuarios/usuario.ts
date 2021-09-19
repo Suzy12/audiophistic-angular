@@ -1,9 +1,8 @@
-import { Tipo_Usuario } from "./tipo_usuario";
-import { Usuario_Consumidor } from "./usuario_consumidor";
+import { Tipos_Usuario } from "./tipos_usuarios";
 
 export interface Usuario {
     correo: string,
     id_usuario: number,
     nombre: string,
-    caracteristicas: Usuario_Consumidor;
+    caracteristicas: Tipos_Usuario;
 }

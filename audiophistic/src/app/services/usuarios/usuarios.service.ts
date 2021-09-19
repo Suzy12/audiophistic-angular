@@ -23,4 +23,8 @@ export class UsuariosService {
     return this.http.get(this.api_url + '/eliminar_usuario/'+id_usuario, { headers: this.headers, observe: 'response' })
   }
 
+  public crear_un_usuario = (info_usuario:any) => {
+    return this.http.post(this.api_url + '/crear_usuario', info_usuario, { headers: this.headers, observe: 'response' })
+  }
+
 }

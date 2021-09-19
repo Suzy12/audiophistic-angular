@@ -1,23 +1,34 @@
-<p class="text-center text-muted">Este producto aún no tiene estilos disponibles.</p>
-<div class="form-group">
-    <label for="tipo"><i class="fas fa-dolly-flatbed"></i>Cantidad del Producto</label>
-    <input type="text" class="form-control" placeholder="Título">
-</div>
-<div class="form-group">
-    <label for="tipo"><i class="fas fa-images"></i>Imágenes</label>
-    <table class="table">
-        <tr>
-            <th width="150px"><button type="button" class="btn btn-outline-primary"><i
-                        class="fas fa-plus"></i>Agregar Imagen</button>
-            </th>
-        </tr>
-        <tr>
-            <td>
-                <input type="file" accept="image/png, image/jpeg, image/jpg" (change)="leer_imagen($event)">
-            </td>
-            <td>
-                <button class="btn btn-outline-danger"><i class="fas fa-trash"></i>Eliminar</button>
-            </td>
-        </tr>
-    </table>
+<div [formGroup]="sin_estilos_form">
+    <div formArrayName="estilos">
+        <div *ngFor="let estilo of estilos.controls; let i=index" [formGroupName]="i">
+            <p class="text-center text-muted">Este producto aún no tiene estilos disponibles.</p>
+            <div class="form-group">
+                <label for="existencia"><i class="fas fa-dolly-flatbed"></i>Cantidad del Producto</label>
+                <input type="number" class="form-control" placeholder="Cantidad" formControlName="existencia">
+            </div>
+            <div class="form-group" formArrayName="fotos">
+                <label for="tipo"><i class="fas fa-images"></i>Imágenes</label>
+                <table class="table">
+                    <tr class="p-5">
+                        <th>
+                            <button type="button" class="btn btn-outline-primary" (click)="agregar_foto(i)"><i
+                                    class="fas fa-plus"></i>Agregar
+                                Imagen</button>
+                        </th>
+                    </tr>
+                    <tr *ngFor="let foto of fotos(i).controls; let j=index">
+                        <hr class="w-50">
+                        <td>
+                            <input type="file" accept="image/png, image/jpeg, image/jpg" [formControlName]="j"
+                                (change)="leer_imagen($event, i, j)">
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-danger" (click)="eliminar_foto(i, j)"><i
+                                    class="fas fa-trash"></i>Eliminar Imagen</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>

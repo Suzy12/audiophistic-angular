@@ -68,7 +68,7 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
   }
 
   private consultar_productos_creador(rol:string) {
-    this.productos_service.consultar_productos_creador(rol).subscribe((res: any) => {
+    this.productos_service.consultar_mis_productos().subscribe((res: any) => {
       console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });

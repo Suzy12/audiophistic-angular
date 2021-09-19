@@ -4,7 +4,8 @@
         <div class="profile-name-container">
             <div class="user-name">{{usuario.nombre}}</div>
             <div class="text-muted" *ngIf="usuario.caracteristicas.hasOwnProperty('provincia')">
-                <i class="fas fa-map-marker-alt p-3"></i>{{usuario.caracteristicas.canton}}, {{usuario.caracteristicas.provincia}}
+                <i class="fas fa-map-marker-alt p-3"></i>{{usuario.caracteristicas.canton}},
+                {{usuario.caracteristicas.provincia}}
             </div>
         </div>
         <ul class="nav nav-tabs m-5" id="general_tab" role="tablist">
@@ -16,14 +17,12 @@
         <div class="tab-content m-5" id="general_tab_contenido">
             <div class="tab-pane fade show active" id="general-tab" role="tabpanel">
                 <div class="grid-container">
-                    <div class="fw-bold">Teléfono</div>
-                    <div>{{usuario.caracteristicas.celular}}</div>
-                    <div class="fw-bold">Dirección</div>
-                    <div>{{usuario.caracteristicas.direccion_exacta}}</div>
-                    <div class="fw-bold">Correo Electrónico</div>
-                    <div>{{usuario.correo}}</div>
-                    <div class="fw-bold">Cumpleaños</div>
-                    <div>{{usuario.caracteristicas.cumpleanos}}</div>
+                    <div *ngFor="let caract of caracteristicas">
+                        <div class="texto">
+                            <div class="fw-bold">{{caract.caracteristica}}</div>
+                            <div>{{caract.valor}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

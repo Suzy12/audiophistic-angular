@@ -1,31 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, FormGroupDirective } from '@angular/forms'
+import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { FormGroup, Validators, FormBuilder, FormGroupDirective, ControlContainer } from '@angular/forms'
 
 @Component({
   selector: 'app-creador-contenido',
   templateUrl: './creador-contenido.component.html',
-  styleUrls: ['./creador-contenido.component.css','../../crear-usuario.component.css']
+  styleUrls: ['./creador-contenido.component.css', '../../crear-usuario.component.css']
 })
 export class CreadorContenidoComponent implements OnInit {
 
-  @Input() creador_form: string = '';
-  creador_contenido_form: FormGroup = {} as FormGroup;
-  submitted:boolean = false;
+  @Input() submitted: boolean = false;
 
-  constructor(private fb: FormBuilder, private form_raiz: FormGroupDirective) { }
+  creador_contenido_form: FormGroup = {} as FormGroup;
+
+  constructor(private fb: FormBuilder, private controlContainer: ControlContainer) { }
 
   ngOnInit(): void {
-    this.creador_contenido_form = this.form_raiz.control.get(this.creador_form) as FormGroup;
-
-    this.creador_contenido_form = this.fb.group({
-      nombre: ['', [Validators.required]],
-      celular: ['', [Validators.required]],
-      correo: ['', [Validators.required]],
-      descripcion: ['', [Validators.required]],
-      sitio_web: ['']
-    });
+    this.creador_contenido_form = <FormGroup>this.controlContainer.control;
+    console.log(this.form)
   }
 
   get form() { return this.creador_contenido_form.controls }
+
+  get form_caracteristicas() { return (this.creador_contenido_form.get('caracteristicas') as FormGroup).controls }
 
 }

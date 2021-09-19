@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChildren, ViewChild, NgModule } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Stepper from 'bs-stepper';
+import { ToastrService } from 'ngx-toastr';
 import { EstilosService } from 'src/app/services/estilos/estilos.service';
-
-import { AlbumesComponent } from './productos/albumes/albumes.component';
+import { ProductosService } from 'src/app/services/productos/productos.service';
+import { Producto_Albumes } from 'src/app/models/Productos/producto_albumes';
 
 
 @Component({
@@ -12,23 +14,40 @@ import { AlbumesComponent } from './productos/albumes/albumes.component';
 })
 export class CrearProductoComponent implements OnInit {
 
+  producto_form: FormGroup = {} as FormGroup;
+  submitted: boolean = false;
+  sub_form_creado: boolean = false;
+
   private stepper: Stepper = {} as Stepper;
   tipo_producto: number = 1;
-  estilo:string = '';
-  
-  /*@ViewChild(AlbumesComponent) albumViewChild: AlbumesComponent = new AlbumesComponent;*/
+  estilo: string = '';
 
-  constructor(private estilos_service: EstilosService) { 
-    this.consultar_estilos()
+  constructor(private estilos_service: EstilosService, private productos_service: ProductosService,
+    private toastr: ToastrService, private fb: FormBuilder) {
+    this.producto_form = this.fb.group({
+      estilos: this.fb.array([
+        this.estilos_service.crear_estilo_form()
+      ]),
+      producto: this.fb.group({
+        fecha_lanzamiento: ['', [Validators.required]],
+        titulo: ['', [Validators.required]],
+        precio: ['', [Validators.required]],
+        tiempo_envio: ['', [Validators.required]],
+        descripcion: ['', [Validators.required]],
+      })
+    });
+    console.log(this.producto_form.get("estilos"))
+    this.cambiar_configuracion()
   }
 
-  /*getChildrenProperty() {
-    console.log(this.albumViewChild.album_object);
-  }*/
+  cambiar_configuracion() {
+    this.producto_form.reset()
+    this.consultar_estilos()
+    this.construir_form()
+  }
 
-  consultar_estilos(){
+  consultar_estilos() {
     this.estilo = this.estilos_service.consultar_estilo_producto(this.tipo_producto);
-    console.log(this.estilo)
   }
 
   anterior() {
@@ -39,15 +58,71 @@ export class CrearProductoComponent implements OnInit {
     this.stepper.next();
   }
 
-  onSubmit() {
-    return false;
-  }
-
   ngOnInit() {
     this.stepper = new Stepper(document.getElementById("stepper1") as HTMLElement, {
       linear: false,
       animation: true
     })
+  }
+
+  private construir_form() {
+    this.sub_form_creado = false;
+
+    let sub_form: FormGroup = {} as FormGroup;
+    let producto = this.producto_form.get("producto") as FormGroup
+
+    switch (this.tipo_producto) {
+      case 1:
+        sub_form = this.fb.group({
+          id_tipo: this.tipo_producto,
+          artista: this.fb.array([this.fb.control('')]),
+          generos: this.fb.array([]),
+        })
+        break;
+      case 2:
+        sub_form = this.fb.group({
+          id_tipo: this.tipo_producto,
+          tipo: this.fb.array([this.fb.control('')]),
+          conexion: this.fb.array([]),
+          marca: this.fb.array([this.fb.control('')]),
+        })
+        break;
+      case 3:
+        sub_form = this.fb.group({
+          id_tipo: this.tipo_producto,
+          tipo: this.fb.array([]),
+          conexion: this.fb.array([]),
+          marca: this.fb.array([this.fb.control('')]),
+        })
+        break;
+    }
+    producto.removeControl('caracteristicas');
+    producto.addControl('caracteristicas', sub_form);
+    this.sub_form_creado = true;
+  }
+
+  crear_producto() {
+    let producto_info = this.producto_form.getRawValue();
+
+    this.submitted = true;
+
+    console.log(producto_info)
+
+    if (this.producto_form.invalid) { return; }
+
+    console.log(producto_info)
+
+    /*this.productos_service.crear_un_producto(producto_info).subscribe((res: any) => {
+      this.toastr.clear();
+      console.log(res.body);
+      if (res.body.error) {
+        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+      } else {
+        this.toastr.success(res.body.resultado, 'Se creó el producto', { timeOut: 2000 });
+      }
+    });*/
+
+    this.submitted = false;
   }
 
 }

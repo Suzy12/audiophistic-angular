@@ -18,10 +18,10 @@
                 <tbody *ngIf="usuarios?.length != 0">
                     <tr *ngFor="let usuario of usuarios">
                         <td>{{ usuario.nombre }}</td>
-                        <td>{{ usuario.caracteristicas.nombre }}</td>
+                        <td>{{ usuario.caracteristicas.nombre_tipo }}</td>
                         <td>{{ usuario.correo }}</td>
                         <td>
-                            <a class="btn btn-outline-info m-1" (click)="ver_usuario(usuario.caracteristicas.tipo, usuario.id_usuario)"><i class="fas fa-eye"></i></a>
+                            <a class="btn btn-outline-info m-1" (click)="ver_usuario(usuario.caracteristicas.id_tipo, usuario.id_usuario)"><i class="fas fa-eye"></i></a>
                             <a class="btn btn-outline-danger m-1" (click)="abrir_modal_eliminar(usuario.id_usuario, usuario.nombre)"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>

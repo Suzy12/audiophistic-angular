@@ -1,4 +1,6 @@
+import { CurrencyPipe } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -31,16 +33,45 @@ export class EstilosService {
     }
   ];
 
-  constructor() { }
+  constructor(private fb: FormBuilder, private currencyPipe: CurrencyPipe) { }
 
-  consultar_estilo_producto(id_tipo_producto: any){
-    let estilo_producto:string = '';
+  consultar_estilo_producto(id_tipo_producto: any) {
+    let estilo_producto: string = '';
     this.estilos.forEach(elemento => {
-        if (elemento.producto.includes(id_tipo_producto)) {
-          estilo_producto = elemento.estilo
-          return;
-        }
+      if (elemento.producto.includes(id_tipo_producto)) {
+        estilo_producto = elemento.estilo
+        console.log(estilo_producto)
+        return;
+      }
     });
     return estilo_producto;
+  }
+
+  crear_estilo_form(): FormGroup {
+    return this.fb.group({
+      existencia: ['', [Validators.required]],
+      nombre: ['', [Validators.required]],
+      precio: ['', [Validators.required]],
+      descripcion: ['', [Validators.required]],
+      fotos: this.fb.array([this.fb.control([''])]),
+    })
+  }
+
+  nueva_caracteristica(): FormControl {
+    return this.fb.control('');
+  }
+
+  procesar_imagen = (archivo_imagen: any) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (evento) => {
+      resolve(evento.target!.result)
+    }
+    if (archivo_imagen) {
+      reader.readAsDataURL(archivo_imagen);
+    }
+  });
+
+  transformar_dinero(elemento: any) {
+    return this.currencyPipe.transform(elemento.target.value, '₡') as string;
   }
 }

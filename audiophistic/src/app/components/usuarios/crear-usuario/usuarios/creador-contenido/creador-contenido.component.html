@@ -1,8 +1,8 @@
-<div>
+<div [formGroup]="creador_contenido_form">
     <div class="form-group">
         <label for="tipo"><i class="fas fa-id-card"></i>Nombre</label>
-        <input type="text" class="form-control" placeholder="Nombre" name="nombre" formControlName="nombre"
-            class="form-control" required [ngClass]="{ 'is-invalid': submitted && form.nombre.errors }">
+        <input type="text" placeholder="Nombre" name="nombre" formControlName="nombre" class="form-control" required
+            [ngClass]="{ 'is-invalid': submitted && form.nombre.errors }">
         <div *ngIf="submitted && form.nombre.errors" class="invalid-feedback">
             <div *ngIf="form.nombre.errors.required">
                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
@@ -10,12 +10,12 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" formGroupName="caracteristicas">
         <label for="tipo"><i class="fas fa-phone"></i>Teléfono</label>
-        <input type="text" class="form-control" placeholder="Teléfono" name="celular" formControlName="celular"
-            class="form-control" required [ngClass]="{ 'is-invalid': submitted && form.celular.errors }">
-        <div *ngIf="submitted && form.celular.errors" class="invalid-feedback">
-            <div *ngIf="form.celular.errors.required">
+        <input type="text" placeholder="Teléfono" name="celular" formControlName="celular" class="form-control" required
+            [ngClass]="{ 'is-invalid': submitted && form_caracteristicas.celular.errors }">
+        <div *ngIf="submitted && form_caracteristicas.celular.errors" class="invalid-feedback">
+            <div *ngIf="form_caracteristicas.celular.errors.required">
                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
                     de teléfono es obligatorio</label>
             </div>
@@ -23,8 +23,8 @@
     </div>
     <div class="form-group">
         <label for="tipo"><i class="fas fa-at"></i>Correo Electrónico</label>
-        <input type="text" class="form-control" placeholder="Correo Electrónico" name="correo" formControlName="correo"
-            class="form-control" required [ngClass]="{ 'is-invalid': submitted && form.correo.errors }">
+        <input type="text" placeholder="Correo Electrónico" name="correo" formControlName="correo" class="form-control"
+            required [ngClass]="{ 'is-invalid': submitted && form.correo.errors }">
         <div *ngIf="submitted && form.correo.errors" class="invalid-feedback">
             <div *ngIf="form.correo.errors.required">
                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
@@ -32,16 +32,23 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" formGroupName="caracteristicas">
         <label for="tipo"><i class="fas fa-link"></i>Sitio Web <span class="text-muted">(opcional)</span></label>
-        <input type="text" class="form-control" placeholder="Correo Electrónico">
+        <input type="text" class="form-control" placeholder="Sitio Web" name="sitio_web" formControlName="sitio_web">
     </div>
-    <div class="form-group">
-        <label for="tipo"><i class="fas fa-info-circle"></i>Descripción <span class="text-muted">(opcional)</span></label>
+    <div class="form-group" formGroupName="caracteristicas">
+        <label for="tipo"><i class="fas fa-info-circle"></i>Descripción</label>
         <div class="form-floating">
-            <textarea class="form-control" id="floatingTextarea">
+            <textarea class="form-control" id="descripcion" name="descripcion" formControlName="descripcion" required
+                [ngClass]="{ 'is-invalid': submitted && form_caracteristicas.descripcion.errors }">
             </textarea>
-            <label for="floatingTextarea">Descripción</label>
+            <label for="descripcion">Descripción</label>
+            <div *ngIf="submitted && form_caracteristicas.descripcion.errors" class="invalid-feedback">
+                <div *ngIf="form_caracteristicas.descripcion.errors.required">
+                    <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
+                        de descripción es obligatorio</label>
+                </div>
+            </div>
         </div>
     </div>
 </div>

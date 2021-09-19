@@ -35,6 +35,7 @@ import { SinEstilosComponent } from './components/productos/crear-producto/estil
 import { CreadorContenidoComponent } from './components/usuarios/crear-usuario/usuarios/creador-contenido/creador-contenido.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CuentaActivadaComponent } from './components/gestion-acceso/cuenta-activada/cuenta-activada.component';
+import { CurrencyPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,7 @@ import { CuentaActivadaComponent } from './components/gestion-acceso/cuenta-acti
     ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

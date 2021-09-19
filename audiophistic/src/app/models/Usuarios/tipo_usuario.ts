@@ -1,4 +1,4 @@
 export interface Tipo_Usuario {
-    tipo: number;
-    nombre: string
+    id_tipo: number;
+    nombre_tipo: string
 }

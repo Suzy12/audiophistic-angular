@@ -46,10 +46,9 @@ export class ModificarProductoComponent implements OnInit {
       this.tipo_producto = producto.caracteristicas.id_tipo;
       this.productos_service.consultar_estilos_producto(this.id_producto).subscribe((res: any) => {
         let estilos = res.body.resultado
-        console.log(producto)
-        console.log(estilos)
         this.producto_form = this.fb.group({
           producto: this.fb.group({
+            id_producto: [producto.id_producto, [Validators.required]],
             fecha_lanzamiento: [producto.fecha_lanzamiento, [Validators.required]],
             titulo: [producto.titulo, [Validators.required]],
             precio: [producto.precio, [Validators.required]],
@@ -139,6 +138,7 @@ export class ModificarProductoComponent implements OnInit {
 
 
   modificar_producto() {
+    console.log(localStorage.getItem("token"))
     if (!this.producto_form.touched) {
       this.toastr.info('No se realizón ningún cambio', 'Sin cambios', { timeOut: 5000 });
       return;
@@ -164,6 +164,7 @@ export class ModificarProductoComponent implements OnInit {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {
         this.toastr.success(res.body.resultado, 'Se modificó el producto', { timeOut: 2000 });
+        this.router.navigate(['/inicio/productos'])
       }
     });
 

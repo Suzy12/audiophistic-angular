@@ -132,6 +132,7 @@ export class CrearProductoComponent implements OnInit {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {
         this.toastr.success(res.body.resultado, 'Se creó el producto', { timeOut: 2000 });
+        this.router.navigate(['/inicio/productos'])
       }
     });
 

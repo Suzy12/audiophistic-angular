@@ -8,8 +8,9 @@
         </div>
         <table class="table" formArrayName="estilos">
             <tr>
-                <th width="150px"><button type="button" class="btn btn-outline-primary" (click)="agregar_estilo()"><i
-                            class="fas fa-plus"></i>Agregar
+                <th width="150px"><button type="button" class="btn btn-outline-primary" (click)="agregar_estilo()"
+                        [disabled]="!estilos.valid">
+                        <i class="fas fa-plus"></i>Agregar
                         Presentación</button>
                 </th>
             </tr>
@@ -27,7 +28,7 @@
                         <label for="tipo"><i class="fas fa-heading"></i>Nombre</label>
                         <input type="text" [ngClass]="{ 'is-invalid': (estilo.get('nombre')?.touched || submitted) && 
                         estilo.get('nombre')?.errors }" class="form-control" placeholder="Nombre"
-                            formControlName="nombre">
+                            formControlName="nombre"  required>
                         <div *ngIf="submitted && estilo.get('nombre')?.errors?.required" class="invalid-feedback">
                             <div>
                                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
@@ -39,9 +40,9 @@
                     <div class="form-group">
                         <label for="tipo"><i class="fas fa-coins"></i>Precio Extra<span class="text-muted"> (en
                                 colones)</span></label>
-                        <input type="text" [ngClass]="{ 'is-invalid': (estilo.get('precio')?.touched || submitted) && 
+                        <input type="number" [ngClass]="{ 'is-invalid': (estilo.get('precio')?.touched || submitted) && 
                         estilo.get('precio')?.errors }" class="form-control" placeholder="Precio"
-                            formControlName="precio">
+                            formControlName="precio"  required>
                         <div *ngIf="submitted && estilo.get('precio')?.errors?.required" class="invalid-feedback">
                             <div>
                                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
@@ -54,7 +55,7 @@
                                 class="text-muted"> (coloque un -1 si es digital)</span></label>
                         <input type="number" [ngClass]="{ 'is-invalid': (estilo.get('existencia')?.touched || submitted) && 
                         estilo.get('existencia')?.errors }" class="form-control" placeholder="Cantidad"
-                            formControlName="existencia">
+                            formControlName="existencia"  required>
                         <div *ngIf="submitted && estilo.get('existencia')?.errors?.required" class="invalid-feedback">
                             <div>
                                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
@@ -80,8 +81,10 @@
                             <tr *ngFor="let foto of fotos(i).controls; let j=index">
                                 <hr class="w-50">
                                 <td>
-                                    <input type="file" accept="image/png, image/jpeg, image/jpg" [formControlName]="j"
-                                        (change)="leer_imagen($event, i, j)">
+                                    <input *ngIf="foto.value == null || foto.value == ''" type="file"
+                                        accept="image/png, image/jpeg, image/jpg" (change)="leer_imagen($event, i, j)"
+                                         required>
+                                    <img *ngIf="foto.value != null || foto.value != ''" [src]="obtener_imagen(i,j)">
                                 </td>
                                 <td>
                                     <button class="btn btn-outline-danger" (click)="eliminar_foto(i, j)"><i

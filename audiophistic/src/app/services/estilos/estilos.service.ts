@@ -53,7 +53,19 @@ export class EstilosService {
       nombre: ['', [Validators.required]],
       precio: ['', [Validators.required]],
       descripcion: ['', [Validators.required]],
-      fotos: this.fb.array([this.fb.control(['', [Validators.required]])]),
+      fotos: this.fb.array([this.fb.control([])]),
+    })
+  }
+
+  crear_estilo_form_modificar(objeto:any): FormGroup {
+    return this.fb.group({
+      id_estilo: [objeto.id_estilo, [Validators.required]],
+      id_producto: [objeto.id_producto, [Validators.required]],
+      existencia: [{value: objeto.existencia, disabled: true}, [Validators.required]],
+      nombre: [{value: objeto.nombre, disabled: true}, [Validators.required]],
+      precio: [objeto.precio, [Validators.required]],
+      descripcion: [{value: objeto.descripcion, disabled: true}, [Validators.required]],
+      fotos: this.fb.array(objeto.fotos || []),
     })
   }
 

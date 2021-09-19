@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario_Creador_de_Contenido } from 'src/app/models/Usuarios/usuario_creador_contenido';
 import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -21,11 +23,19 @@ export class CrearUsuarioComponent implements OnInit {
   public provincias: Provincia[] = []
   public cantones: Canton[] = []
 
-  provincia_nombre:string = '';
-  canton_nombre:string = '';
+  provincia_nombre: string = '';
+  canton_nombre: string = '';
 
   constructor(private ubicaciones_service: UbicacionesService, private fb: FormBuilder,
-    private usuarios_service: UsuariosService, private toastr: ToastrService) {
+    private usuarios_service: UsuariosService, private toastr: ToastrService, private router: Router) {
+    this.router.events
+      .pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd))
+      .subscribe(evento => {
+        if (evento.id === 1 && evento.url === evento.urlAfterRedirects) {
+          this.router.navigate(['/inicio/usuarios'])
+        }
+      });
+
     this.usuario_form = this.fb.group({
       nombre: ['', [Validators.required]],
       correo: ['', [Validators.required]],
@@ -93,13 +103,13 @@ export class CrearUsuarioComponent implements OnInit {
     });
   }
 
-  private buscar_valor(array:any[], valor:any) {
-    for(let i = 0; i < array.length; i++) {
-        if(array[i].id == valor) {
-            return array[i].nombre
-        }
+  private buscar_valor(array: any[], valor: any) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].id == valor) {
+        return array[i].nombre
+      }
     }
-}
+  }
 
   crear_usuario() {
     let usuario_info = this.usuario_form.getRawValue();
@@ -114,7 +124,7 @@ export class CrearUsuarioComponent implements OnInit {
     usuario_info = JSON.parse(JSON.stringify(usuario_info),
       (key, value) => value === null || value === '' ? undefined : value);
 
-    
+
     usuario_info = usuario_info as Usuario_Creador_de_Contenido
 
 

@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { EstilosService } from 'src/app/services/estilos/estilos.service';
@@ -5,23 +6,30 @@ import { EstilosService } from 'src/app/services/estilos/estilos.service';
 @Component({
   selector: 'app-presentaciones',
   templateUrl: './presentaciones.component.html',
-  styleUrls: ['./presentaciones.component.css', '../../crear-producto.component.css']
+  styleUrls: ['./presentaciones.component.css', '../../crear-producto.component.css', '../compartir-estilos.css']
 })
 export class PresentacionesComponent implements OnInit {
 
   @Input() submitted: boolean = false;
-
-  precio: string = ''
+  @Input() modificar: boolean = false;
 
   presentaciones_form: FormGroup = {} as FormGroup;
 
   constructor(private fb: FormBuilder, private controlContainer: ControlContainer,
-    private estilos_service: EstilosService) { 
-    }
+    private estilos_service: EstilosService) {
+    this.presentaciones_form = <FormGroup>this.controlContainer.control;
+    this.cambiar_descripcion(0)
+  }
 
   ngOnInit(): void {
-    this.presentaciones_form = <FormGroup>this.controlContainer.control;
-    console.log("hola",this.fotos(0).controls[0]);
+  }
+
+  cambiar_descripcion(i:number) {
+    this.estilos.controls[i].patchValue(
+      {
+        'descripcion': 'Sin descripción',
+      }
+    );
   }
 
   get estilos(): FormArray { return this.presentaciones_form.get('estilos') as FormArray }
@@ -30,11 +38,11 @@ export class PresentacionesComponent implements OnInit {
 
   agregar_estilo() {
     this.estilos.push(this.estilos_service.crear_estilo_form());
+    this.cambiar_descripcion(this.estilos.length-1)
   }
 
   agregar_foto(i: number) {
     this.fotos(i).push(this.estilos_service.nueva_caracteristica());
-    console.log("hola",this.fotos(i));
   }
 
   eliminar_estilo(i: number) {
@@ -47,12 +55,12 @@ export class PresentacionesComponent implements OnInit {
   leer_imagen = (evento: any, i: number, j: number) => {
     this.estilos_service.procesar_imagen(evento.target.files[0]).then((imagen_base64: any) => {
       let f = this.fotos(i).at(j);
-      f.patchValue(imagen_base64, { emitModelToViewChange: false })
+      f.setValue(imagen_base64, { emitModelToViewChange: false })
     });
   }
 
-  transformar_dinero(elemento: any) {
-    this.precio = this.estilos_service.transformar_dinero(elemento)
+  obtener_imagen(i: number, j: number) {
+    return this.fotos(i).at(j).value;
   }
 
 

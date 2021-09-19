@@ -5,11 +5,12 @@ import { EstilosService } from 'src/app/services/estilos/estilos.service';
 @Component({
   selector: 'app-sin-estilos',
   templateUrl: './sin-estilos.component.html',
-  styleUrls: ['./sin-estilos.component.css', '../../crear-producto.component.css']
+  styleUrls: ['./sin-estilos.component.css', '../../crear-producto.component.css', '../compartir-estilos.css']
 })
 export class SinEstilosComponent implements OnInit {
 
   @Input() submitted: boolean = false;
+  @Input() modificar: boolean = false;
 
   precio: string = ''
 
@@ -46,6 +47,10 @@ export class SinEstilosComponent implements OnInit {
       let f = this.fotos(i).at(j);
       f.patchValue(imagen_base64, { emitModelToViewChange: false })
     });
+  }
+
+  obtener_imagen(i: number, j: number) {
+    return this.fotos(i).at(j).value;
   }
 
 

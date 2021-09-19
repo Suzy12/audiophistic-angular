@@ -10,29 +10,30 @@ import { EstilosService } from 'src/app/services/estilos/estilos.service';
 export class AudifonosComponent implements OnInit {
 
   @Input() submitted: boolean = false;
-  @Input() sub_form_creado: boolean = false;
+  @Input() modificar: boolean = false;
 
   precio: string = ''
 
   audifonos_form: FormGroup = {} as FormGroup;
 
   constructor(private fb: FormBuilder, private controlContainer: ControlContainer,
-    private estilos_service: EstilosService) { }
+    private estilos_service: EstilosService) {
+    this.audifonos_form = (<FormGroup>this.controlContainer.control).get('producto') as FormGroup;
+    console.log(this.audifonos_form)
+  }
 
   ngOnInit(): void {
-    this.audifonos_form = (<FormGroup>this.controlContainer.control).get('producto') as FormGroup;
-    console.log(this.form)
   }
 
   get form() { return this.audifonos_form.controls }
 
   get form_caracteristicas() { return (this.audifonos_form.get('caracteristicas') as FormGroup).controls }
 
-  get tipo(): FormArray {return (this.audifonos_form.get('caracteristicas') as FormGroup).get('tipo') as FormArray}
+  get tipo(): FormArray { return (this.audifonos_form.get('caracteristicas') as FormGroup).get('tipo') as FormArray }
 
-  get marca(): FormArray {return (this.audifonos_form.get('caracteristicas') as FormGroup).get('marca') as FormArray}
+  get marca(): FormArray { return (this.audifonos_form.get('caracteristicas') as FormGroup).get('marca') as FormArray }
 
-  get conexiones(): FormArray { return (this.audifonos_form.get('caracteristicas') as FormGroup).get('conexion') as FormArray}
+  get conexiones(): FormArray { return (this.audifonos_form.get('caracteristicas') as FormGroup).get('conexion') as FormArray }
 
   transformar_dinero(elemento: any) {
     this.precio = this.estilos_service.transformar_dinero(elemento)

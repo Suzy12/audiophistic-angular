@@ -1,0 +1,53 @@
+<div class="container">
+    <div id="stepper1" class="bs-stepper">
+        <div class="bs-stepper-header">
+            <div class="step" data-target="#test-l-2">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle"><i class="fas fa-info"></i></span>
+                    <span class="bs-stepper-label">Información General</span>
+                </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-3">
+                <button class="step-trigger">
+                    <span class="bs-stepper-circle"><i class="fas fa-magic"></i></span>
+                    <span class="bs-stepper-label">Estilos</span>
+                </button>
+            </div>
+        </div>
+        <div class="bs-stepper-content">
+            <form [formGroup]="producto_form" (ngSubmit)="modificar_producto()">
+                <div id="test-l-2" class="content">
+                    <div *ngIf="sub_form_creado">
+                        <hr>
+                        <app-albumes *ngIf="tipo_producto == 1" [submitted]="submitted" [modificar]="modificar">
+                        </app-albumes>
+                        <app-audifonos *ngIf="tipo_producto == 2" [submitted]="submitted" [modificar]="modificar">
+                        </app-audifonos>
+                        <app-parlantes *ngIf="tipo_producto == 3" [submitted]="submitted" [modificar]="modificar">
+                        </app-parlantes>
+                        <div class="botones_navegacion">
+                            <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
+                            <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="test-l-3" class="content">
+                    <div *ngIf="sub_form_creado">
+                        <app-sin-estilos *ngIf="estilo=='sin_estilo'" [submitted]="submitted" [modificar]="modificar">
+                        </app-sin-estilos>
+                        <app-colores *ngIf="estilo=='colores'" [submitted]="submitted" [modificar]="modificar">
+                        </app-colores>
+                        <app-presentaciones *ngIf="estilo=='presentaciones'" [submitted]="submitted"
+                            [modificar]="modificar">
+                        </app-presentaciones>
+                        <div class="botones_navegacion">
+                            <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
+                            <button type="submit" class="btn btn-primary">Modificar Producto</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -48,25 +48,22 @@
     </div>
     <div class="form-group">
         <label for="descripcion"><i class="fas fa-info-circle"></i>Descripción</label>
-        <div class="form-floating">
-            <textarea class="form-control" id="descripcion" name="descripcion" formControlName="descripcion" required
-                [ngClass]="{ 'is-invalid': submitted && form.descripcion.errors }">
+        <textarea class="form-control" id="descripcion" name="descripcion" formControlName="descripcion" required
+            [ngClass]="{ 'is-invalid': submitted && form.descripcion.errors }">
             </textarea>
-            <label for="descripcion">Descripción</label>
-            <div *ngIf="submitted && form.descripcion.errors" class="invalid-feedback">
-                <div *ngIf="form.descripcion.errors.required">
-                    <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
-                        de descripción es obligatorio</label>
-                </div>
+        <div *ngIf="submitted && form.descripcion.errors" class="invalid-feedback">
+            <div *ngIf="form.descripcion.errors.required">
+                <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
+                    de descripción es obligatorio</label>
             </div>
         </div>
     </div>
-    <div *ngIf="sub_form_creado" formGroupName="caracteristicas">
+    <div formGroupName="caracteristicas">
         <div class="form-group" formArrayName="artista">
-            <label for="tipo"><i class="fas fa-user"></i>Artista</label>
+            <label for="artista"><i class="fas fa-user"></i>Artista</label>
             <div *ngFor="let artista of artista.controls; let i=index">
                 <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && artista.errors }"
-                    placeholder="Artista" [formControlName]="i">
+                    placeholder="Artista" [formControlName]="i"  required>
                 <div *ngIf="submitted && artista.errors?.required" class="invalid-feedback">
                     <div>
                         <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
@@ -92,7 +89,7 @@
                     <td>
                         <input type="text" class="form-control bg-white"
                             [ngClass]="{ 'is-invalid': (genero.touched || submitted) && genero.errors }"
-                            placeholder="Género Musical" [formControlName]="i">
+                            placeholder="Género Musical" [formControlName]="i"  required>
                     </td>
                     <td>
                         <button class="btn btn-outline-danger" (click)="eliminar_genero(i)"><i

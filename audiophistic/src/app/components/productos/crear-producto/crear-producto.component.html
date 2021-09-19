@@ -29,9 +29,9 @@
                     <div class="form-group">
                         <label for="tipo"><i class="fas fa-boxes"></i> Tipo de Producto</label>
                         <select class="form-select form-control" aria-label="Elegir Tipo de Producto"
-                        [(ngModel)]="tipo_producto" [ngModelOptions]="{standalone: true}"
-                         (change)="cambiar_configuracion()">
-                            <option [ngValue]="1" >Álbumes</option>
+                            [(ngModel)]="tipo_producto" [ngModelOptions]="{standalone: true}"
+                            (change)="cambiar_configuracion()">
+                            <option [ngValue]="1">Álbumes</option>
                             <option [ngValue]="2">Audífonos</option>
                             <option [ngValue]="3">Parlantes</option>
                         </select>
@@ -43,18 +43,25 @@
                 </div>
                 <div id="test-l-2" class="content">
                     <hr>
-                    <app-albumes *ngIf="tipo_producto == 1" [formGroup]="producto_form" [submitted]="submitted" [sub_form_creado]="sub_form_creado"></app-albumes>
-                    <app-audifonos *ngIf="tipo_producto == 2" [formGroup]="producto_form" [submitted]="submitted" [sub_form_creado]="sub_form_creado"></app-audifonos>
-                    <app-parlantes *ngIf="tipo_producto == 3" [formGroup]="producto_form" [submitted]="submitted" [sub_form_creado]="sub_form_creado"></app-parlantes>
+                    <app-albumes *ngIf="tipo_producto == 1" [submitted]="submitted" [modificar]="modificar">
+                    </app-albumes>
+                    <app-audifonos *ngIf="tipo_producto == 2" [submitted]="submitted" [modificar]="modificar">
+                    </app-audifonos>
+                    <app-parlantes *ngIf="tipo_producto == 3" [submitted]="submitted" [modificar]="modificar">
+                    </app-parlantes>
                     <div class="botones_navegacion">
                         <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
                         <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>
                     </div>
                 </div>
                 <div id="test-l-3" class="content">
-                    <app-sin-estilos *ngIf="estilo=='sin_estilo'"></app-sin-estilos>
-                    <app-colores *ngIf="estilo=='colores'" [formGroup]="producto_form" [submitted]="submitted"></app-colores>
-                    <app-presentaciones *ngIf="estilo=='presentaciones'" [formGroup]="producto_form" [submitted]="submitted"></app-presentaciones>
+                    <app-sin-estilos *ngIf="estilo=='sin_estilo'" [submitted]="submitted" [modificar]="modificar">
+                    </app-sin-estilos>
+                    <app-colores *ngIf="estilo=='colores'" [submitted]="submitted" [modificar]="modificar">
+                    </app-colores>
+                    <app-presentaciones *ngIf="estilo=='presentaciones'" [submitted]="submitted"
+                        [modificar]="modificar">
+                    </app-presentaciones>
                     <div class="botones_navegacion">
                         <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
                         <button type="submit" class="btn btn-primary">Crear Producto</button>
@@ -64,4 +71,3 @@
         </div>
     </div>
 </div>
-form value: {{ producto_form.value | json }}

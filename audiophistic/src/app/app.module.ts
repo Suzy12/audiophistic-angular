@@ -36,6 +36,7 @@ import { CreadorContenidoComponent } from './components/usuarios/crear-usuario/u
 import { ToastrModule } from 'ngx-toastr';
 import { CuentaActivadaComponent } from './components/gestion-acceso/cuenta-activada/cuenta-activada.component';
 import { CurrencyPipe } from '@angular/common';
+import { ModificarProductoComponent } from './components/productos/modificar-producto/modificar-producto.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { CurrencyPipe } from '@angular/common';
     PresentacionesComponent,
     SinEstilosComponent,
     CreadorContenidoComponent,
-    CuentaActivadaComponent
+    CuentaActivadaComponent,
+    ModificarProductoComponent
   ],
   imports: [
     BrowserModule,

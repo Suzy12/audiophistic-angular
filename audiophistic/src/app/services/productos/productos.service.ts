@@ -39,4 +39,8 @@ export class ProductosService {
   public crear_un_producto = (producto_info:any) => {
     return this.http.post(this.api_url +'/crear_producto', producto_info, {  headers: this.headers, observe: 'response' })
   }
+
+  public modificar_un_producto = (producto_info:any) => {
+    return this.http.post(this.api_url +'/modificar_producto', producto_info, {  headers: this.headers, observe: 'response' })
+  }
 }

@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { EstilosService } from 'src/app/services/estilos/estilos.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 import { Producto_Albumes } from 'src/app/models/Productos/producto_albumes';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -17,13 +19,21 @@ export class CrearProductoComponent implements OnInit {
   producto_form: FormGroup = {} as FormGroup;
   submitted: boolean = false;
   sub_form_creado: boolean = false;
+  modificar:boolean = false;
 
   private stepper: Stepper = {} as Stepper;
   tipo_producto: number = 1;
   estilo: string = '';
 
   constructor(private estilos_service: EstilosService, private productos_service: ProductosService,
-    private toastr: ToastrService, private fb: FormBuilder) {
+    private toastr: ToastrService, private fb: FormBuilder, private router: Router) {
+    this.router.events
+      .pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd))
+      .subscribe(evento => {
+        if (evento.id === 1 && evento.url === evento.urlAfterRedirects) {
+          this.router.navigate(['/inicio/productos'])
+        }
+      });
     this.producto_form = this.fb.group({
       estilos: this.fb.array([
         this.estilos_service.crear_estilo_form()
@@ -36,7 +46,6 @@ export class CrearProductoComponent implements OnInit {
         descripcion: ['', [Validators.required]],
       })
     });
-    console.log(this.producto_form.get("estilos"))
     this.cambiar_configuracion()
   }
 
@@ -105,6 +114,9 @@ export class CrearProductoComponent implements OnInit {
     let producto_info = this.producto_form.getRawValue();
 
     this.submitted = true;
+    console.log("Entró")
+
+    console.log(producto_info)
 
     if (this.producto_form.invalid) {
       this.toastr.error('Por favor revise que haya completado todos los campos obligatorios', 'Error', { timeOut: 5000 });
@@ -113,7 +125,7 @@ export class CrearProductoComponent implements OnInit {
 
     console.log(producto_info)
 
-    /*this.productos_service.crear_un_producto(producto_info).subscribe((res: any) => {
+    this.productos_service.crear_un_producto(producto_info).subscribe((res: any) => {
       this.toastr.clear();
       console.log(res.body);
       if (res.body.error) {
@@ -121,7 +133,7 @@ export class CrearProductoComponent implements OnInit {
       } else {
         this.toastr.success(res.body.resultado, 'Se creó el producto', { timeOut: 2000 });
       }
-    });*/
+    });
 
     this.submitted = false;
   }

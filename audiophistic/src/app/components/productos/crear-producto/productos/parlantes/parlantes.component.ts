@@ -10,18 +10,18 @@ import { EstilosService } from 'src/app/services/estilos/estilos.service';
 export class ParlantesComponent implements OnInit {
 
   @Input() submitted: boolean = false;
-  @Input() sub_form_creado: boolean = false;
+  @Input() modificar: boolean = false;
 
   precio: string = ''
 
   parlantes_form: FormGroup = {} as FormGroup;
 
   constructor(private fb: FormBuilder, private controlContainer: ControlContainer,
-    private estilos_service: EstilosService) { }
+    private estilos_service: EstilosService) {
+    this.parlantes_form = (<FormGroup>this.controlContainer.control).get('producto') as FormGroup;
+  }
 
   ngOnInit(): void {
-    this.parlantes_form = (<FormGroup>this.controlContainer.control).get('producto') as FormGroup;
-    console.log(this.form)
   }
 
   get form() { return this.parlantes_form.controls }

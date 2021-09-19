@@ -83,6 +83,13 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
     this.router.navigate(['/ver-producto', id_producto]);
   }
 
+
+  /* ============= MODIFICAR PRODUCTO =============== */
+
+  modificar_producto(id_producto: any) {
+    this.router.navigate(['/inicio/modificar-producto',  { state: {id: id_producto} }]);
+  }
+
   /* ============= ELIMINAR PRODUCTO =============== */
 
   abrir_modal_eliminar(id_producto:number, titulo_producto:string) {

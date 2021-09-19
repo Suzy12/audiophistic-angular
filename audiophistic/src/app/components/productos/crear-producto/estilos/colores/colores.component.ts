@@ -1,25 +1,26 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormArray, FormBuilder, FormGroup, NgControlStatus } from '@angular/forms';
 import { EstilosService } from 'src/app/services/estilos/estilos.service';
+import { IndexedAccessType } from 'typescript';
 
 @Component({
   selector: 'app-colores',
   templateUrl: './colores.component.html',
-  styleUrls: ['./colores.component.css', '../../crear-producto.component.css']
+  styleUrls: ['./colores.component.css', '../../crear-producto.component.css', '../compartir-estilos.css']
 })
 export class ColoresComponent implements OnInit {
 
   @Input() submitted: boolean = false;
-
-  precio: string = ''
+  @Input() modificar: boolean = false;
 
   colores_form: FormGroup = {} as FormGroup;
 
   constructor(private fb: FormBuilder, private controlContainer: ControlContainer,
-    private estilos_service: EstilosService) { }
+    private estilos_service: EstilosService) {
+    this.colores_form = <FormGroup>this.controlContainer.control;
+  }
 
   ngOnInit(): void {
-    this.colores_form = <FormGroup>this.controlContainer.control;
   }
 
   get estilos(): FormArray { return this.colores_form.get('estilos') as FormArray }
@@ -48,8 +49,8 @@ export class ColoresComponent implements OnInit {
     });
   }
 
-  transformar_dinero(elemento: any) {
-    this.precio = this.estilos_service.transformar_dinero(elemento)
+  obtener_imagen(i:number, j:number){
+    return this.fotos(i).at(j).value;
   }
 
 

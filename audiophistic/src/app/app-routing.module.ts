@@ -14,6 +14,7 @@ import { CrearUsuarioComponent } from './components/usuarios/crear-usuario/crear
 import { CuentaActivadaComponent } from './components/gestion-acceso/cuenta-activada/cuenta-activada.component';
 import { RolesGuard } from './guards/roles/roles.guard';
 import { SinSesionGuard } from './guards/sin-sesion/sin-sesion.guard';
+import { ModificarProductoComponent } from './components/productos/modificar-producto/modificar-producto.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'productos', component: TablaProductosComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2"], redirectTo: '#', rol_almacenado: 'rol'}  },
       { path: 'crear-producto', component: CrearProductoComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'}  },
+      { path: 'modificar-producto', component: ModificarProductoComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'}  },
       { path: 'usuarios', component: TablaUsuariosComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'crear-usuario', component: CrearUsuarioComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'ver-usuario/:id', component: VerUsuarioConsumidorComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },

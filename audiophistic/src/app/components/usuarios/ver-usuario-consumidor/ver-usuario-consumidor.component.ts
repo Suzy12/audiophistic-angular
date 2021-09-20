@@ -28,7 +28,6 @@ export class VerUsuarioConsumidorComponent implements OnInit {
     private toastr: ToastrService) {
     this.ruta_activated.params.subscribe(params => {
       this.usuarios_service.consultar_un_usuario(params['id']).subscribe((res: any) => {
-        console.log(res.body);
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {

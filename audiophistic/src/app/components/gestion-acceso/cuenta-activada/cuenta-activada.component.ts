@@ -20,7 +20,6 @@ export class CuentaActivadaComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       let token = params['token'];
       this.acceso_service.activar_cuenta(token).subscribe((res: any) => {
-        console.log(res.body);
         if (res.body.error) {
           this.titulo = "Error";
           this.descripcion = res.body.error;

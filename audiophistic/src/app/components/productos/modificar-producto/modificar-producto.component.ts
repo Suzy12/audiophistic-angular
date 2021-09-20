@@ -15,6 +15,8 @@ import { ProductosService } from 'src/app/services/productos/productos.service';
 export class ModificarProductoComponent implements OnInit {
 
   producto_form: FormGroup = {} as FormGroup;
+  producto_form_copia: string = '';
+
   submitted: boolean = false;
   cargando: boolean = false;
   sub_form_creado: boolean = false;
@@ -72,10 +74,13 @@ export class ModificarProductoComponent implements OnInit {
   crear_configuracion(producto_obj: any) {
     this.construir_form(producto_obj)
     this.consultar_estilos()
+    this.producto_form_copia = JSON.stringify(this.producto_form.getRawValue())
+
   }
 
   consultar_estilos() {
     this.estilo = this.estilos_service.consultar_estilo_producto(this.tipo_producto);
+
   }
 
   anterior() {
@@ -139,7 +144,10 @@ export class ModificarProductoComponent implements OnInit {
 
 
   modificar_producto() {
-    if (!this.producto_form.touched && !this.producto_form.pristine) {
+
+    let json_form = JSON.stringify(this.producto_form.getRawValue());
+
+    if (!this.producto_form.touched && json_form === this.producto_form_copia) {
       this.toastr.info('No se realizón ningún cambio', 'Sin cambios', { timeOut: 5000 });
       return;
     }
@@ -149,19 +157,14 @@ export class ModificarProductoComponent implements OnInit {
     this.submitted = true;
     this.cargando = true;
 
-    console.log(this.cargando)
-
     if (this.producto_form.invalid) {
       this.toastr.error('Por favor revise que haya completado todos los campos obligatorios', 'Error', { timeOut: 5000 });
       this.cargando = false;
       return;
     }
 
-    console.log(producto_info)
-
     this.productos_service.modificar_un_producto(producto_info).subscribe((res: any) => {
       this.toastr.clear();
-      console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         this.cargando = false;

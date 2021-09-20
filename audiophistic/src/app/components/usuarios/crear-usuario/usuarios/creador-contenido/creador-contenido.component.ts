@@ -16,7 +16,6 @@ export class CreadorContenidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.creador_contenido_form = <FormGroup>this.controlContainer.control;
-    console.log(this.form)
   }
 
   get form() { return this.creador_contenido_form.controls }

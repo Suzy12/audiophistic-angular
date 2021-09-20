@@ -117,19 +117,14 @@ export class CrearProductoComponent implements OnInit {
     this.submitted = true;
     this.cargando = true;
 
-    console.log(producto_info)
-
     if (this.producto_form.invalid) {
       this.toastr.error('Por favor revise que haya completado todos los campos obligatorios', 'Error', { timeOut: 5000 });
       this.cargando = false;
       return;
     }
 
-    console.log(producto_info)
-
     this.productos_service.crear_un_producto(producto_info).subscribe((res: any) => {
       this.toastr.clear();
-      console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         this.cargando = false;

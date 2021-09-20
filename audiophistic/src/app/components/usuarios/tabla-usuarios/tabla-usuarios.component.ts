@@ -44,7 +44,6 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
 
   private consultar_usuarios() {
     this.usuarios_service.consultar_usuarios().subscribe((res: any) => {
-      console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {

@@ -32,11 +32,8 @@ export class RecuperarContrasenaComponent implements OnInit {
 
     if (this.recuperar_form.invalid) { return; }
 
-    console.log(recuperar_info)
-
     this.acceso_service.recuperar_contrasena(recuperar_info).subscribe((res: any) => {
       this.toastr.clear();
-      console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {

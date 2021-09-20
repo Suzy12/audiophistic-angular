@@ -32,29 +32,18 @@ export class RegistroComponent implements OnInit {
 
     this.submitted = true;
 
-    console.log(registro_info)
-
     if (this.registro_form.invalid) { return; }
-
-    console.log(registro_info)
 
     this.acceso_service.registrarse(registro_info).subscribe((res: any) => {
       this.toastr.clear();
-      console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {
         this.toastr.success(`Bienvenido`, 'Se envió un correo para activar su cuenta', { timeOut: 2000 });
-        /*this.exito(registro_info.correo, res.body.resultado);*/
       }
     });
 
     this.submitted = false;
-  }
-
-  exito(correo: string, res: any) {
-    this.acceso_service.confirmar_iniciar_sesion(correo, res.token, res.id_tipo)
-    this.router.navigate(['/inicio']); //navegar a la pagina de dashboard
   }
 
 }

@@ -35,6 +35,7 @@ a {
     font-size: 15px;
     line-height: 1.5;
     color: #fff !important;
+    font-weight: bold;
     height: 50px;
     border-radius: 25px;
     background: var(--rojizo) !important;

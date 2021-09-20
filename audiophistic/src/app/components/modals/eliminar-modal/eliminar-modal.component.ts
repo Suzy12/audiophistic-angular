@@ -42,7 +42,6 @@ export class EliminarModalComponent implements OnInit {
 
   private eliminar_usuario() {
     this.usuarios_service.eliminar_un_usuario(this.datos_eliminar.id).subscribe((res: any) => {
-      console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {
@@ -70,7 +69,6 @@ export class EliminarModalComponent implements OnInit {
 
   private eliminar_producto_creador() {
     this.productos_service.eliminar_un_producto_creador(this.datos_eliminar.id).subscribe((res: any) => {
-      console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         this.cargando = false;
@@ -83,7 +81,6 @@ export class EliminarModalComponent implements OnInit {
 
   private eliminar_producto_administrador() {
     this.productos_service.eliminar_un_producto(this.datos_eliminar.id).subscribe((res: any) => {
-      console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         this.cargando = false;

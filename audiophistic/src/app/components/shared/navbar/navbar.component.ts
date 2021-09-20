@@ -21,7 +21,6 @@ export class NavbarComponent implements OnInit {
       filter(event => event instanceof NavigationEnd || event instanceof NavigationStart)
     )
       .subscribe((event: any) => {
-        console.log(event)
         if (event instanceof NavigationStart) {
           if (event.navigationTrigger != undefined && event.navigationTrigger.includes("popstate")) {
             this.cambiar_a_navbar_home();

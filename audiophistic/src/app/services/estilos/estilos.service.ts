@@ -40,7 +40,6 @@ export class EstilosService {
     this.estilos.forEach(elemento => {
       if (elemento.producto.includes(id_tipo_producto)) {
         estilo_producto = elemento.estilo
-        console.log(estilo_producto)
         return;
       }
     });

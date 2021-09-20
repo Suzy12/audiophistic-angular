@@ -33,11 +33,8 @@ export class IniciarSesionComponent implements OnInit {
 
     if (this.sesion_form.invalid) {return;}
 
-    console.log(sesion_info)
-
     this.acceso_service.iniciar_sesion(sesion_info).subscribe((res: any) => {
       this.toastr.clear();
-      console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {

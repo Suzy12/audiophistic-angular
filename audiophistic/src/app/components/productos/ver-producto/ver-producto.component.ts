@@ -35,7 +35,6 @@ export class VerProductoComponent implements OnInit {
     private estilos_service: EstilosService, private especificaciones_service: EspecificacionesProductoService) {
     this.ruta_activated.params.subscribe(params => {
       this.productos_service.consultar_un_producto(params['id']).subscribe((res: any) => {
-        console.log(res.body);
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
@@ -57,7 +56,6 @@ export class VerProductoComponent implements OnInit {
 
   cambiar_imagenes(fotos:any) {
     this.imagenes = fotos
-    console.log(this.imagenes)
   }
 
   cambiar_precio(precio:any){
@@ -67,7 +65,6 @@ export class VerProductoComponent implements OnInit {
   consultar_estilos_producto() {
     let nombre_estilo = this.estilos_service.consultar_estilo_producto(this.producto.caracteristicas.id_tipo);
     this.productos_service.consultar_estilos_producto(this.producto.id_producto).subscribe((res: any) => {
-      console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {

@@ -134,12 +134,9 @@ export class CrearUsuarioComponent implements OnInit {
     let canton = usuario_info.caracteristicas.canton;
     usuario_info.caracteristicas.canton = this.buscar_valor(this.cantones, canton)
 
-    console.log(usuario_info);
-
 
     this.usuarios_service.crear_un_usuario(usuario_info).subscribe((res: any) => {
       this.toastr.clear();
-      console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {

@@ -85,7 +85,6 @@ export class AccesoService {
     } else {
       let validar_info = { token: token_, id_tipo: rol_ }
       var res:any = await this.validar_token(validar_info).toPromise();
-      console.log(res.body);
       if (res.body.error) {
         return false;
       } else {

@@ -19,7 +19,6 @@ export class AudifonosComponent implements OnInit {
   constructor(private fb: FormBuilder, private controlContainer: ControlContainer,
     private estilos_service: EstilosService) {
     this.audifonos_form = (<FormGroup>this.controlContainer.control).get('producto') as FormGroup;
-    console.log(this.audifonos_form)
   }
 
   ngOnInit(): void {

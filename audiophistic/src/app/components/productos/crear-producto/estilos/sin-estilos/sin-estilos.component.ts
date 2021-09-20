@@ -21,7 +21,7 @@ export class SinEstilosComponent implements OnInit {
     this.sin_estilos_form = <FormGroup>this.controlContainer.control;
     this.estilos.controls[0].patchValue(
       {
-        'precio': '0',
+        'precio': 0,
         'nombre': 'Sin estilo',
         'descripcion': 'Sin estilo',
       }

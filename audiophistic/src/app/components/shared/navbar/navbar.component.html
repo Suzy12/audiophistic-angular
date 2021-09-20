@@ -37,8 +37,12 @@
                             Carrito</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-sign-in-alt icon-menu"></i>
-                            Ingresar</a>
+                        <a *ngIf="!sesion" class="nav-link" href="/iniciar-sesion">
+                            <i class="fas fa-sign-in-alt icon-menu me-2"></i>Ingresar</a>
+
+                        <a *ngIf="sesion" class="nav-link" href="/inicio">
+                            <i class="fas fa-user me-3"></i>Ingresar
+                        </a>
                     </li>
                 </div>
             </ul>

@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'inicio',
     children: [
-      { path: 'dashboard', component: DashboardComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2"], redirectTo: '#', rol_almacenado: 'rol'} },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2", "3"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'productos', component: TablaProductosComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2"], redirectTo: '#', rol_almacenado: 'rol'}  },
       { path: 'crear-producto', component: CrearProductoComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'}  },
       { path: 'modificar-producto', component: ModificarProductoComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'}  },

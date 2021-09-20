@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="bs-stepper-content">
-            <form [formGroup]="usuario_form" (ngSubmit)="crear_usuario()">
+            <form [formGroup]="usuario_form">
                 <div id="test-l-1" class="content">
                     <hr>
                     <div class="form-group" formGroupName="caracteristicas">
@@ -72,8 +72,10 @@
                         </div>
                     </div>
                     <div class="botones_navegacion">
-                        <a (click)="anterior()" class="btn btn-primary m-2">Anterior</a>
-                        <button type="submit" class="btn btn-primary">Crear Usuario</button>
+                        <button (click)="anterior()" class="btn btn-secondary m-2"
+                            [disabled]="cargando">Anterior</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="cargando" (click)="crear_usuario()">
+                            <i *ngIf="cargando" class="fas fa-sync fa-spin"></i>Crear Usuario</button>
                     </div>
                 </div>
             </form>

@@ -18,6 +18,8 @@ export class CrearUsuarioComponent implements OnInit {
 
   usuario_form: FormGroup = {} as FormGroup;
   submitted: boolean = false;
+  cargando: boolean = false;
+  
   private stepper: Stepper = {} as Stepper;
 
   public provincias: Provincia[] = []
@@ -115,9 +117,11 @@ export class CrearUsuarioComponent implements OnInit {
     let usuario_info = this.usuario_form.getRawValue();
 
     this.submitted = true;
+    this.cargando = true;
 
     if (this.usuario_form.invalid) {
       this.toastr.error('Por favor revise que haya completado todos los campos obligatorios', 'Error', { timeOut: 5000 });
+      this.cargando = false;
       return;
     }
 
@@ -139,8 +143,10 @@ export class CrearUsuarioComponent implements OnInit {
       this.toastr.clear();
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        this.cargando = false;
       } else {
         this.toastr.success(res.body.resultado, 'Usuario Creado', { timeOut: 2000 });
+        this.cargando = false;
       }
     });
 

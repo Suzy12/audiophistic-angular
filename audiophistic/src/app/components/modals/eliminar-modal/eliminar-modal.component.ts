@@ -26,7 +26,6 @@ export class EliminarModalComponent implements OnInit {
 
   cerrar_modal() {
     this.activeModal.close();
-    window.location.reload();
   }
 
   eliminar() {
@@ -37,15 +36,18 @@ export class EliminarModalComponent implements OnInit {
       default:
         this.eliminar_producto()
     }
-    this.cerrar_modal()
   }
 
   private eliminar_usuario() {
+    this.cargando = true;
     this.usuarios_service.eliminar_un_usuario(this.datos_eliminar.id).subscribe((res: any) => {
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {
         this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+        this.cargando = false;
+        this.cerrar_modal()
+        this.refrescar()
       }
     });
   }
@@ -75,6 +77,8 @@ export class EliminarModalComponent implements OnInit {
       } else {
         this.cargando = false;
         this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+        this.cerrar_modal()
+        this.refrescar()
       }
     });
   }
@@ -87,8 +91,14 @@ export class EliminarModalComponent implements OnInit {
       } else {
         this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
         this.cargando = false;
+        this.cerrar_modal()
+        this.refrescar()
       }
     });
+  }
+
+  refrescar(){
+    setTimeout( () => { window.location.reload();  }, 2000 );
   }
 
 }

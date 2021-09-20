@@ -147,7 +147,7 @@ export class ModificarProductoComponent implements OnInit {
 
     let json_form = JSON.stringify(this.producto_form.getRawValue());
 
-    if (!this.producto_form.touched && json_form === this.producto_form_copia) {
+    if (json_form === this.producto_form_copia) {
       this.toastr.info('No se realizón ningún cambio', 'Sin cambios', { timeOut: 5000 });
       return;
     }

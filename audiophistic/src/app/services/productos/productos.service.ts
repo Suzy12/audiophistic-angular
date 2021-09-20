@@ -24,6 +24,10 @@ export class ProductosService {
     return this.http.get(this.api_url +'/eliminar_producto/'+id_producto, { headers: this.headers, observe: 'response' })
   }
 
+  public eliminar_un_producto_creador = (id_producto:any) => {
+    return this.http.get(this.api_url +'/eliminar_mi_producto/'+id_producto, { headers: this.headers, observe: 'response' })
+  }
+
   public consultar_productos_creador = (id_creador:any) => {
     return this.http.get(this.api_url +'/productos_por_creador/'+id_creador, { headers: this.headers, observe: 'response' })
   }

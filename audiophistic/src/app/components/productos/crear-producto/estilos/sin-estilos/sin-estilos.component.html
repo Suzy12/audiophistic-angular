@@ -5,7 +5,7 @@
             <div class="form-group">
                 <label for="existencia"><i class="fas fa-dolly-flatbed"></i>Cantidad del Producto</label>
                 <input type="number" class="form-control" placeholder="Cantidad" formControlName="existencia" [ngClass]="{ 'is-invalid': (estilo.get('existencia')?.touched || submitted) && 
-                        estilo.get('existencia')?.errors }">
+                        estilo.get('existencia')?.errors }" required min="1">
                 <div *ngIf="submitted && estilo.get('existencia')?.errors?.required" class="invalid-feedback">
                     <div>
                         <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
@@ -32,7 +32,8 @@
                         <hr class="w-50">
                         <td>
                             <input *ngIf="foto.value == null || foto.value == ''" type="file"
-                                accept="image/png, image/jpeg, image/jpg" (change)="leer_imagen($event, i, j)">
+                                accept="image/png, image/jpeg, image/jpg" (change)="leer_imagen($event, i, j)"
+                                required>
                             <img *ngIf="foto.value != null || foto.value != ''" [src]="obtener_imagen(i,j)">
                         </td>
                         <td>

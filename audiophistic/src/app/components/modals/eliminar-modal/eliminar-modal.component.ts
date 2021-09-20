@@ -12,6 +12,7 @@ import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 export class EliminarModalComponent implements OnInit {
 
   @Input() datos_eliminar: any;
+  cargando:boolean = false;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -25,6 +26,7 @@ export class EliminarModalComponent implements OnInit {
 
   cerrar_modal() {
     this.activeModal.close();
+    window.location.reload();
   }
 
   eliminar() {
@@ -50,12 +52,44 @@ export class EliminarModalComponent implements OnInit {
   }
 
   private eliminar_producto() {
+    this.cargando = true;
+    let rol = localStorage.getItem("rol");
+    switch (rol) {
+      case "1":
+        this.eliminar_producto_administrador()
+        break;
+      case "2":
+        this.eliminar_producto_creador()
+        break;
+      default:
+        this.toastr.error("No tiene permisos para eliminar", 'Error', { timeOut: 5000 });
+        break;
+    }
+
+  }
+
+  private eliminar_producto_creador() {
+    this.productos_service.eliminar_un_producto_creador(this.datos_eliminar.id).subscribe((res: any) => {
+      console.log(res.body);
+      if (res.body.error) {
+        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        this.cargando = false;
+      } else {
+        this.cargando = false;
+        this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+      }
+    });
+  }
+
+  private eliminar_producto_administrador() {
     this.productos_service.eliminar_un_producto(this.datos_eliminar.id).subscribe((res: any) => {
       console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        this.cargando = false;
       } else {
         this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+        this.cargando = false;
       }
     });
   }

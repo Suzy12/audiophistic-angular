@@ -20,11 +20,13 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
 
   productos: Producto[] = [];
   dtTrigger: Subject<any> = new Subject<any>();
+  rol:string = ''
 
   constructor(private http: HttpClient, private productos_service: ProductosService,
     private modalService: NgbModal, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
+    this.rol = localStorage.getItem('rol') as string
     this.iniciar_tabla();
     this.consultar_productos();
   }

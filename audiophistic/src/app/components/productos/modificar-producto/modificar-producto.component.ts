@@ -16,6 +16,7 @@ export class ModificarProductoComponent implements OnInit {
 
   producto_form: FormGroup = {} as FormGroup;
   submitted: boolean = false;
+  cargando: boolean = false;
   sub_form_creado: boolean = false;
   modificar: boolean = true
 
@@ -97,7 +98,6 @@ export class ModificarProductoComponent implements OnInit {
   }
 
   private construir_form(producto_obj: any) {
-    console.log(this.tipo_producto)
     this.sub_form_creado = false;
 
     let sub_form: FormGroup = {} as FormGroup;
@@ -118,6 +118,7 @@ export class ModificarProductoComponent implements OnInit {
         this.crear_array(producto_obj.caracteristicas.generos, "generos", caracteristicas)
         break;
       case 2:
+      case 3:
         sub_form = this.fb.group({
           id_tipo: this.tipo_producto,
           tipo: this.fb.array([]),
@@ -138,8 +139,7 @@ export class ModificarProductoComponent implements OnInit {
 
 
   modificar_producto() {
-    console.log(localStorage.getItem("token"))
-    if (!this.producto_form.touched) {
+    if (!this.producto_form.touched && !this.producto_form.pristine) {
       this.toastr.info('No se realizón ningún cambio', 'Sin cambios', { timeOut: 5000 });
       return;
     }
@@ -147,11 +147,13 @@ export class ModificarProductoComponent implements OnInit {
     let producto_info = this.producto_form.getRawValue();
 
     this.submitted = true;
+    this.cargando = true;
 
-    console.log(producto_info)
+    console.log(this.cargando)
 
     if (this.producto_form.invalid) {
       this.toastr.error('Por favor revise que haya completado todos los campos obligatorios', 'Error', { timeOut: 5000 });
+      this.cargando = false;
       return;
     }
 
@@ -162,8 +164,10 @@ export class ModificarProductoComponent implements OnInit {
       console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        this.cargando = false;
       } else {
         this.toastr.success(res.body.resultado, 'Se modificó el producto', { timeOut: 2000 });
+        this.cargando = false;
         this.router.navigate(['/inicio/productos'])
       }
     });

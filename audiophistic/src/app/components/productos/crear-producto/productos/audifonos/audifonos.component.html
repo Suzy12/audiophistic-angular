@@ -13,7 +13,8 @@
     <div class="form-group">
         <label for="tipo"><i class="fas fa-coins"></i>Precio<span class="text-muted"> (en colones)</span></label>
         <input type="number" class="form-control" placeholder="Precio" name="precio" formControlName="precio" required
-            [ngClass]="{ 'is-invalid': submitted && form.precio.errors }" (blur)="transformar_dinero($event)">
+            [ngClass]="{ 'is-invalid': submitted && form.precio.errors }" (blur)="transformar_dinero($event)"
+            min="1000">
         <div *ngIf="submitted && form.precio.errors" class="invalid-feedback">
             <div *ngIf="form.precio.errors.required">
                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
@@ -63,7 +64,7 @@
             <label for="tipo"><i class="fas fa-tag"></i>Marca</label>
             <div *ngFor="let marca of marca.controls; let i=index">
                 <input type="text" class="form-control" placeholder="Marca" name="marca" [formControlName]="i"
-                    [ngClass]="{ 'is-invalid': submitted && marca.errors }">
+                    [ngClass]="{ 'is-invalid': submitted && marca.errors }" required>
                 <div *ngIf="submitted && marca.errors?.required" class="invalid-feedback">
                     <div>
                         <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
@@ -77,7 +78,7 @@
                     Ear</span></label>
             <div *ngFor="let tipo of tipo.controls; let i=index">
                 <input type="text" class="form-control" placeholder="Tipo" name="tipo" [formControlName]="i"
-                    [ngClass]="{ 'is-invalid': submitted && tipo.errors }">
+                    [ngClass]="{ 'is-invalid': submitted && tipo.errors }" required>
                 <div *ngIf="submitted && tipo.errors?.required" class="invalid-feedback">
                     <div>
                         <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
@@ -104,7 +105,7 @@
                 <tr *ngFor="let conexion of conexiones.controls; let i=index">
                     <td>
                         <input type="text" class="form-control bg-white" placeholder="Conexión" [formControlName]="i"
-                            [ngClass]="{ 'is-invalid': (conexion.touched || submitted) && conexion.errors }">
+                            [ngClass]="{ 'is-invalid': (conexion.touched || submitted) && conexion.errors }" required>
                     </td>
                     <td>
                         <button class="btn btn-outline-danger" (click)="eliminar_conexion(i)"><i

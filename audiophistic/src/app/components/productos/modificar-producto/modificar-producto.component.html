@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="bs-stepper-content">
-            <form [formGroup]="producto_form" (ngSubmit)="modificar_producto()">
+            <form [formGroup]="producto_form">
                 <div id="test-l-2" class="content">
                     <div *ngIf="sub_form_creado">
                         <hr>
@@ -42,8 +42,11 @@
                             [modificar]="modificar">
                         </app-presentaciones>
                         <div class="botones_navegacion">
-                            <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
-                            <button type="submit" class="btn btn-primary">Modificar Producto</button>
+                            <button (click)="anterior()" class="btn btn-secondary m-2"
+                                [disabled]="cargando">Anterior</button>
+                            <button type="submit" class="btn btn-primary" [disabled]="cargando" (click)="modificar_producto()">
+                                <i *ngIf="cargando"
+                                    class="fas fa-sync fa-spin"></i>Modificar Producto</button>
                         </div>
                     </div>
                 </div>

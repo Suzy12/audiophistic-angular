@@ -46,20 +46,4 @@
 	border: none;
 }
 
-.modal_confirmar .btn-secondary {
-	background: #c1c1c1;
-}
-
-.modal_confirmar .btn-secondary:hover, .modal_confirmar .btn-secondary:focus {
-	background: #a8a8a8;
-}
-
-.modal_confirmar .btn-danger {
-	background: #f15e5e;
-}
-
-.modal_confirmar .btn-danger:hover, .modal_confirmar .btn-danger:focus {
-	background: #ee3535;
-}
-
 /*Reference: https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=delete-confirmation-modal*/

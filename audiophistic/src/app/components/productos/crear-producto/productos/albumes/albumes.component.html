@@ -13,7 +13,8 @@
     <div class="form-group">
         <label for="tipo"><i class="fas fa-coins"></i>Precio<span class="text-muted"> (en colones)</span></label>
         <input type="number" class="form-control" placeholder="Precio" name="precio" formControlName="precio" required
-            [ngClass]="{ 'is-invalid': submitted && form.precio.errors }" (blur)="transformar_dinero($event)">
+            [ngClass]="{ 'is-invalid': submitted && form.precio.errors }" (blur)="transformar_dinero($event)"
+            min="1000">
         <div *ngIf="submitted && form.precio.errors" class="invalid-feedback">
             <div *ngIf="form.precio.errors.required">
                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo

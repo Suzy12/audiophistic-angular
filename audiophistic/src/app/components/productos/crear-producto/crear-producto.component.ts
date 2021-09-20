@@ -18,6 +18,7 @@ export class CrearProductoComponent implements OnInit {
 
   producto_form: FormGroup = {} as FormGroup;
   submitted: boolean = false;
+  cargando: boolean = false;
   sub_form_creado: boolean = false;
   modificar:boolean = false;
 
@@ -114,12 +115,13 @@ export class CrearProductoComponent implements OnInit {
     let producto_info = this.producto_form.getRawValue();
 
     this.submitted = true;
-    console.log("Entró")
+    this.cargando = true;
 
     console.log(producto_info)
 
     if (this.producto_form.invalid) {
       this.toastr.error('Por favor revise que haya completado todos los campos obligatorios', 'Error', { timeOut: 5000 });
+      this.cargando = false;
       return;
     }
 
@@ -130,8 +132,10 @@ export class CrearProductoComponent implements OnInit {
       console.log(res.body);
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        this.cargando = false;
       } else {
         this.toastr.success(res.body.resultado, 'Se creó el producto', { timeOut: 2000 });
+        this.cargando = false;
         this.router.navigate(['/inicio/productos'])
       }
     });

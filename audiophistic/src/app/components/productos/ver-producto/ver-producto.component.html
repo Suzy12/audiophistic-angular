@@ -58,9 +58,9 @@
                             <label class="control-label pb-2">Presentaciones:</label>
                             <div class="controls radio-group presentaciones">
                                 <div *ngFor="let item of estilos" class="d-inline-block">
-                                    <input type="radio" checked="" [value]="item.id_estilo" [id]="item.nombre" name="presentaciones_grupo"
+                                    <input type="radio" checked="" [value]="item.id_estilo" [id]="item.id_estilo" name="presentaciones_grupo"
                                     (change)="cambiar_atributos(item)">
-                                    <label [attr.for]="item.nombre" class="btn btn-light"> {{item.nombre}} </label>
+                                    <label [attr.for]="item.id_estilo" class="btn btn-light"> {{item.nombre}} </label>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                         {{producto.descripcion}}
                     </div>
                     <div class="tab-pane fade p-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="grid-container">
+                        <div class="grid_contenedor">
                             <div *ngFor="let esp of especificaciones">
                                 <div class="texto">
                                     <div class="fw-bold">{{esp.especificacion}}</div>

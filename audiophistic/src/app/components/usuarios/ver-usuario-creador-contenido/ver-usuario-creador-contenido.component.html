@@ -1,0 +1,148 @@
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row container-fluid">
+            <div class="col-12 text-center">
+                <div>
+                    <img src="https://pbs.twimg.com/profile_images/905582358685917184/Zvyazq3G.jpg" alt="" />
+                </div>
+                <div class="mt-3">
+                    <div class="profile-head">
+                        <h5 class="fw-bold">
+                            Vertigo CR
+                        </h5>
+                        <h6>
+                            Creador de Contenido
+                        </h6>
+                    </div>
+                    <div class="profile-work">
+                        <div class="text-muted text-center mt-2 me-3">
+                            <i class="fas fa-map-marker-alt p-3 text-danger"></i>Escazú, San José
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="tablist">
+                        <button class="nav-link active" id="perfil-tab" data-bs-toggle="tab" data-bs-target="#perfil"
+                            type="button" role="tab" aria-controls="perfil" aria-selected="true">Perfil</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="productos-tab" data-bs-toggle="tab" data-bs-target="#productos"
+                            type="button" role="tab" aria-controls="productos" aria-selected="false">Productos</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="blogs-tab" data-bs-toggle="tab" data-bs-target="#blogs"
+                            type="button" role="tab" aria-controls="blogs" aria-selected="false">Blogs</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="contenido">
+                    <div class="tab-pane fade show active p-3" id="perfil" role="tabpanel" aria-labelledby="perfil-tab">
+                        <div class="grid_contenedor">
+                            <div>
+                                <div class="texto">
+                                    <div class="fw-bold">Teléfono</div>
+                                    <div>88040788</div>
+                                </div>
+                                <div class="texto">
+                                    <div class="fw-bold">Dirección</div>
+                                    <div>C. Multiplaza, San José, San Rafael</div>
+                                </div>
+                                <div class="texto">
+                                    <div class="fw-bold">Sitio Web</div>
+                                    <div>http://tiendavertigo.com/</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div>VERTIGO es un tienda especializada en Entretenimiento, con lo mejor en
+                                Música, Películas, Video Juegos y Juguetes Coleccionables para todos.</div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade p-3" id="productos" role="tabpanel" aria-labelledby="productos-tab">
+                        <div id="carousel_productos" class="carousel  carousel-dark slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div *ngFor="let num of slides" [ngClass]="{'active': num == 0}" class="carousel-item"
+                                    data-bs-interval="10000">
+                                    <div class="container_carousel">
+                                        <div class="d-none d-lg-block">
+                                            <div class="row text-center">
+                                                <div class="col-lg-4">
+                                                    <app-product-cards></app-product-cards>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <app-product-cards></app-product-cards>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <app-product-cards></app-product-cards>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-sm-block d-lg-none">
+                                            <div class="row text-center">
+                                                <div class="col-12">
+                                                    <app-product-cards></app-product-cards>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel_productos"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel_productos"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade p-3" id="blogs" role="tabpanel" aria-labelledby="blogs-tab">
+                        <div id="carouselBlogs" class="carousel  carousel-dark slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselBlogs" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselBlogs" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselBlogs" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
+                            </div>
+                            <div class="carousel-inner">
+                                <div *ngFor="let num of slides" [ngClass]="{'active': num == 0}"
+                                    class="carousel-item" data-bs-interval="10000">
+                                    <div class="container_carousel_blogs">
+                                        <div class="d-none d-lg-block">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <app-blogs-cards></app-blogs-cards>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <app-blogs-cards></app-blogs-cards>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <app-blogs-cards></app-blogs-cards>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="d-sm-block d-lg-none">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <app-blogs-cards></app-blogs-cards>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

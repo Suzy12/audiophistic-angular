@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChildren, ViewChild, NgModule } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Stepper from 'bs-stepper';
 import { ToastrService } from 'ngx-toastr';
 import { EstilosService } from 'src/app/services/estilos/estilos.service';
@@ -17,10 +17,10 @@ import { filter } from 'rxjs/operators';
 export class CrearProductoComponent implements OnInit {
 
   producto_form: FormGroup = {} as FormGroup;
-  submitted: boolean = false;
+  enviado: boolean = false;
   cargando: boolean = false;
   sub_form_creado: boolean = false;
-  modificar:boolean = false;
+  modificar: boolean = false;
 
   private stepper: Stepper = {} as Stepper;
   tipo_producto: number = 1;
@@ -114,8 +114,17 @@ export class CrearProductoComponent implements OnInit {
   crear_producto() {
     let producto_info = this.producto_form.getRawValue();
 
-    this.submitted = true;
+    this.enviado = true;
     this.cargando = true;
+
+    for (let estilo of (this.producto_form.get('estilos') as FormArray).controls) {
+      if (this.duplicado(estilo.value.nombre)) {
+        this.toastr.error('Los estilos no pueden tener nombres iguales', 'Error', { timeOut: 5000 });
+        this.cargando = false;
+        return;
+      }
+    }
+
 
     if (this.producto_form.invalid) {
       this.toastr.error('Por favor revise que haya completado todos los campos obligatorios', 'Error', { timeOut: 5000 });
@@ -135,7 +144,20 @@ export class CrearProductoComponent implements OnInit {
       }
     });
 
-    this.submitted = false;
+    this.enviado = false;
+  }
+
+  duplicado(nombre: any): boolean {
+    let array_estilos = this.producto_form.get('estilos') as FormArray
+
+    let duplicados = array_estilos.controls.filter((data: any) =>
+      data.controls.nombre.value == nombre && nombre != null)
+
+    if (duplicados.length > 1) {
+      return true;
+    } else {
+      return false
+    }
   }
 
 }

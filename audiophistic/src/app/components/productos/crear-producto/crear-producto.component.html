@@ -43,11 +43,11 @@
                 </div>
                 <div id="test-l-2" class="content">
                     <hr>
-                    <app-albumes *ngIf="tipo_producto == 1" [submitted]="submitted" [modificar]="modificar">
+                    <app-albumes *ngIf="tipo_producto == 1" [enviado]="enviado" [modificar]="modificar">
                     </app-albumes>
-                    <app-audifonos *ngIf="tipo_producto == 2" [submitted]="submitted" [modificar]="modificar">
+                    <app-audifonos *ngIf="tipo_producto == 2" [enviado]="enviado" [modificar]="modificar">
                     </app-audifonos>
-                    <app-parlantes *ngIf="tipo_producto == 3" [submitted]="submitted" [modificar]="modificar">
+                    <app-parlantes *ngIf="tipo_producto == 3" [enviado]="enviado" [modificar]="modificar">
                     </app-parlantes>
                     <div class="botones_navegacion">
                         <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
@@ -55,11 +55,11 @@
                     </div>
                 </div>
                 <div id="test-l-3" class="content">
-                    <app-sin-estilos *ngIf="estilo=='sin_estilo'" [submitted]="submitted" [modificar]="modificar">
+                    <app-sin-estilos *ngIf="estilo=='sin_estilo'" [enviado]="enviado" [modificar]="modificar">
                     </app-sin-estilos>
-                    <app-colores *ngIf="estilo=='colores'" [submitted]="submitted" [modificar]="modificar">
+                    <app-colores *ngIf="estilo=='colores'" [enviado]="enviado" [modificar]="modificar">
                     </app-colores>
-                    <app-presentaciones *ngIf="estilo=='presentaciones'" [submitted]="submitted"
+                    <app-presentaciones *ngIf="estilo=='presentaciones'" [enviado]="enviado"
                         [modificar]="modificar">
                     </app-presentaciones>
                     <div class="botones_navegacion">

@@ -8,7 +8,7 @@ import { FormGroup, Validators, FormBuilder, FormGroupDirective, ControlContaine
 })
 export class CreadorContenidoComponent implements OnInit {
 
-  @Input() submitted: boolean = false;
+  @Input() enviado: boolean = false;
 
   creador_contenido_form: FormGroup = {} as FormGroup;
 

@@ -17,7 +17,7 @@ import { filter } from 'rxjs/operators';
 export class CrearUsuarioComponent implements OnInit {
 
   usuario_form: FormGroup = {} as FormGroup;
-  submitted: boolean = false;
+  enviado: boolean = false;
   cargando: boolean = false;
   
   private stepper: Stepper = {} as Stepper;
@@ -116,7 +116,7 @@ export class CrearUsuarioComponent implements OnInit {
   crear_usuario() {
     let usuario_info = this.usuario_form.getRawValue();
 
-    this.submitted = true;
+    this.enviado = true;
     this.cargando = true;
 
     if (this.usuario_form.invalid) {
@@ -147,10 +147,11 @@ export class CrearUsuarioComponent implements OnInit {
       } else {
         this.toastr.success(res.body.resultado, 'Usuario Creado', { timeOut: 2000 });
         this.cargando = false;
+        this.router.navigate(['/inicio/usuarios'])
       }
     });
 
-    this.submitted = false;
+    this.enviado = false;
   }
 
 }

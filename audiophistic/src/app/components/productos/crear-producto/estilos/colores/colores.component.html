@@ -1,7 +1,7 @@
 <div [formGroup]="colores_form">
     <div class="form-group">
         <label for="tipo"><i class="fas fa-palette"></i>Colores</label>
-        <div class="text-danger" *ngIf="submitted && estilos.controls.length === 0">
+        <div class="text-danger" *ngIf="enviado && estilos.controls.length === 0">
             <label class="font-weight-bold">
                 <i class="fa fa-exclamation-circle"></i> El producto requiere por lo menos
                 un color</label>
@@ -24,9 +24,9 @@
                 <td>
                     <div class="form-group">
                         <label for="descripcion"><i class="fas fa-hashtag"></i>Hexadecimal</label><br>
-                        <input type="color" value="#ff0000" formControlName="descripcion" [ngClass]="{ 'is-invalid': (estilo.get('descrioncion')?.touched || submitted) && 
+                        <input type="color" value="#ff0000" formControlName="descripcion" [ngClass]="{ 'is-invalid': (estilo.get('descripcion')?.touched || enviado) && 
                         estilo.get('descripcion')?.errors }" required>
-                        <div *ngIf="submitted && estilo.get('descripcion')?.errors?.required" class="invalid-feedback">
+                        <div *ngIf="enviado && estilo.get('descripcion')?.errors?.required" class="invalid-feedback">
                             <div>
                                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
                                     de descripción es obligatorio</label>
@@ -35,9 +35,9 @@
                     </div>
                     <div class="form-group">
                         <label for="nombre"><i class="fas fa-heading"></i>Nombre</label>
-                        <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': (estilo.get('nombre')?.touched || submitted) && 
+                        <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': (estilo.get('nombre')?.touched || enviado) && 
                         estilo.get('nombre')?.errors }" required>
-                        <div *ngIf="submitted && estilo.get('nombre')?.errors?.required" class="invalid-feedback">
+                        <div *ngIf="enviado && estilo.get('nombre')?.errors?.required" class="invalid-feedback">
                             <div>
                                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
                                     de nombre es obligatorio</label>
@@ -48,9 +48,9 @@
                         <label for="precio"><i class="fas fa-coins"></i>Precio Extra<span class="text-muted"> (en
                                 colones)</span></label>
                         <input type="number" class="form-control" placeholder="Precio" formControlName="precio"
-                            [ngClass]="{ 'is-invalid': (estilo.get('precio')?.touched || submitted) && 
+                            [ngClass]="{ 'is-invalid': (estilo.get('precio')?.touched || enviado) && 
                         estilo.get('precio')?.errors }" required>
-                        <div *ngIf="submitted && estilo.get('precio')?.errors?.required" class="invalid-feedback">
+                        <div *ngIf="enviado && estilo.get('precio')?.errors?.required" class="invalid-feedback">
                             <div>
                                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
                                     de precio es obligatorio</label>
@@ -60,9 +60,9 @@
                     <div class="form-group">
                         <label for="existencia"><i class="fas fa-dolly-flatbed"></i>Cantidad del Producto</label>
                         <input type="number" class="form-control" placeholder="Cantidad" formControlName="existencia"
-                            [ngClass]="{ 'is-invalid': (estilo.get('existencia')?.touched || submitted) && 
+                            [ngClass]="{ 'is-invalid': (estilo.get('existencia')?.touched || enviado) && 
                         estilo.get('existencia')?.errors }" required min="1">
-                        <div *ngIf="submitted && estilo.get('existencia')?.errors?.required" class="invalid-feedback">
+                        <div *ngIf="enviado && estilo.get('existencia')?.errors?.required" class="invalid-feedback">
                             <div>
                                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
                                     de cantidad es obligatorio</label>
@@ -71,7 +71,7 @@
                     </div>
                     <div class="form-group" formArrayName="fotos">
                         <label for="fotos"><i class="fas fa-images"></i>Imágenes</label>
-                        <div class="text-danger" *ngIf="submitted && fotos(i).controls.length === 0">
+                        <div class="text-danger" *ngIf="enviado && fotos(i).controls.length === 0">
                             <label class="font-weight-bold">
                                 <i class="fa fa-exclamation-circle"></i> El estilo requiere por lo menos
                                 una imagen</label>
@@ -98,7 +98,7 @@
                                 <td>
                                     <div class="text-danger">
                                         <label class="font-weight-bold"
-                                            *ngIf="(foto.touched || submitted) && (foto.value == null || foto.value == '')">
+                                            *ngIf="(foto.touched || enviado) && (foto.value == null || foto.value == '')">
                                             <i class="fa fa-exclamation-circle"></i> Debe subir una imagen</label>
                                     </div>
                                 </td>

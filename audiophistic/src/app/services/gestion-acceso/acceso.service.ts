@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AccesoService {
   private api_url = environment.api_url;
   private logger = new Subject<boolean>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private toastr: ToastrService) {
     this.logger.next(false);
     this.leer_token();
   }
@@ -84,8 +85,9 @@ export class AccesoService {
       return false;
     } else {
       let validar_info = { token: token_, id_tipo: rol_ }
-      var res:any = await this.validar_token(validar_info).toPromise();
+      var res: any = await this.validar_token(validar_info).toPromise();
       if (res.body.error) {
+        this.cerrar_sesion()
         return false;
       } else {
         return true;
@@ -95,7 +97,7 @@ export class AccesoService {
 
   esta_autenticado(): boolean {
     let token_ = this.leer_token();
-    if(token_ == ''){
+    if (token_ == '') {
       return false;
     }
     return true;

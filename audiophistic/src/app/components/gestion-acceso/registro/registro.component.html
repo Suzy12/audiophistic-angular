@@ -17,14 +17,14 @@
 
                 <div class="wrap_input_form">
                     <input class="input_form" type="text" name="nombre" placeholder="Nombre" formControlName="nombre"
-                        [ngClass]="{ 'is-invalid': submitted && form.nombre.errors }">
+                        [ngClass]="{ 'is-invalid': enviado && form.nombre.errors }">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">
                         <i class="fas fa-user" aria-hidden="true"></i>
                     </span>
                 </div>
                 <div class="text-center">
-                    <div *ngIf="submitted && form.nombre.errors" class="text-danger mb-3">
+                    <div *ngIf="enviado && form.nombre.errors" class="text-danger mb-3">
                         <div *ngIf="form.nombre.errors.required">
                             <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El
                                 campo de nombre es obligatorio</label>
@@ -33,32 +33,39 @@
                 </div>
 
                 <div class="wrap_input_form">
-                    <input class="input_form" type="text" name="correo" placeholder="Correo Electrónico"
-                        formControlName="correo" [ngClass]="{ 'is-invalid': submitted && form.correo.errors }">
+                    <input class="input_form" type="email" name="correo" placeholder="Correo Electrónico"
+                        formControlName="correo" [ngClass]="{ 'is-invalid': enviado && form.correo.errors }"
+                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                     </span>
                 </div>
                 <div class="text-center">
-                    <div *ngIf="submitted && form.correo.errors" class="text-danger mb-3">
+                    <div *ngIf="enviado && form.correo.errors" class="text-danger mb-3">
                         <div *ngIf="form.correo.errors.required">
                             <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El
                                 campo de correo es obligatorio</label>
+                        </div>
+                    </div>
+                    <div *ngIf="enviado && form.correo.errors" class="text-danger mb-3">
+                        <div *ngIf="form.correo.errors.pattern">
+                            <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El
+                                campo de correo es inválido</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="wrap_input_form">
                     <input class="input_form" type="password" name="contrasena" placeholder="Contraseña"
-                        formControlName="contrasena" [ngClass]="{ 'is-invalid': submitted && form.contrasena.errors }">
+                        formControlName="contrasena" [ngClass]="{ 'is-invalid': enviado && form.contrasena.errors }">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">
                         <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
                 </div>
                 <div class="text-center">
-                    <div *ngIf="submitted && form.contrasena.errors" class="text-danger mb-3">
+                    <div *ngIf="enviado && form.contrasena.errors" class="text-danger mb-3">
                         <div *ngIf="form.contrasena.errors.required">
                             <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El
                                 campo de contraseña es obligatorio</label>
@@ -74,7 +81,7 @@
 
                 <div class="text-center pt-3">
                     <a class="text-muted">¿Ya tiene cuenta?</a>
-                    <a class="txt2" href="/iniciar-sesion">
+                    <a href="/iniciar-sesion">
                         Inicie Sesión
                     </a>
                 </div>

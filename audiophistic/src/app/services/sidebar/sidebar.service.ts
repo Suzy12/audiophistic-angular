@@ -17,7 +17,7 @@ export class SidebarService {
 
   menu = [
     {
-      titulo: 'Reportes',
+      titulo: 'Panel de Control',
       icono: 'fas fa-tachometer-alt',
       ruta: '/inicio/dashboard',
       rol: ["1","2"]
@@ -25,7 +25,7 @@ export class SidebarService {
     {
       titulo: 'Perfil',
       icono: 'fas fa-user-circle',
-      ruta: '',
+      ruta: '/inicio/editar-perfil',
       rol: ["1","2","3"]
     },
     {
@@ -43,7 +43,7 @@ export class SidebarService {
     {
       titulo: 'Categorías',
       icono: 'fas fa-tag',
-      ruta: '',
+      ruta: 'inicio/categorias',
       rol: ["1"]
     },
     {

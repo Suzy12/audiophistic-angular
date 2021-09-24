@@ -10,7 +10,7 @@ import { EstilosService } from 'src/app/services/estilos/estilos.service';
 })
 export class PresentacionesComponent implements OnInit {
 
-  @Input() submitted: boolean = false;
+  @Input() enviado: boolean = false;
   @Input() modificar: boolean = false;
 
   presentaciones_form: FormGroup = {} as FormGroup;

@@ -1,0 +1,114 @@
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="e-profile">
+                <div class="row">
+                    <div class="col-12 col-sm-auto mb-3">
+                        <div class="mx-auto" style="width: 140px;">
+                            <div class="d-flex justify-content-center align-items-center rounded"
+                                style="height: 140px; background-color: rgb(233, 236, 239);">
+                                <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fa fa-fw fa-camera me-2"></i>
+                                <span>Cambiar Foto</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                        <div class="text-sm-left mb-2 mb-sm-0">
+                            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith</h4>
+                            <span class="text-muted" *ngIf="rol == '1'">Administrador</span>
+                            <span class="text-muted" *ngIf="rol == '2'">Creador de Contenido</span>
+                            <span class="text-muted" *ngIf="rol == '3'">Consumidor</span>
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav nav-tabs mt-3">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="configuracion-tab" data-bs-toggle="tab"
+                            data-bs-target="#configuracion" type="button" role="tab" aria-controls="configuracion"
+                            aria-selected="true">Configuración General</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contrasena-tab" data-bs-toggle="tab"
+                            data-bs-target="#cambiar_contrasena" type="button" role="tab"
+                            aria-controls="cambiar_contrasena" aria-selected="false">Contraseña</button>
+                    </li>
+                </ul>
+                <div class="tab-content pt-3">
+                    <div class="tab-pane fade show active p-3" id="configuracion">
+                        <form class="form" novalidate="">
+                            <div class="form-group">
+                                <label for="tipo"><i class="fas fa-id-card"></i>Nombre</label>
+                                <input class="form-control" type="text" name="nombre" placeholder="Nombre"
+                                    value="John Smith">
+                            </div>
+                            <div class="form-group">
+                                <label for="correo"><i class="fas fa-at"></i>Correo Electrónico</label>
+                                <input class="form-control" type="text" name="correo" placeholder="Correo electrónico"
+                                    value="johnsmith@gmail.com" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                            </div>
+                            <app-administrador-perfil *ngIf="rol == '1'"></app-administrador-perfil>
+                            <app-consumidor-perfil *ngIf="rol == '3'"></app-consumidor-perfil>
+                            <app-creador-contenido-perfil *ngIf="rol == '2'"></app-creador-contenido-perfil>
+                            <hr />
+                            <div class="row mt-5">
+                                <div class="col d-flex justify-content-end">
+                                    <button class="btn btn-primary" type="submit">Guardar
+                                        Cambios</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade show p-3" id="cambiar_contrasena">
+                        <form>
+                            <div class="mb-2"><b>Cambiar Contraseña</b></div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Contraseña Actual</label>
+                                        <input class="form-control" type="password" placeholder="Contraseña">
+                                    </div>
+                                    <div class="pt-3">
+                                        <a href="/recuperar-contrasena">
+                                            ¿Olvidó su contraseña?
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Nueva Contraseña</label>
+                                        <input class="form-control" type="password" placeholder="Contraseña">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Confirmar Contraseña</label>
+                                        <input class="form-control" type="password" placeholder="Contraseña">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="row mt-5">
+                                <div class="col d-flex justify-content-end">
+                                    <button class="btn btn-primary" type="submit">Guardar
+                                        Cambios</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Referencia: https://www.bootdey.com/snippets/view/bs4-edit-profile-page-->

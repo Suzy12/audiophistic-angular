@@ -9,7 +9,7 @@
     --azul: rgba(15, 119, 210, 1);
     --texto_navbar: white;
     --hover_navbar: var(--rojizo);
-    --texto_claro: 	#999999;
+    --texto_claro: #999999;
 }
 
 main {
@@ -17,7 +17,7 @@ main {
     padding: 1rem;
 }
 
-hr{
+hr {
     color: lightgray;
 }
 
@@ -127,6 +127,31 @@ input:-ms-input-placeholder {
 .input_form:focus+.focus_input_form+.icono_input_form {
     color: var(--rojizo);
     padding-left: 28px;
+}
+
+.botones_navegacion {
+    margin-top: 5%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.form-group {
+    margin-top: 20px;
+}
+
+.form-group label {
+    margin-bottom: 10px;
+}
+
+.form-group label i {
+    margin-right: 10px;
+}
+
+@media screen and (max-width: 576px) {
+    .bs-stepper-header {
+        display: block;
+    }
 }
 
 @keyframes scroll {

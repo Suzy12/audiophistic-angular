@@ -33,8 +33,13 @@ export class EliminarModalComponent implements OnInit {
       case "usuario":
         this.eliminar_usuario()
         break;
-      default:
+      case "producto":
         this.eliminar_producto()
+        break;
+      case "categoria":
+        break;
+      default: 
+        break;
     }
   }
 

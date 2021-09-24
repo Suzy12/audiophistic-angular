@@ -15,6 +15,11 @@ import { CuentaActivadaComponent } from './components/gestion-acceso/cuenta-acti
 import { RolesGuard } from './guards/roles/roles.guard';
 import { SinSesionGuard } from './guards/sin-sesion/sin-sesion.guard';
 import { ModificarProductoComponent } from './components/productos/modificar-producto/modificar-producto.component';
+import { TablaCategoriasComponent } from './components/categorias/tabla-categorias/tabla-categorias.component';
+import { CrearCategoriaComponent } from './components/categorias/crear-categoria/crear-categoria.component';
+import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-perfil.component';
+import { VerUsuarioCreadorContenidoComponent } from './components/usuarios/ver-usuario-creador-contenido/ver-usuario-creador-contenido.component';
+import { ModificarCantidadProductoComponent } from './components/productos/modificar-producto/modificar-cantidad-producto/modificar-cantidad-producto.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,18 +29,23 @@ const routes: Routes = [
   {
     path: 'inicio',
     children: [
-      { path: 'dashboard', component: DashboardComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2", "3"], redirectTo: '#', rol_almacenado: 'rol'} },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2"], redirectTo: '/inicio/editar-perfil', rol_almacenado: 'rol'} },
+      { path: 'editar-perfil', component: EditarPerfilComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2", "3"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'productos', component: TablaProductosComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2"], redirectTo: '#', rol_almacenado: 'rol'}  },
       { path: 'crear-producto', component: CrearProductoComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'}  },
       { path: 'modificar-producto', component: ModificarProductoComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'}  },
+      { path: 'modificar-cantidad-producto', component: ModificarCantidadProductoComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'}  },
       { path: 'usuarios', component: TablaUsuariosComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'crear-usuario', component: CrearUsuarioComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
-      { path: 'ver-usuario/:id', component: VerUsuarioConsumidorComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
+      { path: 'ver-usuario-consumidor/:id', component: VerUsuarioConsumidorComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
+      { path: 'categorias', component: TablaCategoriasComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
+      { path: 'crear-categoria', component: CrearCategoriaComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: '**', pathMatch: "full", redirectTo: 'dashboard' }
     ]
   },
   { path: 'cuenta', component: CuentaActivadaComponent },
   { path: 'ver-producto/:id', component: VerProductoComponent },
+  { path: 'ver-usuario-creador-contenido/:id', component: VerUsuarioCreadorContenidoComponent },
   { path: '**', pathMatch: "full", redirectTo: 'home' }
 
 ];

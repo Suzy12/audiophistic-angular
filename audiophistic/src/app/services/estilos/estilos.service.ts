@@ -56,11 +56,11 @@ export class EstilosService {
     })
   }
 
-  crear_estilo_form_modificar(objeto:any): FormGroup {
+  crear_estilo_form_modificar(objeto:any, deshabilitado:boolean): FormGroup {
     return this.fb.group({
       id_estilo: [objeto.id_estilo, [Validators.required]],
       id_producto: [objeto.id_producto, [Validators.required]],
-      existencia: [{value: objeto.existencia, disabled: true}, [Validators.required]],
+      existencia: [{value: objeto.existencia, disabled: deshabilitado}, [Validators.required]],
       nombre: [{value: objeto.nombre, disabled: true}, [Validators.required]],
       precio: [objeto.precio, [Validators.required]],
       descripcion: [{value: objeto.descripcion, disabled: true}, [Validators.required]],

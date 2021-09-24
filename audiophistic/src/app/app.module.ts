@@ -37,6 +37,15 @@ import { ToastrModule } from 'ngx-toastr';
 import { CuentaActivadaComponent } from './components/gestion-acceso/cuenta-activada/cuenta-activada.component';
 import { CurrencyPipe } from '@angular/common';
 import { ModificarProductoComponent } from './components/productos/modificar-producto/modificar-producto.component';
+import { TablaCategoriasComponent } from './components/categorias/tabla-categorias/tabla-categorias.component';
+import { CrearCategoriaComponent } from './components/categorias/crear-categoria/crear-categoria.component';
+import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-perfil.component';
+import { AdministradorPerfilComponent } from './components/perfil/editar-perfil/usuarios/administrador/administrador.component';
+import { ConsumidorPerfilComponent } from './components/perfil/editar-perfil/usuarios/consumidor/consumidor.component';
+import { CreadorContenidoPerfilComponent } from './components/perfil/editar-perfil/usuarios/creador-contenido/creador-contenido.component';
+import { VerUsuarioCreadorContenidoComponent } from './components/usuarios/ver-usuario-creador-contenido/ver-usuario-creador-contenido.component';
+import { VerCarritoComponent } from './components/carrito/ver-carrito/ver-carrito.component';
+import { ModificarCantidadProductoComponent } from './components/productos/modificar-producto/modificar-cantidad-producto/modificar-cantidad-producto.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +75,16 @@ import { ModificarProductoComponent } from './components/productos/modificar-pro
     SinEstilosComponent,
     CreadorContenidoComponent,
     CuentaActivadaComponent,
-    ModificarProductoComponent
+    ModificarProductoComponent,
+    TablaCategoriasComponent,
+    CrearCategoriaComponent,
+    EditarPerfilComponent,
+    AdministradorPerfilComponent,
+    ConsumidorPerfilComponent,
+    CreadorContenidoPerfilComponent,
+    VerUsuarioCreadorContenidoComponent,
+    VerCarritoComponent,
+    ModificarCantidadProductoComponent
   ],
   imports: [
     BrowserModule,

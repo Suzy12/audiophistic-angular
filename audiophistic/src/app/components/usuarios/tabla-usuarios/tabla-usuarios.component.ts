@@ -54,8 +54,13 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
   }
 
   ver_usuario(tipo_usuario: any, id_usuario: any) {
-    if (tipo_usuario == 3) {
-      this.router.navigate(['/inicio/ver-usuario', id_usuario]);
+    switch (tipo_usuario){
+      case 2:
+        this.router.navigate(['/ver-usuario-creador-contenido', id_usuario]);
+        break;
+      case 3:
+        this.router.navigate(['/inicio/ver-usuario-consumidor', id_usuario]);
+        break;
     }
   }
 

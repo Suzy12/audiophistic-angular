@@ -9,7 +9,7 @@ import { EstilosService } from 'src/app/services/estilos/estilos.service';
 })
 export class AudifonosComponent implements OnInit {
 
-  @Input() submitted: boolean = false;
+  @Input() enviado: boolean = false;
   @Input() modificar: boolean = false;
 
   precio: string = ''

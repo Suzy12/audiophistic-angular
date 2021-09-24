@@ -2,8 +2,8 @@
     <div class="form-group">
         <label for="tipo"><i class="fas fa-heading"></i>Título</label>
         <input type="text" class="form-control" placeholder="Título" name="titulo" formControlName="titulo" required
-            [ngClass]="{ 'is-invalid': submitted && form.titulo.errors }">
-        <div *ngIf="submitted && form.titulo.errors" class="invalid-feedback">
+            [ngClass]="{ 'is-invalid': enviado && form.titulo.errors }">
+        <div *ngIf="enviado && form.titulo.errors" class="invalid-feedback">
             <div *ngIf="form.titulo.errors.required">
                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
                     de título es obligatorio</label>
@@ -13,9 +13,9 @@
     <div class="form-group">
         <label for="tipo"><i class="fas fa-coins"></i>Precio<span class="text-muted"> (en colones)</span></label>
         <input type="number" class="form-control" placeholder="Precio" name="precio" formControlName="precio" required
-            [ngClass]="{ 'is-invalid': submitted && form.precio.errors }" (blur)="transformar_dinero($event)"
+            [ngClass]="{ 'is-invalid': enviado && form.precio.errors }" (blur)="transformar_dinero($event)"
             min="1000">
-        <div *ngIf="submitted && form.precio.errors" class="invalid-feedback">
+        <div *ngIf="enviado && form.precio.errors" class="invalid-feedback">
             <div *ngIf="form.precio.errors.required">
                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
                     de precio es obligatorio</label>
@@ -27,8 +27,8 @@
         <label for="tipo"><i class="far fa-calendar-alt"></i>Año de lanzamiento</label>
         <input type="number" class="form-control" placeholder="Año de lanzamiento" name="fecha_lanzamiento"
             formControlName="fecha_lanzamiento" required
-            [ngClass]="{ 'is-invalid': submitted && form.fecha_lanzamiento.errors }">
-        <div *ngIf="submitted && form.fecha_lanzamiento.errors" class="invalid-feedback">
+            [ngClass]="{ 'is-invalid': enviado && form.fecha_lanzamiento.errors }">
+        <div *ngIf="enviado && form.fecha_lanzamiento.errors" class="invalid-feedback">
             <div *ngIf="form.fecha_lanzamiento.errors.required">
                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
                     de año de lanzamiento es obligatorio</label>
@@ -36,11 +36,11 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="tipo"><i class="fas fa-truck-loading"></i>Tiempo de Envío (en días) <span class="text-muted">
+        <label for="tipo"><i class="fas fa-truck-loading"></i>Tiempo de Envío (en días naturales) <span class="text-muted">
                 (aprox.)</span></label>
         <input type="number" class="form-control" placeholder="Envío" name="tiempo_envio" formControlName="tiempo_envio"
-            required [ngClass]="{ 'is-invalid': submitted && form.tiempo_envio.errors }">
-        <div *ngIf="submitted && form.tiempo_envio.errors" class="invalid-feedback">
+            required [ngClass]="{ 'is-invalid': enviado && form.tiempo_envio.errors }">
+        <div *ngIf="enviado && form.tiempo_envio.errors" class="invalid-feedback">
             <div *ngIf="form.tiempo_envio.errors.required">
                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
                     de tiempo de envío es obligatorio</label>
@@ -50,9 +50,9 @@
     <div class="form-group">
         <label for="descripcion"><i class="fas fa-info-circle"></i>Descripción</label>
         <textarea class="form-control" id="descripcion" name="descripcion" formControlName="descripcion" required
-            [ngClass]="{ 'is-invalid': submitted && form.descripcion.errors }">
+            [ngClass]="{ 'is-invalid': enviado && form.descripcion.errors }">
             </textarea>
-        <div *ngIf="submitted && form.descripcion.errors" class="invalid-feedback">
+        <div *ngIf="enviado && form.descripcion.errors" class="invalid-feedback">
             <div *ngIf="form.descripcion.errors.required">
                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
                     de descripción es obligatorio</label>
@@ -63,9 +63,9 @@
         <div class="form-group" formArrayName="artista">
             <label for="artista"><i class="fas fa-user"></i>Artista</label>
             <div *ngFor="let artista of artista.controls; let i=index">
-                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && artista.errors }"
+                <input type="text" class="form-control" [ngClass]="{ 'is-invalid': enviado && artista.errors }"
                     placeholder="Artista" [formControlName]="i"  required>
-                <div *ngIf="submitted && artista.errors?.required" class="invalid-feedback">
+                <div *ngIf="enviado && artista.errors?.required" class="invalid-feedback">
                     <div>
                         <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
                             de artista es obligatorio</label>
@@ -75,7 +75,7 @@
         </div>
         <div class="form-group">
             <label for="tipo"><i class="fas fa-music"></i>Géneros Musicales </label>
-            <div class="text-danger" *ngIf="submitted && generos.controls.length === 0">
+            <div class="text-danger" *ngIf="enviado && generos.controls.length === 0">
                 <label class="font-weight-bold">
                     <i class="fa fa-exclamation-circle"></i> El producto requiere por lo menos
                     un género</label>
@@ -89,7 +89,7 @@
                 <tr *ngFor="let genero of generos.controls; let i=index">
                     <td>
                         <input type="text" class="form-control bg-white"
-                            [ngClass]="{ 'is-invalid': (genero.touched || submitted) && genero.errors }"
+                            [ngClass]="{ 'is-invalid': (genero.touched || enviado) && genero.errors }"
                             placeholder="Género Musical" [formControlName]="i"  required>
                     </td>
                     <td>
@@ -100,7 +100,7 @@
                     <td>
                         <div class="invalid-feedback">
                             <label class="font-weight-bold"
-                                *ngIf="(genero.touched || submitted) && genero.errors?.required">
+                                *ngIf="(genero.touched || enviado) && genero.errors?.required">
                                 <i class="fa fa-exclamation-circle"></i> El campo
                                 de género es obligatorio</label>
                         </div>

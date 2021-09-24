@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class IniciarSesionComponent implements OnInit {
 
   sesion_form: FormGroup = {} as FormGroup;
-  submitted: Boolean = false;
+  enviado: Boolean = false;
 
   constructor(private formBuilder: FormBuilder, private acceso_service: AccesoService,
     private toastr: ToastrService, private router: Router) { }
@@ -29,7 +29,7 @@ export class IniciarSesionComponent implements OnInit {
   iniciar_sesion() {
     let sesion_info = this.sesion_form.getRawValue();
 
-    this.submitted = true;
+    this.enviado = true;
 
     if (this.sesion_form.invalid) {return;}
 
@@ -43,7 +43,7 @@ export class IniciarSesionComponent implements OnInit {
       }
     });
 
-    this.submitted = false;
+    this.enviado = false;
   }
 
   exito(correo:string, res: any) {

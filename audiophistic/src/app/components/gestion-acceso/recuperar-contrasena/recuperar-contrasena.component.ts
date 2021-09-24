@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class RecuperarContrasenaComponent implements OnInit {
 
   recuperar_form: FormGroup = {} as FormGroup;
-  submitted: Boolean = false;
+  enviado: Boolean = false;
 
   constructor(private formBuilder: FormBuilder, private acceso_service: AccesoService,
     private toastr: ToastrService, private router: Router) { }
@@ -28,7 +28,7 @@ export class RecuperarContrasenaComponent implements OnInit {
   recuperar_contrasena() {
     let recuperar_info = this.recuperar_form.getRawValue();
 
-    this.submitted = true;
+    this.enviado = true;
 
     if (this.recuperar_form.invalid) { return; }
 
@@ -41,7 +41,7 @@ export class RecuperarContrasenaComponent implements OnInit {
       }
     });
 
-    this.submitted = false;
+    this.enviado = false;
   }
 
 

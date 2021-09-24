@@ -10,7 +10,7 @@ import { IndexedAccessType } from 'typescript';
 })
 export class ColoresComponent implements OnInit {
 
-  @Input() submitted: boolean = false;
+  @Input() enviado: boolean = false;
   @Input() modificar: boolean = false;
 
   colores_form: FormGroup = {} as FormGroup;

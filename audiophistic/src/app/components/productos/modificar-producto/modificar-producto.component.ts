@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import Stepper from 'bs-stepper';
 import { ToastrService } from 'ngx-toastr';
@@ -17,7 +17,7 @@ export class ModificarProductoComponent implements OnInit {
   producto_form: FormGroup = {} as FormGroup;
   producto_form_copia: string = '';
 
-  submitted: boolean = false;
+  enviado: boolean = false;
   cargando: boolean = false;
   sub_form_creado: boolean = false;
   modificar: boolean = true
@@ -62,7 +62,7 @@ export class ModificarProductoComponent implements OnInit {
         });
         let estilos_final: any = []
         estilos.forEach((estilo: any) => {
-          estilos_final.push(this.estilos_service.crear_estilo_form_modificar(estilo))
+          estilos_final.push(this.estilos_service.crear_estilo_form_modificar(estilo, true))
         });
         this.producto_form.setControl('estilos', this.fb.array(estilos_final || []));
 
@@ -148,13 +148,13 @@ export class ModificarProductoComponent implements OnInit {
     let json_form = JSON.stringify(this.producto_form.getRawValue());
 
     if (json_form === this.producto_form_copia) {
-      this.toastr.info('No se realizón ningún cambio', 'Sin cambios', { timeOut: 5000 });
+      this.toastr.info('No se realizó ningún cambio', 'Sin cambios', { timeOut: 5000 });
       return;
     }
 
     let producto_info = this.producto_form.getRawValue();
 
-    this.submitted = true;
+    this.enviado = true;
     this.cargando = true;
 
     if (this.producto_form.invalid) {
@@ -175,7 +175,7 @@ export class ModificarProductoComponent implements OnInit {
       }
     });
 
-    this.submitted = false;
+    this.enviado = false;
   }
 
 }

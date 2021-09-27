@@ -4,6 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import Stepper from 'bs-stepper';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
+import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 
 @Component({
   selector: 'app-crear-categoria',
@@ -19,7 +20,8 @@ export class CrearCategoriaComponent implements OnInit {
   private stepper: Stepper = {} as Stepper;
 
 
-  constructor(private fb: FormBuilder,private toastr: ToastrService, private router: Router) {
+  constructor(private fb: FormBuilder, private toastr: ToastrService, private router: Router,
+    private categorias_service: CategoriasService) {
     this.router.events
       .pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd))
       .subscribe(evento => {
@@ -57,6 +59,34 @@ export class CrearCategoriaComponent implements OnInit {
         stepper: '.bs-stepper'
       }
     });
+  }
+
+  crear_categoria() {
+    let categoria_info = this.categoria_form.getRawValue();
+
+    this.enviado = true;
+    this.cargando = true;
+
+
+    if (this.categoria_form.invalid) {
+      this.toastr.error('Por favor revise que haya completado todos los campos obligatorios', 'Error', { timeOut: 5000 });
+      this.cargando = false;
+      return;
+    }
+
+    this.categorias_service.crear_una_categoria(categoria_info).subscribe((res: any) => {
+      this.toastr.clear();
+      if (res.body.error) {
+        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        this.cargando = false;
+      } else {
+        this.toastr.success(res.body.resultado, 'Se creó la categoría', { timeOut: 2000 });
+        this.cargando = false;
+        this.router.navigate(['/inicio/categorias'])
+      }
+    });
+
+    this.enviado = false;
   }
 
 }

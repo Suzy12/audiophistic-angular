@@ -44,6 +44,7 @@ export class CrearUsuarioComponent implements OnInit {
       caracteristicas: this.fb.group(
         {
           id_tipo: [2, [Validators.required]],
+          imagen: [''],
           celular: ['', [Validators.required]],
           descripcion: ['', [Validators.required]],
           sitio_web: [''],

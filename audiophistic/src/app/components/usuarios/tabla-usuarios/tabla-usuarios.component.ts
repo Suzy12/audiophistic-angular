@@ -54,7 +54,7 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
   }
 
   ver_usuario(tipo_usuario: any, id_usuario: any) {
-    switch (tipo_usuario){
+    switch (tipo_usuario) {
       case 2:
         this.router.navigate(['/ver-usuario-creador-contenido', id_usuario]);
         break;
@@ -75,12 +75,16 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
 
     let datos = {
       eliminar: 'usuario',
-      mensaje: "Se eliminará el usuario " + nombre_usuario + 
-      ". Si el usuario es un creador de contenido, se eliminarán los productos y blogs creados por dicho usuario.",
+      mensaje: "Se eliminará el usuario " + nombre_usuario +
+        ". Si el usuario es un creador de contenido, se eliminarán los productos y blogs creados por dicho usuario.",
       id: id_usuario,
     }
 
     modalRef.componentInstance.datos_eliminar = datos;
+    modalRef.result.then((result) => {
+      window.location.reload();
+    }, (reason) => {
+    });
   }
 
   ngOnDestroy(): void {

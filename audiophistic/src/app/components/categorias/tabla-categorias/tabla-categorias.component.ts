@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
+import { Categoria } from 'src/app/models/categoria';
 import { Idioma } from 'src/app/models/idioma';
-import { Producto } from 'src/app/models/Productos/productos';
-import { ProductosService } from 'src/app/services/productos/productos.service';
+import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { EliminarModalComponent } from '../../modals/eliminar-modal/eliminar-modal.component';
 
 @Component({
@@ -18,17 +19,17 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
 
   dtOptions: DataTables.Settings = {};
 
-  productos: Producto[] = [];
+  categorias: Categoria[] = [];
   dtTrigger: Subject<any> = new Subject<any>();
   rol: string = ''
 
-  constructor(private http: HttpClient, private productos_service: ProductosService,
+  constructor(private http: HttpClient, private categorias_service: CategoriasService,
     private modalService: NgbModal, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
     this.rol = localStorage.getItem('rol') as string
     this.iniciar_tabla();
-    this.consultar_productos();
+    this.consultar_categorias();
   }
 
   private iniciar_tabla() {
@@ -45,54 +46,21 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
 
   /* =========== VER PRODUCTOS =============== */
 
-  private consultar_productos() {
-    let rol = localStorage.getItem("rol");
-    switch (rol) {
-      case "2":
-        this.consultar_productos_creador(rol)
-        break;
-      default:
-        this.consultar_todos_productos()
-    }
-
-  }
-
-  private consultar_todos_productos() {
-    this.productos_service.consultar_productos().subscribe((res: any) => {
+  private consultar_categorias() {
+    this.categorias_service.consultar_categorias().subscribe((res: any) => {
       if (res.body.error) {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {
-        this.productos = res.body.resultado;
+        this.categorias = res.body.resultado;
         this.dtTrigger.next();
       }
     });
+
   }
 
-  private consultar_productos_creador(rol: string) {
-    this.productos_service.consultar_mis_productos().subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.productos = res.body.resultado;
-        this.dtTrigger.next();
-      }
-    });
-  }
+  /* ============= ELIMINAR CATEGORIA =============== */
 
-  ver_producto(id_producto: any) {
-    this.router.navigate(['/ver-producto', id_producto]);
-  }
-
-
-  /* ============= MODIFICAR PRODUCTO =============== */
-
-  modificar_producto(id_producto: any) {
-    this.router.navigate(['/inicio/modificar-producto', { state: { id: id_producto } }]);
-  }
-
-  /* ============= ELIMINAR PRODUCTO =============== */
-
-  abrir_modal_eliminar(id_producto: number, titulo_producto: string) {
+  abrir_modal_eliminar(id_categoria: number, nombre_categoria: string) {
     const modalRef = this.modalService.open(EliminarModalComponent,
       {
         scrollable: true,
@@ -101,15 +69,19 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
 
     let datos = {
       eliminar: 'categoria',
-      mensaje: "Se eliminará la categoría " + titulo_producto,
-      id: id_producto,
+      mensaje: "Se eliminará la categoría " + nombre_categoria,
+      id: id_categoria,
     }
 
     modalRef.componentInstance.datos_eliminar = datos;
-    /*modalRef.result.then((result) => {
-      console.log(result);
+    modalRef.result.then((result) => {
+      window.location.reload();
     }, (reason) => {
-    });*/
+    });
+  }
+
+  formatear_fecha(fecha:Date) {
+    return moment.utc(fecha).format('DD/MM/YYYY')
   }
 
   ngOnDestroy(): void {

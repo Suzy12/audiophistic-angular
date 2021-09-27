@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="botones_navegacion">
-                        <button type="submit" class="btn btn-primary" [disabled]="cargando">
+                        <button type="submit" class="btn btn-primary" [disabled]="cargando" (click)="crear_categoria()">
                             <i *ngIf="cargando" class="fas fa-sync fa-spin"></i>Crear Categoría</button>
                     </div>
                 </div>

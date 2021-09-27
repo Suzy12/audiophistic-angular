@@ -46,6 +46,7 @@ import { CreadorContenidoPerfilComponent } from './components/perfil/editar-perf
 import { VerUsuarioCreadorContenidoComponent } from './components/usuarios/ver-usuario-creador-contenido/ver-usuario-creador-contenido.component';
 import { VerCarritoComponent } from './components/carrito/ver-carrito/ver-carrito.component';
 import { ModificarCantidadProductoComponent } from './components/productos/modificar-producto/modificar-cantidad-producto/modificar-cantidad-producto.component';
+import { CarritoPopupComponent } from './components/carrito/carrito-popup/carrito-popup.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { ModificarCantidadProductoComponent } from './components/productos/modif
     CreadorContenidoPerfilComponent,
     VerUsuarioCreadorContenidoComponent,
     VerCarritoComponent,
-    ModificarCantidadProductoComponent
+    ModificarCantidadProductoComponent,
+    CarritoPopupComponent
   ],
   imports: [
     BrowserModule,

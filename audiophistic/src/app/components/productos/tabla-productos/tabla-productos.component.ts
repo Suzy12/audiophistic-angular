@@ -106,10 +106,10 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
     }
 
     modalRef.componentInstance.datos_eliminar = datos;
-    /*modalRef.result.then((result) => {
-      console.log(result);
+    modalRef.result.then((result) => {
+      window.location.reload();
     }, (reason) => {
-    });*/
+    });
   }
 
   ngOnDestroy(): void {

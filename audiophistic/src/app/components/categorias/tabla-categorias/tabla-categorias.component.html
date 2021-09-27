@@ -17,17 +17,17 @@
                         <th>Acción</th>
                     </tr>
                 </thead>
-                <tbody *ngIf="productos?.length != 0">
-                    <tr *ngFor="let producto of productos">
-                        <td>{{ producto.titulo }}</td>
-                        <td>{{ producto.nombre_creador }}</td>
-                        <td>{{ producto.caracteristicas.nombre_tipo }}</td>
+                <tbody *ngIf="categorias?.length != 0">
+                    <tr *ngFor="let categoria of categorias">
+                        <td>{{ categoria.nombre }}</td>
+                        <td>{{formatear_fecha(categoria.fecha_creacion)}}</td>
+                        <td>{{ categoria.cantidad_blogs}}</td>
                         <td>
-                            <a class="btn btn-outline-danger m-1"><i class="fas fa-trash"></i></a>
+                            <a class="btn btn-outline-danger m-1" (click)="abrir_modal_eliminar(categoria.id_categoria, categoria.nombre)"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                 </tbody>
-                <tbody *ngIf="productos?.length == 0">
+                <tbody *ngIf="categorias?.length == 0">
                     <tr>
                         <td colspan="3" class="no-data-available">¡No hay datos!</td>
                     </tr>

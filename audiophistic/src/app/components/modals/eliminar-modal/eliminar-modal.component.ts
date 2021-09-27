@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 
@@ -12,13 +13,14 @@ import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 export class EliminarModalComponent implements OnInit {
 
   @Input() datos_eliminar: any;
-  cargando:boolean = false;
+  cargando: boolean = false;
 
   constructor(
     public activeModal: NgbActiveModal,
     private usuarios_service: UsuariosService,
     private productos_service: ProductosService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private categorias_service: CategoriasService
   ) { }
 
   ngOnInit() {
@@ -37,8 +39,9 @@ export class EliminarModalComponent implements OnInit {
         this.eliminar_producto()
         break;
       case "categoria":
+        this.eliminar_categoria()
         break;
-      default: 
+      default:
         break;
     }
   }
@@ -52,7 +55,6 @@ export class EliminarModalComponent implements OnInit {
         this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
         this.cargando = false;
         this.cerrar_modal()
-        this.refrescar()
       }
     });
   }
@@ -83,7 +85,6 @@ export class EliminarModalComponent implements OnInit {
         this.cargando = false;
         this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
         this.cerrar_modal()
-        this.refrescar()
       }
     });
   }
@@ -97,13 +98,21 @@ export class EliminarModalComponent implements OnInit {
         this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
         this.cargando = false;
         this.cerrar_modal()
-        this.refrescar()
       }
     });
   }
 
-  refrescar(){
-    setTimeout( () => { window.location.reload();  }, 2000 );
+  private eliminar_categoria() {
+    this.cargando = true;
+    this.categorias_service.eliminar_una_categoria(this.datos_eliminar.id).subscribe((res: any) => {
+      if (res.body.error) {
+        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+      } else {
+        this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+        this.cargando = false;
+        this.cerrar_modal()
+      }
+    });
   }
 
 }

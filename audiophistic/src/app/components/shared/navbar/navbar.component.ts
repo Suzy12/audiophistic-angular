@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 
 
@@ -16,7 +17,7 @@ export class NavbarComponent implements OnInit {
   mostrar_nav_espacio: boolean = false;
   sesion: boolean = false;
 
-  constructor(private router: Router, private acceso_service: AccesoService) {
+  constructor(private router: Router, private acceso_service: AccesoService, private cartService: CarritoService) {
     router.events.pipe(
       filter(event => event instanceof NavigationEnd || event instanceof NavigationStart)
     )
@@ -53,6 +54,12 @@ export class NavbarComponent implements OnInit {
     this.sesion = this.acceso_service.esta_autenticado();
 
   }
+
+  toggleCartPopup = ((evento:any) => {
+    evento.preventDefault();
+    evento.stopPropagation();
+    this.cartService.toggleCart()
+  })
 
 
 }

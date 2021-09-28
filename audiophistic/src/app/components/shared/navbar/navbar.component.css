@@ -1,23 +1,22 @@
-
 .icon-menu {
     padding-right: 10px;
 }
 
 .nav-item {
-    margin-left: 80px;
+    margin-left: 40px;
 }
 
 .navbar {
     background-color: var(--fondo_navbar) !important;
-    background:  var(--fondo_navbar) !important;
+    background: var(--fondo_navbar) !important;
     transition: background-color 200ms linear;
 }
 
-
-.nav-item a, button, .boton{
+.nav-item a, button, .boton {
     color: var(--texto_navbar);
 }
-.nav-item a:hover, button:hover, .boton:hover{
+
+.nav-item a:hover, button:hover, .boton:hover {
     color: var(--hover_navbar);
 }
 
@@ -26,10 +25,13 @@
     .navbar {
         background: rgb(54, 54, 54)!important;
     }
-    .nav-item a{
+    .nav-item a {
         color: white;
     }
-    .nav-item a:hover{
+    .nav-item a:hover {
         color: var(--rojizo) !important;
+    }
+    .nav-item a img {
+        filter: grayscale(1) invert(1);
     }
 }

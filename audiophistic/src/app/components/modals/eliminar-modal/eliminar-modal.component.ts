@@ -16,7 +16,7 @@ export class EliminarModalComponent implements OnInit {
   cargando: boolean = false;
 
   constructor(
-    public activeModal: NgbActiveModal,
+    public activo_modal: NgbActiveModal,
     private usuarios_service: UsuariosService,
     private productos_service: ProductosService,
     private toastr: ToastrService,
@@ -27,7 +27,7 @@ export class EliminarModalComponent implements OnInit {
   }
 
   cerrar_modal() {
-    this.activeModal.close();
+    this.activo_modal.close();
   }
 
   eliminar() {

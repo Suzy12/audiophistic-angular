@@ -1,0 +1,111 @@
+<h5 class="mb-4">Información de contacto</h5>
+<div class="row g-3">
+    <div class="col-12">
+        <div class="wrap_input_form">
+            <input class="input_form  bg-light" type="text" name="nombre" placeholder="Nombre">
+            <span class="focus_input_form"></span>
+            <span class="icono_input_form">
+                <i class="fas fa-user"></i>
+            </span>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="wrap_input_form">
+            <input class="input_form  bg-light" type="text" name="correo" placeholder="Correo Electrónico">
+            <span class="focus_input_form"></span>
+            <span class="icono_input_form">
+                <i class="fas fa-envelope"></i>
+            </span>
+        </div>
+    </div>
+</div>
+<h5 class="mt-4 mb-4">Dirección de envío</h5>
+<div class="row g-3">
+    <div class="col-12">
+        <div class="wrap_input_form">
+            <input class="input_form  bg-light" type="text" name="nombre" placeholder="Nombre">
+            <span class="focus_input_form"></span>
+            <span class="icono_input_form">
+                <i class="fas fa-user"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="wrap_input_form">
+            <input class="input_form  bg-light" type="text" name="cedula" placeholder="Número de cédula o ID">
+            <span class="focus_input_form"></span>
+            <span class="icono_input_form">
+                <i class="fas fa-id-card"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="wrap_input_form">
+            <input class="input_form  bg-light" type="text" name="celular" placeholder="Teléfono">
+            <span class="focus_input_form"></span>
+            <span class="icono_input_form">
+                <i class="fas fa-phone"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="wrap_input_form">
+            <input class="input_form  bg-light" type="text" name="direccion" placeholder="Dirección Exacta">
+            <span class="focus_input_form"></span>
+            <span class="icono_input_form">
+                <i class="fas fa-map-pin"></i>
+            </span>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <label for="provincia" class="text-muted mb-2"><i class="fas fa-map-marker me-3"></i>Provincia</label>
+        <select class="form-select rounded-pill bg-light" id="country" required>
+            <option value="">Choose...</option>
+            <option>United States</option>
+        </select>
+    </div>
+
+    <div class="col-12 col-md-6">
+        <label for="canton" class="text-muted mb-2"><i class="fas fa-map-marker-alt me-3"></i>Cantón</label>
+        <select class="form-select rounded-pill bg-light" id="state" required>
+            <option value="">Choose...</option>
+            <option>California</option>
+        </select>
+    </div>
+
+
+</div>
+
+<hr class="my-4">
+
+<div class="form-check">
+    <input type="checkbox" class="form-check-input" id="same-address">
+    <label class="form-check-label" for="same-address">Usar información de envío
+        como información de facturación
+    </label>
+</div>
+
+
+
+<hr class="my-4">
+<div class="row mb-5">
+    <div class="col-12 col-md-6">
+        <div class="pt-3">
+            <a class="btn" href="/carrito">
+                <i class="fas fa-arrow-left me-3"></i>
+                Volver al carrito
+            </a>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="pt-3">
+            <button class="btn form_btn" (click)="siguiente()">
+                Continuar
+            </button>
+        </div>
+    </div>
+</div>

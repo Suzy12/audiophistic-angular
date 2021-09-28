@@ -22,7 +22,7 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
   dtTrigger: Subject<any> = new Subject<any>();
 
   constructor(private http: HttpClient, private usuarios_service: UsuariosService,
-    private toastr: ToastrService, private router: Router, private modalService: NgbModal) { }
+    private toastr: ToastrService, private router: Router, private modal_service: NgbModal) { }
 
   ngOnInit(): void {
     this.iniciar_tabla();
@@ -67,7 +67,7 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
   /* ============ ELIMINAR USUARIOS ============= */
 
   abrir_modal_eliminar(id_usuario: number, nombre_usuario: string) {
-    const modalRef = this.modalService.open(EliminarModalComponent,
+    const modalRef = this.modal_service.open(EliminarModalComponent,
       {
         scrollable: true,
         windowClass: 'custom_modal',

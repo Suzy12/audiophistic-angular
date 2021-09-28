@@ -1,0 +1,13 @@
+a{
+    cursor: pointer;
+}
+
+.breadcrumb-item{
+    color: var(--texto_claro);
+}
+
+.breadcrumb >.active {
+    color: black;
+    font-weight: 400;
+ }
+/* Referencia: https://getbootstrap.com/docs/4.5/examples/checkout/ */

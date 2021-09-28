@@ -20,6 +20,10 @@ import { CrearCategoriaComponent } from './components/categorias/crear-categoria
 import { EditarPerfilComponent } from './components/perfil/editar-perfil/editar-perfil.component';
 import { VerUsuarioCreadorContenidoComponent } from './components/usuarios/ver-usuario-creador-contenido/ver-usuario-creador-contenido.component';
 import { ModificarCantidadProductoComponent } from './components/productos/modificar-producto/modificar-cantidad-producto/modificar-cantidad-producto.component';
+import { VerCarritoComponent } from './components/carrito/ver-carrito/ver-carrito.component';
+import { CheckoutComponent } from './components/checkout/checkout/checkout.component';
+import { CheckoutPagoComponent } from './components/checkout/checkout-pago/checkout-pago.component';
+import { CarritoResumenComponent } from './components/carrito/carrito-resumen/carrito-resumen.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -43,6 +47,9 @@ const routes: Routes = [
       { path: '**', pathMatch: "full", redirectTo: 'dashboard' }
     ]
   },
+  { path: 'checkout', component: CheckoutComponent},
+  { path: 'carrito', component: VerCarritoComponent},
+  { path: 'carrito-popup', component: CarritoResumenComponent},
   { path: 'cuenta', component: CuentaActivadaComponent },
   { path: 'ver-producto/:id', component: VerProductoComponent },
   { path: 'ver-usuario-creador-contenido/:id', component: VerUsuarioCreadorContenidoComponent },

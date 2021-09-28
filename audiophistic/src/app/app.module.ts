@@ -46,7 +46,10 @@ import { CreadorContenidoPerfilComponent } from './components/perfil/editar-perf
 import { VerUsuarioCreadorContenidoComponent } from './components/usuarios/ver-usuario-creador-contenido/ver-usuario-creador-contenido.component';
 import { VerCarritoComponent } from './components/carrito/ver-carrito/ver-carrito.component';
 import { ModificarCantidadProductoComponent } from './components/productos/modificar-producto/modificar-cantidad-producto/modificar-cantidad-producto.component';
-import { CarritoPopupComponent } from './components/carrito/carrito-popup/carrito-popup.component';
+import { CarritoResumenComponent } from './components/carrito/carrito-resumen/carrito-resumen.component';
+import { CheckoutComponent } from './components/checkout/checkout/checkout.component';
+import { CheckoutPagoComponent } from './components/checkout/checkout-pago/checkout-pago.component';
+import { CheckoutDireccionComponent } from './components/checkout/checkout-direccion/checkout-direccion.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +89,10 @@ import { CarritoPopupComponent } from './components/carrito/carrito-popup/carrit
     VerUsuarioCreadorContenidoComponent,
     VerCarritoComponent,
     ModificarCantidadProductoComponent,
-    CarritoPopupComponent
+    CarritoResumenComponent,
+    CheckoutComponent,
+    CheckoutPagoComponent,
+    CheckoutDireccionComponent
   ],
   imports: [
     BrowserModule,

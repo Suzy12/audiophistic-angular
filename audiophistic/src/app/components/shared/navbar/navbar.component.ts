@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
-import { CarritoService } from 'src/app/services/carrito/carrito.service';
 import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
+import { CarritoResumenComponent } from '../../carrito/carrito-resumen/carrito-resumen.component';
 
 
 
@@ -14,10 +15,12 @@ import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 
 
 export class NavbarComponent implements OnInit {
+  @ViewChild(CarritoResumenComponent ) child: CarritoResumenComponent = {} as CarritoResumenComponent ; 
   mostrar_nav_espacio: boolean = false;
   sesion: boolean = false;
+  mostrar_nav = true;
 
-  constructor(private router: Router, private acceso_service: AccesoService, private cartService: CarritoService) {
+  constructor(private router: Router, private acceso_service: AccesoService) {
     router.events.pipe(
       filter(event => event instanceof NavigationEnd || event instanceof NavigationStart)
     )
@@ -28,9 +31,13 @@ export class NavbarComponent implements OnInit {
           }
 
         }
+        else if (event.urlAfterRedirects.includes('/checkout')){
+          this.mostrar_nav = false;
+        }
         else if (event.urlAfterRedirects.includes('/home')) {
           this.cambiar_a_navbar_home()
         } else {
+          this.mostrar_nav = true;
           this.cambiar_a_navbar_normal()
         }
       });
@@ -52,14 +59,11 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.sesion = this.acceso_service.esta_autenticado();
-
   }
 
-  toggleCartPopup = ((evento:any) => {
-    evento.preventDefault();
-    evento.stopPropagation();
-    this.cartService.toggleCart()
-  })
+  abrir_cerrar_carrito() {
+    this.child.abrir_cerrar()
+  }
 
 
 }

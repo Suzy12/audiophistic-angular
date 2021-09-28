@@ -23,7 +23,7 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
   rol:string = ''
 
   constructor(private http: HttpClient, private productos_service: ProductosService,
-    private modalService: NgbModal, private toastr: ToastrService, private router: Router) { }
+    private modal_service: NgbModal, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
     this.rol = localStorage.getItem('rol') as string
@@ -93,7 +93,7 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
   /* ============= ELIMINAR PRODUCTO =============== */
 
   abrir_modal_eliminar(id_producto:number, titulo_producto:string) {
-    const modalRef = this.modalService.open(EliminarModalComponent,
+    const modalRef = this.modal_service.open(EliminarModalComponent,
       {
         scrollable: true,
         windowClass: 'custom_modal',

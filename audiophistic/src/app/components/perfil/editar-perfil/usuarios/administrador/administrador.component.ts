@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ControlContainer, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-administrador-perfil',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdministradorPerfilComponent implements OnInit {
 
-  constructor() { }
+  @Input() enviado: boolean = false;
+
+  administrador_form: FormGroup = {} as FormGroup;
+
+  constructor(private fb: FormBuilder, private controlContainer: ControlContainer) { }
+
 
   ngOnInit(): void {
+    this.administrador_form = <FormGroup>this.controlContainer.control;
   }
+
+  get form() { return this.administrador_form.controls }
+
+  get form_caracteristicas() { return (this.administrador_form.get('caracteristicas') as FormGroup).controls }
 
 }

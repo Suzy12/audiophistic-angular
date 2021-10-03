@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChildren, ViewChild, NgModule } from '@angular/c
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Stepper from 'bs-stepper';
 import { ToastrService } from 'ngx-toastr';
-import { EstilosService } from 'src/app/services/estilos/estilos.service';
+import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 import { Producto_Albumes } from 'src/app/models/Productos/producto_albumes';
 import { NavigationEnd, Router } from '@angular/router';

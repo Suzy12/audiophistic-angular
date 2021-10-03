@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ControlContainer, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-creador-contenido-perfil',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreadorContenidoPerfilComponent implements OnInit {
 
-  constructor() { }
+  @Input() enviado: boolean = false;
+
+  creador_contenido_form: FormGroup = {} as FormGroup;
+
+  constructor(private fb: FormBuilder, private controlContainer: ControlContainer) { }
 
   ngOnInit(): void {
+    this.creador_contenido_form = <FormGroup>this.controlContainer.control;
   }
+
+  get form() { return this.creador_contenido_form.controls }
+
+  get form_caracteristicas() { return (this.creador_contenido_form.get('caracteristicas') as FormGroup).controls }
+  
 
 }

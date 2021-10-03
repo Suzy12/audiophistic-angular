@@ -3,17 +3,18 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
-import { EstilosService } from 'src/app/services/estilos/estilos.service';
+import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 
 @Component({
   selector: 'app-modificar-cantidad-producto',
   templateUrl: './modificar-cantidad-producto.component.html',
-  styleUrls: ['../../../../../animaciones.css', './modificar-cantidad-producto.component.css']
+  styleUrls: ['./modificar-cantidad-producto.component.css']
 })
 export class ModificarCantidadProductoComponent implements OnInit {
 
   producto_form: FormGroup = {} as FormGroup;
+
   enviado: boolean = false;
   cargando: boolean = false;
   form_creado: boolean = false;
@@ -51,7 +52,9 @@ export class ModificarCantidadProductoComponent implements OnInit {
 
         let estilos_final: any = []
         estilos.forEach((estilo: any) => {
-          estilos_final.push(this.estilos_service.crear_estilo_form_modificar(estilo, false))
+          if (estilo.existencia != -1) {
+            estilos_final.push(this.estilos_service.crear_estilo_form_modificar_existencia(estilo, true))
+          }
         });
         this.producto_form.setControl('estilos', this.fb.array(estilos_final || []));
       })
@@ -63,5 +66,33 @@ export class ModificarCantidadProductoComponent implements OnInit {
   }
 
   get estilos(): FormArray { return this.producto_form.get('estilos') as FormArray }
+
+  modificar_producto() {
+
+    let producto_info = this.producto_form.getRawValue();
+
+    this.enviado = true;
+    this.cargando = true;
+
+    if (this.producto_form.invalid) {
+      this.toastr.error('Por favor revise que haya completado todos los campos obligatorios', 'Error', { timeOut: 5000 });
+      this.cargando = false;
+      return;
+    }
+
+    this.productos_service.modificar_existencia_producto(producto_info).subscribe((res: any) => {
+      this.toastr.clear();
+      if (res.body.error) {
+        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        this.cargando = false;
+      } else {
+        this.toastr.success(res.body.resultado, 'Se modificó el producto', { timeOut: 2000 });
+        this.cargando = false;
+        this.router.navigate(['/inicio/productos'])
+      }
+    });
+
+    this.enviado = false;
+  }
 
 }

@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Producto } from 'src/app/models/Productos/productos';
 import { Producto_Albumes } from 'src/app/models/Productos/producto_albumes';
-import { EspecificacionesProductoService } from 'src/app/services/especificaciones-producto/especificaciones-producto.service';
-import { EstilosService } from 'src/app/services/estilos/estilos.service';
+import { EspecificacionesProductoService } from 'src/app/services/builders/especificaciones-producto/especificaciones-producto.service';
+import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 
 @Component({

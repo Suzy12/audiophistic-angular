@@ -12,14 +12,8 @@ import { Usuario_Consumidor } from 'src/app/models/Usuarios/usuario_consumidor';
 })
 export class VerUsuarioConsumidorComponent implements OnInit {
 
-  usuario: Usuario = {
-    correo: '',
-    id_usuario: 0,
-    nombre: '',
-    caracteristicas: {
-      nombre_tipo: '',
-      id_tipo: 0
-    }
+  usuario: any = {
+    caracteristicas: {}
   }
 
   caracteristicas:any= []
@@ -32,7 +26,7 @@ export class VerUsuarioConsumidorComponent implements OnInit {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.usuario = res.body.resultado
-          this.crear_caracteristicas_usuario(this.usuario)
+          this.crear_caracteristicas_usuario()
         }
       })
     })
@@ -41,8 +35,8 @@ export class VerUsuarioConsumidorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  crear_caracteristicas_usuario(usuario: Usuario) {
-    let usuario_consumidor = usuario.caracteristicas as Usuario_Consumidor
+  crear_caracteristicas_usuario() {
+    let usuario_consumidor = this.usuario.caracteristicas as Usuario_Consumidor
     let caracteristicas = [
       {
         caracteristica: 'Teléfono',
@@ -54,7 +48,7 @@ export class VerUsuarioConsumidorComponent implements OnInit {
       },
       {
         caracteristica: 'Correo',
-        valor: usuario.correo
+        valor: this.usuario.correo
       },
       {
         caracteristica: 'Cumpleaños',

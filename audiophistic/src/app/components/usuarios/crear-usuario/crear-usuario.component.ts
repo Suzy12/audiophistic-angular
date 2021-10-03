@@ -19,14 +19,11 @@ export class CrearUsuarioComponent implements OnInit {
   usuario_form: FormGroup = {} as FormGroup;
   enviado: boolean = false;
   cargando: boolean = false;
-  
+
   private stepper: Stepper = {} as Stepper;
 
   public provincias: Provincia[] = []
   public cantones: Canton[] = []
-
-  provincia_nombre: string = '';
-  canton_nombre: string = '';
 
   constructor(private ubicaciones_service: UbicacionesService, private fb: FormBuilder,
     private usuarios_service: UsuariosService, private toastr: ToastrService, private router: Router) {
@@ -79,7 +76,10 @@ export class CrearUsuarioComponent implements OnInit {
         stepper: '.bs-stepper'
       }
     });
+    this.obtener_provincias()
+  }
 
+  obtener_provincias() {
     this.ubicaciones_service.obtener_provincias().subscribe((res: any) => {
       let provincias = res.body;
       for (var key in provincias) {
@@ -89,7 +89,6 @@ export class CrearUsuarioComponent implements OnInit {
         }
       }
       this.obtener_cantones(1);
-
     });
   }
 

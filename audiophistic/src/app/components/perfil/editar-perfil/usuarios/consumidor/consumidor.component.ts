@@ -1,4 +1,5 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnInit } from '@angular/core';
+import { ControlContainer, FormBuilder, FormGroup } from '@angular/forms';
 import { NgbCalendar, NgbDateAdapter, NgbDateParserFormatter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable()
@@ -58,14 +59,24 @@ export class ConsumidorPerfilComponent implements OnInit {
 
   modelo: string = '';
   ano_actual = (new Date()).getFullYear();
+  @Input() enviado: boolean = false;
+  consumidor_form: FormGroup = {} as FormGroup;
 
-  constructor(private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>) { }
+  constructor(private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>,
+    private fb: FormBuilder, private controlContainer: ControlContainer) { }
 
-  get today() {
-    return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
-  }
 
   ngOnInit(): void {
+    this.consumidor_form = <FormGroup>this.controlContainer.control;
+    this.modelo = this.form_caracteristicas['cumpleanos'].value
+  }
+
+  get form() { return this.consumidor_form.controls }
+
+  get form_caracteristicas() { return (this.consumidor_form.get('caracteristicas') as FormGroup).controls }
+
+  cambiar_fecha(){
+    this.form_caracteristicas['cumpleanos'].setValue(this.modelo)
   }
 
 }

@@ -1,7 +1,7 @@
 import { ThisReceiver } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { EstilosService } from 'src/app/services/estilos/estilos.service';
+import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
 
 @Component({
   selector: 'app-presentaciones',

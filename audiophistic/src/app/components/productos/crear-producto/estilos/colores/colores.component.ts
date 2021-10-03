@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, FormArray, FormBuilder, FormGroup, NgControlStatus } from '@angular/forms';
-import { EstilosService } from 'src/app/services/estilos/estilos.service';
+import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
 import { IndexedAccessType } from 'typescript';
 
 @Component({

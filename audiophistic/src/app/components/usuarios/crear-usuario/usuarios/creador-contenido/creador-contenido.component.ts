@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, FormGroupDirective, ControlContainer } from '@angular/forms'
-import { EstilosService } from 'src/app/services/estilos/estilos.service';
+import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
 import { convertCompilerOptionsFromJson } from 'typescript';
 
 @Component({

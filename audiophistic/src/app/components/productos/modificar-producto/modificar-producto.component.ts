@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import Stepper from 'bs-stepper';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
-import { EstilosService } from 'src/app/services/estilos/estilos.service';
+import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 
 @Component({

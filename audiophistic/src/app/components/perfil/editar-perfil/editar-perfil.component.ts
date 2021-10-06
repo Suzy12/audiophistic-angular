@@ -149,8 +149,10 @@ export class EditarPerfilComponent implements OnInit {
       return;
     }
 
-    usuario_info.caracteristicas.provincia = this.buscar_valor(this.provincias, this.provincia)
-    usuario_info.caracteristicas.canton = this.buscar_valor(this.cantones, this.canton)
+    if (usuario_info.caracteristicas.provincia) {
+      usuario_info.caracteristicas.provincia = this.buscar_valor(this.provincias, this.provincia)
+      usuario_info.caracteristicas.canton = this.buscar_valor(this.cantones, this.canton)
+    }
 
     this.perfil_service.editar_perfil(usuario_info).subscribe((res: any) => {
       this.toastr.clear();

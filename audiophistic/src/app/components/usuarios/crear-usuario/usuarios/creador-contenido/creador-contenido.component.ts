@@ -4,11 +4,11 @@ import { EstilosService } from 'src/app/services/builders/estilos/estilos.servic
 import { convertCompilerOptionsFromJson } from 'typescript';
 
 @Component({
-  selector: 'app-creador-contenido',
+  selector: 'app-creador-contenido-form',
   templateUrl: './creador-contenido.component.html',
   styleUrls: ['./creador-contenido.component.css', '../../crear-usuario.component.css']
 })
-export class CreadorContenidoComponent implements OnInit {
+export class CreadorContenidoFormComponent implements OnInit {
 
   @Input() enviado: boolean = false;
 

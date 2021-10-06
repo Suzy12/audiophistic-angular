@@ -56,48 +56,14 @@
                         </div>
                     </div>
                     <div class="tab-pane fade p-3" id="productos" role="tabpanel" aria-labelledby="productos-tab">
-                        <div id="carousel_productos" class="carousel  carousel-dark slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div *ngFor="let num of slides" [ngClass]="{'active': num == 0}" class="carousel-item"
-                                    data-bs-interval="10000">
-                                    <div class="container_carousel">
-                                        <div class="d-none d-lg-block">
-                                            <div class="row text-center">
-                                                <div class="col-lg-4">
-                                                    <app-product-cards></app-product-cards>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <app-product-cards></app-product-cards>
-                                                </div>
-                                                <div class="col-lg-4">
-                                                    <app-product-cards></app-product-cards>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="d-sm-block d-lg-none">
-                                            <div class="row text-center">
-                                                <div class="col-12">
-                                                    <app-product-cards></app-product-cards>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="grid_contenedor_productos_blogs mt-5">
+                            <div *ngFor="let producto of productos">
+                                <app-product-cards [producto]="producto"></app-product-cards>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel_productos"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carousel_productos"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
                         </div>
                     </div>
                     <div class="tab-pane fade p-3" id="blogs" role="tabpanel" aria-labelledby="blogs-tab">
-                        <div id="carouselBlogs" class="carousel  carousel-dark slide" data-bs-ride="carousel">
+                        <div id="carouselBlogs" class="carousel carousel-dark slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
                                 <button type="button" data-bs-target="#carouselBlogs" data-bs-slide-to="0"
                                     class="active" aria-current="true" aria-label="Slide 1"></button>

@@ -24,6 +24,9 @@ import { VerCarritoComponent } from './components/carrito/ver-carrito/ver-carrit
 import { CheckoutComponent } from './components/checkout/checkout/checkout.component';
 import { CheckoutPagoComponent } from './components/checkout/checkout-pago/checkout-pago.component';
 import { CarritoResumenComponent } from './components/carrito/carrito-resumen/carrito-resumen.component';
+import { AudifonosComponent } from './components/busqueda/audifonos/audifonos.component';
+import { ParlantesComponent } from './components/busqueda/parlantes/parlantes.component';
+import { AlbumesComponent } from './components/busqueda/albumes/albumes.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -47,10 +50,12 @@ const routes: Routes = [
       { path: '**', pathMatch: "full", redirectTo: 'dashboard' }
     ]
   },
-  { path: 'checkout', component: CheckoutComponent},
-  { path: 'carrito', component: VerCarritoComponent},
-  { path: 'carrito-popup', component: CarritoResumenComponent},
-  { path: 'cuenta', component: CuentaActivadaComponent },
+  { path: 'checkout', component: CheckoutComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["3"], redirectTo: '#', rol_almacenado: 'rol'} },
+  { path: 'carrito', component: VerCarritoComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["3"], redirectTo: '#', rol_almacenado: 'rol'}},
+  { path: 'cuenta', component: CuentaActivadaComponent},
+  { path: 'audifonos', component: AudifonosComponent },
+  { path: 'parlantes', component: ParlantesComponent },
+  { path: 'albumes', component: AlbumesComponent },
   { path: 'ver-producto/:id', component: VerProductoComponent },
   { path: 'ver-usuario-creador-contenido/:id', component: VerUsuarioCreadorContenidoComponent },
   { path: '**', pathMatch: "full", redirectTo: 'home' }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/models/Usuarios/usuario';
 import { Usuario_Creador_de_Contenido } from 'src/app/models/Usuarios/usuario_creador_contenido';
+import { ProductosService } from 'src/app/services/productos/productos.service';
 import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 
 @Component({
@@ -17,24 +18,36 @@ export class VerUsuarioCreadorContenidoComponent implements OnInit {
   usuario: any = {
     caracteristicas: {}
   }
-  caracteristicas:any= []
+  caracteristicas: any = []
+  productos: any = []
 
   constructor(private ruta_activated: ActivatedRoute, private usuarios_service: UsuariosService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService, private productos_service: ProductosService) {
     this.ruta_activated.params.subscribe(params => {
       this.usuarios_service.consultar_usuario_creador_contenido(params['id']).subscribe((res: any) => {
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
-          console.log(res.body.resultado)
           this.usuario = res.body.resultado as Usuario
           this.crear_caracteristicas_usuario()
+          this.consultar_productos()
         }
       })
     })
   }
 
   ngOnInit(): void {
+  }
+
+  consultar_productos() {
+    this.productos_service.consultar_productos_creador_resumen(this.usuario.id_usuario).subscribe((res: any) => {
+      if (res.body.error) {
+        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+      } else {
+        this.productos = res.body.resultado
+      }
+    })
+
   }
 
   crear_caracteristicas_usuario() {

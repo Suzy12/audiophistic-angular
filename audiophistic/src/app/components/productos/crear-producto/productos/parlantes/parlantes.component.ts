@@ -3,11 +3,11 @@ import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Valid
 import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
 
 @Component({
-  selector: 'app-parlantes',
+  selector: 'app-parlantes-form',
   templateUrl: './parlantes.component.html',
   styleUrls: ['./parlantes.component.css', '../../crear-producto.component.css']
 })
-export class ParlantesComponent implements OnInit {
+export class ParlantesFormComponent implements OnInit {
 
   @Input() enviado: boolean = false;
   @Input() modificar: boolean = false;

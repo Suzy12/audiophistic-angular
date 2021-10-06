@@ -43,25 +43,29 @@
                 </div>
                 <div id="test-l-2" class="content">
                     <hr>
-                    <app-albumes *ngIf="tipo_producto == 1" [enviado]="enviado" [modificar]="modificar">
-                    </app-albumes>
-                    <app-audifonos *ngIf="tipo_producto == 2" [enviado]="enviado" [modificar]="modificar">
-                    </app-audifonos>
-                    <app-parlantes *ngIf="tipo_producto == 3" [enviado]="enviado" [modificar]="modificar">
-                    </app-parlantes>
+                    <div [ngSwitch]="tipo_producto">
+                        <app-albumes-form *ngSwitchCase="1" [enviado]="enviado" [modificar]="modificar">
+                        </app-albumes-form>
+                        <app-audifonos-form *ngSwitchCase="2" [enviado]="enviado" [modificar]="modificar">
+                        </app-audifonos-form>
+                        <app-parlantes-form *ngSwitchCase="3" [enviado]="enviado" [modificar]="modificar">
+                        </app-parlantes-form>
+                    </div>
                     <div class="botones_navegacion">
                         <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
                         <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>
                     </div>
                 </div>
                 <div id="test-l-3" class="content">
-                    <app-sin-estilos *ngIf="estilo=='sin_estilo'" [enviado]="enviado" [modificar]="modificar">
-                    </app-sin-estilos>
-                    <app-colores *ngIf="estilo=='colores'" [enviado]="enviado" [modificar]="modificar">
-                    </app-colores>
-                    <app-presentaciones *ngIf="estilo=='presentaciones'" [enviado]="enviado"
-                        [modificar]="modificar">
-                    </app-presentaciones>
+                    <div [ngSwitch]="estilo">
+                        <app-sin-estilos *ngSwitchCase="'sin_estilo'" [enviado]="enviado" [modificar]="modificar">
+                        </app-sin-estilos>
+                        <app-colores *ngSwitchCase="'colores'" [enviado]="enviado" [modificar]="modificar">
+                        </app-colores>
+                        <app-presentaciones *ngSwitchCase="'presentaciones'" [enviado]="enviado"
+                            [modificar]="modificar">
+                        </app-presentaciones>
+                    </div>
                     <div class="botones_navegacion">
                         <button (click)="anterior()" class="btn btn-secondary m-2"
                             [disabled]="cargando">Anterior</button>

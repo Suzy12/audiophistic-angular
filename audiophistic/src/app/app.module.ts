@@ -26,13 +26,13 @@ import { CrearUsuarioComponent } from './components/usuarios/crear-usuario/crear
 import { VerProductoComponent } from './components/productos/ver-producto/ver-producto.component';
 import { EliminarModalComponent } from './components/modals/eliminar-modal/eliminar-modal.component';
 import { CrearProductoComponent } from './components/productos/crear-producto/crear-producto.component';
-import { AudifonosComponent } from './components/productos/crear-producto/productos/audifonos/audifonos.component';
-import { ParlantesComponent } from './components/productos/crear-producto/productos/parlantes/parlantes.component';
-import { AlbumesComponent } from './components/productos/crear-producto/productos/albumes/albumes.component';
+import { AudifonosFormComponent } from './components/productos/crear-producto/productos/audifonos/audifonos.component';
+import { ParlantesFormComponent } from './components/productos/crear-producto/productos/parlantes/parlantes.component';
+import { AlbumesFormComponent } from './components/productos/crear-producto/productos/albumes/albumes.component';
 import { ColoresComponent } from './components/productos/crear-producto/estilos/colores/colores.component';
 import { PresentacionesComponent } from './components/productos/crear-producto/estilos/presentaciones/presentaciones.component';
 import { SinEstilosComponent } from './components/productos/crear-producto/estilos/sin-estilos/sin-estilos.component';
-import { CreadorContenidoComponent } from './components/usuarios/crear-usuario/usuarios/creador-contenido/creador-contenido.component';
+import { CreadorContenidoFormComponent } from './components/usuarios/crear-usuario/usuarios/creador-contenido/creador-contenido.component';
 import { ToastrModule } from 'ngx-toastr';
 import { CuentaActivadaComponent } from './components/gestion-acceso/cuenta-activada/cuenta-activada.component';
 import { CurrencyPipe } from '@angular/common';
@@ -50,6 +50,13 @@ import { CarritoResumenComponent } from './components/carrito/carrito-resumen/ca
 import { CheckoutComponent } from './components/checkout/checkout/checkout.component';
 import { CheckoutPagoComponent } from './components/checkout/checkout-pago/checkout-pago.component';
 import { CheckoutDireccionComponent } from './components/checkout/checkout-direccion/checkout-direccion.component';
+
+import { ParlantesComponent } from './components/busqueda/parlantes/parlantes.component';
+import { AudifonosComponent } from './components/busqueda/audifonos/audifonos.component';
+import { AlbumesComponent } from './components/busqueda/albumes/albumes.component';
+import { PrecioCantidadPipe } from './pipes/carrito/cantidad/precio-cantidad.pipe';
+import { PrecioImpuestoPipe } from './pipes/carrito/impuesto/precio-impuesto.pipe';
+import { PrecioTotalPipe } from './pipes/carrito/total/precio-total.pipe';
 
 @NgModule({
   declarations: [
@@ -71,13 +78,13 @@ import { CheckoutDireccionComponent } from './components/checkout/checkout-direc
     VerProductoComponent,
     EliminarModalComponent,
     CrearProductoComponent,
-    AudifonosComponent,
-    ParlantesComponent,
-    AlbumesComponent,
+    AudifonosFormComponent,
+    ParlantesFormComponent,
+    AlbumesFormComponent,
     ColoresComponent,
     PresentacionesComponent,
     SinEstilosComponent,
-    CreadorContenidoComponent,
+    CreadorContenidoFormComponent,
     CuentaActivadaComponent,
     ModificarProductoComponent,
     TablaCategoriasComponent,
@@ -92,7 +99,13 @@ import { CheckoutDireccionComponent } from './components/checkout/checkout-direc
     CarritoResumenComponent,
     CheckoutComponent,
     CheckoutPagoComponent,
-    CheckoutDireccionComponent
+    CheckoutDireccionComponent,
+    ParlantesComponent,
+    AudifonosComponent,
+    AlbumesComponent,
+    PrecioCantidadPipe,
+    PrecioImpuestoPipe,
+    PrecioTotalPipe
   ],
   imports: [
     BrowserModule,

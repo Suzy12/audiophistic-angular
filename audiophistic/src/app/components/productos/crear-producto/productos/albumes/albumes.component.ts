@@ -3,11 +3,11 @@ import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Valid
 import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
 
 @Component({
-  selector: 'app-albumes',
+  selector: 'app-albumes-form',
   templateUrl: './albumes.component.html',
   styleUrls: ['./albumes.component.css', '../../crear-producto.component.css']
 })
-export class AlbumesComponent implements OnInit {
+export class AlbumesFormComponent implements OnInit {
 
   @Input() enviado: boolean = false;
   @Input() modificar: boolean = false;

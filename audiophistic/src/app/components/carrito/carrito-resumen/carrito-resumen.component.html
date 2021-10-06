@@ -1,102 +1,26 @@
-<!--
-<nav>
-    <div class="container">
-        <ul class="navbar-left">
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-        </ul>
-
-        <ul class="navbar-right">
-            <li>
-                <a class="bg-light" (click)="abrir_cerrar()"><i class="fa fa-shopping-cart carrito">
-                        <span class="ms-2 badge badge-dark">1</span>
-                    </i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-
-<div class="container collapse fade contenerdor" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-    <div class="carrito_compras">
-        <div class="carrito_compras_encabezado d-none d-md-block">
-            <i class="fa fa-shopping-cart carrito_icono"></i>
-            <div class="carrito_compras-total">
-                <span class="text-muted">Total:</span>
-                <span class="ps-2 color_texto">$2,229.97</span>
-            </div>
-        </div>
-        <hr>
-        <div class="table-responsive contenedor">
-            <table class="carrito_compras_items">
-                <tbody>
-                    <tr>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
-                        <span class="item-nombre">Sony DSC-RX100M III</span>
-                        <span class="item-precio">$849.99</span>
-                        <span class="item-cantidad">Cantidad: 01</span>
-                    </tr>
-                    <tr>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
-                        <span class="item-nombre">KS Automatic Mechanic...</span>
-                        <span class="item-precio">$1,249.99</span>
-                        <span class="item-cantidad">Cantidad: 01</span>
-                    </tr>
-                    <tr>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
-                        <span class="item-nombre">Kindle, 6" Glare-Free To...</span>
-                        <span class="item-precio">$129.99</span>
-                        <span class="item-cantidad">Cantidad: 01</span>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <hr>
-        <div class="d-flex align-items-center justify-content-center text-center">
-            <div class="w-100">
-                <a class="btn form_btn" href="/carrito">
-                    Ver Carrito
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
--->
-
-
-<div class="container collapse fade" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-    <div class="carrito_compras">
+<div class="container collapse fade" #collapse="ngbCollapse" [(ngbCollapse)]="colapsado">
+    <div class="carrito_compras" [ngStyle]="{ right: sesion ? '80px' : '150px' }">
         <div>
             <div class="carrito_compras_encabezado d-none d-md-block">
                 <i class="fa fa-shopping-cart carrito_icono"></i>
                 <div class="carrito_compras-total">
                     <span class="text-muted">Total:</span>
-                    <span class="ps-2 color_texto">$2,229.97</span>
+                    <span class="ps-2 color_texto">{{precio_total | currency:'CRC':'symbol-narrow'}}</span>
                 </div>
             </div>
         </div>
         <hr>
         <div class="table-responsive contenedor">
             <table class="carrito_compras_items">
-                <tbody>
+                <tbody *ngFor="let producto of carrito">
                     <tr>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
-                        <span class="item-nombre">Sony DSC-RX100M III</span>
-                        <span class="item-precio">$849.99</span>
-                        <span class="item-cantidad">Cantidad: 01</span>
-                    </tr>
-                    <tr>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
-                        <span class="item-nombre">KS Automatic Mechanic...</span>
-                        <span class="item-precio">$1,249.99</span>
-                        <span class="item-cantidad">Cantidad: 01</span>
-                    </tr>
-                    <tr>
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
-                        <span class="item-nombre">Kindle, 6" Glare-Free To...</span>
-                        <span class="item-precio">$129.99</span>
-                        <span class="item-cantidad">Cantidad: 01</span>
+                        <td class="text-center">
+                            <img [src]="producto.imagen" />
+                        </td>
+                        <span class="item-nombre">{{producto.titulo}}</span>
+                        <span class="item-precio">{{producto.precio | precioCantidad: producto.cantidad | currency:'CRC':'symbol-narrow' }}</span>
+                        <span class="item-cantidad" *ngIf = "producto.cantidad != -1">
+                            Cantidad: {{producto.cantidad}}</span>
                     </tr>
                 </tbody>
             </table>

@@ -20,12 +20,12 @@
                 <div id="test-l-2" class="content">
                     <div *ngIf="sub_form_creado">
                         <hr>
-                        <app-albumes *ngIf="tipo_producto == 1" [enviado]="enviado" [modificar]="modificar">
-                        </app-albumes>
-                        <app-audifonos *ngIf="tipo_producto == 2" [enviado]="enviado" [modificar]="modificar">
-                        </app-audifonos>
-                        <app-parlantes *ngIf="tipo_producto == 3" [enviado]="enviado" [modificar]="modificar">
-                        </app-parlantes>
+                        <app-albumes-form *ngIf="tipo_producto == 1" [enviado]="enviado" [modificar]="modificar">
+                        </app-albumes-form>
+                        <app-audifonos-form *ngIf="tipo_producto == 2" [enviado]="enviado" [modificar]="modificar">
+                        </app-audifonos-form>
+                        <app-parlantes-form *ngIf="tipo_producto == 3" [enviado]="enviado" [modificar]="modificar">
+                        </app-parlantes-form>
                         <div class="botones_navegacion">
                             <a (click)="anterior()" class="btn btn-secondary m-2">Anterior</a>
                             <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>

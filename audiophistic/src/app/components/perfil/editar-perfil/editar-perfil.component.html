@@ -26,12 +26,12 @@
                         </div>
                     </div>
                     <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                        <div class="text-sm-left mb-2 mb-sm-0">
+                        <div class="text-sm-left mb-2 mb-sm-0" [ngSwitch]="rol">
                             <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{usuario.nombre}}</h4>
                             <span> {{usuario.correo}} </span> <br>
-                            <span class="text-muted" *ngIf="rol == '1'">Administrador</span>
-                            <span class="text-muted" *ngIf="rol == '2'">Creador de Contenido</span>
-                            <span class="text-muted" *ngIf="rol == '3'">Consumidor</span>
+                            <span class="text-muted" *ngSwitchCase="'1'">Administrador</span>
+                            <span class="text-muted" *ngSwitchCase="'2'">Creador de Contenido</span>
+                            <span class="text-muted" *ngSwitchCase="'3'">Consumidor</span>
                         </div>
                     </div>
                 </div>
@@ -64,14 +64,16 @@
                                 </div>
                             </div>
                             <div *ngIf="sub_form_creado">
-                                <app-administrador-perfil *ngIf="rol == '1'" [formGroup]="usuario_form"
-                                    [enviado]="enviado">
-                                </app-administrador-perfil>
-                                <app-consumidor-perfil *ngIf="rol == '3'" [formGroup]="usuario_form"
-                                    [enviado]="enviado">
-                                </app-consumidor-perfil>
-                                <app-creador-contenido-perfil *ngIf="rol == '2'" [formGroup]="usuario_form"
-                                    [enviado]="enviado"></app-creador-contenido-perfil>
+                                <div [ngSwitch]="rol">
+                                    <app-administrador-perfil *ngSwitchCase="'1'" [formGroup]="usuario_form"
+                                        [enviado]="enviado">
+                                    </app-administrador-perfil>
+                                    <app-creador-contenido-perfil *ngSwitchCase="'2'" [formGroup]="usuario_form"
+                                        [enviado]="enviado"></app-creador-contenido-perfil>
+                                    <app-consumidor-perfil *ngSwitchCase="'3'" [formGroup]="usuario_form"
+                                        [enviado]="enviado">
+                                    </app-consumidor-perfil>
+                                </div>
                                 <div *ngIf="rol == '2' || rol == '3'">
                                     <div class="form-group">
                                         <label for="provincia"><i class="fas fa-map-marker"></i>Provincia</label>
@@ -144,7 +146,7 @@
                             <hr />
                             <div class="row mt-5">
                                 <div class="col d-flex justify-content-end">
-                                    <button class="btn btn-primary" (click)="cambiar_contrasena()">
+                                    <button class="btn btn-primary" (click)="cambiar_contrasena()"  [disabled]="cargando">
                                         <i *ngIf="cargando" class="fas fa-sync fa-spin"></i>Guardar Cambios</button>
                                 </div>
                             </div>

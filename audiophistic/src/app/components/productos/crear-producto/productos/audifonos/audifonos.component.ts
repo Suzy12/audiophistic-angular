@@ -3,11 +3,11 @@ import { ControlContainer, FormArray, FormBuilder, FormControl, FormGroup, Valid
 import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
 
 @Component({
-  selector: 'app-audifonos',
+  selector: 'app-audifonos-form',
   templateUrl: './audifonos.component.html',
   styleUrls: ['./audifonos.component.css', '../../crear-producto.component.css']
 })
-export class AudifonosComponent implements OnInit {
+export class AudifonosFormComponent implements OnInit {
 
   @Input() enviado: boolean = false;
   @Input() modificar: boolean = false;

@@ -5,6 +5,9 @@ import { Producto } from 'src/app/models/Productos/productos';
 import { Producto_Albumes } from 'src/app/models/Productos/producto_albumes';
 import { EspecificacionesProductoService } from 'src/app/services/builders/especificaciones-producto/especificaciones-producto.service';
 import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
+import { CarritoLocalService } from 'src/app/services/carrito/carrito-local/carrito-local.service';
+import { CarritoService } from 'src/app/services/carrito/carrito/carrito.service';
+import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 
 @Component({
@@ -24,21 +27,31 @@ export class VerProductoComponent implements OnInit {
       id_tipo: 0,
     }
   }
+  id_estilo_seleccionado: number = 1;
+  existencia_estilo_seleccionado: number = 0;
+
+  cantidad: number = 1;
+
+
   nombre_estilo: string = ''
   estilos: any[] = []
   especificaciones: any[] = []
   imagenes: any[] = []
   precio: number = 0
+  sesion: boolean = false;
 
   constructor(private ruta_activated: ActivatedRoute,
     private productos_service: ProductosService, private toastr: ToastrService,
-    private estilos_service: EstilosService, private especificaciones_service: EspecificacionesProductoService) {
+    private estilos_service: EstilosService, private especificaciones_service: EspecificacionesProductoService,
+    private acceso_service: AccesoService, private carrito_service: CarritoService,
+    private carrito_local_service: CarritoLocalService) {
     this.ruta_activated.params.subscribe(params => {
       this.productos_service.consultar_un_producto(params['id']).subscribe((res: any) => {
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.producto = res.body.resultado;
+          this.precio = this.producto.precio!;
           this.consultar_estilos_producto();
           this.consultar_especificaciones_producto();
         }
@@ -47,18 +60,20 @@ export class VerProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sesion = this.acceso_service.esta_autenticado();
   }
 
-  cambiar_atributos(estilo:any){
+  cambiar_atributos(estilo: any) {
     this.cambiar_imagenes(estilo.fotos)
     this.cambiar_precio(estilo.precio)
+    this.existencia_estilo_seleccionado = estilo.existencia
   }
 
-  cambiar_imagenes(fotos:any) {
+  cambiar_imagenes(fotos: any) {
     this.imagenes = fotos
   }
 
-  cambiar_precio(precio:any){
+  cambiar_precio(precio: any) {
     this.precio = this.producto.precio + precio
   }
 
@@ -70,13 +85,59 @@ export class VerProductoComponent implements OnInit {
       } else {
         this.nombre_estilo = nombre_estilo;
         this.estilos = res.body.resultado;
-        this.cambiar_atributos(this.estilos[this.estilos.length - 1])
+        this.cambiar_atributos(this.estilos[0])
       }
     })
   }
 
   consultar_especificaciones_producto() {
     this.especificaciones = this.especificaciones_service.crear_especificaciones_producto(this.producto);
+  }
+
+  agregar() {
+    if (this.cantidad < this.existencia_estilo_seleccionado) {
+      this.cantidad = this.cantidad + 1;
+    }
+  }
+  quitar() {
+    if (this.cantidad != 1) {
+      this.cantidad = this.cantidad - 1;
+    }
+  }
+
+  agregar_producto() {
+
+    if (!this.sesion) {
+      this.toastr.warning('Debe iniciar sesión para comprar', 'Inicie Sesión', { timeOut: 5000 });
+      return;
+    }
+    else if (localStorage.getItem('rol') != '3') {
+      this.toastr.error('No tiene permisos para comprar', 'Error', { timeOut: 5000 });
+      return;
+    }
+
+    if (this.existencia_estilo_seleccionado == -1) {
+      this.cantidad = -1
+    }
+
+    let producto = {
+      id_producto: this.producto.id_producto,
+      id_estilo: this.id_estilo_seleccionado,
+      cantidad: this.cantidad
+    }
+
+    this.carrito_service.agregar_al_carrito(producto).subscribe((res: any) => {
+      if (res.body.error) {
+        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+      } else {
+        this.toastr.success(res.body.resultado, 'Producto Agregado', { timeOut: 5000 });
+        this.carrito_local_service.consultar_carrito_resumen();
+      }
+    })
+
+
+
+
   }
 
 }

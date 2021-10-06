@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { CarritoLocalService } from 'src/app/services/carrito/carrito-local/carrito-local.service';
+import { CarritoService } from 'src/app/services/carrito/carrito/carrito.service';
+import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 
 @Component({
   selector: 'app-carrito-resumen',
@@ -7,19 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarritoResumenComponent implements OnInit {
 
-  public isCollapsed = true;
+  public colapsado = true;
+  sesion: boolean = false;
+  carrito:any[] = []
+  precio_total:number = 0
 
-  constructor() { }
+  constructor(private acceso_service: AccesoService,
+    private carrito_local_service: CarritoLocalService) {
+    }
 
   ngOnInit(): void {
+    this.sesion = this.acceso_service.esta_autenticado();
+    this.carrito_local_service.carrito_actualizado.subscribe((carrito_actual:any) => {
+      this.carrito = carrito_actual.items
+      this.precio_total = this.carrito_local_service.precio_total
+    });
+    this.carrito_local_service.consultar_carrito_resumen()
+
   }
 
-  abrir_cerrar(){
-    this.isCollapsed = !this.isCollapsed;
+  abrir_cerrar() {
+    this.colapsado = !this.colapsado;
   }
 
-  cerrar(){
-    this.isCollapsed = false;
+  cerrar() {
+    this.colapsado = false;
   }
 
 }

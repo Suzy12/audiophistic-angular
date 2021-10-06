@@ -1,0 +1,26 @@
+<div class="imagen">
+    <div style="background: url(https://images.unsplash.com/photo-1609702847389-b8aec1b0b929?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1263&q=80);"
+        class="bg-cover text-white">
+        <div class="container py-5 text-center texto">
+            <h1 class="display-4 font-weight-bold text-uppercase mt-5">Parlantes</h1>
+            <div class="container descripcion">
+                <p class="font-italic mb-0">Disfruta de sonido único y de alto confort, estilo y nitidez gracias a estos
+                    audífonos con
+                    diseños y tamaños variados, que se adaptan a tus exigencias personales.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div>Photo by <a
+    href="https://unsplash.com/@sandy_kawadkar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sandy
+    Kawadkar</a> on <a
+    href="https://unsplash.com/s/photos/speakers?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+</div>
+
+<div class="container py-5">
+    <div class="grid_contenedor_productos mt-5">
+        <div *ngFor="let producto of productos">
+            <app-product-cards [producto]="producto"></app-product-cards>
+        </div>
+    </div>
+</div>

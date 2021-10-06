@@ -6,10 +6,9 @@
                     <div id="carrusel" class="carousel slide h-auto carousel-dark slide" data-bs-ride="carousel"
                         data-bs-interval="3000">
                         <div class="carousel-inner">
-                            <div class="carousel-item" *ngFor="let imagen of imagenes; let i = index" 
-                            [ngClass]="{'active': i == 0}">
-                                <img class="d-block w-100"
-                                    [src]="imagen">
+                            <div class="carousel-item" *ngFor="let imagen of imagenes; let i = index"
+                                [ngClass]="{'active': i == 0}">
+                                <img class="d-block w-100" [src]="imagen">
                             </div>
                         </div>
                         <button class="carousel-control-prev" data-bs-target="#carrusel" type="button"
@@ -46,7 +45,8 @@
                             <div class="controls colores">
                                 <div *ngFor="let item of estilos" class="d-inline-block">
                                     <input type="radio" checked="" [value]="item.id_estilo" [id]="item.nombre"
-                                        name="colores_grupo" (change)="cambiar_atributos(item)">
+                                        name="colores_grupo" (change)="cambiar_atributos(item)"
+                                        [(ngModel)]="id_estilo_seleccionado">
                                     <label [attr.for]="item.nombre" [ngStyle]="{'background-color': item.descripcion}">
                                     </label>
 
@@ -58,16 +58,29 @@
                             <label class="control-label pb-2">Presentaciones:</label>
                             <div class="controls radio-group presentaciones">
                                 <div *ngFor="let item of estilos" class="d-inline-block">
-                                    <input type="radio" checked="" [value]="item.id_estilo" [id]="item.id_estilo" name="presentaciones_grupo"
-                                    (change)="cambiar_atributos(item)">
+                                    <input type="radio" checked="" [value]="item.id_estilo" [id]="item.id_estilo"
+                                        name="presentaciones_grupo" (change)="cambiar_atributos(item)"
+                                        [(ngModel)]="id_estilo_seleccionado">
                                     <label [attr.for]="item.id_estilo" class="btn btn-light"> {{item.nombre}} </label>
                                 </div>
                             </div>
                         </div>
                     </form>
 
-                    <div class="accion d-flex justify-content-start">
-                        <button class="form_btn btn btn-default carrito" type="button">
+                    <div class="container mt-4" *ngIf="existencia_estilo_seleccionado != -1">
+                        <div class="form-check-inline">
+                            <button class="btn" (click)="agregar()"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <div class="form-check-inline w-25">
+                            <input type="text" class="form-control" [(ngModel)]="cantidad" disabled>
+                        </div>
+                        <div class="form-check-inline">
+                            <button class="btn" (click)="quitar()"><i class="fa fa-minus"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="accion d-flex justify-content-start mt-3">
+                        <button class="form_btn btn btn-default carrito" type="button" (click)="agregar_producto()">
                             <span class="fas fa-shopping-cart d-sm-block d-md-none"></span>
                             <span class="d-none d-md-block">Añadir al carrito </span></button>
                         <button class="form_btn btn btn-default compartir" type="button"><span
@@ -79,7 +92,7 @@
                 </div>
             </div>
             <div class="wrapper row mt-3">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs" id="" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
                             type="button" role="tab" aria-controls="home" aria-selected="true">Descripción</button>
@@ -90,7 +103,7 @@
                             aria-selected="false">Especificaciones</button>
                     </li>
                 </ul>
-                <div class="tab-content" id="myTabContent">
+                <div class="tab-content" id="">
                     <div class="tab-pane fade show active p-3" id="home" role="tabpanel" aria-labelledby="home-tab">
                         {{producto.descripcion}}
                     </div>

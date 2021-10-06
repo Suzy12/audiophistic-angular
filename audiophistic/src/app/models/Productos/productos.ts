@@ -11,5 +11,6 @@ export interface Producto {
     fecha_lanzamiento?: Date,
     id_blog?: any,
     precio?: number,
-    tiempo_envio?: number
+    tiempo_envio?: number,
+    imagen?: string
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
@@ -15,10 +15,12 @@ import { CarritoResumenComponent } from '../../carrito/carrito-resumen/carrito-r
 
 
 export class NavbarComponent implements OnInit {
-  @ViewChild(CarritoResumenComponent ) child: CarritoResumenComponent = {} as CarritoResumenComponent ; 
+  @ViewChild(CarritoResumenComponent) carrito_resumen: CarritoResumenComponent = {} as CarritoResumenComponent;
+
   mostrar_nav_espacio: boolean = false;
   sesion: boolean = false;
   mostrar_nav = true;
+  rol = localStorage.getItem("rol");
 
   constructor(private router: Router, private acceso_service: AccesoService) {
     router.events.pipe(
@@ -31,7 +33,7 @@ export class NavbarComponent implements OnInit {
           }
 
         }
-        else if (event.urlAfterRedirects.includes('/checkout')){
+        else if (event.urlAfterRedirects.includes('/checkout')) {
           this.mostrar_nav = false;
         }
         else if (event.urlAfterRedirects.includes('/home')) {
@@ -62,7 +64,7 @@ export class NavbarComponent implements OnInit {
   }
 
   abrir_cerrar_carrito() {
-    this.child.abrir_cerrar()
+    this.carrito_resumen.abrir_cerrar()
   }
 
 

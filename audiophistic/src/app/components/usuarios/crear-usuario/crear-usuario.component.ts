@@ -139,17 +139,21 @@ export class CrearUsuarioComponent implements OnInit {
     usuario_info.caracteristicas.canton = this.buscar_valor(this.cantones, canton)
 
 
-    this.usuarios_service.crear_un_usuario(usuario_info).subscribe((res: any) => {
-      this.toastr.clear();
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-        this.cargando = false;
-      } else {
-        this.toastr.success(res.body.resultado, 'Usuario Creado', { timeOut: 2000 });
-        this.cargando = false;
-        this.router.navigate(['/inicio/usuarios'])
+    this.usuarios_service.crear_un_usuario(usuario_info).subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+          this.cargando = false;
+        } else {
+          this.toastr.success(res.body.resultado, 'Usuario Creado', { timeOut: 2000 });
+          this.cargando = false;
+          this.router.navigate(['/inicio/usuarios'])
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
 
     this.enviado = false;
   }

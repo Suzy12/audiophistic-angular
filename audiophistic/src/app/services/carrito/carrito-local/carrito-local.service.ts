@@ -13,51 +13,63 @@ export class CarritoLocalService {
   carrito_actualizado: Subject<boolean> = new Subject<boolean>();
 
   constructor(private carrito_service: CarritoService, private toastr: ToastrService) {
-    this.carrito_actualizado.subscribe((value) => {
-      this.carrito_resumen = []
-    });
 
   }
 
   consultar_carrito_resumen() {
-    this.carrito_service.carrito_resumen().subscribe((res: any) => {
-      this.toastr.clear();
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.carrito_resumen = res.body.resultado;
-        console.log(this.carrito_resumen)
-        this.calcular_precio_total_carrito()
-        this.carrito_cambios()
+    this.carrito_service.carrito_resumen().subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.carrito_resumen = res.body.resultado;
+          console.log(this.carrito_resumen)
+          this.calcular_precio_total_carrito()
+          this.carrito_cambios()
+        }
+      },
+      (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
   }
 
   eliminar_del_carrito(producto_info: any) {
 
-    this.carrito_service.eliminar_del_carrito(producto_info).subscribe((res: any) => {
-      this.toastr.clear();
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        location.reload();
+    this.carrito_service.eliminar_del_carrito(producto_info).subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          location.reload();
+        }
+      },
+      (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
   }
 
   cambiar_cantidad_carrito(producto_info: any) {
-    console.log(producto_info)
-    this.carrito_service.cambiar_cantidad_del_carrito(producto_info).subscribe((res: any) => {
-      this.toastr.clear();
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        console.log(res.body.resultado)
-        this.toastr.success(res.body.resultado, 'Exito', { timeOut: 5000 });
-        this.consultar_carrito_resumen()
-
+    console.log(this.carrito_resumen)
+    this.carrito_service.cambiar_cantidad_del_carrito(producto_info).subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          console.log(res.body.resultado)
+          this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+          let idx = this.carrito_resumen.items.findIndex((producto: any) => producto.id_producto == producto_info.id_producto && producto.id_estilo == producto_info.id_estilo)
+          this.carrito_resumen.items[idx].cantidad = producto_info.cantidad;
+        }
+      },
+      (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
   }
 
   carrito_cambios() {

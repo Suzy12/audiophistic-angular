@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { first } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'

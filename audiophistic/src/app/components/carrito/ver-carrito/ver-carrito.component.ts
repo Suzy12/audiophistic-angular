@@ -18,29 +18,33 @@ export class VerCarritoComponent implements OnInit {
     private carrito_local_service: CarritoLocalService) { }
 
   ngOnInit(): void {
-    this.carrito_service.carrito().subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        console.log(res.body.resultado)
-        this.carrito = res.body.resultado
-        this.precio_subtotal = this.carrito_local_service.precio_total
+    this.carrito_service.carrito().subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          console.log(res.body.resultado)
+          this.carrito = res.body.resultado
+          this.precio_subtotal = this.carrito_local_service.precio_total
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    })
+    )
   }
 
-  agregar(producto: any, i:number) {
+  agregar(producto: any, i: number) {
     let cantidad = producto.cantidad;
     if (cantidad < producto.existencia)
       this.carrito.items[i].cantidad = cantidad + 1;
-      let producto_info = {
-        id_producto: producto.id_producto,
-        id_estilo: producto.id_estilo,
-        cantidad: cantidad + 1
-      }
-      this.carrito_local_service.cambiar_cantidad_carrito(producto_info)
+    let producto_info = {
+      id_producto: producto.id_producto,
+      id_estilo: producto.id_estilo,
+      cantidad: cantidad + 1
+    }
+    this.carrito_local_service.cambiar_cantidad_carrito(producto_info)
   }
-  quitar(producto: any, i:number) {
+  quitar(producto: any, i: number) {
     let cantidad = producto.cantidad;
     if (cantidad != 1) {
       this.carrito.items[i].cantidad = cantidad - 1;

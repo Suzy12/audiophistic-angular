@@ -24,15 +24,19 @@ export class VerUsuarioCreadorContenidoComponent implements OnInit {
   constructor(private ruta_activated: ActivatedRoute, private usuarios_service: UsuariosService,
     private toastr: ToastrService, private productos_service: ProductosService) {
     this.ruta_activated.params.subscribe(params => {
-      this.usuarios_service.consultar_usuario_creador_contenido(params['id']).subscribe((res: any) => {
-        if (res.body.error) {
-          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-        } else {
-          this.usuario = res.body.resultado as Usuario
-          this.crear_caracteristicas_usuario()
-          this.consultar_productos()
+      this.usuarios_service.consultar_usuario_creador_contenido(params['id']).subscribe(
+        (res: any) => {
+          if (res.body.error) {
+            this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+          } else {
+            this.usuario = res.body.resultado as Usuario
+            this.crear_caracteristicas_usuario()
+            this.consultar_productos()
+          }
+        }, (error) => {
+          this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
         }
-      })
+      )
     })
   }
 

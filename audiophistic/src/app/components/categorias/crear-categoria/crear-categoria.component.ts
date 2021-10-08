@@ -74,17 +74,21 @@ export class CrearCategoriaComponent implements OnInit {
       return;
     }
 
-    this.categorias_service.crear_una_categoria(categoria_info).subscribe((res: any) => {
-      this.toastr.clear();
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-        this.cargando = false;
-      } else {
-        this.toastr.success(res.body.resultado, 'Se creó la categoría', { timeOut: 2000 });
-        this.cargando = false;
-        this.router.navigate(['/inicio/categorias'])
+    this.categorias_service.crear_una_categoria(categoria_info).subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+          this.cargando = false;
+        } else {
+          this.toastr.success(res.body.resultado, 'Se creó la categoría', { timeOut: 2000 });
+          this.cargando = false;
+          this.router.navigate(['/inicio/categorias'])
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
 
     this.enviado = false;
   }

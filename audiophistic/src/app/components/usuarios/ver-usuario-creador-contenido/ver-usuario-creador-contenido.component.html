@@ -1,4 +1,4 @@
-<div class="container emp-profile">
+<div class="container perfil">
     <form method="post">
         <div class="row container-fluid">
             <div class="col-12 text-center">
@@ -6,7 +6,7 @@
                     <img [src]="usuario.caracteristicas.imagen" alt="" />
                 </div>
                 <div class="mt-3">
-                    <div class="profile-head">
+                    <div class="perfil_encabezado">
                         <h5 class="fw-bold">
                             {{usuario.nombre}}
                         </h5>
@@ -14,7 +14,7 @@
                             {{usuario.caracteristicas.nombre_tipo}}
                         </h6>
                     </div>
-                    <div class="profile-work">
+                    <div class="perfil_ubicacion">
                         <div class="text-muted text-center mt-2 me-3">
                             <i class="fas fa-map-marker-alt p-3 text-danger"></i>
                             <span>{{usuario.caracteristicas.canton}},
@@ -75,7 +75,7 @@
                             <div class="carousel-inner">
                                 <div *ngFor="let num of slides" [ngClass]="{'active': num == 0}" class="carousel-item"
                                     data-bs-interval="10000">
-                                    <div class="container_carousel_blogs">
+                                    <div class="contenedor_carousel_blogs">
                                         <div class="d-none d-lg-block">
                                             <div class="row">
                                                 <div class="col-lg-4">

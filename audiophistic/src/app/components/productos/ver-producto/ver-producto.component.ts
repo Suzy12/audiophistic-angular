@@ -79,15 +79,19 @@ export class VerProductoComponent implements OnInit {
 
   consultar_estilos_producto() {
     let nombre_estilo = this.estilos_service.consultar_estilo_producto(this.producto.caracteristicas.id_tipo);
-    this.productos_service.consultar_estilos_producto(this.producto.id_producto).subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.nombre_estilo = nombre_estilo;
-        this.estilos = res.body.resultado;
-        this.cambiar_atributos(this.estilos[0])
+    this.productos_service.consultar_estilos_producto(this.producto.id_producto).subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.nombre_estilo = nombre_estilo;
+          this.estilos = res.body.resultado;
+          this.cambiar_atributos(this.estilos[0])
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    })
+    )
   }
 
   consultar_especificaciones_producto() {
@@ -126,14 +130,18 @@ export class VerProductoComponent implements OnInit {
       cantidad: this.cantidad
     }
 
-    this.carrito_service.agregar_al_carrito(producto).subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.toastr.success(res.body.resultado, 'Producto Agregado', { timeOut: 5000 });
-        this.carrito_local_service.consultar_carrito_resumen();
+    this.carrito_service.agregar_al_carrito(producto).subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.toastr.success(res.body.resultado, 'Producto Agregado', { timeOut: 5000 });
+          this.carrito_local_service.consultar_carrito_resumen();
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    })
+    )
 
 
 

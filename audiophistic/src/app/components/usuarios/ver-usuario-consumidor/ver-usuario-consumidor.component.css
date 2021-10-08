@@ -2,17 +2,17 @@
     padding: 5%;
 }
 
-.profile-card {
+.perfil {
     width: calc(100% - 40px);
     padding-top: 100px;
     margin: 70px auto 30px;
     background-color: #fff;
 }
 
-.profile-pic {
-    display: false;
+.perfil_img {
+    display: none;
     position: absolute;
-    margin: false;
+    margin: none;
     top: -90px;
     left: 40%;
     height: 180px;
@@ -23,13 +23,13 @@
     background-size: cover;
 }
 
-.profile-name-container {
+.perfil_encabezado {
     margin: 0 auto 10px;
     padding: 10px;
     text-align: center;
 }
 
-.user-name {
+.nombre_usuario {
     font-size: 24px;
     font-weight: 400;
     line-height: 30px;
@@ -51,7 +51,7 @@
 }
 
 @media screen and (max-width: 990px) {
-    .profile-card{
+    .perfil{
         margin: auto;
     }
 }

@@ -34,14 +34,18 @@ export class RegistroComponent implements OnInit {
 
     if (this.registro_form.invalid) { return; }
 
-    this.acceso_service.registrarse(registro_info).subscribe((res: any) => {
-      this.toastr.clear();
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.toastr.success(`Bienvenido`, 'Se envió un correo para activar su cuenta', { timeOut: 2000 });
+    this.acceso_service.registrarse(registro_info).subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.toastr.success(`Bienvenido`, 'Se envió un correo para activar su cuenta', { timeOut: 2000 });
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
 
     this.enviado = false;
   }

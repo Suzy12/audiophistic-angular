@@ -5,7 +5,8 @@
             <div class="container">
                 <div class="wrapper wrapper-content animated">
                     <div class="mb-3">
-                        <span class="pull-right text-muted">(<strong>5</strong>) ítems</span>
+                        <span class="pull-right text-muted"
+                            *ngIf="carrito.items">(<strong>{{carrito.items.length}}</strong>) ítems</span>
                         <h5>Carrito</h5>
                     </div>
                     <div class="mb-3" *ngIf="carrito.cambiado">
@@ -104,7 +105,8 @@
                             envío</strong><strong>{{precio_envio | currency:'CRC':'symbol-narrow'}}</strong>
                     </li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                            class="text-muted">Impuesto</strong><strong> {{precio_subtotal | precioImpuesto |
+                            class="text-muted">Impuesto</strong><strong> {{precio_subtotal | precioImpuesto:
+                            precio_envio |
                             currency:'CRC':'symbol-narrow'}}
                         </strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong

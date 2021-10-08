@@ -48,15 +48,19 @@ export class EliminarModalComponent implements OnInit {
 
   private eliminar_usuario() {
     this.cargando = true;
-    this.usuarios_service.eliminar_un_usuario(this.datos_eliminar.id).subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
-        this.cargando = false;
-        this.cerrar_modal()
+    this.usuarios_service.eliminar_un_usuario(this.datos_eliminar.id).subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+          this.cargando = false;
+          this.cerrar_modal()
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
   }
 
   private eliminar_producto() {
@@ -77,42 +81,54 @@ export class EliminarModalComponent implements OnInit {
   }
 
   private eliminar_producto_creador() {
-    this.productos_service.eliminar_un_producto_creador(this.datos_eliminar.id).subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-        this.cargando = false;
-      } else {
-        this.cargando = false;
-        this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
-        this.cerrar_modal()
+    this.productos_service.eliminar_un_producto_creador(this.datos_eliminar.id).subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+          this.cargando = false;
+        } else {
+          this.cargando = false;
+          this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+          this.cerrar_modal()
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
   }
 
   private eliminar_producto_administrador() {
-    this.productos_service.eliminar_un_producto(this.datos_eliminar.id).subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-        this.cargando = false;
-      } else {
-        this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
-        this.cargando = false;
-        this.cerrar_modal()
+    this.productos_service.eliminar_un_producto(this.datos_eliminar.id).subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+          this.cargando = false;
+        } else {
+          this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+          this.cargando = false;
+          this.cerrar_modal()
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
   }
 
   private eliminar_categoria() {
     this.cargando = true;
-    this.categorias_service.eliminar_una_categoria(this.datos_eliminar.id).subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
-        this.cargando = false;
-        this.cerrar_modal()
+    this.categorias_service.eliminar_una_categoria(this.datos_eliminar.id).subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+          this.cargando = false;
+          this.cerrar_modal()
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
   }
 
 }

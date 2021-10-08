@@ -16,19 +16,23 @@ export class VerUsuarioConsumidorComponent implements OnInit {
     caracteristicas: {}
   }
 
-  caracteristicas:any= []
+  caracteristicas: any = []
 
   constructor(private ruta_activated: ActivatedRoute, private usuarios_service: UsuariosService,
     private toastr: ToastrService) {
     this.ruta_activated.params.subscribe(params => {
-      this.usuarios_service.consultar_un_usuario(params['id']).subscribe((res: any) => {
-        if (res.body.error) {
-          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-        } else {
-          this.usuario = res.body.resultado
-          this.crear_caracteristicas_usuario()
+      this.usuarios_service.consultar_un_usuario(params['id']).subscribe(
+        (res: any) => {
+          if (res.body.error) {
+            this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+          } else {
+            this.usuario = res.body.resultado
+            this.crear_caracteristicas_usuario()
+          }
+        }, (error) => {
+          this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
         }
-      })
+      )
     })
   }
 

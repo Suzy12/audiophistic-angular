@@ -43,14 +43,18 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
   /*========= VER USUARIOS ========== */
 
   private consultar_usuarios() {
-    this.usuarios_service.consultar_usuarios().subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.usuarios = res.body.resultado;
-        this.dtTrigger.next();
+    this.usuarios_service.consultar_usuarios().subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.usuarios = res.body.resultado;
+          this.dtTrigger.next();
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
   }
 
   ver_usuario(tipo_usuario: any, id_usuario: any) {

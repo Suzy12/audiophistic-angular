@@ -80,17 +80,21 @@ export class ModificarCantidadProductoComponent implements OnInit {
       return;
     }
 
-    this.productos_service.modificar_existencia_producto(producto_info).subscribe((res: any) => {
-      this.toastr.clear();
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-        this.cargando = false;
-      } else {
-        this.toastr.success(res.body.resultado, 'Se modificó el producto', { timeOut: 2000 });
-        this.cargando = false;
-        this.router.navigate(['/inicio/productos'])
+    this.productos_service.modificar_existencia_producto(producto_info).subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+          this.cargando = false;
+        } else {
+          this.toastr.success(res.body.resultado, 'Se modificó el producto', { timeOut: 2000 });
+          this.cargando = false;
+          this.router.navigate(['/inicio/productos'])
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
 
     this.enviado = false;
   }

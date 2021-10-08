@@ -1,8 +1,8 @@
 <div class="container min-vh-100">
-    <div class="profile-card rounded">
-        <div class="profile-pic d-none d-lg-block" id="profile_pic"></div>
-        <div class="profile-name-container">
-            <div class="user-name">{{usuario.nombre}}</div>
+    <div class="perfil rounded">
+        <div class="perfil_img d-none d-lg-block" id="profile_pic"></div>
+        <div class="perfil_encabezado">
+            <div class="nombre_usuario">{{usuario.nombre}}</div>
             <div class="text-muted" *ngIf="usuario.caracteristicas.hasOwnProperty('provincia')">
                 <i class="fas fa-map-marker-alt p-3"></i>{{usuario.caracteristicas.canton}},
                 {{usuario.caracteristicas.provincia}}

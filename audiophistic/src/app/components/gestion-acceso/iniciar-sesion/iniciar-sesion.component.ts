@@ -31,22 +31,26 @@ export class IniciarSesionComponent implements OnInit {
 
     this.enviado = true;
 
-    if (this.sesion_form.invalid) {return;}
+    if (this.sesion_form.invalid) { return; }
 
-    this.acceso_service.iniciar_sesion(sesion_info).subscribe((res: any) => {
-      this.toastr.clear();
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.toastr.success(`Bienvenido`, 'Usuario autenticado', { timeOut: 2000 });
-        this.exito(sesion_info.correo, res.body.resultado);
+    this.acceso_service.iniciar_sesion(sesion_info).subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.toastr.success(`Bienvenido`, 'Usuario autenticado', { timeOut: 2000 });
+          this.exito(sesion_info.correo, res.body.resultado);
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
 
     this.enviado = false;
   }
 
-  exito(correo:string, res: any) {
+  exito(correo: string, res: any) {
     this.acceso_service.confirmar_iniciar_sesion(correo, res.token, res.id_tipo)
     this.router.navigate(['/inicio']); //navegar a la pagina de dashboard
   }

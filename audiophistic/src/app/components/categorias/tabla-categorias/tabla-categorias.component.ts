@@ -47,14 +47,19 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
   /* =========== VER PRODUCTOS =============== */
 
   private consultar_categorias() {
-    this.categorias_service.consultar_categorias().subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.categorias = res.body.resultado;
-        this.dtTrigger.next();
+    this.categorias_service.consultar_categorias().subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.categorias = res.body.resultado;
+          this.dtTrigger.next();
+        }
+      },
+      (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
 
   }
 
@@ -80,7 +85,7 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
     });
   }
 
-  formatear_fecha(fecha:Date) {
+  formatear_fecha(fecha: Date) {
     return moment.utc(fecha).format('DD/MM/YYYY')
   }
 

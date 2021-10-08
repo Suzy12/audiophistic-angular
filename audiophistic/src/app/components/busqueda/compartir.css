@@ -4,7 +4,7 @@
     grid-gap: 2em;
 }
 
-.bg-cover {
+.bg_cobertura {
     background-size: cover !important;
     min-height: 40vh;
 }

@@ -39,87 +39,46 @@
     font-size: 18px;
 }
 
-.card .btn-wrapper {
-    border-right: 1px solid #c6538c;
-    display: flex;
-    justify-content: center;
-}
-
-.card .btn-wrapper button {
-    display: flex;
-    align-items: center;
-}
-
-@media screen and (max-width: 767px) {
-    .card .btn-wrapper:first-child {
-        border-bottom: 1px solid #c6538c;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .card .btn-wrapper:first-child {
-        border-right: none;
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .card .btn-wrapper:nth-child(2) {
-        border-right: none;
-        border-bottom: 1px solid #c6538c;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .card .btn-wrapper:nth-child(3) {
-        border-right: none;
-        border-bottom: 1px solid #c6538c;
-    }
-}
-
-.card .btn-wrapper:last-child {
-    border: none;
-}
-
-.report-summary-header {
+.reporte_encabezado {
     border-bottom: solid 1px #e8ecf1;
 }
 
-.report-inner-cards-wrapper {
+.reporte_contenedor_interno {
     padding-top: 25px;
 }
 
-.report-inner-cards-wrapper .report-inner-card {
+.reporte_contenedor_interno .reporte_interno {
     display: flex;
     border-right: solid 1px #e8ecf1;
     padding: 0 40px;
 }
 
 @media screen and (max-width: 1199px) {
-    .report-inner-cards-wrapper .report-inner-card {
+    .reporte_contenedor_interno .reporte_interno {
         padding-top: 12.5px;
         padding-bottom: 12.5px;
     }
 }
 
-.report-inner-cards-wrapper .report-inner-card:first-child {
+.reporte_contenedor_interno .reporte_interno:first-child {
     padding-left: 15px;
 }
 
 @media screen and (max-width: 1199px) {
-    .report-inner-cards-wrapper .report-inner-card:first-child {
+    .reporte_contenedor_interno .reporte_interno:first-child {
         border-bottom: solid 1px #e8ecf1;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .report-inner-cards-wrapper .report-inner-card:first-child {
+    .reporte_contenedor_interno .reporte_interno:first-child {
         border-right: none;
         padding-right: 12.5px;
     }
 }
 
 @media screen and (max-width: 1199px) {
-    .report-inner-cards-wrapper .report-inner-card:nth-child(2) {
+    .reporte_contenedor_interno .reporte_interno:nth-child(2) {
         padding-right: 12.5px;
         border-bottom: solid 1px #e8ecf1;
         border-right: none;
@@ -127,59 +86,59 @@
 }
 
 @media screen and (max-width: 767px) {
-    .report-inner-cards-wrapper .report-inner-card:nth-child(2) {
+    .reporte_contenedor_interno .reporte_interno:nth-child(2) {
         padding-left: 12.5px;
     }
 }
 
 @media screen and (max-width: 1199px) {
-    .report-inner-cards-wrapper .report-inner-card:nth-child(3) {
+    .reporte_contenedor_interno .reporte_interno:nth-child(3) {
         padding-left: 12.5px;
     }
 }
 
 @media screen and (max-width: 767px) {
-    .report-inner-cards-wrapper .report-inner-card:nth-child(3) {
+    .reporte_contenedor_interno .reporte_interno:nth-child(3) {
         border-right: none;
         padding-right: 12.5px;
         border-bottom: solid 1px #e8ecf1;
     }
 }
 
-.report-inner-cards-wrapper .report-inner-card:last-child {
+.reporte_contenedor_interno .reporte_interno:last-child {
     border-right: 0;
     padding-right: 15px;
 }
 
 @media screen and (max-width: 767px) {
-    .report-inner-cards-wrapper .report-inner-card:last-child {
+    .reporte_contenedor_interno .reporte_interno:last-child {
         border-right: none;
         padding-left: 12.5px;
     }
 }
 
-.report-inner-cards-wrapper .report-inner-card .inner-card-text {
+.reporte_contenedor_interno .reporte_interno .inner-card-text {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
 
-.report-inner-cards-wrapper .report-inner-card .report-title {
+.reporte_contenedor_interno .reporte_interno .report-title {
     font-size: 14px;
     font-weight: 600;
     color: #111;
 }
 
-.report-inner-cards-wrapper .report-inner-card h4 {
+.reporte_contenedor_interno .reporte_interno h4 {
     font-weight: bold;
 }
 
-.report-inner-cards-wrapper .report-inner-card .report-count {
+.reporte_contenedor_interno .reporte_interno .report-count {
     font-size: 14px;
     color: #4BB543;
 }
 
-.report-inner-cards-wrapper .report-inner-card .inner-card-icon {
+.reporte_contenedor_interno .reporte_interno .reporte_icono_interno {
     width: 62px;
     height: 62px;
     font-size: 40px;

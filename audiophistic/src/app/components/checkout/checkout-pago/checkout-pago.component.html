@@ -181,17 +181,20 @@
 
     <div class="col-12 col-md-6">
         <label for="provincia" class="text-muted mb-2"><i class="fas fa-map-marker me-3"></i>Provincia</label>
-        <select class="form-select rounded-pill bg-light" id="country" required>
-            <option value="">Choose...</option>
-            <option>United States</option>
+        <select class="form-select form-control rounded-pill bg-light" id="provincia"
+            (change)="obtener_cantones($any($event.target).value, '')" name="provincia" [(ngModel)]="provincia"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let prov of provincias; let i = index" [value]="prov.id">
+                {{prov.nombre}}</option>
         </select>
     </div>
 
     <div class="col-12 col-md-6">
         <label for="canton" class="text-muted mb-2"><i class="fas fa-map-marker-alt me-3"></i>Cantón</label>
-        <select class="form-select rounded-pill bg-light" id="state" required>
-            <option value="">Choose...</option>
-            <option>California</option>
+        <select class="form-select form-control rounded-pill bg-light" id="canton" name="canton" [(ngModel)]="canton"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let cant of cantones; let i = index" [value]="cant.id">
+                {{cant.nombre}}</option>
         </select>
     </div>
 

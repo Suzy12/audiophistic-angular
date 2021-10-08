@@ -20,7 +20,7 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
 
   productos: Producto[] = [];
   dtTrigger: Subject<any> = new Subject<any>();
-  rol:string = ''
+  rol: string = ''
 
   constructor(private http: HttpClient, private productos_service: ProductosService,
     private modal_service: NgbModal, private toastr: ToastrService, private router: Router) { }
@@ -45,9 +45,9 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
 
   /* =========== VER PRODUCTOS =============== */
 
-  private consultar_productos(){
+  private consultar_productos() {
     let rol = localStorage.getItem("rol");
-    switch(rol){
+    switch (rol) {
       case "2":
         this.consultar_productos_creador(rol)
         break;
@@ -58,25 +58,33 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
   }
 
   private consultar_todos_productos() {
-    this.productos_service.consultar_productos().subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.productos = res.body.resultado;
-        this.dtTrigger.next();
+    this.productos_service.consultar_productos().subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.productos = res.body.resultado;
+          this.dtTrigger.next();
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
   }
 
-  private consultar_productos_creador(rol:string) {
-    this.productos_service.consultar_mis_productos().subscribe((res: any) => {
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.productos = res.body.resultado;
-        this.dtTrigger.next();
+  private consultar_productos_creador(rol: string) {
+    this.productos_service.consultar_mis_productos().subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.productos = res.body.resultado;
+          this.dtTrigger.next();
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
   }
 
   ver_producto(id_producto: any) {
@@ -87,12 +95,12 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
   /* ============= MODIFICAR PRODUCTO =============== */
 
   modificar_producto(id_producto: any) {
-    this.router.navigate(['/inicio/modificar-producto',  { state: {id: id_producto} }]);
+    this.router.navigate(['/inicio/modificar-producto', { state: { id: id_producto } }]);
   }
 
   /* ============= ELIMINAR PRODUCTO =============== */
 
-  abrir_modal_eliminar(id_producto:number, titulo_producto:string) {
+  abrir_modal_eliminar(id_producto: number, titulo_producto: string) {
     const modalRef = this.modal_service.open(EliminarModalComponent,
       {
         scrollable: true,
@@ -101,7 +109,7 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
 
     let datos = {
       eliminar: 'producto',
-      mensaje: "Se eliminará el producto "+titulo_producto,
+      mensaje: "Se eliminará el producto " + titulo_producto,
       id: id_producto,
     }
 

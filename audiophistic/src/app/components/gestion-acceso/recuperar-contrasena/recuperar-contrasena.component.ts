@@ -32,14 +32,18 @@ export class RecuperarContrasenaComponent implements OnInit {
 
     if (this.recuperar_form.invalid) { return; }
 
-    this.acceso_service.recuperar_contrasena(recuperar_info).subscribe((res: any) => {
-      this.toastr.clear();
-      if (res.body.error) {
-        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
-      } else {
-        this.toastr.success(`Se envió un correo para recuperar su contraseña`, res.body.resultado, { timeOut: 2000 });
+    this.acceso_service.recuperar_contrasena(recuperar_info).subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.toastr.success(`Se envió un correo para recuperar su contraseña`, res.body.resultado, { timeOut: 2000 });
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
-    });
+    );
 
     this.enviado = false;
   }

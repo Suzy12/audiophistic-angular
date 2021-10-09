@@ -12,11 +12,11 @@ export class AdministradorPerfilComponent implements OnInit {
 
   administrador_form: FormGroup = {} as FormGroup;
 
-  constructor(private fb: FormBuilder, private controlContainer: ControlContainer) { }
+  constructor(private fb: FormBuilder, private control_contenedor: ControlContainer) { }
 
 
   ngOnInit(): void {
-    this.administrador_form = <FormGroup>this.controlContainer.control;
+    this.administrador_form = <FormGroup>this.control_contenedor.control;
   }
 
   get form() { return this.administrador_form.controls }

@@ -63,11 +63,11 @@ export class ConsumidorPerfilComponent implements OnInit {
   consumidor_form: FormGroup = {} as FormGroup;
 
   constructor(private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>,
-    private fb: FormBuilder, private controlContainer: ControlContainer) { }
+    private fb: FormBuilder, private control_contenedor: ControlContainer) { }
 
 
   ngOnInit(): void {
-    this.consumidor_form = <FormGroup>this.controlContainer.control;
+    this.consumidor_form = <FormGroup>this.control_contenedor.control;
     this.modelo = this.form_caracteristicas['cumpleanos'].value
   }
 

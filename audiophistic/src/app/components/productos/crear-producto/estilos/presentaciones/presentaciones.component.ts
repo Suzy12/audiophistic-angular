@@ -15,9 +15,9 @@ export class PresentacionesComponent implements OnInit {
 
   presentaciones_form: FormGroup = {} as FormGroup;
 
-  constructor(private fb: FormBuilder, private controlContainer: ControlContainer,
+  constructor(private fb: FormBuilder, private control_contenedor: ControlContainer,
     private estilos_service: EstilosService) {
-    this.presentaciones_form = <FormGroup>this.controlContainer.control;
+    this.presentaciones_form = <FormGroup>this.control_contenedor.control;
     this.cambiar_descripcion(0)
   }
 

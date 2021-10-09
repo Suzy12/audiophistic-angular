@@ -45,7 +45,7 @@
                                                         <button class="btn" (click)="agregar(producto, i)"><i
                                                                 class="fa fa-plus"></i></button>
                                                     </div>
-                                                    <div class="form-check-inline">
+                                                    <div class="form-check-inline w-100">
                                                         <input type="text" class="form-control"
                                                             [value]="producto.cantidad" disabled>
                                                     </div>
@@ -93,9 +93,9 @@
                 <textarea name="" cols="30" rows="2" class="form-control"></textarea>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" *ngIf="carrito.items" >
             <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Resumen del pedido</div>
-            <div class="p-4">
+            <div class="p-4"  *ngIf="carrito.items.length != 0" >
                 <p class="font-italic mb-4">Los costos de envío y adicionales se calculan en función de los valores
                     ingresados.</p>
                 <ul class="list-unstyled mb-4">

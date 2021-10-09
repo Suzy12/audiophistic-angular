@@ -12,10 +12,10 @@ export class CreadorContenidoPerfilComponent implements OnInit {
 
   creador_contenido_form: FormGroup = {} as FormGroup;
 
-  constructor(private fb: FormBuilder, private controlContainer: ControlContainer) { }
+  constructor(private fb: FormBuilder, private control_contenedor: ControlContainer) { }
 
   ngOnInit(): void {
-    this.creador_contenido_form = <FormGroup>this.controlContainer.control;
+    this.creador_contenido_form = <FormGroup>this.control_contenedor.control;
   }
 
   get form() { return this.creador_contenido_form.controls }

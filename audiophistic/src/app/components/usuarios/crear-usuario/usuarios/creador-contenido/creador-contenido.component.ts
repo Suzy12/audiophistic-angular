@@ -1,7 +1,6 @@
-import { Component, Input, OnChanges, OnInit, SimpleChange } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, FormGroupDirective, ControlContainer } from '@angular/forms'
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, ControlContainer } from '@angular/forms'
 import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
-import { convertCompilerOptionsFromJson } from 'typescript';
 
 @Component({
   selector: 'app-creador-contenido-form',
@@ -14,10 +13,10 @@ export class CreadorContenidoFormComponent implements OnInit {
 
   creador_contenido_form: FormGroup = {} as FormGroup;
 
-  constructor(private fb: FormBuilder, private controlContainer: ControlContainer, private estilos_service: EstilosService) { }
+  constructor(private fb: FormBuilder, private control_contenedor: ControlContainer, private estilos_service: EstilosService) { }
 
   ngOnInit(): void {
-    this.creador_contenido_form = <FormGroup>this.controlContainer.control;
+    this.creador_contenido_form = <FormGroup>this.control_contenedor.control;
   }
 
   get form() { return this.creador_contenido_form.controls }

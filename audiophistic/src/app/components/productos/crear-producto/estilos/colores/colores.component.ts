@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ControlContainer, FormArray, FormBuilder, FormGroup, NgControlStatus } from '@angular/forms';
+import { ControlContainer, FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
-import { IndexedAccessType } from 'typescript';
 
 @Component({
   selector: 'app-colores',
@@ -15,9 +14,9 @@ export class ColoresComponent implements OnInit {
 
   colores_form: FormGroup = {} as FormGroup;
 
-  constructor(private fb: FormBuilder, private controlContainer: ControlContainer,
+  constructor(private fb: FormBuilder, private control_contenedor: ControlContainer,
     private estilos_service: EstilosService) {
-    this.colores_form = <FormGroup>this.controlContainer.control;
+    this.colores_form = <FormGroup>this.control_contenedor.control;
   }
 
   ngOnInit(): void {

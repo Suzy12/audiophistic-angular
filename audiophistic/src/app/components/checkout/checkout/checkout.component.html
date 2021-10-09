@@ -53,13 +53,16 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-7 col-lg-8">
-            <form>
-                <app-checkout-direccion *ngIf="pagina_actual == 1" (mensaje_padre)="recibir_mensaje($event)">
+        <div class="col-md-7 col-lg-8" *ngIf="sub_form_creado">
+            <form [formGroup]="checkout_form">
+                <app-checkout-direccion *ngIf="pagina_actual == 1" (mensaje_padre)="recibir_mensaje($event)"
+                [enviado] ="enviado" (misma_direccion_evento) ="cambiar_direccion($event)">
                 </app-checkout-direccion>
-                <app-checkout-pago *ngIf="pagina_actual == 2" (mensaje_padre)="recibir_mensaje($event)">
+            </form>
+            <form [formGroup]="pago_form">
+                <app-checkout-pago *ngIf="pagina_actual == 2" (mensaje_padre)="recibir_mensaje($event)"
+                [enviado]="enviado" [misma_direccion] ="misma_direccion" [cargando]="cargando">
                 </app-checkout-pago>
-
             </form>
         </div>
 

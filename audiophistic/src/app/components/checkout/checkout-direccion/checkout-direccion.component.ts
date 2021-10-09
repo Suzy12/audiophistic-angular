@@ -1,5 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ControlContainer, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Canton, Provincia } from 'src/app/models/ubicaciones';
+import { Usuario } from 'src/app/models/Usuarios/usuario';
+import { Usuario_Consumidor } from 'src/app/models/Usuarios/usuario_consumidor';
+import { PerfilService } from 'src/app/services/perfil/perfil.service';
 import { UbicacionesService } from 'src/app/services/ubicaciones/ubicaciones.service';
 
 @Component({
@@ -10,6 +14,10 @@ import { UbicacionesService } from 'src/app/services/ubicaciones/ubicaciones.ser
 export class CheckoutDireccionComponent implements OnInit {
 
   @Output() mensaje_padre = new EventEmitter<number>();
+  @Input() enviado: boolean = false;
+  @Output() misma_direccion_evento = new EventEmitter<boolean>();
+
+  misma_direccion: boolean = false;
 
   public provincias: Provincia[] = []
   public cantones: Canton[] = []
@@ -17,15 +25,53 @@ export class CheckoutDireccionComponent implements OnInit {
   provincia: string = '1'
   canton: string = '1'
 
-  constructor(private ubicaciones_service:UbicacionesService) { }
+  checkout_form: FormGroup = {} as FormGroup;
+  usuario: any = {}
+
+  constructor(private ubicaciones_service: UbicacionesService, private fb: FormBuilder,
+    private control_contenedor: ControlContainer,
+    private perfil_service: PerfilService) {
+    this.checkout_form = <FormGroup>this.control_contenedor.control
+  }
 
   ngOnInit(): void {
-    this.obtener_provincias(this.provincia, this.canton)
+    this.perfil_service.consultar_mi_perfil().subscribe((res: any) => {
+      if (res.body.resultado) {
+        let info = res.body.resultado;
+        this.usuario = info;
+        console.log(this.usuario)
+        this.form_direccion.nombre_consumidor.setValue(this.usuario.nombre)
+        this.form_direccion.telefono.setValue(this.usuario.caracteristicas.celular || '')
+        this.form_direccion.direccion.setValue(this.usuario.caracteristicas.direccion_exacta || '')
+        if (this.usuario.caracteristicas.provincia) {
+          this.provincia = this.usuario.caracteristicas.provincia;
+          this.canton = this.usuario.caracteristicas.canton;
+          this.obtener_provincias(this.usuario.caracteristicas.provincia, this.usuario.caracteristicas.canton)
+        } else {
+          this.obtener_provincias(this.provincia, this.canton)
+        }
+      }
+    });
+  }
+
+  private buscar_valor(array: any[], valor: any) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].id == valor) {
+        return array[i].nombre
+      }
+    }
   }
 
   siguiente() {
+    this.form_direccion.provincia.setValue(this.buscar_valor(this.provincias, this.provincia));
+    this.form_direccion.canton.setValue(this.buscar_valor(this.cantones, this.canton));
+    this.misma_direccion_evento.emit(this.misma_direccion)
     this.mensaje_padre.emit(2)
   }
+
+  get form() { return this.checkout_form.controls }
+
+  get form_direccion() { return (this.checkout_form.get('direccion_pedido') as FormGroup).controls }
 
   obtener_provincias(provincia_actual: string, canton_actual: string) {
     this.ubicaciones_service.obtener_provincias().subscribe((res: any) => {

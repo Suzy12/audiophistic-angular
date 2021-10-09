@@ -16,9 +16,9 @@ export class SinEstilosComponent implements OnInit {
 
   sin_estilos_form: FormGroup = {} as FormGroup;
 
-  constructor(private fb: FormBuilder, private controlContainer: ControlContainer,
+  constructor(private fb: FormBuilder, private control_contenedor: ControlContainer,
     private estilos_service: EstilosService) {
-    this.sin_estilos_form = <FormGroup>this.controlContainer.control;
+    this.sin_estilos_form = <FormGroup>this.control_contenedor.control;
     this.estilos.controls[0].patchValue(
       {
         'precio': 0,

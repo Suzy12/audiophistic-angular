@@ -13,7 +13,7 @@ export class CheckoutService {
   constructor(private http: HttpClient) { }
 
   public consultar_tipos_de_pago = () => {
-    return this.http.get(this.api_url + '/tipos_de_pago', { headers: this.headers, observe: 'response' })
+    return this.http.get(this.api_url + '/tipos_de_pago', { observe: 'response' })
   }
 
   public realizar_checkout = (info_pedido: any) => {

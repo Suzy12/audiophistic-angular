@@ -53,11 +53,11 @@ export class ProductosService {
   }
 
   public consultar_productos_creador_resumen = (id_creador:any) => {
-    return this.http.get(this.api_url +'/thumbnail_productos_por_creador/'+id_creador, { headers: this.headers, observe: 'response' })
+    return this.http.get(this.api_url +'/thumbnail_productos_por_creador/'+id_creador, { observe: 'response' })
   }
 
   public consultar_productos_por_tipo = (id_tipo:any) => {
-    return this.http.get(this.api_url +'/productos_por_tipo/'+id_tipo, { headers: this.headers, observe: 'response' })
+    return this.http.get(this.api_url +'/productos_por_tipo/'+id_tipo, { observe: 'response' })
   }
 
 

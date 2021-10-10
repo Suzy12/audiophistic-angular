@@ -2,7 +2,7 @@
     <form method="post">
         <div class="row container-fluid">
             <div class="col-12 text-center">
-                <div>
+                <div *ngIf="usuario.caracteristicas.imagen">
                     <img [src]="usuario.caracteristicas.imagen" alt="Logo Vendedor" />
                 </div>
                 <div class="mt-3">

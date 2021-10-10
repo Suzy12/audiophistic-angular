@@ -28,7 +28,7 @@ export class UsuariosService {
   }
 
   public consultar_usuario_creador_contenido = (id_usuario: any) => {
-    return this.http.get(this.api_url + '/creador_contenido/' + id_usuario, { headers: this.headers, observe: 'response' })
+    return this.http.get(this.api_url + '/creador_contenido/' + id_usuario, { observe: 'response' })
   }
 
 

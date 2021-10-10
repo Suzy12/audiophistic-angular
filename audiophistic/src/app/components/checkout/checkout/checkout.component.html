@@ -1,7 +1,7 @@
 <div class="container">
 
     <div class="m-5">
-        <img src="../../../../assets/img/logo.png" class="w-25">
+        <img src="../../../../assets/img/logo.png" class="imagen" alt="Logo Audiophistic">
     </div>
 
     <nav aria-label="breadcrumb" class="bg-light p-2 rounded">
@@ -25,7 +25,7 @@
                         <div class="d-none d-sm-block">
                             <span class="badge rounded-pill bg-dark ms-3 badge_producto"
                                 *ngIf="producto.cantidad != -1">{{producto.cantidad}}</span>
-                            <img [src]="producto.imagen" style="max-height: 50px;">
+                            <img [src]="producto.imagen" style="max-height: 50px;" alt="Imagen Producto">
                         </div>
 
                         <div class="ms-3">
@@ -38,16 +38,15 @@
                 </li>
             </ul>
             <ul class="list-unstyled mb-4 bg-light rounder p-3">
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong>
                         Subtotal </strong><strong>{{precio_subtotal | currency:'CRC':'symbol-narrow'}}</strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Costos de
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong>Costos de
                         envío</strong><strong>{{precio_envio | currency:'CRC':'symbol-narrow'}}</strong>
                 </li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                        class="text-muted">Impuesto</strong><strong> {{precio_subtotal | precioImpuesto: precio_envio |
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong>Impuesto</strong><strong> {{precio_subtotal | precioImpuesto: precio_envio |
                         currency:'CRC':'symbol-narrow'}}
                     </strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong>Total</strong>
                     <h5 class="font-weight-bold">{{precio_subtotal | precioTotal: precio_envio |
                         currency:'CRC':'symbol-narrow'}}</h5>
                 </li>

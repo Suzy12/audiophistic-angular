@@ -18,6 +18,12 @@
 }
 
 
+.bs-stepper-label{
+    color: #666F75 !important;
+}
+
+
+
 @media screen and (max-width: 576px) {
     .bs-stepper-header {
         display: block;

@@ -9,7 +9,7 @@
             <ul class="navbar-nav mb-2 col-md-7">
                 <li class="nav-item" *ngIf="mostrar_nav_espacio">
                     <a class="nav-link navbar-brand" href="#"><img src="../../../../assets/img/logo.png"
-                            width="120"></a>
+                            width="120" alt="Logo Audiophistic"></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/audifonos">Audífonos</a>
@@ -25,21 +25,23 @@
                 </li>
                 <div class="d-block d-lg-none">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <button class="nav-link" href="#">
                             <i class="fas fa-search icon-menu"></i>
-                            Buscar</a>
+                            Buscar</button>
                     </li>
                     <li class="nav-item" *ngIf="rol == '3'">
-                        <a class="nav-link" href="/carrito"><i class="fas fa-shopping-cart icon-menu"></i>
-                            Carrito</a>
+                        <button class="nav-link" onclick="location.href='/carrito'"><i class="fas fa-shopping-cart icon-menu"></i>
+                            Carrito</button>
                     </li>
                     <li class="nav-item">
-                        <a *ngIf="!sesion" class="nav-link" href="/iniciar-sesion">
-                            <i class="fas fa-sign-in-alt icon-menu me-2"></i>Ingresar</a>
+                        <button *ngIf="!sesion" class="nav-link" href="/iniciar-sesion"
+                        aria-label="Ir a iniciar sesión">
+                            <i class="fas fa-sign-in-alt icon-menu me-2"></i>Ingresar</button>
 
-                        <a *ngIf="sesion" class="nav-link" href="/inicio">
+                        <button *ngIf="sesion" class="nav-link" href="/inicio"
+                        aria-label="Ir a menú usuario">
                             <i class="fas fa-user me-3"></i>Ingresar
-                        </a>
+                        </button>
                     </li>
                 </div>
             </ul>
@@ -49,12 +51,13 @@
                     <button type="button" class="btn me-2"><i class="fas fa-search"></i></button>
                     <button *ngIf="rol == '3'" type="button" class="btn me-2" (click)="abrir_cerrar_carrito()"><i
                             class="fas fa-shopping-cart"></i></button>
-                    <a *ngIf="!sesion" type="button" class="btn btn-light iniciar_sesion" href="/iniciar-sesion">
-                        <span>Iniciar Sesión</span>
-                    </a>
-                    <a *ngIf="sesion" type="button" class="btn me-2 boton" href="/inicio">
+                    <button *ngIf="!sesion" type="button" class="btn btn-light iniciar_sesion" onclick="location.href='/iniciar-sesion'"
+                    aria-label="Ir a iniciar sesión">
+                        <span class="text-dark">Iniciar Sesión</span>
+                    </button>
+                    <button *ngIf="sesion" type="button" class="btn me-2 boton" onclick="location.href='/inicio'" aria-label="ir al menú Usuario">
                         <i class="fas fa-user"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>

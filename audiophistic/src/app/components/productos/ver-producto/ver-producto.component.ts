@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Producto } from 'src/app/models/Productos/productos';
 import { Producto_Albumes } from 'src/app/models/Productos/producto_albumes';
@@ -44,7 +44,8 @@ export class VerProductoComponent implements OnInit {
     private productos_service: ProductosService, private toastr: ToastrService,
     private estilos_service: EstilosService, private especificaciones_service: EspecificacionesProductoService,
     private acceso_service: AccesoService, private carrito_service: CarritoService,
-    private carrito_local_service: CarritoLocalService) {
+    private carrito_local_service: CarritoLocalService,
+    private router: Router) {
     this.ruta_activated.params.subscribe(params => {
       this.productos_service.consultar_un_producto(params['id']).subscribe((res: any) => {
         if (res.body.error) {
@@ -86,6 +87,7 @@ export class VerProductoComponent implements OnInit {
         } else {
           this.nombre_estilo = nombre_estilo;
           this.estilos = res.body.resultado;
+          console.log(this.estilos)
           this.cambiar_atributos(this.estilos[0])
         }
       }, (error) => {
@@ -142,10 +144,10 @@ export class VerProductoComponent implements OnInit {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
       }
     )
+  }
 
-
-
-
+  ver_creador(id_usuario: any) {
+    this.router.navigate(['/ver-usuario-creador-contenido', id_usuario]);
   }
 
 }

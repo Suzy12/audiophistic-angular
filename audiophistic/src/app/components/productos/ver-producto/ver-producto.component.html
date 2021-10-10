@@ -2,13 +2,13 @@
     <div class="card">
         <div class="container-fliud">
             <div class="wrapper row">
-                <div class="col-md-6 d-flex justify-content-center align-items-center text-center">
-                    <div id="carrusel" class="carousel slide h-auto carousel-dark slide" data-bs-ride="carousel"
+                <div class="col-md-6 container-fluid d-flex justify-content-center align-items-center text-center">
+                    <div id="carrusel" class="carousel slide carousel-dark slide" data-bs-ride="carousel"
                         data-bs-interval="3000">
-                        <div class="carousel-inner">
+                        <div class="carousel-inner flex-grow-1">
                             <div class="carousel-item" *ngFor="let imagen of imagenes; let i = index"
                                 [ngClass]="{'active': i == 0}">
-                                <img class="d-block w-100" [src]="imagen">
+                                <img class="d-block w-100" [src]="imagen" alt="Imagen Producto">
                             </div>
                         </div>
                         <button class="carousel-control-prev" data-bs-target="#carrusel" type="button"
@@ -67,7 +67,7 @@
                         </div>
                     </form>
 
-                    <div class="container mt-4" *ngIf="existencia_estilo_seleccionado != -1">
+                    <div class="container mt-4" *ngIf="existencia_estilo_seleccionado != -1 && existencia_estilo_seleccionado != 0">
                         <div class="form-check-inline">
                             <button class="btn" (click)="agregar()"><i class="fa fa-plus"></i></button>
                         </div>
@@ -78,6 +78,12 @@
                             <button class="btn" (click)="quitar()"><i class="fa fa-minus"></i></button>
                         </div>
                     </div>
+                    <div class="container mt-4" *ngIf="existencia_estilo_seleccionado == 0">
+                        <div class="text-danger">
+                            El producto está agotado
+                        </div>
+                    </div>
+                    
 
                     <div class="accion d-flex justify-content-start mt-3">
                         <button class="form_btn btn btn-default carrito" type="button" (click)="agregar_producto()">
@@ -86,8 +92,8 @@
                         <button class="form_btn btn btn-default compartir" type="button"><span
                                 class="fas fa-share-alt"></span></button>
                     </div>
-                    <div class="autor mt-2">
-                        <p>Por: <span class="text-danger">{{producto.nombre_creador}}</span></p>
+                    <div class="autor mt-2" style="cursor: pointer;">
+                        <a (click)="ver_creador(producto.id_creador)">Por: <span class="text-danger">{{producto.nombre_creador}}</span></a>
                     </div>
                 </div>
             </div>

@@ -34,7 +34,7 @@
                             <input *ngIf="foto.value == null || foto.value == ''" type="file"
                                 accept="image/png, image/jpeg, image/jpg" (change)="leer_imagen($event, i, j)"
                                 required>
-                            <img *ngIf="foto.value != null || foto.value != ''" [src]="obtener_imagen(i,j)">
+                            <img *ngIf="foto.value != null || foto.value != ''" [src]="obtener_imagen(i,j)" alt="Imagen Seleccionada Producto Sin Estilo">
                         </td>
                         <td>
                             <button class="btn btn-outline-danger" (click)="eliminar_foto(i, j)"><i

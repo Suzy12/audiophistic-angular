@@ -12,7 +12,7 @@
                             </div>
                             <div *ngIf="rol == '2'">
                                 <img *ngIf="form_caracteristicas.imagen.value.includes('data:image/')"
-                                    [src]="obtener_imagen()">
+                                    [src]="obtener_imagen()" alt="Foto de Perfil">
                                 <div class="mt-2" *ngIf="rol == '2'">
                                     <label class="btn btn-primary" for="selector">
                                         <input id="selector" type="file" class="d-none"

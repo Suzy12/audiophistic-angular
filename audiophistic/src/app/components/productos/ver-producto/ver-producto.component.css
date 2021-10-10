@@ -9,7 +9,6 @@
     line-height: 1.5em;
 }
 
-
 .colores label {
     min-height: 25px;
     min-width: 25px;
@@ -97,8 +96,8 @@
     margin-right: -60px;
 }
 
-#carrusel{
-    max-width: 40%;   
+#carrusel {
+    max-width: 40%;
 }
 
 @keyframes crescendo {
@@ -122,8 +121,11 @@
 }
 
 @media screen and (max-width: 770px) {
-    .titulo{
+    .titulo {
         margin-top: 20%;
+    }
+    .carousel-inner>.carousel-item>img {
+        height: 40vh;
     }
 }
 

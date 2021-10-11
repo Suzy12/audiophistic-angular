@@ -89,7 +89,7 @@ export class CheckoutComponent implements OnInit {
     this.pago_form = this.fb.group({
       id_pedido: [0, [Validators.required]],
       id_metodo_pago: ['', [Validators.required]],
-      comprobante: ['', [Validators.required]],
+      comprobante: [''],
       subtotal: subtotal_pipe.transform(this.precio_total),
       costo_envio: this.precio_envio,
       monto_total: total_pipe.transform(this.precio_total, this.precio_envio),
@@ -136,9 +136,15 @@ export class CheckoutComponent implements OnInit {
 
     let checkout_info = this.checkout_form.getRawValue();
     let pago_info = this.pago_form.getRawValue();
-    if (pago_info.id_metodo_pago == 1) {
-      this.form_pago.comprobante.setValue("Tarjeta");
+    if (pago_info.id_metodo_pago == 2 || pago_info.id_metodo_pago == 3) {
+      if (pago_info.comprobante == '') {
+        this.toastr.error('Debe subir el comprobante de pago', 'Error', { timeOut: 5000 });
+        this.cargando = false;
+        return;
+      }
     }
+
+    console.log(pago_info)
 
     this.enviado = true;
     this.cargando = true;

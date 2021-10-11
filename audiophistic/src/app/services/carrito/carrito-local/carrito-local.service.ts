@@ -61,6 +61,8 @@ export class CarritoLocalService {
           this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
           let idx = this.carrito_resumen.items.findIndex((producto: any) => producto.id_producto == producto_info.id_producto && producto.id_estilo == producto_info.id_estilo)
           this.carrito_resumen.items[idx].cantidad = producto_info.cantidad;
+          this.calcular_precio_total_carrito()
+          this.carrito_cambios()
         }
       },
       (error) => {
@@ -74,6 +76,7 @@ export class CarritoLocalService {
   }
 
   calcular_precio_total_carrito() {
+    this.precio_total = 0;
     this.carrito_resumen.items.forEach((producto: any) => {
       if (producto.cantidad == -1) {
         this.precio_total += producto.precio

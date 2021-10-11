@@ -18,6 +18,10 @@ export class VerCarritoComponent implements OnInit {
     private carrito_local_service: CarritoLocalService) { }
 
   ngOnInit(): void {
+    this.carrito_local_service.carrito_actualizado.subscribe((carrito_actual: any) => {
+      console.log("Hola");
+      this.precio_total = this.carrito_local_service.precio_total
+    });
     this.carrito_service.carrito().subscribe(
       (res: any) => {
         if (res.body.error) {
@@ -41,7 +45,7 @@ export class VerCarritoComponent implements OnInit {
       id_estilo: producto.id_estilo,
       cantidad: cantidad + 1
     }
-    this.carrito_local_service.cambiar_cantidad_carrito(producto_info)
+    this.carrito_local_service.cambiar_cantidad_carrito(producto_info);
   }
   quitar(producto: any, i: number) {
     let cantidad = producto.cantidad;

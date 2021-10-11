@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
+import { CarritoLocalService } from 'src/app/services/carrito/carrito-local/carrito-local.service';
 import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 import { CarritoResumenComponent } from '../../carrito/carrito-resumen/carrito-resumen.component';
 
@@ -22,7 +23,11 @@ export class NavbarComponent implements OnInit {
   mostrar_nav = true;
   rol = localStorage.getItem("rol");
 
-  constructor(private router: Router, private acceso_service: AccesoService) {
+  cantidad_carrito: number = 0
+
+
+  constructor(private router: Router, private acceso_service: AccesoService,
+    private carrito_local_service: CarritoLocalService) {
     router.events.pipe(
       filter(event => event instanceof NavigationEnd || event instanceof NavigationStart)
     )
@@ -43,6 +48,9 @@ export class NavbarComponent implements OnInit {
           this.cambiar_a_navbar_normal()
         }
       });
+    this.carrito_local_service.carrito_actualizado.subscribe((carrito_actual: any) => {
+      this.cantidad_carrito = carrito_actual.items.length
+    });
   }
 
   cambiar_a_navbar_home() {

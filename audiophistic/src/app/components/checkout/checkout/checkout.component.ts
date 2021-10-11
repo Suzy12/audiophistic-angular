@@ -137,7 +137,7 @@ export class CheckoutComponent implements OnInit {
     let checkout_info = this.checkout_form.getRawValue();
     let pago_info = this.pago_form.getRawValue();
     if (pago_info.id_metodo_pago == 1) {
-      pago_info.comprobante = 'Tarjeta';
+      this.form_pago.comprobante.setValue("Tarjeta");
     }
 
     this.enviado = true;

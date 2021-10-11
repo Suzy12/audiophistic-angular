@@ -57,6 +57,7 @@ import { AlbumesComponent } from './components/busqueda/albumes/albumes.componen
 import { PrecioCantidadPipe } from './pipes/carrito/cantidad/precio-cantidad.pipe';
 import { PrecioImpuestoPipe } from './pipes/carrito/impuesto/precio-impuesto.pipe';
 import { PrecioTotalPipe } from './pipes/carrito/total/precio-total.pipe';
+import { PrecioSubtotalPipe } from './pipes/carrito/subtotal/precio-subtotal.pipe';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { PrecioTotalPipe } from './pipes/carrito/total/precio-total.pipe';
     AlbumesComponent,
     PrecioCantidadPipe,
     PrecioImpuestoPipe,
-    PrecioTotalPipe
+    PrecioTotalPipe,
+    PrecioSubtotalPipe
   ],
   imports: [
     BrowserModule,

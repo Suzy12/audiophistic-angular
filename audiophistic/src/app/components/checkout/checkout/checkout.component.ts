@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
+import { PrecioSubtotalPipe } from 'src/app/pipes/carrito/subtotal/precio-subtotal.pipe';
 import { PrecioTotalPipe } from 'src/app/pipes/carrito/total/precio-total.pipe';
 import { CarritoLocalService } from 'src/app/services/carrito/carrito-local/carrito-local.service';
 import { CarritoService } from 'src/app/services/carrito/carrito/carrito.service';
@@ -19,7 +20,7 @@ export class CheckoutComponent implements OnInit {
   pagina_actual: number = 1;
 
   carrito: any = []
-  precio_subtotal: number = 0
+  precio_total: number = 0
   precio_envio: number = 2500;
 
   checkout_form: FormGroup = {} as FormGroup;
@@ -46,7 +47,7 @@ export class CheckoutComponent implements OnInit {
             this.router.navigate(['/carrito'])
           }
           this.carrito = res.body.resultado.items
-          this.precio_subtotal = this.carrito_local_service.precio_total;
+          this.precio_total = this.carrito_local_service.precio_total;
           this.construir_form_pedido();
           this.construir_form_pago();
           this.sub_form_creado = true;
@@ -65,11 +66,12 @@ export class CheckoutComponent implements OnInit {
 
   construir_form_pedido() {
     const total_pipe = new PrecioTotalPipe();
+    const subtotal_pipe = new PrecioSubtotalPipe();
     this.checkout_form = this.fb.group({
       carrito: this.fb.array(this.carrito),
-      subtotal: this.precio_subtotal,
+      subtotal: subtotal_pipe.transform(this.precio_total),
       costo_envio: this.precio_envio,
-      monto_total: total_pipe.transform(this.precio_subtotal, this.precio_envio),
+      monto_total: total_pipe.transform(this.precio_total, this.precio_envio),
       direccion_pedido: this.fb.group({
         direccion: ['', [Validators.required]],
         provincia: ['', [Validators.required]],
@@ -83,13 +85,14 @@ export class CheckoutComponent implements OnInit {
 
   construir_form_pago() {
     const total_pipe = new PrecioTotalPipe();
+    const subtotal_pipe = new PrecioSubtotalPipe();
     this.pago_form = this.fb.group({
       id_pedido: [0, [Validators.required]],
       id_metodo_pago: ['', [Validators.required]],
       comprobante: ['', [Validators.required]],
-      subtotal: this.precio_subtotal,
+      subtotal: subtotal_pipe.transform(this.precio_total),
       costo_envio: this.precio_envio,
-      monto_total: total_pipe.transform(this.precio_subtotal, this.precio_envio),
+      monto_total: total_pipe.transform(this.precio_total, this.precio_envio),
       direccion_pedido: this.fb.group({
         direccion: ['', [Validators.required]],
         provincia: ['', [Validators.required]],

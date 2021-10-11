@@ -37,17 +37,19 @@
                         currency:'CRC':'symbol-narrow' }}</span>
                 </li>
             </ul>
-            <ul class="list-unstyled mb-4 bg-light rounder p-3">
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong>
-                        Subtotal </strong><strong>{{precio_subtotal | currency:'CRC':'symbol-narrow'}}</strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong>Costos de
+            <ul class="list-unstyled mb-4">
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">
+                        Subtotal </strong><strong>{{precio_total | precioSubtotal |
+                        currency:'CRC':'symbol-narrow'}}</strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Costos de
                         envío</strong><strong>{{precio_envio | currency:'CRC':'symbol-narrow'}}</strong>
                 </li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong>Impuesto</strong><strong> {{precio_subtotal | precioImpuesto: precio_envio |
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong
+                        class="text-muted">Impuesto</strong><strong> {{precio_total | precioImpuesto |
                         currency:'CRC':'symbol-narrow'}}
                     </strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong>Total</strong>
-                    <h5 class="font-weight-bold">{{precio_subtotal | precioTotal: precio_envio |
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                    <h5 class="font-weight-bold">{{precio_total | precioTotal: precio_envio |
                         currency:'CRC':'symbol-narrow'}}</h5>
                 </li>
             </ul>
@@ -55,12 +57,12 @@
         <div class="col-md-7 col-lg-8" *ngIf="sub_form_creado">
             <form [formGroup]="checkout_form">
                 <app-checkout-direccion *ngIf="pagina_actual == 1" (mensaje_padre)="recibir_mensaje($event)"
-                [enviado] ="enviado" (misma_direccion_evento) ="cambiar_direccion($event)">
+                    [enviado]="enviado" (misma_direccion_evento)="cambiar_direccion($event)">
                 </app-checkout-direccion>
             </form>
             <form [formGroup]="pago_form">
                 <app-checkout-pago *ngIf="pagina_actual == 2" (mensaje_padre)="recibir_mensaje($event)"
-                [enviado]="enviado" [misma_direccion] ="misma_direccion" [cargando]="cargando">
+                    [enviado]="enviado" [misma_direccion]="misma_direccion" [cargando]="cargando">
                 </app-checkout-pago>
             </form>
         </div>

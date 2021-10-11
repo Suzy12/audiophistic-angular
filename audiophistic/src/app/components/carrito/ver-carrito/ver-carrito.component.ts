@@ -11,7 +11,7 @@ import { CarritoService } from 'src/app/services/carrito/carrito/carrito.service
 export class VerCarritoComponent implements OnInit {
 
   carrito: any = {}
-  precio_subtotal: number = 0;
+  precio_total: number = 0;
   precio_envio: number = 2500;
 
   constructor(private carrito_service: CarritoService, private toastr: ToastrService,
@@ -24,7 +24,7 @@ export class VerCarritoComponent implements OnInit {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.carrito = res.body.resultado
-          this.precio_subtotal = this.carrito_local_service.precio_total
+          this.precio_total = this.carrito_local_service.precio_total
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });

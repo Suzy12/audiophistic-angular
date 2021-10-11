@@ -100,18 +100,17 @@
                     ingresados.</p>
                 <ul class="list-unstyled mb-4">
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">
-                            Subtotal </strong><strong>{{precio_subtotal | currency:'CRC':'symbol-narrow'}}</strong></li>
+                            Subtotal </strong><strong>{{precio_total | precioSubtotal | currency:'CRC':'symbol-narrow'}}</strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Costos de
                             envío</strong><strong>{{precio_envio | currency:'CRC':'symbol-narrow'}}</strong>
                     </li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                            class="text-muted">Impuesto</strong><strong> {{precio_subtotal | precioImpuesto:
-                            precio_envio |
+                            class="text-muted">Impuesto</strong><strong> {{precio_total | precioImpuesto |
                             currency:'CRC':'symbol-narrow'}}
                         </strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong
                             class="text-muted">Total</strong>
-                        <h5 class="font-weight-bold">{{precio_subtotal | precioTotal: precio_envio |
+                        <h5 class="font-weight-bold">{{precio_total | precioTotal: precio_envio |
                             currency:'CRC':'symbol-narrow'}}</h5>
                     </li>
                 </ul>

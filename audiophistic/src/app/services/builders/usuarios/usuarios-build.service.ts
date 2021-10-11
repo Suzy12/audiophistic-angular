@@ -7,25 +7,25 @@ import { Usuario_Creador_de_Contenido } from 'src/app/models/Usuarios/usuario_cr
 @Injectable({
   providedIn: 'root'
 })
-export class UsuariosBuildService {
+export class UsuariosBuilderService {
 
   constructor(private fb: FormBuilder) { }
 
   construir_form_usuario(rol: string, usuario_obj: any): FormGroup {
     let sub_form: FormGroup = {} as FormGroup;
-    let usuario: UsuariosBuild;
+    let usuario: UsuariosBuilder;
 
     switch (rol) {
       case '1':
-        usuario = new UsuariosAdministradorBuild(this.fb);
+        usuario = new UsuariosAdministradorBuilder(this.fb);
         sub_form = usuario.construir_form_usuario(usuario_obj, sub_form, this.fb)
         break;
       case '2':
-        usuario = new UsuariosCreadorContenidoBuild(this.fb);
+        usuario = new UsuariosCreadorContenidoBuilder(this.fb);
         sub_form = usuario.construir_form_usuario(usuario_obj, sub_form, this.fb)
         break;
       case '3':
-        usuario = new UsuariosConsumidorBuild(this.fb);
+        usuario = new UsuariosConsumidorBuilder(this.fb);
         sub_form = usuario.construir_form_usuario(usuario_obj, sub_form, this.fb)
         break;
       default:
@@ -36,7 +36,7 @@ export class UsuariosBuildService {
   }
 }
 
-abstract class UsuariosBuild {
+abstract class UsuariosBuilder {
   constructor(private fb: FormBuilder) { }
 
   construir_form_usuario(usuario_obj: any, sub_form: FormGroup, fb: FormBuilder): FormGroup {
@@ -45,7 +45,7 @@ abstract class UsuariosBuild {
 
 }
 
-export class UsuariosConsumidorBuild extends UsuariosBuild {
+export class UsuariosConsumidorBuilder extends UsuariosBuilder {
 
   construir_form_usuario(usuario_obj: any, sub_form: FormGroup, fb: FormBuilder): FormGroup {
     usuario_obj = usuario_obj as Usuario_Consumidor
@@ -59,7 +59,7 @@ export class UsuariosConsumidorBuild extends UsuariosBuild {
     return sub_form;
   }
 }
-export class UsuariosCreadorContenidoBuild extends UsuariosBuild {
+export class UsuariosCreadorContenidoBuilder extends UsuariosBuilder {
 
   construir_form_usuario(usuario_obj: any, sub_form: FormGroup, fb: FormBuilder): FormGroup {
     usuario_obj = usuario_obj as Usuario_Creador_de_Contenido
@@ -77,7 +77,7 @@ export class UsuariosCreadorContenidoBuild extends UsuariosBuild {
   }
 }
 
-export class UsuariosAdministradorBuild extends UsuariosBuild {
+export class UsuariosAdministradorBuilder extends UsuariosBuilder {
 
   construir_form_usuario(usuario_obj: any, sub_form: FormGroup, fb: FormBuilder): FormGroup {
     usuario_obj = usuario_obj as Usuario_Administrador

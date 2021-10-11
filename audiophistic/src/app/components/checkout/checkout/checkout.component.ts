@@ -137,9 +137,6 @@ export class CheckoutComponent implements OnInit {
       pago_info.comprobante = 'Tarjeta';
     }
 
-    console.log(checkout_info)
-    console.log(pago_info)
-
     this.enviado = true;
     this.cargando = true;
 
@@ -162,7 +159,6 @@ export class CheckoutComponent implements OnInit {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
           this.cargando = false;
         } else {
-          console.log(res.body.resultado);
           pago_info.id_pedido = res.body.resultado;
           this.checkout_service.realizar_pago(pago_info).subscribe(
             (res: any) => {

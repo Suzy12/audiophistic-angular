@@ -23,7 +23,6 @@ export class VerCarritoComponent implements OnInit {
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
-          console.log(res.body.resultado)
           this.carrito = res.body.resultado
           this.precio_subtotal = this.carrito_local_service.precio_total
         }

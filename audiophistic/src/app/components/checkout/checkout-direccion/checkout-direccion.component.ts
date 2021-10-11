@@ -39,10 +39,9 @@ export class CheckoutDireccionComponent implements OnInit {
       if (res.body.resultado) {
         let info = res.body.resultado;
         this.usuario = info;
-        console.log(this.usuario)
         this.form_direccion.nombre_consumidor.setValue(this.usuario.nombre)
-        this.form_direccion.telefono.setValue(this.usuario.caracteristicas.celular || '')
-        this.form_direccion.direccion.setValue(this.usuario.caracteristicas.direccion_exacta || '')
+        if (this.usuario.caracteristicas.celular) this.form_direccion.telefono.setValue(this.usuario.caracteristicas.celular)
+        if (this.usuario.caracteristicas.direccion_exacta) this.form_direccion.direccion.setValue(this.usuario.caracteristicas.direccion_exacta)
         if (this.usuario.caracteristicas.provincia) {
           this.provincia = this.usuario.caracteristicas.provincia;
           this.canton = this.usuario.caracteristicas.canton;

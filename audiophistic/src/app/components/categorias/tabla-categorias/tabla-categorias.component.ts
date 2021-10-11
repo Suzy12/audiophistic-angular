@@ -34,7 +34,7 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
 
   private iniciar_tabla() {
     this.dtOptions = {
-      language: Idioma.spanish_datatables,
+      language: Idioma.espanol_tablas,
       pagingType: 'full_numbers',
       scrollX: true,
       pageLength: 10,

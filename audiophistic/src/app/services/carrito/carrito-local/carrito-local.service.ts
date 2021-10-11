@@ -24,7 +24,6 @@ export class CarritoLocalService {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.carrito_resumen = res.body.resultado;
-          console.log(this.carrito_resumen)
           this.calcular_precio_total_carrito()
           this.carrito_cambios()
         }
@@ -53,14 +52,12 @@ export class CarritoLocalService {
   }
 
   cambiar_cantidad_carrito(producto_info: any) {
-    console.log(this.carrito_resumen)
     this.carrito_service.cambiar_cantidad_del_carrito(producto_info).subscribe(
       (res: any) => {
         this.toastr.clear();
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
-          console.log(res.body.resultado)
           this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
           let idx = this.carrito_resumen.items.findIndex((producto: any) => producto.id_producto == producto_info.id_producto && producto.id_estilo == producto_info.id_estilo)
           this.carrito_resumen.items[idx].cantidad = producto_info.cantidad;

@@ -44,7 +44,6 @@ export class CheckoutPagoComponent implements OnInit {
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
-          console.log(res.body.resultado);
           this.tipos_pago = res.body.resultado;
         }
       }, (error) => {

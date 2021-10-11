@@ -87,7 +87,6 @@ export class VerProductoComponent implements OnInit {
         } else {
           this.nombre_estilo = nombre_estilo;
           this.estilos = res.body.resultado;
-          console.log(this.estilos)
           this.cambiar_atributos(this.estilos[0])
         }
       }, (error) => {

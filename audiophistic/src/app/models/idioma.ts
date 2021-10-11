@@ -1,5 +1,5 @@
 export class Idioma {
-    public static spanish_datatables = {
+    public static espanol_tablas = {
         processing: "Procesando...",
         search: "Buscar:",
         lengthMenu: "Mostrar _MENU_ elementos",

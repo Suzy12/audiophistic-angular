@@ -22,7 +22,7 @@ export class ProductCardsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ver_producto(){
+  ver_producto() {
     this.router.navigate(['/ver-producto', this.producto.id_producto]);
   }
 

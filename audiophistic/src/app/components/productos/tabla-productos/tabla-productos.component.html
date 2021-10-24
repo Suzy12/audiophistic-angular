@@ -21,10 +21,10 @@
                         <td>{{ producto.nombre_creador }}</td>
                         <td>{{ producto.caracteristicas.nombre_tipo }}</td>
                         <td>
-                            <a class="btn btn-outline-info m-1" (click)="ver_producto(producto.id_producto)"><i class="fas fa-eye"></i></a>
+                            <button class="btn btn-outline-info m-1" (click)="ver_producto(producto.id_producto)"><i class="fas fa-eye"></i></button>
                             <a *ngIf="rol == '2'" class="btn btn-outline-success m-1"  [routerLink]="['/inicio/modificar-producto']" [state]="{ id: producto.id_producto}"><i class="fas fa-pen"></i></a>
                             <a *ngIf="rol == '2'" class="btn btn-outline-secondary m-1"  [routerLink]="['/inicio/modificar-cantidad-producto']" [state]="{ id: producto.id_producto}"><i class="fas fa-boxes"></i></a>
-                            <a class="btn btn-outline-danger m-1" (click)="abrir_modal_eliminar(producto.id_producto, producto.titulo)"><i class="fas fa-trash"></i></a>
+                            <button class="btn btn-outline-danger m-1" (click)="abrir_modal_eliminar(producto.id_producto, producto.titulo)"><i class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>

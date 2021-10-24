@@ -27,6 +27,11 @@ import { CarritoResumenComponent } from './components/carrito/carrito-resumen/ca
 import { AudifonosComponent } from './components/busqueda/audifonos/audifonos.component';
 import { ParlantesComponent } from './components/busqueda/parlantes/parlantes.component';
 import { AlbumesComponent } from './components/busqueda/albumes/albumes.component';
+import { TablaBlogsComponent } from './components/blogs/tabla-blogs/tabla-blogs.component';
+import { CrearBlogComponent } from './components/blogs/crear-blog/crear-blog.component';
+import { VerBlogComponent } from './components/blogs/ver-blog/ver-blog.component';
+import { ModificarBlogComponent } from './components/blogs/modificar-blog/modificar-blog.component';
+import { BusquedaGeneralComponent } from './components/busqueda/busqueda-general/busqueda-general.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -47,16 +52,21 @@ const routes: Routes = [
       { path: 'ver-usuario-consumidor/:id', component: VerUsuarioConsumidorComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'categorias', component: TablaCategoriasComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'crear-categoria', component: CrearCategoriaComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
+      { path: 'blogs', component: TablaBlogsComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'} },
+      { path: 'crear-blog', component: CrearBlogComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'} },
+      { path: 'modificar-blog', component: ModificarBlogComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: '**', pathMatch: "full", redirectTo: 'dashboard' }
     ]
   },
   { path: 'checkout', component: CheckoutComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["3"], redirectTo: '#', rol_almacenado: 'rol'} },
   { path: 'carrito', component: VerCarritoComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["3"], redirectTo: '#', rol_almacenado: 'rol'}},
   { path: 'cuenta', component: CuentaActivadaComponent},
+  { path: 'buscar', component: BusquedaGeneralComponent},
   { path: 'audifonos', component: AudifonosComponent },
   { path: 'parlantes', component: ParlantesComponent },
   { path: 'albumes', component: AlbumesComponent },
   { path: 'ver-producto/:id', component: VerProductoComponent },
+  { path: 'ver-blog/:id', component: VerBlogComponent },
   { path: 'ver-usuario-creador-contenido/:id', component: VerUsuarioCreadorContenidoComponent },
   { path: '**', pathMatch: "full", redirectTo: 'home' }
 

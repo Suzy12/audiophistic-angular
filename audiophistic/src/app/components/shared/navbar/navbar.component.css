@@ -16,7 +16,7 @@
     color: var(--texto_navbar);
 }
 
-.nav-item a:hover, button:hover, .boton:hover {
+.nav-item a:hover, button:hover, .boton:hover, .nav-item a:focus {
     color: var(--hover_navbar);
 }
 

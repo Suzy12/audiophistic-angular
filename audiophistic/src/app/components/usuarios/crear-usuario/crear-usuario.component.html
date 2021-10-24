@@ -1,21 +1,21 @@
 <div class="container">
     <div id="stepper1" class="bs-stepper">
         <div class="bs-stepper-header">
-            <div class="step" data-target="#test-l-1">
+            <div class="step" data-target="#primer_paso">
                 <button class="step-trigger">
                     <span class="bs-stepper-circle"><i class="fas fa-user"></i></span>
                     <span class="bs-stepper-label">Tipo de Usuario</span>
                 </button>
             </div>
             <div class="line"></div>
-            <div class="step" data-target="#test-l-2">
+            <div class="step" data-target="#segundo_paso">
                 <button class="step-trigger">
                     <span class="bs-stepper-circle"><i class="fas fa-info"></i></span>
                     <span class="bs-stepper-label">Información General</span>
                 </button>
             </div>
             <div class="line"></div>
-            <div class="step" data-target="#test-l-3">
+            <div class="step" data-target="#tercer_paso">
                 <button class="step-trigger">
                     <span class="bs-stepper-circle"><i class="fas fa-map-marker-alt"></i></span>
                     <span class="bs-stepper-label">Ubicación</span>
@@ -24,7 +24,7 @@
         </div>
         <div class="bs-stepper-content">
             <form [formGroup]="usuario_form">
-                <div id="test-l-1" class="content">
+                <div id="primer_paso" class="content">
                     <hr>
                     <div class="form-group" formGroupName="caracteristicas">
                         <label for="tipo"><i class="fas fa-user"></i> Tipo de Usuario</label>
@@ -38,7 +38,7 @@
                         <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>
                     </div>
                 </div>
-                <div id="test-l-2" class="content">
+                <div id="segundo_paso" class="content">
                     <hr>
                     <app-creador-contenido-form [formGroup]="usuario_form" [enviado]="enviado"></app-creador-contenido-form>
                     <div class="botones_navegacion">
@@ -46,7 +46,7 @@
                         <a (click)="siguiente()" class="btn btn-primary">Siguiente</a>
                     </div>
                 </div>
-                <div id="test-l-3" class="content">
+                <div id="tercer_paso" class="content">
                     <div class="form-group" formGroupName="caracteristicas">
                         <label for="provincia"><i class="fas fa-map-marker"></i>Provincia</label>
                         <select class="form-select form-control" id="provincia"

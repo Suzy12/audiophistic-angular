@@ -27,13 +27,7 @@
                 <div class="col-md-6">
                     <h3 class="titulo">{{producto.titulo}}</h3>
                     <div class="calificacion d-flex justify-content-start">
-                        <div class="stars">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                        </div>
+                        <app-estrellas [calificacion]="4"></app-estrellas>
                         <span class="ps-2 review-no text-muted">(41)</span>
                     </div>
                     <h4 class="precio"><strong>{{precio | currency:'CRC':'symbol-narrow'}}</strong></h4>
@@ -67,15 +61,16 @@
                         </div>
                     </form>
 
-                    <div class="container mt-4" *ngIf="existencia_estilo_seleccionado != -1 && existencia_estilo_seleccionado != 0">
+                    <div class="container mt-4"
+                        *ngIf="existencia_estilo_seleccionado != -1 && existencia_estilo_seleccionado != 0">
                         <div class="form-check-inline">
-                            <button class="btn" (click)="agregar()"><i class="fa fa-plus"></i></button>
+                            <button class="btn" (click)="quitar()"><i class="fa fa-minus"></i></button>
                         </div>
                         <div class="form-check-inline w-25">
                             <input type="text" class="form-control" [(ngModel)]="cantidad" disabled>
                         </div>
                         <div class="form-check-inline">
-                            <button class="btn" (click)="quitar()"><i class="fa fa-minus"></i></button>
+                            <button class="btn" (click)="agregar()"><i class="fa fa-plus"></i></button>
                         </div>
                     </div>
                     <div class="container mt-4" *ngIf="existencia_estilo_seleccionado == 0">
@@ -83,17 +78,18 @@
                             El producto está agotado
                         </div>
                     </div>
-                    
+
 
                     <div class="accion d-flex justify-content-start mt-3">
                         <button class="form_btn btn btn-default carrito" type="button" (click)="agregar_producto()">
                             <span class="fas fa-shopping-cart d-sm-block d-md-none"></span>
                             <span class="d-none d-md-block">Añadir al carrito </span></button>
-                        <button class="form_btn btn btn-default compartir" type="button"><span
+                        <button class="form_btn btn btn-default compartir" (click)="abrir_modal_eliminar('')" type="button"><span
                                 class="fas fa-share-alt"></span></button>
                     </div>
                     <div class="autor mt-2" style="cursor: pointer;">
-                        <a (click)="ver_creador(producto.id_creador)">Por: <span class="text-danger">{{producto.nombre_creador}}</span></a>
+                        <button (click)="ver_creador(producto.id_creador)" class="btn">Por: <span
+                                class="text-danger">{{producto.nombre_creador}}</span></button>
                     </div>
                 </div>
             </div>
@@ -126,5 +122,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div>
+        <app-calificacion-productos></app-calificacion-productos>
+        <app-comentarios></app-comentarios>
     </div>
 </div>

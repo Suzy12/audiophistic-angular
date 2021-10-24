@@ -1,7 +1,7 @@
 <div class="container">
     <div id="stepper_categoria" class="bs-stepper">
         <div class="bs-stepper-header">
-            <div class="step" data-target="#test-l-1">
+            <div class="step" data-target="#primer_paso">
                 <button class="step-trigger">
                     <span class="bs-stepper-circle"><i class="fas fa-info"></i></span>
                     <span class="bs-stepper-label">Información General</span>
@@ -11,7 +11,7 @@
         </div>
         <div class="bs-stepper-content">
             <form [formGroup]="categoria_form">
-                <div id="test-l-1" class="content">
+                <div id="primer_paso" class="content">
                     <div class="form-group">
                         <label for="nombre"><i class="fas fa-user"></i>Nombre</label>
                         <input type="text" placeholder="Nombre" name="nombre" formControlName="nombre"

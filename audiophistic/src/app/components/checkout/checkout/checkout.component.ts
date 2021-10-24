@@ -178,6 +178,7 @@ export class CheckoutComponent implements OnInit {
               } else {
                 this.toastr.success(res.body.resultado, 'Pedido Completado', { timeOut: 2000 });
                 this.cargando = false;
+                this.carrito_local_service.consultar_carrito_resumen();
                 this.router.navigate(['/carrito']);
               }
             }, (error) => {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Producto } from 'src/app/models/Productos/productos';
 import { Producto_Albumes } from 'src/app/models/Productos/producto_albumes';
@@ -9,6 +10,7 @@ import { CarritoLocalService } from 'src/app/services/carrito/carrito-local/carr
 import { CarritoService } from 'src/app/services/carrito/carrito/carrito.service';
 import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
+import { CompartirComponent } from '../../modals/compartir/compartir.component';
 
 @Component({
   selector: 'app-ver-producto',
@@ -45,6 +47,7 @@ export class VerProductoComponent implements OnInit {
     private estilos_service: EstilosService, private especificaciones_service: EspecificacionesProductoService,
     private acceso_service: AccesoService, private carrito_service: CarritoService,
     private carrito_local_service: CarritoLocalService,
+    private modal_service: NgbModal,
     private router: Router) {
     this.ruta_activated.params.subscribe(params => {
       this.productos_service.consultar_un_producto(params['id']).subscribe((res: any) => {
@@ -147,6 +150,24 @@ export class VerProductoComponent implements OnInit {
 
   ver_creador(id_usuario: any) {
     this.router.navigate(['/ver-usuario-creador-contenido', id_usuario]);
+  }
+
+  abrir_modal_eliminar(enlace_producto: string) {
+    const modalRef = this.modal_service.open(CompartirComponent, 
+      {
+        scrollable: true,
+        windowClass: 'custom_modal',
+      });
+
+    let datos = {
+      compartir: 'producto',
+      enlace: enlace_producto
+    }
+
+    modalRef.componentInstance.datos_compartir = datos;
+    modalRef.result.then((result) => {
+    }, (reason) => {
+    });
   }
 
 }

@@ -1,5 +1,5 @@
-<div class="card h-100" (click)="ver_producto()">
-    <div class="card-header bg-white d-flex justify-content-center align-items-center border-0" >
+<button class="btn card h-100 w-100 d-flex justify-content-center align-items-center border-0" (click)="ver_producto()">
+    <div class="card-header bg-white border-0">
         <img class="card-img" [src]="producto.imagen" style="height: 150px; width: auto;" [alt]="producto.titulo">
     </div>
     <div class="card-body text-center">
@@ -9,7 +9,8 @@
                 </a> </h6> <a class="text-muted" data-abc="true">{{producto.caracteristicas.nombre_tipo}}</a>
         </div>
         <h5 class="mb-0 font-weight-semibold">{{producto.precio | currency:'CRC':'symbol-narrow'}}</h5>
-        <div> <i class="fa fa-star estrella"></i> <i class="fa fa-star estrella"></i> <i class="fa fa-star estrella"></i> <i
-                class="fa fa-star estrella"></i> </div>
+        <div>
+            <app-estrellas [calificacion]="4"></app-estrellas>
+        </div>
     </div>
-</div>
+</button>

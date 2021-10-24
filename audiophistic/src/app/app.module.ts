@@ -58,6 +58,17 @@ import { PrecioCantidadPipe } from './pipes/carrito/cantidad/precio-cantidad.pip
 import { PrecioImpuestoPipe } from './pipes/carrito/impuesto/precio-impuesto.pipe';
 import { PrecioTotalPipe } from './pipes/carrito/total/precio-total.pipe';
 import { PrecioSubtotalPipe } from './pipes/carrito/subtotal/precio-subtotal.pipe';
+import { VerBlogComponent } from './components/blogs/ver-blog/ver-blog.component';
+import { TablaBlogsComponent } from './components/blogs/tabla-blogs/tabla-blogs.component';
+import { CrearBlogComponent } from './components/blogs/crear-blog/crear-blog.component';
+import { ModificarBlogComponent } from './components/blogs/modificar-blog/modificar-blog.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { BusquedaGeneralComponent } from './components/busqueda/busqueda-general/busqueda-general.component';
+import { ComentariosComponent } from './components/comunidad/comentarios/comentarios.component';
+import { CalificacionBlogsComponent } from './components/comunidad/calificacion-blogs/calificacion-blogs.component';
+import { CalificacionProductosComponent } from './components/comunidad/calificacion-productos/calificacion-productos.component';
+import { EstrellasComponent } from './components/shared/estrellas/estrellas.component';
+import { CompartirComponent } from './components/modals/compartir/compartir.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +118,17 @@ import { PrecioSubtotalPipe } from './pipes/carrito/subtotal/precio-subtotal.pip
     PrecioCantidadPipe,
     PrecioImpuestoPipe,
     PrecioTotalPipe,
-    PrecioSubtotalPipe
+    PrecioSubtotalPipe,
+    VerBlogComponent,
+    TablaBlogsComponent,
+    CrearBlogComponent,
+    ModificarBlogComponent,
+    BusquedaGeneralComponent,
+    ComentariosComponent,
+    CalificacionBlogsComponent,
+    CalificacionProductosComponent,
+    EstrellasComponent,
+    CompartirComponent,
   ],
   imports: [
     BrowserModule,
@@ -118,6 +139,7 @@ import { PrecioSubtotalPipe } from './pipes/carrito/subtotal/precio-subtotal.pip
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularEditorModule,
     ToastrModule.forRoot()
   ],
   providers: [CurrencyPipe],

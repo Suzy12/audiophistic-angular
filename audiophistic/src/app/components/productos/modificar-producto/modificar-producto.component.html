@@ -1,14 +1,14 @@
 <div class="container">
     <div id="stepper1" class="bs-stepper">
         <div class="bs-stepper-header">
-            <div class="step" data-target="#test-l-2">
+            <div class="step" data-target="#segundo_paso">
                 <button class="step-trigger">
                     <span class="bs-stepper-circle"><i class="fas fa-info"></i></span>
                     <span class="bs-stepper-label">Información General</span>
                 </button>
             </div>
             <div class="line"></div>
-            <div class="step" data-target="#test-l-3">
+            <div class="step" data-target="#tercer_paso">
                 <button class="step-trigger">
                     <span class="bs-stepper-circle"><i class="fas fa-magic"></i></span>
                     <span class="bs-stepper-label">Estilos</span>
@@ -17,7 +17,7 @@
         </div>
         <div class="bs-stepper-content">
             <form [formGroup]="producto_form">
-                <div id="test-l-2" class="content">
+                <div id="segundo_paso" class="content">
                     <div *ngIf="sub_form_creado">
                         <hr>
                         <app-albumes-form *ngIf="tipo_producto == 1" [enviado]="enviado" [modificar]="modificar">
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="test-l-3" class="content">
+                <div id="tercer_paso" class="content">
                     <div *ngIf="sub_form_creado">
                         <app-sin-estilos *ngIf="estilo=='sin_estilo'" [enviado]="enviado" [modificar]="modificar">
                         </app-sin-estilos>

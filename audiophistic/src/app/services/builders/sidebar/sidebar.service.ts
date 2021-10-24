@@ -49,7 +49,7 @@ export class SidebarService {
     {
       titulo: 'Blogs',
       icono: 'far fa-file-alt',
-      ruta: '',
+      ruta: 'inicio/blogs',
       rol: ["1","2"]
     },
     

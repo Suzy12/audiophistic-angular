@@ -2,8 +2,8 @@
 
 :root {
     --rojizo: #C55420;
-    --rojiizo_opacidad: 223, 118, 71;
-    --gris_oscuro: #5A6978;
+    --rojizo_opacidad: rgba(223, 118, 71, 0.1);
+    --gris_oscuro: #62666b;
     --gris_claro: rgba(184, 151, 126, 0.08);
     --fondo_navbar: linear-gradient(to right, rgba(15, 119, 210, 1), rgba(15, 119, 210, 1));
     --azul: rgba(15, 119, 210, 1);

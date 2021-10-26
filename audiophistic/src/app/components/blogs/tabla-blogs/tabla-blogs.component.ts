@@ -5,29 +5,30 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { Idioma } from 'src/app/models/idioma';
-import { ProductosService } from 'src/app/services/productos/productos.service';
+import { BlogsService } from 'src/app/services/blogs/blogs.service';
+import { convertCompilerOptionsFromJson } from 'typescript';
 import { EliminarModalComponent } from '../../modals/eliminar-modal/eliminar-modal.component';
 
 @Component({
   selector: 'app-tabla-blogs',
   templateUrl: './tabla-blogs.component.html',
-  styleUrls: ['./tabla-blogs.component.css']
+  styleUrls: ['../../../../animaciones.css','./tabla-blogs.component.css']
 })
 export class TablaBlogsComponent implements OnInit, OnDestroy {
 
   dtOptions: DataTables.Settings = {};
 
-  productos: any[] = [];
-  dtTrigger: Subject < any > = new Subject<any>();
+  blogs: any[] = [];
+  trigger_tabla: Subject < any > = new Subject<any>();
   rol: string = ''
 
-  constructor(private http: HttpClient, private productos_service: ProductosService,
+  constructor(private http: HttpClient, private blogs_service:BlogsService,
     private modal_service: NgbModal, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
     this.rol = localStorage.getItem('rol') as string
-      this.iniciar_tabla();
-    this.consultar_productos();
+    this.iniciar_tabla();
+    this.consultar_blogs();
   }
   
     private iniciar_tabla() {
@@ -42,28 +43,28 @@ export class TablaBlogsComponent implements OnInit, OnDestroy {
   }
 
 
-    /* =========== VER PRODUCTOS =============== */
+    /* =========== VER blogs =============== */
   
-    private consultar_productos() {
+    private consultar_blogs() {
     let rol = localStorage.getItem("rol");
     switch (rol) {
       case "2":
-        this.consultar_productos_creador(rol)
+        this.consultar_blogs_creador()
         break;
       default:
-        this.consultar_todos_productos()
+        this.consultar_todos_blogs()
     }
 
   }
   
-    private consultar_todos_productos() {
-    this.productos_service.consultar_productos().subscribe(
+    private consultar_todos_blogs() {
+    this.blogs_service.consultar_blogs_admin().subscribe(
       (res: any) => {
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
-          this.productos = res.body.resultado;
-          this.dtTrigger.next();
+          this.blogs = res.body.resultado;
+          this.trigger_tabla.next();
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
@@ -71,14 +72,15 @@ export class TablaBlogsComponent implements OnInit, OnDestroy {
     );
   }
   
-    private consultar_productos_creador(rol: string) {
-    this.productos_service.consultar_mis_productos().subscribe(
+  private consultar_blogs_creador() {
+    this.blogs_service.consultar_mis_blogs().subscribe(
       (res: any) => {
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
-          this.productos = res.body.resultado;
-          this.dtTrigger.next();
+          this.blogs = res.body.resultado;
+          console.log(this.blogs)
+          this.trigger_tabla.next();
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
@@ -86,21 +88,21 @@ export class TablaBlogsComponent implements OnInit, OnDestroy {
     );
   }
 
-  ver_producto(id_producto: any) {
-    this.router.navigate(['/ver-blog', id_producto]);
+  ver_blog(id_blog: any) {
+    this.router.navigate(['/ver-blog', id_blog]);
   }
 
 
-  /* ============= MODIFICAR PRODUCTO =============== */
+  /* ============= MODIFICAR BLOG =============== */
 
-  modificar_producto(id_producto: any) {
-    this.router.navigate(['/inicio/modificar-producto', { state: { id: id_producto } }]);
+  modificar_blog(id_blog: any) {
+    this.router.navigate(['/inicio/modificar-blog', { state: { id: id_blog } }]);
   }
 
-  /* ============= ELIMINAR PRODUCTO =============== */
+  /* ============= ELIMINAR BLOG =============== */
 
   abrir_modal_eliminar(id_blog: number, titulo_blog: string) {
-    const modalRef = this.modal_service.open(EliminarModalComponent,
+    const modal_ref = this.modal_service.open(EliminarModalComponent,
       {
         scrollable: true,
         windowClass: 'custom_modal',
@@ -112,15 +114,15 @@ export class TablaBlogsComponent implements OnInit, OnDestroy {
       id: id_blog,
     }
 
-    modalRef.componentInstance.datos_eliminar = datos;
-    modalRef.result.then((result) => {
+    modal_ref.componentInstance.datos_eliminar = datos;
+    modal_ref.result.then((result) => {
       window.location.reload();
     }, (reason) => {
     });
   }
 
   ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
+    this.trigger_tabla.unsubscribe();
   }
 
 }

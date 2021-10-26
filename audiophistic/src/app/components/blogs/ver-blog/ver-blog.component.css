@@ -1,116 +1,30 @@
-.bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-}
-
-@media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-    }
-}
-
-.blog-header {
-    line-height: 1;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.blog-header-logo {
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/
-    ;
-    font-size: 2.25rem;
-}
-
-.blog-header-logo:hover {
-    text-decoration: none;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Playfair Display", Georgia, "Times New Roman", serif/*rtl:Amiri, Georgia, "Times New Roman", serif*/
-    ;
-}
-
-.display-4 {
+.titulo_texto {
     font-size: 2.5rem;
 }
 
 @media (min-width: 768px) {
-    .display-4 {
+    .titulo_texto {
         font-size: 3rem;
     }
-}
-
-.nav-scroller {
-    position: relative;
-    z-index: 2;
-    height: 2.75rem;
-    overflow-y: hidden;
-}
-
-.nav-scroller .nav {
-    display: flex;
-    flex-wrap: nowrap;
-    padding-bottom: 1rem;
-    margin-top: -1px;
-    overflow-x: auto;
-    text-align: center;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-}
-
-.nav-scroller .nav-link {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: .875rem;
-}
-
-.card-img-right {
-    height: 100%;
-    border-radius: 0 3px 3px 0;
-}
-
-.flex-auto {
-    flex: 0 0 auto;
-}
-
-.h-250 {
-    height: 250px;
-}
-
-@media (min-width: 768px) {
-    .h-md-250 {
-        height: 250px;
-    }
-}
-
-/* Pagination */
-
-.blog-pagination {
-    margin-bottom: 4rem;
-}
-
-.blog-pagination>.btn {
-    border-radius: 2rem;
 }
 
 /*
    * Blog posts
    */
 
-.blog-post {
+.blog_articulo {
     margin-bottom: 3rem;
 }
 
-.blog-post-title {
-    margin-bottom: .25rem;
-    font-size: 2.5rem;
-}
-
-.blog-post-meta {
+.blog_articulo_autor {
     margin-bottom: 1.25rem;
     color: #727272;
+}
+
+.grid_contenedor_productos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 2em;
 }
 
 /*
@@ -145,5 +59,13 @@ h1, h2, h3, h4, h5, h6 {
 @media screen and (max-width: 576px) {
     .etiquetas {
         display: list-item;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .grid_contenedor_productos {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 1em;
     }
 }

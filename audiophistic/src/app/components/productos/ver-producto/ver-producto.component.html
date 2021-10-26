@@ -84,14 +84,18 @@
                         <button class="form_btn btn btn-default carrito" type="button" (click)="agregar_producto()">
                             <span class="fas fa-shopping-cart d-sm-block d-md-none"></span>
                             <span class="d-none d-md-block">Añadir al carrito </span></button>
-                        <button class="form_btn btn btn-default compartir" (click)="abrir_modal_eliminar('')" type="button"><span
-                                class="fas fa-share-alt"></span></button>
+                        <button class="form_btn btn btn-default compartir" (click)="abrir_modal_compartir()"
+                            type="button"><span class="fas fa-share-alt"></span></button>
                     </div>
                     <div class="autor mt-2" style="cursor: pointer;">
                         <button (click)="ver_creador(producto.id_creador)" class="btn">Por: <span
                                 class="text-danger">{{producto.nombre_creador}}</span></button>
                     </div>
                 </div>
+            </div>
+            <div class="autor mt-2" style="cursor: pointer;" *ngIf="producto.id_blog">
+                <button (click)="ver_blog(producto.id_blog)" class="btn">Blog: <span
+                        class="text-danger">{{producto.nombre_blog}}</span></button>
             </div>
             <div class="wrapper row mt-3">
                 <ul class="nav nav-tabs" id="" role="tablist">

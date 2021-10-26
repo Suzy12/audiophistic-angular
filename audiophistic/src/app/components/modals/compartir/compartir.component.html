@@ -12,9 +12,10 @@
                 Compartir
             </h4>
         </div>
+        <hr>
         <div class="modal-body">
             <div class="input-group p-5">
-                <input type="text" class="form-control" value="Hello World" id="enlace">
+                <input type="text" class="form-control" [value]="datos_compartir.enlace" id="enlace">
                 <div class="input-group-append">
                     <button type="button" placement="top" ngbTooltip="Copiar al portapapeles"
                         class="input-group-text copiar" (click)="copiar_enlace()"> <i

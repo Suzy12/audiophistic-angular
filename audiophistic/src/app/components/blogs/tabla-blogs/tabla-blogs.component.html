@@ -7,7 +7,7 @@
         <a *ngIf="rol == '2'" type="button" class="btn btn-outline-primary" [routerLink]="['/inicio/crear-blog']"><i
                 class="fas fa-plus me-2"></i>Agregar Nuevo Blog</a>
         <div class="table-responsive mt-4">
-            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="trigger_tabla"
                 class="row-border hover table table-hover w-100">
                 <thead>
                     <tr>
@@ -17,27 +17,24 @@
                         <th>Acción</th>
                     </tr>
                 </thead>
-                <tbody *ngIf="productos?.length != 0">
-                    <tr *ngFor="let producto of productos">
-                        <td>{{ producto.titulo }}</td>
-                        <td>{{ producto.nombre_creador }}</td>
-                        <td>{{ producto.caracteristicas.nombre_tipo }}</td>
+                <tbody *ngIf="blogs?.length != 0">
+                    <tr *ngFor="let blog of blogs">
+                        <td>{{ blog.titulo }}</td>
+                        <td>{{ blog.fecha_creacion | date: 'dd/MM/yyyy' }}</td>
+                        <td>{{ blog.categoria }}</td>
                         <td>
-                            <button class="btn btn-outline-info m-1" (click)="ver_producto(producto.id_producto)"><i
+                            <button class="btn btn-outline-info m-1" (click)="ver_blog(blog.id_blog)"><i
                                     class="fas fa-eye"></i></button>
                             <a *ngIf="rol == '2'" class="btn btn-outline-success m-1"
-                                [routerLink]="['/inicio/modificar-producto']" [state]="{ id: producto.id_producto}"><i
+                                [routerLink]="['/inicio/modificar-blog']" [state]="{ id: blog.id_blog}"><i
                                     class="fas fa-pen"></i></a>
-                            <a *ngIf="rol == '2'" class="btn btn-outline-secondary m-1"
-                                [routerLink]="['/inicio/modificar-cantidad-producto']"
-                                [state]="{ id: producto.id_producto}"><i class="fas fa-boxes"></i></a>
                             <button class="btn btn-outline-danger m-1"
-                                (click)="abrir_modal_eliminar(producto.id_producto, producto.titulo)"><i
+                                (click)="abrir_modal_eliminar(blog.id_blog, blog.titulo)"><i
                                     class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>
-                <tbody *ngIf="productos?.length == 0">
+                <tbody *ngIf="blogs?.length == 0">
                     <tr>
                         <td colspan="3" class="no-data-available">¡No hay datos!</td>
                     </tr>

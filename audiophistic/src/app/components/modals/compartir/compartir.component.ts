@@ -15,7 +15,8 @@ export class CompartirComponent implements OnInit {
   constructor(
     public activo_modal: NgbActiveModal,
     private toastr: ToastrService
-  ) { }
+  ) { 
+  }
 
   ngOnInit() {
   }

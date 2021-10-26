@@ -1,0 +1,1 @@
+export var enlace_global = 'https://audiophistic1.web.app/';

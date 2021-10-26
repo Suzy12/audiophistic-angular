@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/models/Usuarios/usuario';
 import { Usuario_Creador_de_Contenido } from 'src/app/models/Usuarios/usuario_creador_contenido';
+import { BlogsService } from 'src/app/services/blogs/blogs.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 
@@ -13,16 +14,16 @@ import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 })
 export class VerUsuarioCreadorContenidoComponent implements OnInit {
 
-  slides = [0, 1, 2, 3, 4, 5];
-
   usuario: any = {
     caracteristicas: {}
   }
   caracteristicas: any = []
   productos: any = []
+  blogs: any = []
 
   constructor(private ruta_activated: ActivatedRoute, private usuarios_service: UsuariosService,
-    private toastr: ToastrService, private productos_service: ProductosService) {
+    private toastr: ToastrService, private productos_service: ProductosService,
+    private blogs_service: BlogsService) {
     this.ruta_activated.params.subscribe(params => {
       this.usuarios_service.consultar_usuario_creador_contenido(params['id']).subscribe(
         (res: any) => {
@@ -32,6 +33,7 @@ export class VerUsuarioCreadorContenidoComponent implements OnInit {
             this.usuario = res.body.resultado as Usuario
             this.crear_caracteristicas_usuario()
             this.consultar_productos()
+            this.consultar_blogs()
           }
         }, (error) => {
           this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
@@ -51,7 +53,17 @@ export class VerUsuarioCreadorContenidoComponent implements OnInit {
         this.productos = res.body.resultado
       }
     })
+  }
 
+  consultar_blogs() {
+    this.blogs_service.consultar_blogs_por_creador(this.usuario.id_usuario).subscribe((res: any) => {
+      if (res.body.error) {
+        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+      } else {
+        this.blogs = res.body.resultado
+        console.log(this.blogs)
+      }
+    })
   }
 
   crear_caracteristicas_usuario() {

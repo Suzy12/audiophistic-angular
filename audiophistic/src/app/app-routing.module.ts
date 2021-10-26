@@ -22,8 +22,6 @@ import { VerUsuarioCreadorContenidoComponent } from './components/usuarios/ver-u
 import { ModificarCantidadProductoComponent } from './components/productos/modificar-producto/modificar-cantidad-producto/modificar-cantidad-producto.component';
 import { VerCarritoComponent } from './components/carrito/ver-carrito/ver-carrito.component';
 import { CheckoutComponent } from './components/checkout/checkout/checkout.component';
-import { CheckoutPagoComponent } from './components/checkout/checkout-pago/checkout-pago.component';
-import { CarritoResumenComponent } from './components/carrito/carrito-resumen/carrito-resumen.component';
 import { AudifonosComponent } from './components/busqueda/audifonos/audifonos.component';
 import { ParlantesComponent } from './components/busqueda/parlantes/parlantes.component';
 import { AlbumesComponent } from './components/busqueda/albumes/albumes.component';
@@ -32,6 +30,7 @@ import { CrearBlogComponent } from './components/blogs/crear-blog/crear-blog.com
 import { VerBlogComponent } from './components/blogs/ver-blog/ver-blog.component';
 import { ModificarBlogComponent } from './components/blogs/modificar-blog/modificar-blog.component';
 import { BusquedaGeneralComponent } from './components/busqueda/busqueda-general/busqueda-general.component';
+import { BlogsComponent } from './components/busqueda/blogs/blogs.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -65,6 +64,7 @@ const routes: Routes = [
   { path: 'audifonos', component: AudifonosComponent },
   { path: 'parlantes', component: ParlantesComponent },
   { path: 'albumes', component: AlbumesComponent },
+  { path: 'blogs', component: BlogsComponent },
   { path: 'ver-producto/:id', component: VerProductoComponent },
   { path: 'ver-blog/:id', component: VerBlogComponent },
   { path: 'ver-usuario-creador-contenido/:id', component: VerUsuarioCreadorContenidoComponent },

@@ -16,6 +16,10 @@ export class CategoriasService {
     return this.http.get(this.api_url + '/categorias', { headers: this.headers, observe: 'response' })
   }
 
+  public consultar_categorias_publico = () => {
+    return this.http.get(this.api_url + '/categorias_publico', { headers: this.headers, observe: 'response' })
+  }
+
   public crear_una_categoria = (categoria_info: any) => {
     return this.http.post(this.api_url + '/crear_categoria', categoria_info, { headers: this.headers, observe: 'response' })
   }

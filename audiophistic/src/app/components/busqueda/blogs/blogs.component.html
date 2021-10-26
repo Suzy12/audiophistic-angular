@@ -1,0 +1,25 @@
+<div class="imagen">
+    <div style="background: url(https://images.unsplash.com/photo-1519337265831-281ec6cc8514?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80);"
+        class="bg_cobertura text-white">
+        <div class="container py-5 text-center texto">
+            <h1 class="display-4 font-weight-bold text-uppercase mt-5">Blogs</h1>
+            <div class="container descripcion">
+                <p class="font-italic mb-0">Adquiere nuevos conocimientos, vuélvete experto en un tema
+                    e infórmate sobre los productos que quieres comprar. Convierte los blogs en un medio de vida.</p>
+            </div>
+        </div>
+    </div>
+</div>
+Photo by <a
+    href="https://unsplash.com/@neonbrand?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">NeONBRAND</a>
+on <a
+    href="https://unsplash.com/s/photos/blog?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+
+
+<div class="container py-5">
+    <div class="grid_contenedor_productos mt-5">
+        <div *ngFor="let blog of blogs">
+            <app-blogs-cards [blog]="blog"></app-blogs-cards>
+        </div>
+    </div>
+</div>

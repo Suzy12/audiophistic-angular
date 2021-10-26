@@ -6,7 +6,7 @@
     <div class="card-body">
         <a *ngIf="rol == '2'" type="button" class="btn btn-outline-primary" [routerLink]="['/inicio/crear-producto']"><i class="fas fa-plus me-2"></i>Agregar Nuevo Producto</a>
         <div class="table-responsive mt-4">
-            <table datatable [dtOptions]="dtOptions"  [dtTrigger]="dtTrigger" class="row-border hover table table-hover w-100">
+            <table datatable [dtOptions]="dtOptions"  [dtTrigger]="trigger_tabla" class="row-border hover table table-hover w-100">
                 <thead>
                     <tr>
                         <th>Nombre</th>

@@ -245,7 +245,7 @@
         <div class="col-12 col-md-6">
             <div class="pt-3">
                 <button class="btn form_btn" (click)="pagar()" [disabled]="cargando">
-                    <i *ngIf="cargando" class="fas fa-sync fa-spin"></i>
+                    <span *ngIf="cargando" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Completar
                 </button>
             </div>

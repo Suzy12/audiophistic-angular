@@ -1,14 +1,15 @@
-<div class="card">
-    <img class="card-img" src="../../../../assets/img/listening_music.jpg" alt="Imagen Blog">
-    <div class="card-img-overlay">
-        <a href="#" class="btn btn-light btn-sm">Clásicos</a>
-    </div>
-    <div class="card-body">
-        <h4 class="card-title">Black Sabbath y el nacimiento del metal</h4>
-        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-    <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
-        <div class="views">Oct 20, 12:45PM
+<button class="card h-100 w-100 d-flex justify-content-center align-items-center"  (click)="ver_blog()">
+    <div class="card-header p-0 border-0">
+        <img class="card-img w-100" [src]="blog.imagen" style="height: 200px; width: auto;" [alt]="blog.titulo">
+        <div class="card-img-overlay text-start">
+            <a class="btn btn-light btn-sm">{{blog.nombre_categoria}}</a>
         </div>
     </div>
-</div>
+    <div class="card-body text-start">
+        <p class="text-muted small">
+            {{blog.fecha_creacion | date: 'mediumDate'}}
+        </p>
+        <span class="text-muted"> Por {{blog.nombre_creador}}</span>
+        <h4 class="card-title">{{blog.titulo}}</h4>
+    </div>
+</button>

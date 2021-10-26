@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { BlogsService } from 'src/app/services/blogs/blogs.service';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
@@ -20,7 +21,8 @@ export class EliminarModalComponent implements OnInit {
     private usuarios_service: UsuariosService,
     private productos_service: ProductosService,
     private toastr: ToastrService,
-    private categorias_service: CategoriasService
+    private categorias_service: CategoriasService,
+    private blogs_service: BlogsService
   ) { }
 
   ngOnInit() {
@@ -40,6 +42,9 @@ export class EliminarModalComponent implements OnInit {
         break;
       case "categoria":
         this.eliminar_categoria()
+        break;
+      case "blog":
+        this.eliminar_blog()
         break;
       default:
         break;
@@ -77,7 +82,22 @@ export class EliminarModalComponent implements OnInit {
         this.toastr.error("No tiene permisos para eliminar", 'Error', { timeOut: 5000 });
         break;
     }
+  }
 
+  private eliminar_blog() {
+    this.cargando = true;
+    let rol = localStorage.getItem("rol");
+    switch (rol) {
+      case "1":
+        this.eliminar_blog_administrador()
+        break;
+      case "2":
+        this.eliminar_blog_creador()
+        break;
+      default:
+        this.toastr.error("No tiene permisos para eliminar", 'Error', { timeOut: 5000 });
+        break;
+    }
   }
 
   private eliminar_producto_creador() {
@@ -99,6 +119,40 @@ export class EliminarModalComponent implements OnInit {
 
   private eliminar_producto_administrador() {
     this.productos_service.eliminar_un_producto(this.datos_eliminar.id).subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+          this.cargando = false;
+        } else {
+          this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+          this.cargando = false;
+          this.cerrar_modal()
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
+      }
+    );
+  }
+
+  private eliminar_blog_creador() {
+    this.blogs_service.eliminar_un_blog_creador(this.datos_eliminar.id).subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+          this.cargando = false;
+        } else {
+          this.cargando = false;
+          this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+          this.cerrar_modal()
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
+      }
+    );
+  }
+
+  private eliminar_blog_administrador() {
+    this.blogs_service.eliminar_un_blog(this.datos_eliminar.id).subscribe(
       (res: any) => {
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });

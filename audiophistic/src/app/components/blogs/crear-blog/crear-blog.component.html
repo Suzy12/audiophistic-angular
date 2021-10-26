@@ -37,7 +37,8 @@
                         <label for="titulo"><i class="fas fa-heading"></i> Título</label>
                         <input type="text" class="form-control" placeholder="Título" name="titulo"
                             formControlName="titulo" required
-                            [ngClass]="{ 'is-invalid': enviado && form.titulo.errors }">
+                            [ngClass]="{ 'is-invalid': enviado && form.titulo.errors }"
+                            maxlength="200">
                         <div *ngIf="enviado && form.titulo.errors" class="invalid-feedback">
                             <div *ngIf="form.titulo.errors.required">
                                 <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
@@ -45,13 +46,32 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="tipo"><i class="fas fa-tag"></i> Categoría </label>
-                            <select class="form-select form-control" aria-label="Elegir la Categoría
-                            del Blog">
-                                <option value="1">Álbumes</option>
-                                <option value="2">Audífonos</option>
-                                <option value="3">Parlantes</option>
+                            <label for="id_categoria"><i class="fas fa-tag"></i> Categoría </label>
+                            <select class="form-select form-control" name="id_categoria" formControlName="id_categoria">
+                                <option *ngFor="let cat of categorias; let i = index" [value]="cat.id_categoria">
+                                    {{cat.nombre}}</option>
                             </select>
+                            <div *ngIf="enviado && form.id_categoria.errors" class="invalid-feedback">
+                                <div *ngIf="form.id_categoria.errors.required">
+                                    <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
+                                        de categoría es obligatorio</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="imagen"><i class="fas fa-camera"></i>Imagen General</label>
+                            <br>
+                            <img *ngIf="form.imagen.value.includes('data:image/')" [src]="obtener_imagen()"
+                                alt="Foto de Blog" class="w-25">
+                            <div class="mt-2">
+                                <label class="btn btn-primary" for="selector">
+                                    <input id="selector" type="file" class="d-none"
+                                        accept="image/png, image/jpeg, image/jpg" (change)="leer_imagen($event)"
+                                        formControlName="imagen">
+                                    <i class="fa fa-fw fa-camera me-2"></i>
+                                    <span>Cambiar Foto</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                     <div class="botones_navegacion">
@@ -61,8 +81,14 @@
                 </div>
                 <div id="segundo_paso" class="content">
                     <hr>
+                    <div *ngIf="enviado && form.contenido.errors" class="invalid-feedback">
+                        <div *ngIf="form.contenido.errors.required">
+                            <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El campo
+                                de contenido es obligatorio</label>
+                        </div>
+                    </div>
                     <div class="contenedor_editor">
-                        <angular-editor formControlName="contenido" [config]="editorConfig"></angular-editor>
+                        <angular-editor formControlName="contenido" [config]="editor_config"></angular-editor>
                     </div>
                     <div class="botones_navegacion">
                         <button role="button" (click)="anterior()" class="btn btn-secondary m-2">Anterior</button>
@@ -113,12 +139,9 @@
                     </div>
                 </div>
                 <div id="cuarto_paso" class="content">
-                    <div class="editor">
-                        <angular-editor formControlName="contenido" [config]="editorConfig"></angular-editor>
-                    </div>
+                    <app-asociar-productos [productos_asociados]="productos_asociados" [mis_productos]="mis_productos"></app-asociar-productos>
                     <div class="botones_navegacion">
-                        <button (click)="anterior()" class="btn btn-secondary m-2"
-                            [disabled]="cargando">Anterior</button>
+                        <button (click)="anterior()" class="btn btn-secondary m-2">Anterior</button>
                         <button type="submit" class="btn btn-primary" [disabled]="cargando" (click)="crear_blog()">
                             <i *ngIf="cargando" class="fas fa-sync fa-spin"></i>Crear Blog</button>
                     </div>

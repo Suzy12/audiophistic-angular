@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blogs-cards',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogsCardsComponent implements OnInit {
 
-  constructor() { }
+  @Input() blog: any = {};
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  ver_blog() {
+    this.router.navigate(['/ver-blog', this.blog.id_blog]);
   }
 
 }

@@ -19,7 +19,7 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
 
   productos: Producto[] = [];
-  dtTrigger: Subject<any> = new Subject<any>();
+  trigger_tabla: Subject<any> = new Subject<any>();
   rol: string = ''
 
   constructor(private http: HttpClient, private productos_service: ProductosService,
@@ -64,7 +64,7 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.productos = res.body.resultado;
-          this.dtTrigger.next();
+          this.trigger_tabla.next();
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
@@ -79,7 +79,7 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.productos = res.body.resultado;
-          this.dtTrigger.next();
+          this.trigger_tabla.next();
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
@@ -101,7 +101,7 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
   /* ============= ELIMINAR PRODUCTO =============== */
 
   abrir_modal_eliminar(id_producto: number, titulo_producto: string) {
-    const modalRef = this.modal_service.open(EliminarModalComponent,
+    const modal_ref = this.modal_service.open(EliminarModalComponent,
       {
         scrollable: true,
         windowClass: 'custom_modal',
@@ -113,15 +113,15 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
       id: id_producto,
     }
 
-    modalRef.componentInstance.datos_eliminar = datos;
-    modalRef.result.then((result) => {
+    modal_ref.componentInstance.datos_eliminar = datos;
+    modal_ref.result.then((result) => {
       window.location.reload();
     }, (reason) => {
     });
   }
 
   ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
+    this.trigger_tabla.unsubscribe();
   }
 
 }

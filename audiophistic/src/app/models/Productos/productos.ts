@@ -9,8 +9,9 @@ export interface Producto {
     descripcion?: string,
     enlace?: string,
     fecha_lanzamiento?: Date,
-    id_blog?: any,
+    id_blog?: number,
     precio?: number,
     tiempo_envio?: number,
-    imagen?: string
+    imagen?: string,
+    nombre_blog?: string
 }

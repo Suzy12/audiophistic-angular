@@ -69,7 +69,9 @@ import { CalificacionBlogsComponent } from './components/comunidad/calificacion-
 import { CalificacionProductosComponent } from './components/comunidad/calificacion-productos/calificacion-productos.component';
 import { EstrellasComponent } from './components/shared/estrellas/estrellas.component';
 import { CompartirComponent } from './components/modals/compartir/compartir.component';
-
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AsociarProductosComponent } from './components/blogs/crear-blog/asociar-productos/asociar-productos.component';
+import { BlogsComponent } from './components/busqueda/blogs/blogs.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -129,6 +131,8 @@ import { CompartirComponent } from './components/modals/compartir/compartir.comp
     CalificacionProductosComponent,
     EstrellasComponent,
     CompartirComponent,
+    AsociarProductosComponent,
+    BlogsComponent,
   ],
   imports: [
     BrowserModule,
@@ -138,6 +142,7 @@ import { CompartirComponent } from './components/modals/compartir/compartir.comp
     DataTablesModule,
     HttpClientModule,
     FormsModule,
+    NgSelectModule,
     ReactiveFormsModule,
     AngularEditorModule,
     ToastrModule.forRoot()

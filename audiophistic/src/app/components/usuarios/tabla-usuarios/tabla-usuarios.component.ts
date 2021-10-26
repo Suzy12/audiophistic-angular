@@ -19,7 +19,7 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
 
   usuarios: Usuario[] = [];
-  dtTrigger: Subject<any> = new Subject<any>();
+  trigger_tabla: Subject<any> = new Subject<any>();
 
   constructor(private http: HttpClient, private usuarios_service: UsuariosService,
     private toastr: ToastrService, private router: Router, private modal_service: NgbModal) { }
@@ -49,7 +49,7 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.usuarios = res.body.resultado;
-          this.dtTrigger.next();
+          this.trigger_tabla.next();
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
@@ -71,7 +71,7 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
   /* ============ ELIMINAR USUARIOS ============= */
 
   abrir_modal_eliminar(id_usuario: number, nombre_usuario: string) {
-    const modalRef = this.modal_service.open(EliminarModalComponent,
+    const modal_ref = this.modal_service.open(EliminarModalComponent,
       {
         scrollable: true,
         windowClass: 'custom_modal',
@@ -84,15 +84,15 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
       id: id_usuario,
     }
 
-    modalRef.componentInstance.datos_eliminar = datos;
-    modalRef.result.then((result) => {
+    modal_ref.componentInstance.datos_eliminar = datos;
+    modal_ref.result.then((result) => {
       window.location.reload();
     }, (reason) => {
     });
   }
 
   ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
+    this.trigger_tabla.unsubscribe();
   }
 
 }

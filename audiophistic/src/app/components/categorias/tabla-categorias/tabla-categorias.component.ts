@@ -20,7 +20,7 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
   dtOptions: DataTables.Settings = {};
 
   categorias: Categoria[] = [];
-  dtTrigger: Subject<any> = new Subject<any>();
+  trigger_tabla: Subject<any> = new Subject<any>();
   rol: string = ''
 
   constructor(private http: HttpClient, private categorias_service: CategoriasService,
@@ -53,7 +53,7 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.categorias = res.body.resultado;
-          this.dtTrigger.next();
+          this.trigger_tabla.next();
         }
       },
       (error) => {
@@ -66,7 +66,7 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
   /* ============= ELIMINAR CATEGORIA =============== */
 
   abrir_modal_eliminar(id_categoria: number, nombre_categoria: string) {
-    const modalRef = this.modal_service.open(EliminarModalComponent,
+    const modal_ref = this.modal_service.open(EliminarModalComponent,
       {
         scrollable: true,
         windowClass: 'custom_modal',
@@ -78,8 +78,8 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
       id: id_categoria,
     }
 
-    modalRef.componentInstance.datos_eliminar = datos;
-    modalRef.result.then((result) => {
+    modal_ref.componentInstance.datos_eliminar = datos;
+    modal_ref.result.then((result) => {
       window.location.reload();
     }, (reason) => {
     });
@@ -90,7 +90,7 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.dtTrigger.unsubscribe();
+    this.trigger_tabla.unsubscribe();
   }
 
 }

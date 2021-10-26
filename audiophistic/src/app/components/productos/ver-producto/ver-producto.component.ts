@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { enlace_global } from 'src/app/models/global';
 import { Producto } from 'src/app/models/Productos/productos';
 import { Producto_Albumes } from 'src/app/models/Productos/producto_albumes';
 import { EspecificacionesProductoService } from 'src/app/services/builders/especificaciones-producto/especificaciones-producto.service';
@@ -56,6 +57,7 @@ export class VerProductoComponent implements OnInit {
         } else {
           this.producto = res.body.resultado;
           this.precio = this.producto.precio!;
+          console.log(this.producto)
           this.consultar_estilos_producto();
           this.consultar_especificaciones_producto();
         }
@@ -152,8 +154,12 @@ export class VerProductoComponent implements OnInit {
     this.router.navigate(['/ver-usuario-creador-contenido', id_usuario]);
   }
 
-  abrir_modal_eliminar(enlace_producto: string) {
-    const modalRef = this.modal_service.open(CompartirComponent, 
+  ver_blog(id_blog: any) {
+    this.router.navigate(['/ver-blog', id_blog]);
+  }
+
+  abrir_modal_compartir() {
+    const modal_ref = this.modal_service.open(CompartirComponent, 
       {
         scrollable: true,
         windowClass: 'custom_modal',
@@ -161,11 +167,11 @@ export class VerProductoComponent implements OnInit {
 
     let datos = {
       compartir: 'producto',
-      enlace: enlace_producto
+      enlace: enlace_global + this.producto.enlace
     }
 
-    modalRef.componentInstance.datos_compartir = datos;
-    modalRef.result.then((result) => {
+    modal_ref.componentInstance.datos_compartir = datos;
+    modal_ref.result.then((result) => {
     }, (reason) => {
     });
   }

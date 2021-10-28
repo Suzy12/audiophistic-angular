@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit } from '@angular/core';
 
 
 @Component({
@@ -8,6 +7,9 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./calificacion-blogs.component.css']
 })
 export class CalificacionBlogsComponent implements OnInit {
+
+
+  @Input() blog: any = {}
 
   constructor() {
   }

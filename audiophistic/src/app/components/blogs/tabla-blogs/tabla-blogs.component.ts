@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
+import { windowWhen } from 'rxjs/operators';
 import { Idioma } from 'src/app/models/idioma';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
 import { convertCompilerOptionsFromJson } from 'typescript';
@@ -116,7 +117,7 @@ export class TablaBlogsComponent implements OnInit, OnDestroy {
 
     modal_ref.componentInstance.datos_eliminar = datos;
     modal_ref.result.then((result) => {
-      window.location.reload();
+      if(result != 'cancelar'){window.location.reload()}
     }, (reason) => {
     });
   }

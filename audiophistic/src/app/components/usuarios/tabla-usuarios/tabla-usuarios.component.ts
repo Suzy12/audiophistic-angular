@@ -86,7 +86,7 @@ export class TablaUsuariosComponent implements OnInit, OnDestroy {
 
     modal_ref.componentInstance.datos_eliminar = datos;
     modal_ref.result.then((result) => {
-      window.location.reload();
+      if(result != 'cancelar'){window.location.reload()}
     }, (reason) => {
     });
   }

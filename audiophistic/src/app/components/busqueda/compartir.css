@@ -36,7 +36,7 @@
     }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1060px) {
     .grid_contenedor_productos {
         display: grid;
         grid-template-columns: 1fr;

@@ -13,5 +13,8 @@ export interface Producto {
     precio?: number,
     tiempo_envio?: number,
     imagen?: string,
-    nombre_blog?: string
+    nombre_blog?: string,
+    cantidad_resenas: number,
+    calificacion: number, 
+    calificaciones?: any[]
 }

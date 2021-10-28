@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-compartir',
   templateUrl: './compartir.component.html',
-  styleUrls: ['./compartir.component.css']
+  styleUrls: ['../compartir.css','./compartir.component.css']
 })
 export class CompartirComponent implements OnInit {
 

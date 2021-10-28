@@ -27,8 +27,8 @@
                 <div class="col-md-6">
                     <h3 class="titulo">{{producto.titulo}}</h3>
                     <div class="calificacion d-flex justify-content-start">
-                        <app-estrellas [calificacion]="4"></app-estrellas>
-                        <span class="ps-2 review-no text-muted">(41)</span>
+                        <app-estrellas [calificacion]="producto.calificacion"></app-estrellas>
+                        <span class="ps-2 review-no text-muted">({{producto.cantidad_resenas}})</span>
                     </div>
                     <h4 class="precio"><strong>{{precio | currency:'CRC':'symbol-narrow'}}</strong></h4>
 
@@ -128,7 +128,7 @@
         </div>
     </div>
     <div>
-        <app-calificacion-productos></app-calificacion-productos>
-        <app-comentarios></app-comentarios>
+        <app-calificacion-productos [producto]="producto" [mi_resena]="mi_resena"></app-calificacion-productos>
+        <app-comentarios-productos [id_producto]="producto.id_producto"></app-comentarios-productos>
     </div>
 </div>

@@ -14,7 +14,9 @@ export class ProductCardsComponent implements OnInit {
     titulo: '',
     id_producto: 0,
     nombre_creador: '',
-    caracteristicas: {} as any
+    caracteristicas: {} as any,
+    cantidad_resenas: 0,
+    calificacion: 0
   };
 
   constructor(private router: Router) { }

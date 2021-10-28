@@ -10,7 +10,8 @@
         </div>
         <h5 class="mb-0 font-weight-semibold">{{producto.precio | currency:'CRC':'symbol-narrow'}}</h5>
         <div>
-            <app-estrellas [calificacion]="4"></app-estrellas>
+            <app-estrellas [calificacion]="producto.calificacion"></app-estrellas>
+            <span class="text-muted">{{producto.cantidad_resenas}} reseñas</span>
         </div>
     </div>
 </button>

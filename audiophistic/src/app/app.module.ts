@@ -72,6 +72,11 @@ import { CompartirComponent } from './components/modals/compartir/compartir.comp
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AsociarProductosComponent } from './components/blogs/crear-blog/asociar-productos/asociar-productos.component';
 import { BlogsComponent } from './components/busqueda/blogs/blogs.component';
+import { ResenaProductoModalComponent } from './components/modals/resena-producto-modal/resena-producto-modal.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { ComentariosProductosComponent } from './components/comunidad/comentarios-productos/comentarios-productos.component';
+import { EditarComentarioBlogComponent } from './components/modals/editar-comentario-blog/editar-comentario-blog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,6 +138,9 @@ import { BlogsComponent } from './components/busqueda/blogs/blogs.component';
     CompartirComponent,
     AsociarProductosComponent,
     BlogsComponent,
+    ResenaProductoModalComponent,
+    ComentariosProductosComponent,
+    EditarComentarioBlogComponent,
   ],
   imports: [
     BrowserModule,
@@ -142,6 +150,7 @@ import { BlogsComponent } from './components/busqueda/blogs/blogs.component';
     DataTablesModule,
     HttpClientModule,
     FormsModule,
+    NgxSliderModule,
     NgSelectModule,
     ReactiveFormsModule,
     AngularEditorModule,

@@ -1,13 +1,6 @@
 .titulo_texto {
     font-size: 2.5rem;
 }
-
-@media (min-width: 768px) {
-    .titulo_texto {
-        font-size: 3rem;
-    }
-}
-
 /*
    * Blog posts
    */
@@ -56,6 +49,10 @@
     color: sandybrown;
 }
 
+img{
+    width: 100%;
+}
+
 @media screen and (max-width: 576px) {
     .etiquetas {
         display: list-item;
@@ -67,5 +64,11 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-gap: 1em;
+    }
+}
+
+@media (min-width: 768px) {
+    .titulo_texto {
+        font-size: 3rem;
     }
 }

@@ -9,6 +9,7 @@ import { EspecificacionesProductoService } from 'src/app/services/builders/espec
 import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
 import { CarritoLocalService } from 'src/app/services/carrito/carrito-local/carrito-local.service';
 import { CarritoService } from 'src/app/services/carrito/carrito/carrito.service';
+import { ComentariosCalificacionesService } from 'src/app/services/comentarios_calificaciones/comentarios-calificaciones.service';
 import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 import { CompartirComponent } from '../../modals/compartir/compartir.component';
@@ -25,10 +26,9 @@ export class VerProductoComponent implements OnInit {
     titulo: '',
     id_producto: 0,
     nombre_creador: '',
-    caracteristicas: {
-      nombre_tipo: '',
-      id_tipo: 0,
-    }
+    caracteristicas: {} as any,
+    cantidad_resenas: 0,
+    calificacion: 0
   }
   id_estilo_seleccionado: number = 1;
   existencia_estilo_seleccionado: number = 0;
@@ -42,6 +42,7 @@ export class VerProductoComponent implements OnInit {
   imagenes: any[] = []
   precio: number = 0
   sesion: boolean = false;
+  mi_resena: boolean = false;
 
   constructor(private ruta_activated: ActivatedRoute,
     private productos_service: ProductosService, private toastr: ToastrService,
@@ -49,7 +50,8 @@ export class VerProductoComponent implements OnInit {
     private acceso_service: AccesoService, private carrito_service: CarritoService,
     private carrito_local_service: CarritoLocalService,
     private modal_service: NgbModal,
-    private router: Router) {
+    private router: Router,
+    private comentarios_calificaciones_service: ComentariosCalificacionesService) {
     this.ruta_activated.params.subscribe(params => {
       this.productos_service.consultar_un_producto(params['id']).subscribe((res: any) => {
         if (res.body.error) {
@@ -60,6 +62,7 @@ export class VerProductoComponent implements OnInit {
           console.log(this.producto)
           this.consultar_estilos_producto();
           this.consultar_especificaciones_producto();
+          this.consultar_mi_resena();
         }
       })
     })
@@ -159,7 +162,7 @@ export class VerProductoComponent implements OnInit {
   }
 
   abrir_modal_compartir() {
-    const modal_ref = this.modal_service.open(CompartirComponent, 
+    const modal_ref = this.modal_service.open(CompartirComponent,
       {
         scrollable: true,
         windowClass: 'custom_modal',
@@ -174,6 +177,20 @@ export class VerProductoComponent implements OnInit {
     modal_ref.result.then((result) => {
     }, (reason) => {
     });
+  }
+
+  consultar_mi_resena() {
+    this.comentarios_calificaciones_service.consultar_resenas_producto(this.producto.id_producto, 1, 1).subscribe((res: any) => {
+      if (res.body.error) {
+        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+      } else {
+        if (res.body.resultado.resenas[0]) {
+          this.mi_resena = res.body.resultado.resenas[0].es_autor_actual
+        }
+      }
+    }, (error) => {
+      this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
+    })
   }
 
 }

@@ -7,7 +7,7 @@
             </h1>
         </div>
     </div>
-    <div class="row g-5">
+    <div class="row">
         <div class="col-md-8">
 
             <article class="blog_articulo container">
@@ -84,7 +84,7 @@
                                 </ng-template>
                             </ngb-rating>
                             <hr>
-                            <button type="button" class="btn form_btn">Calificar</button>
+                            <button type="button" (click)="calificar_blog()" class="btn form_btn">Calificar</button>
                         </div>
                     </div>
                 </div>
@@ -92,10 +92,10 @@
         </div>
     </div>
     <div class="row">
-        <app-calificacion-blogs></app-calificacion-blogs>
+        <app-calificacion-blogs [blog]="blog"></app-calificacion-blogs>
     </div>
     <div class="row">
-        <app-comentarios></app-comentarios>
+        <app-comentarios [id_blog]="blog.id_blog"></app-comentarios>
     </div>
 
 </main>

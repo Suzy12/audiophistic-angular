@@ -22,7 +22,7 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
   trigger_tabla: Subject<any> = new Subject<any>();
   rol: string = ''
 
-  constructor(private http: HttpClient, private productos_service: ProductosService,
+  constructor(private productos_service: ProductosService,
     private modal_service: NgbModal, private toastr: ToastrService, private router: Router) { }
 
   ngOnInit(): void {
@@ -115,7 +115,7 @@ export class TablaProductosComponent implements OnInit, OnDestroy {
 
     modal_ref.componentInstance.datos_eliminar = datos;
     modal_ref.result.then((result) => {
-      window.location.reload();
+      if(result != 'cancelar'){window.location.reload()}
     }, (reason) => {
     });
   }

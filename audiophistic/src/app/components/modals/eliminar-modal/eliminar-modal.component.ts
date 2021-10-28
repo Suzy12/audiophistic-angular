@@ -3,13 +3,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
+import { ComentariosCalificacionesService } from 'src/app/services/comentarios_calificaciones/comentarios-calificaciones.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 
 @Component({
   selector: 'app-eliminar-modal',
   templateUrl: './eliminar-modal.component.html',
-  styleUrls: ['./eliminar-modal.component.css']
+  styleUrls: ['../compartir.css', './eliminar-modal.component.css']
 })
 export class EliminarModalComponent implements OnInit {
 
@@ -22,7 +23,8 @@ export class EliminarModalComponent implements OnInit {
     private productos_service: ProductosService,
     private toastr: ToastrService,
     private categorias_service: CategoriasService,
-    private blogs_service: BlogsService
+    private blogs_service: BlogsService,
+    private comentarios_calificaciones_service: ComentariosCalificacionesService
   ) { }
 
   ngOnInit() {
@@ -30,6 +32,10 @@ export class EliminarModalComponent implements OnInit {
 
   cerrar_modal() {
     this.activo_modal.close();
+  }
+
+  cerrar_modal_cancelar() {
+    this.activo_modal.close('cancelar');
   }
 
   eliminar() {
@@ -45,6 +51,12 @@ export class EliminarModalComponent implements OnInit {
         break;
       case "blog":
         this.eliminar_blog()
+        break;
+      case "comentario":
+        this.eliminar_comentario_blog()
+        break;
+      case "resena":
+        this.eliminar_resena_producto()
         break;
       default:
         break;
@@ -171,6 +183,40 @@ export class EliminarModalComponent implements OnInit {
   private eliminar_categoria() {
     this.cargando = true;
     this.categorias_service.eliminar_una_categoria(this.datos_eliminar.id).subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+          this.cargando = false;
+          this.cerrar_modal()
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
+      }
+    );
+  }
+
+  private eliminar_comentario_blog() {
+    this.cargando = true;
+    this.comentarios_calificaciones_service.eliminar_comentario_blog(this.datos_eliminar.id, this.datos_eliminar.id_blog).subscribe(
+      (res: any) => {
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.toastr.success(res.body.resultado, 'Éxito', { timeOut: 5000 });
+          this.cargando = false;
+          this.cerrar_modal()
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
+      }
+    );
+  }
+
+  private eliminar_resena_producto() {
+    this.cargando = true;
+    this.comentarios_calificaciones_service.eliminar_resena_producto(this.datos_eliminar.id).subscribe(
       (res: any) => {
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });

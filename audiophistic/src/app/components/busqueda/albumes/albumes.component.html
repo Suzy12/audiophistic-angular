@@ -16,11 +16,85 @@ Photo by <a
     Jans</a> on <a
     href="https://unsplash.com/s/photos/albums?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 
+<div class="row p-4">
+    <div class="col-12 col-lg-3">
+        <div class="position-sticky" style="top: 2rem;">
+            <div class="p-4 mb-3 bg-light rounded">
+                <div class="filtro_1">
+                    <div class="pb-2">
+                        <span class="fst-italic"> Presentación </span>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault"
+                            id="sin_filtro_presentacion" checked>
+                        <label class="form-check-label" for="sin_filtro_presentacion">
+                            Sin filtro
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Default checked radio
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <div class="filtro_2">
+                    <div class="pb-2">
+                        <span class="fst-italic"> Género Musical </span>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault2" id="sin_filtro_genero"
+                            checked>
+                        <label class="form-check-label" for="sin_filtro_genero">
+                            Sin filtro
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault4">
+                        <label class="form-check-label" for="flexRadioDefault4">
+                            Default checked radio
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <div class="filtro_3">
+                    <div class="pb-3">
+                        <span class="fst-italic"> Precio </span>
+                    </div>
+                    <div class="mb-5">
+                        <p>Precio mínimo: <input type="number" [(ngModel)]="minValue"></p>
+                        <p>Precio máximo: <input type="number" [(ngModel)]="maxValue"></p>
+                    </div>
+                    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+                </div>
+            </div>
 
-<div class="container py-5">
-    <div class="grid_contenedor_productos mt-5">
-        <div *ngFor="let producto of productos">
-            <app-product-cards [producto]="producto"></app-product-cards>
+        </div>
+    </div>
+    <div class="col-12 col-lg-9">
+        <div class="row mt-3">
+            <div class="col-12 col-md-10">
+                <div class="wrap_input_form">
+                    <input class="input_form" type="text" name="termino" placeholder="Buscar">
+                </div>
+
+            </div>
+            <div class="col-12 col-md-2">
+                <div class="d-flex justify-content-center align-items-center">
+                    <button class="btn form_btn" type="submit">
+                        Buscar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+        <div class="container py-5">
+            <div class="grid_contenedor_productos mt-5">
+                <div *ngFor="let producto of productos">
+                    <app-product-cards [producto]="producto"></app-product-cards>
+                </div>
+            </div>
         </div>
     </div>
 </div>

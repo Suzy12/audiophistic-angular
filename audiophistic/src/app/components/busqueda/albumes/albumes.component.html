@@ -25,16 +25,17 @@ Photo by <a
                         <span class="fst-italic"> Presentación </span>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault"
-                            id="sin_filtro_presentacion" checked>
+                        <input class="form-check-input" type="radio" name="presentaciones_filtro"
+                            id="sin_filtro_presentacion" value="sin_filtro" checked>
                         <label class="form-check-label" for="sin_filtro_presentacion">
                             Sin filtro
                         </label>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Default checked radio
+                    <div class="form-check" *ngFor="let presentacion of presentaciones">
+                        <input class="form-check-input" type="radio" name="presentaciones_filtro"
+                            [value]="presentacion.presentacion" [id]="presentacion.presentacion">
+                        <label class="form-check-label" [attr.for]="presentacion.presentacion">
+                            {{presentacion.presentacion}}
                         </label>
                     </div>
                 </div>
@@ -44,16 +45,17 @@ Photo by <a
                         <span class="fst-italic"> Género Musical </span>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault2" id="sin_filtro_genero"
-                            checked>
+                        <input class="form-check-input" type="radio" name="generos_filtro" id="sin_filtro_genero"
+                            value="sin_filtro" checked>
                         <label class="form-check-label" for="sin_filtro_genero">
                             Sin filtro
                         </label>
                     </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault4">
-                        <label class="form-check-label" for="flexRadioDefault4">
-                            Default checked radio
+                    <div class="form-check" *ngFor="let genero of generos">
+                        <input class="form-check-input" type="radio" name="generos_filtro" [value]="genero.genero"
+                            [id]="genero.genero">
+                        <label class="form-check-label" [attr.for]="genero.genero">
+                            {{genero.genero}}
                         </label>
                     </div>
                 </div>
@@ -63,10 +65,14 @@ Photo by <a
                         <span class="fst-italic"> Precio </span>
                     </div>
                     <div class="mb-5">
-                        <p>Precio mínimo: <input type="number" [(ngModel)]="minValue"></p>
-                        <p>Precio máximo: <input type="number" [(ngModel)]="maxValue"></p>
+                        <p>Precio mínimo: <input type="number" [(ngModel)]="min_precio"></p>
+                        <p>Precio máximo: <input type="number" [(ngModel)]="max_precio"></p>
                     </div>
-                    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+                    <ngx-slider [(value)]="min_precio" [(highValue)]="max_precio" [options]="opciones_slider!">
+                    </ngx-slider>
+                </div>
+                <hr>
+                <div class="text-muted">*Una vez seleccionados los filtros, utilice el botón "Buscar" para aplicarlos.
                 </div>
             </div>
 
@@ -76,13 +82,13 @@ Photo by <a
         <div class="row mt-3">
             <div class="col-12 col-md-10">
                 <div class="wrap_input_form">
-                    <input class="input_form" type="text" name="termino" placeholder="Buscar">
+                    <input class="input_form" type="text" name="termino" placeholder="Buscar" [(ngModel)]="termino">
                 </div>
 
             </div>
             <div class="col-12 col-md-2">
                 <div class="d-flex justify-content-center align-items-center">
-                    <button class="btn form_btn" type="submit">
+                    <button class="btn form_btn" (click)="buscar()">
                         Buscar
                     </button>
                 </div>
@@ -95,6 +101,14 @@ Photo by <a
                     <app-product-cards [producto]="producto"></app-product-cards>
                 </div>
             </div>
+        </div>
+        <div class="mt-3 d-flex justify-content-center align-items-center" *ngIf="cargar_mas">
+            <button type="button" class="btn form_btn" (click)="cargar_mas_productos()"
+                [disabled]="cargando_comentarios">
+                <span *ngIf="cargando_comentarios" class="spinner-border spinner-border-sm" role="status"
+                    aria-hidden="true"></span>
+                Cargar más resultados...
+            </button>
         </div>
     </div>
 </div>

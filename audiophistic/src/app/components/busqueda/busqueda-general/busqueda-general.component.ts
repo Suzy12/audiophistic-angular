@@ -1,7 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+import { Component, OnInit, PipeTransform } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { map, startWith } from 'rxjs/operators';
+import { Blog } from 'src/app/models/blog';
+import { Producto } from 'src/app/models/Productos/productos';
+import { Usuario } from 'src/app/models/Usuarios/usuario';
+import { BlogsService } from 'src/app/services/blogs/blogs.service';
+import { ProductosService } from 'src/app/services/productos/productos.service';
+import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 
 @Component({
   selector: 'app-busqueda-general',
@@ -11,27 +19,136 @@ import { ToastrService } from 'ngx-toastr';
 export class BusquedaGeneralComponent implements OnInit {
 
   buscar_form: FormGroup = {} as FormGroup;
-  enviado:boolean = false;
+  resultados: any[] = [];
+  resultados_busqueda: any[] = [];
+  resultados_listos:boolean = false;
+  tipo_busqueda: string = 'productos';
+
 
   constructor(private formBuilder: FormBuilder,
-    private toastr: ToastrService, private router: Router) { }
+    private toastr: ToastrService, private router: Router,
+    private usuarios_service: UsuariosService,
+    private productos_service: ProductosService,
+    private blogs_service: BlogsService) { }
 
   ngOnInit(): void {
     this.buscar_form = this.formBuilder.group({
-      termino: ['', [Validators.required]]
+      termino: ['']
     });
   }
 
   get form() { return this.buscar_form.controls }
 
+  confirmar_resultados() {
+    if (this.resultados_busqueda.length == 0) {
+      this.toastr.error('No hay resultados para esta búsqueda', 'Error', { timeOut: 5000 });
+    }
+    this.resultados_listos = true;
+  }
+
+  private consultar_creadores_contenido() {
+    this.usuarios_service.consultar_creadores_contenido().subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.resultados = res.body.resultado;
+          console.log(this.resultados)
+          let texto = this.buscar_form.getRawValue().termino;
+          texto == '' ? this.resultados_busqueda = this.resultados : this.resultados_busqueda = this.buscar_resultado_vendedores(texto);
+          this.confirmar_resultados();
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
+      }
+    )
+  }
+
+  private consultar_productos() {
+    this.productos_service.consultar_productos_thumbnail().subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.resultados = res.body.resultado;
+          let texto = this.buscar_form.getRawValue().termino;
+          texto == '' ? this.resultados_busqueda = this.resultados : this.resultados_busqueda = this.buscar_resultado_productos(texto);
+          this.confirmar_resultados();
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
+      }
+    )
+  }
+
+  private consultar_blogs() {
+    this.blogs_service.consultar_blogs().subscribe(
+      (res: any) => {
+        this.toastr.clear();
+        if (res.body.error) {
+          this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        } else {
+          this.resultados = res.body.resultado;
+          let texto = this.buscar_form.getRawValue().termino;
+          texto == '' ? this.resultados_busqueda = this.resultados : this.resultados_busqueda = this.buscar_resultado_blogs(texto);
+          this.confirmar_resultados();
+        }
+      }, (error) => {
+        this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
+      }
+    )
+  }
+
   buscar() {
-    let recuperar_info = this.buscar_form.getRawValue();
+    this.resultados_listos = false;
+    console.log(this.buscar_form.getRawValue())
+    this.tipo_busqueda = (document.querySelector('input[name="tipo_busqueda"]:checked') as any)!.value;
+    console.log(this.tipo_busqueda)
 
-    this.enviado = true;
+    switch (this.tipo_busqueda) {
+      case "productos":
+        this.consultar_productos();
+        break;
+      case "vendedores":
+        this.consultar_creadores_contenido();
+        break;
+      case "blogs":
+        this.consultar_blogs();
+        break;
+      default:
+        break;
+    }
+  }
 
-    if (this.buscar_form.invalid) { return; }
+  buscar_resultado_productos(texto: string): Producto[] {
+    return this.resultados.filter((item: any) => {
+      const termino = texto.toLowerCase();
+      return item.titulo.toLowerCase().includes(termino)
+        || (item.precio + '').includes(termino)
+        || item.caracteristicas.nombre_tipo.toLowerCase().includes(termino);
+    });
+  }
 
-    this.enviado = false;
+  buscar_resultado_vendedores(texto: string): Usuario[] {
+    return this.resultados.filter((item: any) => {
+      const termino = texto.toLowerCase();
+      return item.nombre.toLowerCase().includes(termino)
+        || item.caracteristicas.provincia.toLowerCase().includes(termino)
+        || item.caracteristicas.canton.toLowerCase().includes(termino);
+    });
+  }
+
+  buscar_resultado_blogs(texto: string): Blog[] {
+    return this.resultados.filter((item: any) => {
+      console.log(item.fecha_creacion)
+      const termino = texto.toLowerCase();
+      return item.titulo.toLowerCase().includes(termino)
+        || item.nombre_categoria.toLowerCase().includes(termino)
+        || item.nombre_creador.toLowerCase().includes(termino)
+    });
   }
 
 }
+

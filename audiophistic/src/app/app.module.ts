@@ -76,6 +76,7 @@ import { ResenaProductoModalComponent } from './components/modals/resena-product
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ComentariosProductosComponent } from './components/comunidad/comentarios-productos/comentarios-productos.component';
 import { EditarComentarioBlogComponent } from './components/modals/editar-comentario-blog/editar-comentario-blog.component';
+import { CreadorContenidoCardComponent } from './components/shared/creador-contenido-card/creador-contenido-card.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { EditarComentarioBlogComponent } from './components/modals/editar-coment
     ResenaProductoModalComponent,
     ComentariosProductosComponent,
     EditarComentarioBlogComponent,
+    CreadorContenidoCardComponent,
   ],
   imports: [
     BrowserModule,

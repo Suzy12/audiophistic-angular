@@ -6,10 +6,9 @@
     <div class="burbuja x5"></div>
 </div>
 <div class="container-fluid d-flex justify-content-center align-items-center">
-    <form class="_form" [formGroup]="buscar_form" (ngSubmit)="buscar()">
+    <form class="_form" [formGroup]="buscar_form">
         <div class="wrap_input_form">
-            <input class="input_form" type="text" name="termino" placeholder="Buscar" formControlName="termino"
-                [ngClass]="{ 'is-invalid': enviado && form.termino.errors }">
+            <input class="input_form" type="text" name="termino" placeholder="Buscar" formControlName="termino">
             <span class="focus_input_form"></span>
             <span class="icono_input_form">
                 <i class="fa fa-search" aria-hidden="true"></i>
@@ -17,37 +16,50 @@
         </div>
         <div class="grid_contenedor pt-3 pb-3">
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="tipo_busqueda" id="productos" value="productos"
+                    checked>
+                <label class="form-check-label" for="productos">
                     Productos
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
+                <input class="form-check-input" type="radio" name="tipo_busqueda" id="vendedores" value="vendedores">
+                <label class="form-check-label" for="vendedores">
                     Vendedores
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                <label class="form-check-label" for="flexRadioDefault3">
+                <input class="form-check-input" type="radio" name="tipo_busqueda" id="blogs" value="blogs">
+                <label class="form-check-label" for="blogs">
                     Blogs
                 </label>
             </div>
         </div>
-        <div class="text-center">
+        <!--<div class="text-center">
             <div *ngIf="enviado && form.termino.errors" class="text-danger mb-3">
                 <div *ngIf="form.termino.errors.required">
                     <label class="font-weight-bold"><i class="fa fa-exclamation-circle"></i> El
                         campo de búsqueda es obligatorio</label>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <div class="pt-3 d-flex justify-content-center align-items-center">
-            <button class="btn form_btn" type="submit">
+            <button class="btn form_btn" (click)="buscar()">
                 Buscar
             </button>
         </div>
     </form>
+</div>
+
+<div class="container py-5" *ngIf="resultados_listos">
+    <div class="grid_contenedor mt-5">
+        <div *ngFor="let resultado of resultados_busqueda">
+            <div [ngSwitch]="tipo_busqueda">
+                <app-product-cards [producto]="resultado" *ngSwitchCase="'productos'"></app-product-cards>
+                <app-blogs-cards [blog]="resultado" *ngSwitchCase="'blogs'"></app-blogs-cards>
+                <app-creador-contenido-card [creador_contenido]="resultado" *ngSwitchCase="'vendedores'"></app-creador-contenido-card>
+            </div>
+        </div>
+    </div>
 </div>

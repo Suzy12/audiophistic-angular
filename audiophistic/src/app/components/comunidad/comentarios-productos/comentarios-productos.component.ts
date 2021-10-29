@@ -92,11 +92,11 @@ export class ComentariosProductosComponent implements OnInit {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         this.cargando_comentarios = false;
       } else {
-        console.log(res.body.resultado);
         this.pagina += this.cantidad_a_traer;
         this.resenas = this.resenas.concat(res.body.resultado.resenas)
-        res.body.resultado.resenas.length < this.cantidad_a_traer ? this.cargar_mas = false : this.cargar_mas = true;
+        this.resenas.length < res.body.resultado.cantidad_total ? this.cargar_mas = true : this.cargar_mas = false;
         this.cargando_comentarios = false;
+        console.log(res.body.resultado)
       }
     }, (error) => {
       this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });

@@ -1,5 +1,6 @@
 import { Component, Injectable, Input, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { precio_envio_global } from 'src/app/models/global';
 import { CarritoLocalService } from 'src/app/services/carrito/carrito-local/carrito-local.service';
 import { CarritoService } from 'src/app/services/carrito/carrito/carrito.service';
 
@@ -12,7 +13,7 @@ export class VerCarritoComponent implements OnInit {
 
   carrito: any = {}
   precio_total: number = 0;
-  precio_envio: number = 2500;
+  precio_envio: number = precio_envio_global;
 
   constructor(private carrito_service: CarritoService, private toastr: ToastrService,
     private carrito_local_service: CarritoLocalService) { }

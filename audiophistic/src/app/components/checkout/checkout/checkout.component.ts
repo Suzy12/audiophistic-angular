@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
+import { precio_envio_global } from 'src/app/models/global';
 import { PrecioSubtotalPipe } from 'src/app/pipes/carrito/subtotal/precio-subtotal.pipe';
 import { PrecioTotalPipe } from 'src/app/pipes/carrito/total/precio-total.pipe';
 import { CarritoLocalService } from 'src/app/services/carrito/carrito-local/carrito-local.service';
@@ -21,7 +22,7 @@ export class CheckoutComponent implements OnInit {
 
   carrito: any = []
   precio_total: number = 0
-  precio_envio: number = 2500;
+  precio_envio: number = precio_envio_global;
 
   checkout_form: FormGroup = {} as FormGroup;
   pago_form: FormGroup = {} as FormGroup;

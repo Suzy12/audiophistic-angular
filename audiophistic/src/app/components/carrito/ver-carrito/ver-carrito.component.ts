@@ -1,4 +1,5 @@
 import { Component, Injectable, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { precio_envio_global } from 'src/app/models/global';
 import { CarritoLocalService } from 'src/app/services/carrito/carrito-local/carrito-local.service';
@@ -16,11 +17,10 @@ export class VerCarritoComponent implements OnInit {
   precio_envio: number = precio_envio_global;
 
   constructor(private carrito_service: CarritoService, private toastr: ToastrService,
-    private carrito_local_service: CarritoLocalService) { }
+    private carrito_local_service: CarritoLocalService, private router: Router) { }
 
   ngOnInit(): void {
     this.carrito_local_service.carrito_actualizado.subscribe((carrito_actual: any) => {
-      console.log("Hola");
       this.precio_total = this.carrito_local_service.precio_total
     });
     this.carrito_service.carrito().subscribe(
@@ -69,6 +69,10 @@ export class VerCarritoComponent implements OnInit {
     }
     this.carrito_local_service.eliminar_del_carrito(producto_info)
 
+  }
+
+  ver_producto(producto:any) {
+    this.router.navigate(['/ver-producto', producto.id_producto]);
   }
 
 

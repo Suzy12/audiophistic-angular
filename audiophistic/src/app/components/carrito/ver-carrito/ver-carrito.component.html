@@ -24,11 +24,9 @@
                                                 <img [src]="producto.imagen" style="max-height: 150px;" alt="Imagen Producto" />
                                             </td>
                                             <td class="desc">
-                                                <h3>
-                                                    <a href="#" class="texto_titulo">
-                                                        {{producto.titulo}}
-                                                    </a>
-                                                </h3>
+                                                <button (click)="ver_producto(producto)" class="btn texto_titulo text-start p-0">
+                                                        <h3>{{producto.titulo}}</h3>
+                                                    </button>
                                                 <p class="small">
                                                     {{producto.nombre_estilo}}
                                                 </p>

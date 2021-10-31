@@ -110,6 +110,10 @@ export class ComentariosComponent implements OnInit {
   }
 
   comentar_blog() {
+    if(this.comentario==''){
+      this.toastr.error('Debe escribir un comentario', 'Error', { timeOut: 5000 });
+      return;
+    }
     this.cargando = true;
 
     let comentario_info = {

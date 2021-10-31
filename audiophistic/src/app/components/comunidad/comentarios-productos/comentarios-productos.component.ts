@@ -78,9 +78,6 @@ export class ComentariosProductosComponent implements OnInit {
 
   consultar_resenas_producto() {
     this.cargando_comentarios = true;
-    console.log(this.id_producto,
-      this.cantidad_a_traer,
-      this.pagina + this.cantidad_a_traer)
 
     this.comentarios_calificaciones_service.consultar_resenas_producto(
       this.id_producto!,

@@ -1,6 +1,8 @@
 .titulo_texto {
     font-size: 2.5rem;
 }
+
+
 /*
    * Blog posts
    */
@@ -19,6 +21,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 2em;
 }
+
 
 /*
    * Footer
@@ -46,10 +49,10 @@
 }
 
 .rellenado {
-    color: sandybrown;
+    color: #E26E08;
 }
 
-img{
+img {
     width: 100%;
 }
 

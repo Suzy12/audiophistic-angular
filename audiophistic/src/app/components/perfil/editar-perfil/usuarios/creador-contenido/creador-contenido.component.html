@@ -2,19 +2,17 @@
     <div formGroupName="caracteristicas">
         <div class="form-group">
             <label for="celular"><i class="fas fa-phone"></i>Teléfono</label>
-            <input type="text" placeholder="Teléfono" name="celular" formControlName="celular" class="form-control">
+            <input id="celular" type="text" placeholder="Teléfono" name="celular" formControlName="celular" class="form-control">
         </div>
         <div class="form-group">
             <label for="sitio_web"><i class="fas fa-link"></i>Sitio Web <span
                     class="text-muted">(opcional)</span></label>
-            <input type="text" class="form-control" placeholder="Sitio Web" name="sitio_web"
-                formControlName="sitio_web">
+            <input id="sitio_web" type="text" class="form-control" placeholder="Sitio Web" name="sitio_web" formControlName="sitio_web">
         </div>
         <div class="form-group">
             <label for="descripcion"><i class="fas fa-info-circle"></i>Descripción</label>
             <div>
-                <textarea class="form-control" id="descripcion" name="descripcion" formControlName="descripcion"
-                    required [ngClass]="{ 'is-invalid': enviado && form_caracteristicas.descripcion.errors }">
+                <textarea id="descripcion" class="form-control" id="descripcion" name="descripcion" formControlName="descripcion" required [ngClass]="{ 'is-invalid': enviado && form_caracteristicas.descripcion.errors }">
             </textarea>
                 <div *ngIf="enviado && form_caracteristicas.descripcion.errors" class="invalid-feedback">
                     <div *ngIf="form_caracteristicas.descripcion.errors.required">
@@ -25,11 +23,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="tipo"><i class="fas fa-thumbtack"></i>Dirección Exacta<span class="text-muted">
+            <label for="direccion_exacta"><i class="fas fa-thumbtack"></i>Dirección Exacta<span class="text-muted">
                     (opcional)</span></label>
             <div>
-                <textarea class="form-control" id="direccion_exacta" name="direccion_exacta"
-                    formControlName="direccion_exacta" placeholder="Dirección Exacta"></textarea>
+                <textarea class="form-control" id="direccion_exacta" name="direccion_exacta" formControlName="direccion_exacta" placeholder="Dirección Exacta"></textarea>
             </div>
         </div>
     </div>

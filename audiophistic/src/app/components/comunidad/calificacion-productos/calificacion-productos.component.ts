@@ -21,6 +21,7 @@ export class CalificacionProductosComponent implements OnInit {
     calificacion: 0
   }
   @Input() mi_resena: boolean = false;
+  sesion: boolean = localStorage.getItem('token') ? true: false
 
   constructor(private modal_service: NgbModal,
     private comentarios_calificaciones_service: ComentariosCalificacionesService) { }

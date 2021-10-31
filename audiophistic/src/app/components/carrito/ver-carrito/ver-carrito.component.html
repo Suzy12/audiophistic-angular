@@ -5,8 +5,7 @@
             <div class="container">
                 <div class="wrapper wrapper-content animated">
                     <div class="mb-3">
-                        <span class="pull-right text-muted"
-                            *ngIf="carrito.items">(<strong>{{carrito.items.length}}</strong>) ítems</span>
+                        <span class="pull-right text-muted" *ngIf="carrito.items">(<strong>{{carrito.items.length}}</strong>) ítems</span>
                         <h5>Carrito</h5>
                     </div>
                     <div class="mb-3" *ngIf="carrito.cambiado">
@@ -22,7 +21,7 @@
                                     <tbody *ngFor="let producto of carrito.items; let i = index">
                                         <tr>
                                             <td>
-                                                <img [src]="producto.imagen" style="max-height: 150px;" alt="Imagen Producto"/>
+                                                <img [src]="producto.imagen" style="max-height: 150px;" alt="Imagen Producto" />
                                             </td>
                                             <td class="desc">
                                                 <h3>
@@ -42,23 +41,21 @@
                                             <td>
                                                 <div class="mt-4" *ngIf="producto.cantidad != -1">
                                                     <div class="form-check-inline">
-                                                        <button class="btn" (click)="agregar(producto, i)"><i
+                                                        <button class="btn" aria-label="agregar_label" (click)="agregar(producto, i)"><i
                                                                 class="fa fa-plus"></i></button>
                                                     </div>
                                                     <div class="form-check-inline w-100">
-                                                        <input type="text" class="form-control"
-                                                            [value]="producto.cantidad" disabled>
+                                                        <input type="text" aria-label="cantidad_label" class="form-control" [value]="producto.cantidad" disabled>
                                                     </div>
                                                     <div class="form-check-inline">
-                                                        <button class="btn" (click)="quitar(producto, i)"><i
+                                                        <button class="btn" aria-label="quitar_label" (click)="quitar(producto, i)"><i
                                                                 class="fa fa-minus"></i></button>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
                                                 <h3>
-                                                    {{producto.precio | precioCantidad: producto.cantidad |
-                                                    currency:'CRC':'symbol-narrow' }}
+                                                    {{producto.precio | precioCantidad: producto.cantidad | currency:'CRC':'symbol-narrow' }}
                                                 </h3>
                                             </td>
                                         </tr>
@@ -79,8 +76,7 @@
             <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Soporte
             </div>
             <div class="p-4">
-                <p class="font-italic mb-4">Póngase en contacto con nosotros si tiene alguna solicitud. Estamos
-                    disponibles las 24 horas.</p>
+                <p class="font-italic mb-4">Póngase en contacto con nosotros si tiene alguna solicitud. Estamos disponibles las 24 horas.</p>
                 <div class="text-center">
                     <h3><i class="fa fa-phone me-2"></i> +506 2233 XXXX</h3>
                 </div>
@@ -88,30 +84,27 @@
             <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">
                 Instrucciones para el vendedor</div>
             <div class="p-4">
-                <p class="font-italic mb-4">Si tiene alguna información adicional para el vendedor, puede dejarla en el
-                    cuadro a continuación.</p>
-                <textarea name="" cols="30" rows="2" class="form-control"></textarea>
+                <p class="font-italic mb-4">Si tiene alguna información adicional para el vendedor, puede dejarla en el cuadro a continuación.</p>
+                <textarea aria-label="vendedor_indicaciones" name="" cols="30" rows="2" class="form-control"></textarea>
             </div>
         </div>
-        <div class="col-lg-6" *ngIf="carrito.items" >
+        <div class="col-lg-6" *ngIf="carrito.items">
             <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Resumen del pedido</div>
-            <div class="p-4"  *ngIf="carrito.items.length != 0" >
-                <p class="font-italic mb-4">Los costos de envío y adicionales se calculan en función de los valores
-                    ingresados.</p>
+            <div class="p-4" *ngIf="carrito.items.length != 0">
+                <p class="font-italic mb-4">Los costos de envío y adicionales se calculan en función de los valores ingresados.
+                </p>
                 <ul class="list-unstyled mb-4">
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">
                             Subtotal </strong><strong>{{precio_total | precioSubtotal | currency:'CRC':'symbol-narrow'}}</strong></li>
                     <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Costos de
                             envío</strong><strong>{{precio_envio | currency:'CRC':'symbol-narrow'}}</strong>
                     </li>
-                    <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                            class="text-muted">Impuesto</strong><strong> {{precio_total | precioImpuesto |
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Impuesto</strong><strong> {{precio_total | precioImpuesto |
                             currency:'CRC':'symbol-narrow'}}
                         </strong></li>
-                    <li class="d-flex justify-content-between py-3 border-bottom"><strong
-                            class="text-muted">Total</strong>
-                        <h5 class="font-weight-bold">{{precio_total | precioTotal: precio_envio |
-                            currency:'CRC':'symbol-narrow'}}</h5>
+                    <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                        <h5 class="font-weight-bold">{{precio_total | precioTotal: precio_envio | currency:'CRC':'symbol-narrow'}}
+                        </h5>
                     </li>
                 </ul>
                 <a href="/checkout" class="btn form_btn w-50 py-2 btn-block text-uppercase">Procesar Pedido</a>

@@ -29,7 +29,7 @@ export class ComentariosCalificacionesService {
   }
 
   public consultar_comentarios_blog = (id_blog: number, cantidad_a_traer:number, pagina:number) => {
-    return this.http.get(this.api_url + '/comentarios_blog/' + id_blog + '/' + cantidad_a_traer + '/' + pagina, { headers: this.headers, observe: 'response' })
+    return this.http.get(this.api_url + '/comentarios_blog/' + id_blog + '/' + cantidad_a_traer + '/' + pagina, { observe: 'response' })
   }
 
   public eliminar_comentario_blog = (id_comentario:number, id_blog: number) => {
@@ -41,7 +41,7 @@ export class ComentariosCalificacionesService {
   }
 
   public consultar_resenas_producto = (id_producto: number, cantidad_a_traer:number, pagina:number) => {
-    return this.http.get(this.api_url + '/resenas_producto/' + id_producto +'/' + cantidad_a_traer + '/' + pagina, { headers: this.headers, observe: 'response' })
+    return this.http.get(this.api_url + '/resenas_producto/' + id_producto +'/' + cantidad_a_traer + '/' + pagina, { observe: 'response' })
   }
 
   public eliminar_resena_producto = (id_producto: number) => {

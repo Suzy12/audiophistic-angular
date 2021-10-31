@@ -22,7 +22,7 @@
                         </td>
                         <span class="item-nombre">{{producto.titulo}}</span>
                         <span class="item-precio">{{producto.precio | precioCantidad: producto.cantidad | currency:'CRC':'symbol-narrow' }}</span>
-                        <span class="item-cantidad" *ngIf = "producto.cantidad != -1">
+                        <span class="item-cantidad" *ngIf="producto.cantidad != -1" class="text-muted">
                             Cantidad: {{producto.cantidad}}</span>
                     </tr>
                 </tbody>
@@ -37,5 +37,7 @@
             </div>
         </div>
 
-    </div><!-- collap-content -->
-</div><!-- collap -->
+    </div>
+    <!-- collap-content -->
+</div>
+<!-- collap -->

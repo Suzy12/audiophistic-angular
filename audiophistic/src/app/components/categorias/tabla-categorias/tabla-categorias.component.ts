@@ -74,7 +74,7 @@ export class TablaCategoriasComponent implements OnInit, OnDestroy {
 
     let datos = {
       eliminar: 'categoria',
-      mensaje: "Se eliminará la categoría " + nombre_categoria,
+      mensaje: "Se eliminará la categoría " + nombre_categoria + ". Los blogs asociados a esta categoría se quedarán sin categoría.",
       id: id_categoria,
     }
 

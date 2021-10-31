@@ -51,7 +51,7 @@ const routes: Routes = [
       { path: 'ver-usuario-consumidor/:id', component: VerUsuarioConsumidorComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'categorias', component: TablaCategoriasComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'crear-categoria', component: CrearCategoriaComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1"], redirectTo: '#', rol_almacenado: 'rol'} },
-      { path: 'blogs', component: TablaBlogsComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'} },
+      { path: 'blogs', component: TablaBlogsComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1","2"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'crear-blog', component: CrearBlogComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'modificar-blog', component: ModificarBlogComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: '**', pathMatch: "full", redirectTo: 'dashboard' }

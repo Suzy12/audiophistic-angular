@@ -52,6 +52,8 @@ export class VerProductoComponent implements OnInit {
     private modal_service: NgbModal,
     private router: Router,
     private comentarios_calificaciones_service: ComentariosCalificacionesService) {
+    
+    this.sesion = this.acceso_service.esta_autenticado();
     this.ruta_activated.params.subscribe(params => {
       this.productos_service.consultar_un_producto(params['id']).subscribe((res: any) => {
         if (res.body.error) {
@@ -62,14 +64,13 @@ export class VerProductoComponent implements OnInit {
           console.log(this.producto)
           this.consultar_estilos_producto();
           this.consultar_especificaciones_producto();
-          this.consultar_mi_resena();
+          this.sesion ? this.consultar_mi_resena() : null;
         }
       })
     })
   }
 
   ngOnInit(): void {
-    this.sesion = this.acceso_service.esta_autenticado();
   }
 
   cambiar_atributos(estilo: any) {

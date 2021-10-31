@@ -21,7 +21,7 @@ export class BusquedaGeneralComponent implements OnInit {
   buscar_form: FormGroup = {} as FormGroup;
   resultados: any[] = [];
   resultados_busqueda: any[] = [];
-  resultados_listos:boolean = false;
+  resultados_listos: boolean = false;
   tipo_busqueda: string = 'productos';
 
 
@@ -93,6 +93,7 @@ export class BusquedaGeneralComponent implements OnInit {
           this.resultados = res.body.resultado;
           let texto = this.buscar_form.getRawValue().termino;
           texto == '' ? this.resultados_busqueda = this.resultados : this.resultados_busqueda = this.buscar_resultado_blogs(texto);
+          console.log(this.resultados_busqueda)
           this.confirmar_resultados();
         }
       }, (error) => {
@@ -142,11 +143,15 @@ export class BusquedaGeneralComponent implements OnInit {
 
   buscar_resultado_blogs(texto: string): Blog[] {
     return this.resultados.filter((item: any) => {
-      console.log(item.fecha_creacion)
       const termino = texto.toLowerCase();
-      return item.titulo.toLowerCase().includes(termino)
-        || item.nombre_categoria.toLowerCase().includes(termino)
-        || item.nombre_creador.toLowerCase().includes(termino)
+      if (item.nombre_categoria != null) {
+        return item.titulo.toLowerCase().includes(termino)
+          || item.nombre_categoria.toLowerCase().includes(termino)
+          || item.nombre_creador.toLowerCase().includes(termino)
+      }else{
+        return item.titulo.toLowerCase().includes(termino)
+          || item.nombre_creador.toLowerCase().includes(termino)
+      }
     });
   }
 

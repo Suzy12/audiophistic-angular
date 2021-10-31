@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { cantidad_a_traer_global } from 'src/app/models/global';
 import { ComentariosCalificacionesService } from 'src/app/services/comentarios_calificaciones/comentarios-calificaciones.service';
+import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 import { EditarComentarioBlogComponent } from '../../modals/editar-comentario-blog/editar-comentario-blog.component';
 import { EliminarModalComponent } from '../../modals/eliminar-modal/eliminar-modal.component';
 
@@ -24,16 +25,19 @@ export class ComentariosComponent implements OnInit {
   comentarios: any[] = [];
   cargar_mas: boolean = true;
 
+  sesion:boolean = false;
+
   constructor(private modal_service: NgbModal,
     private comentarios_calificaciones_service: ComentariosCalificacionesService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService, private acceso_service:AccesoService) {
   }
 
   ngOnInit(): void {
+    this.sesion = this.acceso_service.esta_autenticado();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    changes.id_blog.currentValue != undefined ? this.consultar_comentarios_blog() : null;
+    changes.id_blog.currentValue != undefined ? this.consultar_comentarios() :  null;
   }
 
 
@@ -83,6 +87,36 @@ export class ComentariosComponent implements OnInit {
     });
   }
 
+  consultar_comentarios(){
+    this.sesion ? this.consultar_comentarios_blog() : this.consultar_comentarios_blog_publico() 
+  }
+
+  consultar_comentarios_blog_publico() {
+    this.cargando_comentarios = true;
+
+    console.log(this.id_blog, this.cantidad_a_traer, this.pagina + this.cantidad_a_traer)
+
+    this.comentarios_calificaciones_service.consultar_comentarios_blog_publico(
+      this.id_blog,
+      this.cantidad_a_traer,
+      this.pagina + this.cantidad_a_traer
+    ).subscribe((res: any) => {
+
+      if (res.body.error) {
+        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
+        this.cargando_comentarios = false;
+      } else {
+        this.pagina += this.cantidad_a_traer;
+        this.comentarios = this.comentarios.concat(res.body.resultado.comentarios)
+        this.comentarios.length < res.body.resultado.cantidad_total ? this.cargar_mas = true : this.cargar_mas = false;
+        this.cargando_comentarios = false;
+      }
+    }, (error) => {
+      this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
+      this.cargando_comentarios = false;
+    })
+  }
+
   consultar_comentarios_blog() {
     this.cargando_comentarios = true;
 
@@ -101,6 +135,7 @@ export class ComentariosComponent implements OnInit {
         this.pagina += this.cantidad_a_traer;
         this.comentarios = this.comentarios.concat(res.body.resultado.comentarios)
         this.comentarios.length < res.body.resultado.cantidad_total ? this.cargar_mas = true : this.cargar_mas = false;
+        console.log(this.comentarios)
         this.cargando_comentarios = false;
       }
     }, (error) => {

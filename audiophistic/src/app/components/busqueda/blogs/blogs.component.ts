@@ -20,7 +20,7 @@ export class BlogsComponent implements OnInit {
   pagina: number = -(cantidad_a_traer_global - 1);
 
 
-  rango_fechas: Date[] = this.obtener_dias(new Date("2018-05-01"), new Date("2021-07-01"));
+  rango_fechas: Date[] = this.obtener_dias(new Date("2021-05-01"), new Date("2021-05-02"));
   min_fecha = this.rango_fechas[0].getTime();
   max_fecha = this.rango_fechas[this.rango_fechas.length - 1].getTime();
   opciones_slider: Options = {

@@ -1,4 +1,7 @@
 <div class="container">
+    <hr>
+    <h5 class="p-3 titulo_formularios">Modificar Producto</h5>
+    <hr>
     <div id="stepper1" class="bs-stepper">
         <div class="bs-stepper-header">
             <div class="step" data-target="#segundo_paso">
@@ -38,12 +41,10 @@
                         </app-sin-estilos>
                         <app-colores *ngIf="estilo=='colores'" [enviado]="enviado" [modificar]="modificar">
                         </app-colores>
-                        <app-presentaciones *ngIf="estilo=='presentaciones'" [enviado]="enviado"
-                            [modificar]="modificar">
+                        <app-presentaciones *ngIf="estilo=='presentaciones'" [enviado]="enviado" [modificar]="modificar">
                         </app-presentaciones>
                         <div class="botones_navegacion">
-                            <button (click)="anterior()" class="btn btn-secondary m-2"
-                                [disabled]="cargando">Anterior</button>
+                            <button (click)="anterior()" class="btn btn-secondary m-2" [disabled]="cargando">Anterior</button>
                             <button type="submit" class="btn btn-primary" [disabled]="cargando" (click)="modificar_producto()">
                                 <i *ngIf="cargando"
                                     class="fas fa-sync fa-spin"></i>Modificar Producto</button>

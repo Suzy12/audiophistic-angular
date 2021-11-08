@@ -12,12 +12,10 @@
                 <span class="_form_titulo">
                     Registrarse
                 </span>
-                <p class="text-muted text-center pb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec
-                    nibh vitae...</p>
+                <p class="text-muted text-center pb-3">Únete a Audiophistic para informarte sobre lo último en música, dispositivos de audio y más.</p>
 
                 <div class="wrap_input_form">
-                    <input class="input_form" type="text" name="nombre" placeholder="Nombre" formControlName="nombre"
-                        [ngClass]="{ 'is-invalid': enviado && form.nombre.errors }">
+                    <input class="input_form" type="text" name="nombre" placeholder="Nombre" formControlName="nombre" [ngClass]="{ 'is-invalid': enviado && form.nombre.errors }">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">
                         <i class="fas fa-user" aria-hidden="true"></i>
@@ -33,9 +31,7 @@
                 </div>
 
                 <div class="wrap_input_form">
-                    <input class="input_form" type="email" name="correo" placeholder="Correo Electrónico"
-                        formControlName="correo" [ngClass]="{ 'is-invalid': enviado && form.correo.errors }"
-                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                    <input class="input_form" type="email" name="correo" placeholder="Correo Electrónico" formControlName="correo" [ngClass]="{ 'is-invalid': enviado && form.correo.errors }" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -57,8 +53,7 @@
                 </div>
 
                 <div class="wrap_input_form">
-                    <input class="input_form" type="password" name="contrasena" placeholder="Contraseña"
-                        formControlName="contrasena" [ngClass]="{ 'is-invalid': enviado && form.contrasena.errors }">
+                    <input class="input_form" type="password" name="contrasena" placeholder="Contraseña" formControlName="contrasena" [ngClass]="{ 'is-invalid': enviado && form.contrasena.errors }">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">
                         <i class="fa fa-lock" aria-hidden="true"></i>

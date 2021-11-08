@@ -1,4 +1,7 @@
 <div class="container">
+    <hr>
+    <h5 class="p-3 titulo_formularios">Agregar Producto</h5>
+    <hr>
     <div id="stepper1" class="bs-stepper">
         <div class="bs-stepper-header">
             <div class="step" data-target="#primer_paso">
@@ -28,9 +31,7 @@
                     <hr>
                     <div class="form-group">
                         <label for="tipo"><i class="fas fa-boxes"></i> Tipo de Producto</label>
-                        <select class="form-select form-control" aria-label="Elegir Tipo de Producto"
-                            [(ngModel)]="tipo_producto" [ngModelOptions]="{standalone: true}"
-                            (change)="cambiar_configuracion()">
+                        <select class="form-select form-control" aria-label="Elegir Tipo de Producto" [(ngModel)]="tipo_producto" [ngModelOptions]="{standalone: true}" (change)="cambiar_configuracion()">
                             <option [ngValue]="1">Álbumes</option>
                             <option [ngValue]="2">Audífonos</option>
                             <option [ngValue]="3">Parlantes</option>
@@ -62,13 +63,11 @@
                         </app-sin-estilos>
                         <app-colores *ngSwitchCase="'colores'" [enviado]="enviado" [modificar]="modificar">
                         </app-colores>
-                        <app-presentaciones *ngSwitchCase="'presentaciones'" [enviado]="enviado"
-                            [modificar]="modificar">
+                        <app-presentaciones *ngSwitchCase="'presentaciones'" [enviado]="enviado" [modificar]="modificar">
                         </app-presentaciones>
                     </div>
                     <div class="botones_navegacion">
-                        <button (click)="anterior()" class="btn btn-secondary m-2"
-                            [disabled]="cargando">Anterior</button>
+                        <button (click)="anterior()" class="btn btn-secondary m-2" [disabled]="cargando">Anterior</button>
                         <button type="submit" class="btn btn-primary" [disabled]="cargando" (click)="crear_producto()">
                             <i *ngIf="cargando" class="fas fa-sync fa-spin"></i>Crear Producto</button>
                     </div>

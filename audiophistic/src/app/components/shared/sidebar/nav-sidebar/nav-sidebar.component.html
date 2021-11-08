@@ -50,6 +50,7 @@
                 <div ngbDropdown class="d-inline-block" display="dynamic" placement="bottom-right">
                     <button type="button" id="perfil_opciones" class="btn me-2" ngbDropdownToggle aria-label="perfil_boton">
                         <i class="fas fa-user"></i>
+                        {{nombre}}
                     </button>
                     <div ngbDropdownMenu aria-labelledby="perfil_opciones">
                         <button (click)="cerrar_sesion()" ngbDropdownItem>Cerrar Sesión</button>

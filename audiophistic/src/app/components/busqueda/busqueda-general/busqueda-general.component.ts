@@ -35,13 +35,14 @@ export class BusquedaGeneralComponent implements OnInit {
     this.buscar_form = this.formBuilder.group({
       termino: ['']
     });
+    this.consultar_productos();
   }
 
   get form() { return this.buscar_form.controls }
 
   confirmar_resultados() {
     if (this.resultados_busqueda.length == 0) {
-      this.toastr.error('No hay resultados para esta búsqueda', 'Error', { timeOut: 5000 });
+      this.toastr.warning('No hay resultados para esta búsqueda', 'Sin resultados', { timeOut: 5000 });
     }
     this.resultados_listos = true;
   }

@@ -44,11 +44,16 @@ export class AccesoService {
     localStorage.clear()
   }
 
-  confirmar_iniciar_sesion(correo: string, token: string, rol: string) {
+  confirmar_iniciar_sesion(correo: string, token: string, rol: string, nombre:string) {
     this.logger.next(true);
     this.guardar_token(token);
     this.guardar_correo(correo);
     this.guardar_rol(rol)
+    this.guardar_nombre(nombre)
+  }
+
+  private guardar_nombre(nombre: string) {
+    localStorage.setItem('nombre', nombre);
   }
 
   private guardar_correo(correo: string) {

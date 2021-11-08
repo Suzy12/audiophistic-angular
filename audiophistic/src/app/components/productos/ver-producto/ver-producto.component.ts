@@ -111,6 +111,8 @@ export class VerProductoComponent implements OnInit {
   agregar() {
     if (this.cantidad < this.existencia_estilo_seleccionado) {
       this.cantidad = this.cantidad + 1;
+    }else{
+      this.toastr.error('No hay suficiente cantidad en el inventario', 'Error', { timeOut: 5000 });
     }
   }
   quitar() {

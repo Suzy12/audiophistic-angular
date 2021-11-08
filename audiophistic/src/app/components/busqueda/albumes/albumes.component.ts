@@ -150,7 +150,7 @@ export class AlbumesComponent implements OnInit {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           if (res.body.resultado.cantidad_total == 0) {
-            this.toastr.error('No hay resultados para esta búsqueda', 'Error', { timeOut: 5000 });
+            this.toastr.warning('No hay resultados para esta búsqueda', 'Sin resultados', { timeOut: 5000 });
             return;
           }
           console.log(res.body.resultado)

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavSidebarComponent implements OnInit {
 
+  nombre = localStorage.getItem("nombre");
   constructor(private acceso_service: AccesoService,
     private router: Router) { }
 

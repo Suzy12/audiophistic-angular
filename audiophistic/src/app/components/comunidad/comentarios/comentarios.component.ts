@@ -67,6 +67,7 @@ export class ComentariosComponent implements OnInit {
       {
         scrollable: true,
         windowClass: 'custom_modal',
+        size: 'lg'
       });
 
     let datos = {

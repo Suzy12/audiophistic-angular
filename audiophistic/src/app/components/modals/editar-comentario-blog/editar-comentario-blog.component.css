@@ -1,4 +1,4 @@
-.comment-area textarea {
+.comentario textarea {
     resize: none;
     border: 1px solid #ad9f9f
 }
@@ -11,6 +11,6 @@
     box-shadow: 0 0 0 1px rgb(255, 0, 0) !important
 }
 
-.btn-primary{
+.btn-primary {
     background-color: var(--rojizo) !important;
 }

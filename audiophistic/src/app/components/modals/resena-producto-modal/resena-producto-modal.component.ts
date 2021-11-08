@@ -1,7 +1,8 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { NgbActiveModal, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ComentariosCalificacionesService } from 'src/app/services/comentarios_calificaciones/comentarios-calificaciones.service';
+import { ConfirmarModalComponent } from '../confirmar-modal/confirmar-modal.component';
 
 @Component({
   selector: 'app-resena-producto-modal',
@@ -18,7 +19,8 @@ export class ResenaProductoModalComponent implements OnInit {
     public activo_modal: NgbActiveModal,
     private toastr: ToastrService,
     config: NgbRatingConfig,
-    private comentarios_calificaciones_service: ComentariosCalificacionesService
+    private comentarios_calificaciones_service: ComentariosCalificacionesService,
+    private modal_service:NgbModal
   ) {
     config.max = 5;
   }
@@ -32,6 +34,26 @@ export class ResenaProductoModalComponent implements OnInit {
 
   cerrar_modal_cancelar() {
     this.activo_modal.close('cancelar');
+  }
+
+  abrir_modal_confirmar() {
+    const modal_ref = this.modal_service.open(ConfirmarModalComponent,
+      {
+        scrollable: true,
+        windowClass: 'modal_fondo',
+        size: 'md'
+      });
+
+    let datos = {
+      confirmar: 'comentario',
+      mensaje: "¿Está seguro que desea realizar estos cambios?",
+    }
+
+    modal_ref.componentInstance.datos_confirmar = datos;
+    modal_ref.result.then((result) => {
+      if (result != 'cancelar') { this.crear_resena() }
+    }, (reason) => {
+    });
   }
 
   crear_resena() {

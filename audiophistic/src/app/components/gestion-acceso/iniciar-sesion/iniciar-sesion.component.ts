@@ -51,7 +51,7 @@ export class IniciarSesionComponent implements OnInit {
   }
 
   exito(correo: string, res: any) {
-    this.acceso_service.confirmar_iniciar_sesion(correo, res.token, res.id_tipo)
+    this.acceso_service.confirmar_iniciar_sesion(correo, res.token, res.id_tipo, res.nombre)
     this.router.navigate(['/inicio']); //navegar a la pagina de dashboard
   }
 }

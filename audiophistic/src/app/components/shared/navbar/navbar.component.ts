@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
   sesion: boolean = false;
   mostrar_nav = true;
   rol = localStorage.getItem("rol");
+  nombre = localStorage.getItem("nombre");
 
   cantidad_carrito: number = 0
 

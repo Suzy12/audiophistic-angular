@@ -6,13 +6,10 @@
                 <span class="_form_titulo">
                     Iniciar Sesión
                 </span>
-                <p class="text-muted text-center pb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec
-                    nibh vitae...</p>
+                <p class="text-muted text-center pb-3">Inicie sesión para tener acceso a más características de Audiophistic.</p>
 
                 <div class="wrap_input_form">
-                    <input class="input_form" type="email" name="correo" placeholder="Correo Electrónico"
-                        formControlName="correo" [ngClass]="{ 'is-invalid': enviado && form.correo.errors }" 
-                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                    <input class="input_form" type="email" name="correo" placeholder="Correo Electrónico" formControlName="correo" [ngClass]="{ 'is-invalid': enviado && form.correo.errors }" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -34,8 +31,7 @@
                 </div>
 
                 <div class="wrap_input_form">
-                    <input class="input_form" type="password" name="contrasena" placeholder="Contraseña"
-                        formControlName="contrasena" [ngClass]="{ 'is-invalid': enviado && form.contrasena.errors }">
+                    <input class="input_form" type="password" name="contrasena" placeholder="Contraseña" formControlName="contrasena" [ngClass]="{ 'is-invalid': enviado && form.contrasena.errors }">
                     <span class="focus_input_form"></span>
                     <span class="icono_input_form">
                         <i class="fa fa-lock" aria-hidden="true"></i>

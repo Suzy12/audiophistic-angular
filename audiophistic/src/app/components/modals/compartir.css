@@ -36,8 +36,14 @@
     color: #999;
 }
 
-.modal_confirmar .btn, .modal_confirmar .btn:active {
+.modal_confirmar .btn,
+.modal_confirmar .btn:active {
     border: none;
 }
+
+.modal_fondo {
+    background: rgba(0, 0, 0, 0.5);
+}
+
 
 /*Reference: https://www.tutorialrepublic.com/snippets/preview.php?topic=bootstrap&file=delete-confirmation-modal*/

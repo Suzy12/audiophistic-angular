@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 
@@ -8,7 +9,7 @@ import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 })
 export class RolesGuard implements CanActivate {
 
-  constructor(private router: Router, private acceso_service: AccesoService) { }
+  constructor(private router: Router, private acceso_service: AccesoService, private toastr: ToastrService) { }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot,) {
     const roles_permitidos = route.data.roles_permitidos;
@@ -20,6 +21,7 @@ export class RolesGuard implements CanActivate {
     }
 
     this.router.navigate([redirectTo], { queryParams: { returnUrl: state.url } });
+    this.toastr.error("No tiene permisos", 'Error', { timeOut: 5000 })
     return false;
   }
   

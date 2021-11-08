@@ -14,6 +14,7 @@ import { ProductosService } from 'src/app/services/productos/productos.service';
 export class ModificarCantidadProductoComponent implements OnInit {
 
   producto_form: FormGroup = {} as FormGroup;
+  producto_titulo:string = '';
 
   enviado: boolean = false;
   cargando: boolean = false;
@@ -45,6 +46,7 @@ export class ModificarCantidadProductoComponent implements OnInit {
     this.form_creado = false;
     this.productos_service.consultar_un_producto(this.id_producto).subscribe((res: any) => {
       let producto = res.body.resultado;
+      this.producto_titulo = producto.titulo;
       this.tipo_producto = producto.caracteristicas.id_tipo;
 
       this.productos_service.consultar_estilos_producto(this.id_producto).subscribe((res: any) => {

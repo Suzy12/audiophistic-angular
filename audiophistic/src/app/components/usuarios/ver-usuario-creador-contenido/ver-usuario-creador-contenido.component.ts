@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Usuario } from 'src/app/models/Usuarios/usuario';
 import { Usuario_Creador_de_Contenido } from 'src/app/models/Usuarios/usuario_creador_contenido';
@@ -23,7 +23,7 @@ export class VerUsuarioCreadorContenidoComponent implements OnInit {
 
   constructor(private ruta_activated: ActivatedRoute, private usuarios_service: UsuariosService,
     private toastr: ToastrService, private productos_service: ProductosService,
-    private blogs_service: BlogsService) {
+    private blogs_service: BlogsService, private router: Router) {
     this.ruta_activated.params.subscribe(params => {
       this.usuarios_service.consultar_usuario_creador_contenido(params['id']).subscribe(
         (res: any) => {

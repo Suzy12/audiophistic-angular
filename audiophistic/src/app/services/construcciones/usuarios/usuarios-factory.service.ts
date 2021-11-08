@@ -7,25 +7,25 @@ import { Usuario_Creador_de_Contenido } from 'src/app/models/Usuarios/usuario_cr
 @Injectable({
   providedIn: 'root'
 })
-export class UsuariosBuilderService {
+export class UsuariosFactoryService {
 
   constructor(private fb: FormBuilder) { }
 
   construir_form_usuario(rol: string, usuario_obj: any): FormGroup {
     let sub_form: FormGroup = {} as FormGroup;
-    let usuario: UsuariosBuilder;
+    let usuario: UsuariosFactory;
 
     switch (rol) {
       case '1':
-        usuario = new UsuariosAdministradorBuilder(this.fb);
+        usuario = new UsuariosAdministradorFactory();
         sub_form = usuario.construir_form_usuario(usuario_obj, sub_form, this.fb)
         break;
       case '2':
-        usuario = new UsuariosCreadorContenidoBuilder(this.fb);
+        usuario = new UsuariosCreadorContenidoFactory();
         sub_form = usuario.construir_form_usuario(usuario_obj, sub_form, this.fb)
         break;
       case '3':
-        usuario = new UsuariosConsumidorBuilder(this.fb);
+        usuario = new UsuariosConsumidorFactory();
         sub_form = usuario.construir_form_usuario(usuario_obj, sub_form, this.fb)
         break;
       default:
@@ -36,16 +36,13 @@ export class UsuariosBuilderService {
   }
 }
 
-abstract class UsuariosBuilder {
-  constructor(private fb: FormBuilder) { }
+interface UsuariosFactory {
 
-  construir_form_usuario(usuario_obj: any, sub_form: FormGroup, fb: FormBuilder): FormGroup {
-    return this.construir_form_usuario(usuario_obj, sub_form, fb)
-  }
+  construir_form_usuario(usuario_obj: any, sub_form: FormGroup, fb: FormBuilder): FormGroup
 
 }
 
-export class UsuariosConsumidorBuilder extends UsuariosBuilder {
+class UsuariosConsumidorFactory implements UsuariosFactory {
 
   construir_form_usuario(usuario_obj: any, sub_form: FormGroup, fb: FormBuilder): FormGroup {
     usuario_obj = usuario_obj as Usuario_Consumidor
@@ -59,7 +56,8 @@ export class UsuariosConsumidorBuilder extends UsuariosBuilder {
     return sub_form;
   }
 }
-export class UsuariosCreadorContenidoBuilder extends UsuariosBuilder {
+
+class UsuariosCreadorContenidoFactory implements UsuariosFactory {
 
   construir_form_usuario(usuario_obj: any, sub_form: FormGroup, fb: FormBuilder): FormGroup {
     usuario_obj = usuario_obj as Usuario_Creador_de_Contenido
@@ -77,7 +75,7 @@ export class UsuariosCreadorContenidoBuilder extends UsuariosBuilder {
   }
 }
 
-export class UsuariosAdministradorBuilder extends UsuariosBuilder {
+class UsuariosAdministradorFactory implements UsuariosFactory {
 
   construir_form_usuario(usuario_obj: any, sub_form: FormGroup, fb: FormBuilder): FormGroup {
     usuario_obj = usuario_obj as Usuario_Administrador

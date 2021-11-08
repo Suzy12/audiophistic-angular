@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, ControlContainer } from '@angular/forms'
-import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
+import { EstilosService } from 'src/app/services/construcciones/estilos/estilos.service';
 
 @Component({
   selector: 'app-creador-contenido-form',

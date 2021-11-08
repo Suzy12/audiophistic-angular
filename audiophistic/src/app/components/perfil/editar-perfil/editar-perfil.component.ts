@@ -5,8 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Canton, Provincia } from 'src/app/models/ubicaciones';
 import { Tipos_Usuario } from 'src/app/models/Usuarios/tipos_usuarios';
 import { Usuario } from 'src/app/models/Usuarios/usuario';
-import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
-import { UsuariosBuilderService } from 'src/app/services/builders/usuarios/usuarios-build.service';
+import { EstilosService } from 'src/app/services/construcciones/estilos/estilos.service';
+import { UsuariosFactoryService } from 'src/app/services/construcciones/usuarios/usuarios-factory.service';
 import { PerfilService } from 'src/app/services/perfil/perfil.service';
 import { UbicacionesService } from 'src/app/services/ubicaciones/ubicaciones.service';
 import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
@@ -43,7 +43,7 @@ export class EditarPerfilComponent implements OnInit {
 
   constructor(private ubicaciones_service: UbicacionesService,
     private perfil_service: PerfilService, private fb: FormBuilder,
-    private usuarios_builder_service: UsuariosBuilderService,
+    private usuarios_builder_service: UsuariosFactoryService,
     private estilos_service: EstilosService,
     private toastr: ToastrService,
     private router: Router) {

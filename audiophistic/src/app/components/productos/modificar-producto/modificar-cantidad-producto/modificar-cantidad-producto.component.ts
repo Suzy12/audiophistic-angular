@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs/operators';
-import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
+import { EstilosService } from 'src/app/services/construcciones/estilos/estilos.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 
 @Component({

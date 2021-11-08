@@ -8,7 +8,7 @@ import { filter } from 'rxjs/operators';
 import { Categoria } from 'src/app/models/categoria';
 import { editor_config_global } from 'src/app/models/editor';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
-import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
+import { EstilosService } from 'src/app/services/construcciones/estilos/estilos.service';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { AsociarProductosComponent } from './asociar-productos/asociar-productos.component';
 

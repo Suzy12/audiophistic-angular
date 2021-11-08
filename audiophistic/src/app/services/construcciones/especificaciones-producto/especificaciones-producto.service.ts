@@ -22,18 +22,32 @@ export class EspecificacionesProductoService {
   constructor() { }
 
   crear_especificaciones_producto(producto: Producto): any[] {
+    let producto_obj;
     switch (producto.caracteristicas.id_tipo) {
       case 1:
-        return this.crear_especificaciones_album(producto)
+        producto_obj = new ProductosAlbumesFactory();
+        return producto_obj.crear_especificaciones(producto)
       case 2:
-        return this.crear_especificaciones_audifonos(producto)
+        producto_obj = new ProductosAudifonosFactory();
+        return producto_obj.crear_especificaciones(producto)
+      case 3:
+        producto_obj = new ProductosParlantesFactory();
+        return producto_obj.crear_especificaciones(producto)
       default:
-        return this.crear_especificaciones_parlantes(producto);
+        return [];
     }
 
   }
+}
 
-  crear_especificaciones_album(producto: Producto): any[] {
+
+interface ProductosFactory {
+  crear_especificaciones(producto: Producto): any[]
+}
+
+class ProductosAlbumesFactory implements ProductosFactory {
+
+  crear_especificaciones(producto: Producto): any[] {
     let producto_album = producto.caracteristicas as Producto_Albumes
     let especificaciones = [
       {
@@ -55,9 +69,12 @@ export class EspecificacionesProductoService {
     ];
     return especificaciones;
   }
+}
 
-  crear_especificaciones_audifonos(producto: Producto): any[] {
-    let producto_audifonos = producto.caracteristicas as Producto_Audifonos 
+class ProductosAudifonosFactory implements ProductosFactory {
+
+  crear_especificaciones(producto: Producto): any[] {
+    let producto_audifonos = producto.caracteristicas as Producto_Audifonos
     let especificaciones = [
       {
         especificacion: 'Marca',
@@ -78,8 +95,11 @@ export class EspecificacionesProductoService {
     ];
     return especificaciones;
   }
+}
 
-  crear_especificaciones_parlantes(producto: Producto): any[] {
+class ProductosParlantesFactory implements ProductosFactory {
+
+  crear_especificaciones(producto: Producto): any[] {
     let producto_parlantes = producto.caracteristicas as Producto_Parlantes
     let especificaciones = [
       {
@@ -101,7 +121,4 @@ export class EspecificacionesProductoService {
     ];
     return especificaciones;
   }
-
-
-
 }

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ControlContainer, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Canton, Provincia } from 'src/app/models/ubicaciones';
-import { EstilosService } from 'src/app/services/builders/estilos/estilos.service';
+import { EstilosService } from 'src/app/services/construcciones/estilos/estilos.service';
 import { CheckoutService } from 'src/app/services/checkout/checkout.service';
 import { UbicacionesService } from 'src/app/services/ubicaciones/ubicaciones.service';
 

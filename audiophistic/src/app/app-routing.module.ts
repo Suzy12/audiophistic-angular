@@ -31,6 +31,7 @@ import { VerBlogComponent } from './components/blogs/ver-blog/ver-blog.component
 import { ModificarBlogComponent } from './components/blogs/modificar-blog/modificar-blog.component';
 import { BusquedaGeneralComponent } from './components/busqueda/busqueda-general/busqueda-general.component';
 import { BlogsComponent } from './components/busqueda/blogs/blogs.component';
+import { RedireccionGuard } from './guards/redireccion/redireccion.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -40,7 +41,7 @@ const routes: Routes = [
   {
     path: 'inicio',
     children: [
-      { path: 'dashboard', component: DashboardComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2"], redirectTo: '/inicio/editar-perfil', rol_almacenado: 'rol'} },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [RedireccionGuard], data: { roles_permitidos: ["1", "2"], redirectTo: '/inicio/editar-perfil', rol_almacenado: 'rol'} },
       { path: 'editar-perfil', component: EditarPerfilComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2", "3"], redirectTo: '#', rol_almacenado: 'rol'} },
       { path: 'productos', component: TablaProductosComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["1", "2"], redirectTo: '#', rol_almacenado: 'rol'}  },
       { path: 'crear-producto', component: CrearProductoComponent, canActivate: [RolesGuard], data: { roles_permitidos: ["2"], redirectTo: '#', rol_almacenado: 'rol'}  },

@@ -26,7 +26,7 @@ export class VerUsuarioConsumidorComponent implements OnInit {
           if (res.body.error) {
             this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
           } else {
-            this.usuario = res.body.resultado
+            this.usuario = res.body.resultado as Usuario
             this.crear_caracteristicas_usuario()
           }
         }, (error) => {

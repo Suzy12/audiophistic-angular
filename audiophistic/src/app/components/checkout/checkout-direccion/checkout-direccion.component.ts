@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ControlContainer, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ControlContainer, FormBuilder, FormGroup } from '@angular/forms';
 import { Canton, Provincia } from 'src/app/models/ubicaciones';
-import { Usuario } from 'src/app/models/Usuarios/usuario';
-import { Usuario_Consumidor } from 'src/app/models/Usuarios/usuario_consumidor';
 import { PerfilService } from 'src/app/services/perfil/perfil.service';
 import { UbicacionesService } from 'src/app/services/ubicaciones/ubicaciones.service';
 

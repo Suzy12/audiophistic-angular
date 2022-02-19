@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { CarritoLocalService } from 'src/app/services/carrito/carrito-local/carrito-local.service';
-import { CarritoService } from 'src/app/services/carrito/carrito/carrito.service';
 import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 
 @Component({

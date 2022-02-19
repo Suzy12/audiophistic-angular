@@ -1,9 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { filter } from 'rxjs/operators';
 import { precio_envio_global } from 'src/app/models/global';
 import { PrecioSubtotalPipe } from 'src/app/pipes/carrito/subtotal/precio-subtotal.pipe';
 import { PrecioTotalPipe } from 'src/app/pipes/carrito/total/precio-total.pipe';

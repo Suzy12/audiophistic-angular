@@ -1,4 +1,4 @@
-import { Producto } from "./Productos/productos";
+import { Producto } from "./Productos/producto";
 
 export interface Carrito {
     items: Producto[];

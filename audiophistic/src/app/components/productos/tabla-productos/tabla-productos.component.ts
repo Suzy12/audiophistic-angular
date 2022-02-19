@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Producto } from '../../../models/Productos/productos';
+import { Producto } from '../../../models/Productos/producto';
 import { Idioma } from '../../../models/idioma'
 import { ProductosService } from 'src/app/services/productos/productos.service';
 import { ToastrService } from 'ngx-toastr';

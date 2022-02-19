@@ -3,7 +3,6 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http'
 import { Observable, Subject } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { first } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +10,10 @@ import { first } from "rxjs/operators";
 export class AccesoService {
 
   private api_url = environment.api_url;
-  private logger = new Subject<boolean>();
+  private observador_sesion = new Subject<boolean>();
 
   constructor(private http: HttpClient, private toastr: ToastrService) {
-    this.logger.next(false);
+    this.observador_sesion.next(false);
     this.leer_token();
   }
 
@@ -40,12 +39,12 @@ export class AccesoService {
 
 
   cerrar_sesion() {
-    this.logger.next(false);
+    this.observador_sesion.next(false);
     localStorage.clear()
   }
 
   confirmar_iniciar_sesion(correo: string, token: string, rol: string, nombre:string) {
-    this.logger.next(true);
+    this.observador_sesion.next(true);
     this.guardar_token(token);
     this.guardar_correo(correo);
     this.guardar_rol(rol)
@@ -111,7 +110,7 @@ export class AccesoService {
   }
 
   tiene_sesion(): Observable<boolean> {
-    return this.logger.asObservable();
+    return this.observador_sesion.asObservable();
   }
 
 }

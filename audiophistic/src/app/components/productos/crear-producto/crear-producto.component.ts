@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChildren, ViewChild, NgModule } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Stepper from 'bs-stepper';
 import { ToastrService } from 'ngx-toastr';
 import { EstilosService } from 'src/app/services/construcciones/estilos/estilos.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
-import { Producto_Albumes } from 'src/app/models/Productos/producto_albumes';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 

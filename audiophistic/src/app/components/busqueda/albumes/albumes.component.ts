@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Producto } from 'src/app/models/Productos/productos';
+import { Producto } from 'src/app/models/Productos/producto';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 import { Options, LabelType } from '@angular-slider/ngx-slider';
 import { cantidad_a_traer_global, opciones_slider_global } from 'src/app/models/global';

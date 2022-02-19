@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs/operators';
 import { CarritoLocalService } from 'src/app/services/carrito/carrito-local/carrito-local.service';
 import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
 import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 
 @Injectable({
@@ -9,7 +8,7 @@ import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 })
 export class RolesGuard implements CanActivate {
 
-  constructor(private router: Router, private acceso_service: AccesoService, private toastr: ToastrService) { }
+  constructor(private router: Router, private acceso_service: AccesoService) { }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const roles_permitidos = route.data.roles_permitidos;

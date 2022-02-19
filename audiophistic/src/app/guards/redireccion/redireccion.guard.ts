@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AccesoService } from 'src/app/services/gestion-acceso/acceso.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RedireccionGuard implements CanActivate {
+
+  // Solo los usuarios administrador y creador de contenido tienen acceso al Dashboard
+  // El consumidor no puede acceder el Dashboard, por lo que la página debe redirigirlo
+  // a la página de perfil sin mostrar el mensaje de error de 'no tiene permisos'
   constructor(private router: Router, private acceso_service: AccesoService) { }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {

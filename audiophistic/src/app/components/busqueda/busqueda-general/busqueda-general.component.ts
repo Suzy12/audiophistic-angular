@@ -1,11 +1,9 @@
-import { DecimalPipe } from '@angular/common';
-import { Component, OnInit, PipeTransform } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { map, startWith } from 'rxjs/operators';
 import { Blog } from 'src/app/models/blog';
-import { Producto } from 'src/app/models/Productos/productos';
+import { Producto } from 'src/app/models/Productos/producto';
 import { Usuario } from 'src/app/models/Usuarios/usuario';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';

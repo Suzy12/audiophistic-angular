@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Producto } from 'src/app/models/Productos/productos';
+import { Producto } from 'src/app/models/Productos/producto';
 import { ComentariosCalificacionesService } from 'src/app/services/comentarios_calificaciones/comentarios-calificaciones.service';
 import { ResenaProductoModalComponent } from '../../modals/resena-producto-modal/resena-producto-modal.component';
 

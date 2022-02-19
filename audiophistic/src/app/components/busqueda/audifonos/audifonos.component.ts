@@ -2,7 +2,7 @@ import { LabelType, Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { cantidad_a_traer_global, opciones_slider_global } from 'src/app/models/global';
-import { Producto } from 'src/app/models/Productos/productos';
+import { Producto } from 'src/app/models/Productos/producto';
 import { BusquedasService } from 'src/app/services/busquedas/busquedas.service';
 import { ProductosService } from 'src/app/services/productos/productos.service';
 

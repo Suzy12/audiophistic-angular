@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 
 /*
+Esta fachada encarga de crear el menú del usuario.
 La fachada está definida por el "rol" del usuario
 
 1 - Administrador

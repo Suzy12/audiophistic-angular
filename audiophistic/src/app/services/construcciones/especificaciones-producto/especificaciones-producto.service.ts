@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Producto } from 'src/app/models/Productos/productos';
+import { Producto } from 'src/app/models/Productos/producto';
 import { Producto_Albumes } from 'src/app/models/Productos/producto_albumes';
 import { Producto_Audifonos } from 'src/app/models/Productos/producto_audifonos';
 import { Producto_Parlantes } from 'src/app/models/Productos/producto_parlantes';

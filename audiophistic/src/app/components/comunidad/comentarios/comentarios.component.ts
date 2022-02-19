@@ -1,4 +1,3 @@
-import { ResourceLoader } from '@angular/compiler';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';

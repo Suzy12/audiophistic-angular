@@ -9,7 +9,6 @@ import { EstilosService } from 'src/app/services/construcciones/estilos/estilos.
 import { UsuariosFactoryService } from 'src/app/services/construcciones/usuarios/usuarios-factory.service';
 import { PerfilService } from 'src/app/services/perfil/perfil.service';
 import { UbicacionesService } from 'src/app/services/ubicaciones/ubicaciones.service';
-import { UsuariosService } from 'src/app/services/usuarios/usuarios.service';
 
 @Component({
   selector: 'app-editar-perfil',

@@ -4,10 +4,8 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-import { windowWhen } from 'rxjs/operators';
 import { Idioma } from 'src/app/models/idioma';
 import { BlogsService } from 'src/app/services/blogs/blogs.service';
-import { convertCompilerOptionsFromJson } from 'typescript';
 import { EliminarModalComponent } from '../../modals/eliminar-modal/eliminar-modal.component';
 
 @Component({

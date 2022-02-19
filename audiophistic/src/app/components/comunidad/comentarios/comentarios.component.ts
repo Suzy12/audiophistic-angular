@@ -82,7 +82,6 @@ export class ComentariosComponent implements OnInit {
       if(result != 'cancelar'){
         let modificar = this.comentarios.find((item:any) => id_comentario == item.id_comentario)
         modificar.comentario = result
-        console.log(modificar)
       }
     }, (reason) => {
     });
@@ -94,8 +93,6 @@ export class ComentariosComponent implements OnInit {
 
   consultar_comentarios_blog_publico() {
     this.cargando_comentarios = true;
-
-    console.log(this.id_blog, this.cantidad_a_traer, this.pagina + this.cantidad_a_traer)
 
     this.comentarios_calificaciones_service.consultar_comentarios_blog_publico(
       this.id_blog,
@@ -121,8 +118,6 @@ export class ComentariosComponent implements OnInit {
   consultar_comentarios_blog() {
     this.cargando_comentarios = true;
 
-    console.log(this.id_blog, this.cantidad_a_traer, this.pagina + this.cantidad_a_traer)
-
     this.comentarios_calificaciones_service.consultar_comentarios_blog(
       this.id_blog,
       this.cantidad_a_traer,
@@ -136,7 +131,6 @@ export class ComentariosComponent implements OnInit {
         this.pagina += this.cantidad_a_traer;
         this.comentarios = this.comentarios.concat(res.body.resultado.comentarios)
         this.comentarios.length < res.body.resultado.cantidad_total ? this.cargar_mas = true : this.cargar_mas = false;
-        console.log(this.comentarios)
         this.cargando_comentarios = false;
       }
     }, (error) => {

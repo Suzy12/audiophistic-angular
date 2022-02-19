@@ -61,7 +61,6 @@ export class VerProductoComponent implements OnInit {
         } else {
           this.producto = res.body.resultado;
           this.precio = this.producto.precio!;
-          console.log(this.producto)
           this.consultar_estilos_producto();
           this.consultar_especificaciones_producto();
           this.sesion ? this.consultar_mi_resena() : null;

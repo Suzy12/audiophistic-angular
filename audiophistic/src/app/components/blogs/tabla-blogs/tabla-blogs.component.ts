@@ -80,7 +80,6 @@ export class TablaBlogsComponent implements OnInit, OnDestroy {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.blogs = res.body.resultado;
-          console.log(this.blogs)
           this.trigger_tabla.next();
         }
       }, (error) => {

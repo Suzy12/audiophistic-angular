@@ -99,7 +99,6 @@ export class ComentariosProductosComponent implements OnInit {
         this.resenas = this.resenas.concat(res.body.resultado.resenas)
         this.resenas.length < res.body.resultado.cantidad_total ? this.cargar_mas = true : this.cargar_mas = false;
         this.cargando_comentarios = false;
-        console.log(res.body.resultado)
       }
     }, (error) => {
       this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
@@ -123,7 +122,6 @@ export class ComentariosProductosComponent implements OnInit {
         this.resenas = this.resenas.concat(res.body.resultado.resenas)
         this.resenas.length < res.body.resultado.cantidad_total ? this.cargar_mas = true : this.cargar_mas = false;
         this.cargando_comentarios = false;
-        console.log(res.body.resultado)
       }
     }, (error) => {
       this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });

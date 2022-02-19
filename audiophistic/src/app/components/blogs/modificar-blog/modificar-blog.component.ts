@@ -144,8 +144,6 @@ export class ModificarBlogComponent implements OnInit {
     let blog_info = this.blog_form.getRawValue();
     blog_info.productos = this.asociacion?.productos_asociados;
 
-    console.log(blog_info)
-
     this.enviado = true;
     this.cargando = true;
 

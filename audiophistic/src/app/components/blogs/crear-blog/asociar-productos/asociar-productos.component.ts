@@ -26,7 +26,6 @@ export class AsociarProductosComponent implements OnInit {
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
-          console.log(this.productos_asociados)
           let productos = res.body.resultado;
           for (let i = 0; i < productos.length; i++) {
             this.mis_productos.push(productos[i]);

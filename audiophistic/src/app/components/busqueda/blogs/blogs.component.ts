@@ -82,7 +82,6 @@ export class BlogsComponent implements OnInit {
         if (res.body.error) {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
-          console.log(res.body.resultado)
           this.categorias = res.body.resultado;
         }
       }, (error) => {
@@ -141,7 +140,6 @@ export class BlogsComponent implements OnInit {
       cantidad_a_buscar: this.cantidad_a_traer,
       pagina: this.pagina + this.cantidad_a_traer
     }
-    console.log(busqueda_info)
     this.busquedas_service.buscar_blogs(busqueda_info).subscribe(
       (res: any) => {
         this.toastr.clear();
@@ -156,7 +154,6 @@ export class BlogsComponent implements OnInit {
           this.blogs = this.blogs.concat(res.body.resultado.blogs)
           this.blogs.length < res.body.resultado.cantidad_total ? this.cargar_mas = true : this.cargar_mas = false;
           this.cargando_blogs = false;
-          console.log(res.body.resultado)
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });

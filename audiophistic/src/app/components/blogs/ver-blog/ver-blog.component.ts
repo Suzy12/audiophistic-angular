@@ -33,7 +33,6 @@ export class VerBlogComponent implements OnInit {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.blog = res.body.resultado;
-          console.log(this.blog)
           this.slides_carrusel();
           if(this.rol== '3'){
             this.ver_mi_calificacion_blog();

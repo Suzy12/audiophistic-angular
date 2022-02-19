@@ -55,7 +55,6 @@ export class BusquedaGeneralComponent implements OnInit {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.resultados = res.body.resultado;
-          console.log(this.resultados)
           let texto = this.buscar_form.getRawValue().termino;
           texto == '' ? this.resultados_busqueda = this.resultados : this.resultados_busqueda = this.buscar_resultado_vendedores(texto);
           this.confirmar_resultados();
@@ -94,7 +93,6 @@ export class BusquedaGeneralComponent implements OnInit {
           this.resultados = res.body.resultado;
           let texto = this.buscar_form.getRawValue().termino;
           texto == '' ? this.resultados_busqueda = this.resultados : this.resultados_busqueda = this.buscar_resultado_blogs(texto);
-          console.log(this.resultados_busqueda)
           this.confirmar_resultados();
         }
       }, (error) => {
@@ -105,9 +103,7 @@ export class BusquedaGeneralComponent implements OnInit {
 
   buscar() {
     this.resultados_listos = false;
-    console.log(this.buscar_form.getRawValue())
     this.tipo_busqueda = (document.querySelector('input[name="tipo_busqueda"]:checked') as any)!.value;
-    console.log(this.tipo_busqueda)
 
     switch (this.tipo_busqueda) {
       case "productos":

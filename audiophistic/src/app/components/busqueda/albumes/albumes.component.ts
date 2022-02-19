@@ -44,7 +44,6 @@ export class AlbumesComponent implements OnInit {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.productos = res.body.resultado;
-          console.log(this.productos)
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
@@ -60,7 +59,6 @@ export class AlbumesComponent implements OnInit {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.presentaciones = res.body.resultado;
-          console.log(this.presentaciones)
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
@@ -76,7 +74,6 @@ export class AlbumesComponent implements OnInit {
           this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         } else {
           this.generos = res.body.resultado;
-          console.log(this.generos)
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
@@ -95,7 +92,6 @@ export class AlbumesComponent implements OnInit {
           this.min_precio = precios.limite_min;
           this.max_precio = precios.limite_max;
           this.opciones_slider = this.crear_slider();
-          console.log(this.opciones_slider)
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });
@@ -142,7 +138,6 @@ export class AlbumesComponent implements OnInit {
       cantidad_a_buscar: this.cantidad_a_traer,
       pagina: this.pagina + this.cantidad_a_traer
     }
-    console.log(busqueda_info)
     this.busquedas_service.buscar_albumes(busqueda_info).subscribe(
       (res: any) => {
         this.toastr.clear();
@@ -153,12 +148,10 @@ export class AlbumesComponent implements OnInit {
             this.toastr.warning('No hay resultados para esta búsqueda', 'Sin resultados', { timeOut: 5000 });
             return;
           }
-          console.log(res.body.resultado)
           this.pagina += this.cantidad_a_traer;
           this.productos = this.productos.concat(res.body.resultado.productos)
           this.productos.length < res.body.resultado.cantidad_total ? this.cargar_mas = true : this.cargar_mas = false;
           this.cargando_comentarios = false;
-          console.log(res.body.resultado)
         }
       }, (error) => {
         this.toastr.error("Hubo un error al conectarse al sistema", 'Error', { timeOut: 5000 });

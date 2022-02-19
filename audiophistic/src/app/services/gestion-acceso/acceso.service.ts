@@ -93,6 +93,7 @@ export class AccesoService {
       let validar_info = { token: token_, id_tipo: rol_ }
       var res: any = await this.validar_token(validar_info).toPromise();
       if (res.body.error) {
+        this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
         this.cerrar_sesion()
         return false;
       } else {

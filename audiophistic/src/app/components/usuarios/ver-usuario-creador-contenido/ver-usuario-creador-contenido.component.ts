@@ -61,7 +61,6 @@ export class VerUsuarioCreadorContenidoComponent implements OnInit {
         this.toastr.error(res.body.error, 'Error', { timeOut: 5000 });
       } else {
         this.blogs = res.body.resultado
-        console.log(this.blogs)
       }
     })
   }

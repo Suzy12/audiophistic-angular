@@ -145,8 +145,6 @@ export class CheckoutComponent implements OnInit {
       }
     }
 
-    console.log(pago_info)
-
     this.enviado = true;
     this.cargando = true;
 
